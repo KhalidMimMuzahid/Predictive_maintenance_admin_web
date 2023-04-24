@@ -199,7 +199,7 @@ const Navbar = () => {
         <Toolbar className={classes.toolbar}>
 
 
-            <div className={classes.searchBarHolder}>
+            {/* <div className={classes.searchBarHolder}>
                 
                 <TextField 
                     variant="outlined" 
@@ -215,7 +215,7 @@ const Navbar = () => {
                     className={classes.input}
                 />
 
-            </div>
+            </div> */}
 
             <div className={classes.searchProxy}></div>
             

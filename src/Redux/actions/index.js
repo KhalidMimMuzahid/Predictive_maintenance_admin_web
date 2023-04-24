@@ -12,3 +12,11 @@ export const openSidebar = (isSidebarOpen) => {
     }
 }
 
+
+export const changeCustomerId = (customerId) => {
+    return {
+        type: "CHANGE_CUSTOMER_ID",
+        payload: customerId,
+    }
+}
+

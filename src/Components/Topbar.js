@@ -1,6 +1,6 @@
 import { ClassNames } from "@emotion/react";
 import { Cancel, ChatOutlined, Edit, MailOutline, NotificationsOutlined, Person, PowerSettingsNewOutlined, Search, SentimentSatisfied, Settings, SettingsApplications, ShoppingCart, Dehaze, CancelOutlined, Close } from "@mui/icons-material";
-import { AppBar, Avatar, Badge, Divider, IconButton, InputAdornment, Menu, MenuItem, TextField, Toolbar, Typography, styled } from "@mui/material";
+import { AppBar, Avatar, Badge, Divider, IconButton, InputAdornment, Menu, MenuItem, SwipeableDrawer, TextField, Toolbar, Typography, styled } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -13,6 +13,9 @@ import Contact6 from "../Assets/Component/contact6.jpg";
 import UserImage from "../Assets/Component/user_image.jfif";
 import { useDispatch, useSelector } from "react-redux";
 import { openSidebar } from "../Redux/actions/index";
+import { Fragment } from "react";
+import Sidebar from "./Sidebar";
+import Drawer from "./Drawer";
 
 
 const useStyle = makeStyles((theme)=> ({
@@ -37,6 +40,12 @@ const useStyle = makeStyles((theme)=> ({
     smallSearchInputHolder: {
         display: "flex",
         width: "70%",
+        [theme.breakpoints.up("sm")]: {
+            display: "none",
+        }
+    },
+    drawerHolder: {
+        display: "flex",
         [theme.breakpoints.up("sm")]: {
             display: "none",
         }
@@ -116,10 +125,50 @@ const Topbar = () => {
     const dispatch = useDispatch();
 
 
+    const [state, setState] = useState({
+        top: false,
+        left: false,
+        bottom: false,
+        right: false,
+    });
+
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (
+            event &&
+            event.type === 'keydown' &&
+            (event.key === 'Tab' || event.key === 'Shift')
+        ) {
+            return; 
+        }
+
+        setState({ ...state, [anchor]: open });
+    };
+
+
     return (
         <AppBar position="sticky" elevation={0}>
             <Toolbar className={classes.toolbar}>
-                
+
+                <div className={classes.drawerHolder}>
+
+                    <div>
+                        <Fragment key="left">
+                            <div 
+                                className={classes.menuIcon}
+                                onClick={toggleDrawer("left", true)}
+                            > <Dehaze /> </div>
+                            <SwipeableDrawer
+                                anchor="left"
+                                open={state["left"]}
+                                onClose={toggleDrawer("left", false)}
+                                onOpen={toggleDrawer("left", true)}
+                            >
+                                <Drawer />
+                            </SwipeableDrawer>
+                        </Fragment>
+                    </div>
+
+                </div>                
 
                 <div className={classes.inputHolder}>
 

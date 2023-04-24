@@ -24,7 +24,7 @@ import UserImage from "../Assets/Component/user_image.jfif";
 import { useDispatch, useSelector } from "react-redux";
 import { changeAppTab, openSidebar } from "../Redux/actions";
 
-const Sidebar = (props) => {
+const Drawer = (props) => {
 
 
     const isSidebarOpen = useSelector((state) => state.openSidebar);
@@ -32,16 +32,12 @@ const Sidebar = (props) => {
     const dispatch = useDispatch();
 
     return (
-        <div className={`side-menu ${!isSidebarOpen ? "inactive" : ""}`}>
+        <div className={`side-menu`}>
 
             <div className="top-section">
                 <div className="logo">
 
-                    {!isSidebarOpen ? (
-                        <img src={logo_small} alt="webscript" />
-                    ) : (
-                        <img src={logo_full} alt="webscript" />
-                    )}
+                    <img src={logo_full} alt="webscript" />
 
                 </div>
             </div>
@@ -280,4 +276,4 @@ const Sidebar = (props) => {
     );
 }
 
-export default Sidebar;
+export default Drawer;

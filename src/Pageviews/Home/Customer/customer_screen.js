@@ -1,8 +1,12 @@
 import { Add, Download, MoreVert, Upload } from "@mui/icons-material";
-import { Button, IconButton, Menu, MenuItem } from "@mui/material";
+import { Button, IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import { makeStyles, styled } from "@mui/styles";
+import { useEffect } from "react";
 import { Component } from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeAppTab, changeCustomerId } from "../../../Redux/actions";
+import { DataGrid } from "@mui/x-data-grid";
 
 const useStyle = makeStyles((theme) => ({
     holder: {
@@ -42,7 +46,24 @@ const useStyle = makeStyles((theme) => ({
             display: "flex",
         },
     },
+    customerName: {
+        color: "#25213B", 
+        fontSize: "14",
+    },
+    customerEmail: {
+        color: "#6E6893", 
+        fontSize: "14",
+    },
+    yenText: {
+        color: "#6E6893", 
+        fontSize: "12",
+    },
+    balance: {
+        color: "#25213B", 
+        fontSize: "14",
+    }
 }));
+
 
 const CustomerScreen = () => {
 
@@ -184,18 +205,51 @@ const StyledMenu = styled((props) => (
 }));
 
 
+const columns = [
+    {
+        field: 'name',
+        headerName: 'CUSTOMER NAME',
+        flex: 1,
+        renderCell: (props) => CustomerNameEmailComponent(props),
+    },
+    {
+        field: 'email',
+        headerName: 'EMAIL',
+        flex: 1,
+    },
+    {
+        field: 'location',
+        headerName: 'LOCATION',
+        flex: 1,
+        renderCell: (props) => LocationComponent(props),
+    },
+    {
+        field: 'balance',
+        headerName: 'BALANCE',
+        headerAlign: "center",
+        renderCell: (props) => BalanceComponent(props),
+    },
+    {
+        field: 'details',
+        headerName: "DETAILS",
+        flex: 1,
+        renderCell: (props) => DetailsComponent(props),
+    }
+];
+
+
+
+
 class CustomerTable extends Component {
 
     state = {
-        customers: [],
-    }
-
+        rows : [],
+    };
 
     componentDidMount = () => {
         this.getCustomer();
     }
-
-
+    
     getCustomer() {
         fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/customer/get-all-customer', {
             method: 'GET',
@@ -206,46 +260,145 @@ class CustomerTable extends Component {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                this.setState({ customers: data });
+                data.map((customer, index) => (
+                    this.addNewItem(customer, index)
+                ));
             });
     }
 
+    addNewItem = (customer, index) => {
+        let { rows } = this.state;
+        rows.push({ id: index, name: customer, email: customer.email, location: customer, balance: customer.uid, details: customer});
+        this.setState({rows: rows});
+    };
 
-    displayCustomers = (customers) => {
+    displayCustomers = () => {
 
-        if (customers.length === 0)
-            return <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        if (this.state.rows.length === 0)
+            return <div style={{ width: "100%", display: "flex", justifyContent: "center", padding:"20px" }}>
                 <h3>No customer in the server</h3>
             </div>;
-
-
-
-        return customers.map((customer, index) => (
-            <CustomerTab
-                key={index}
-                email={customer.email}
+        
+        return (
+            <DataGrid
+                rows={this.state.rows}
+                columns={columns}
+                pageSize={5}
+                rowsPerPageOptions={[5]}
+                autoHeight
+                checkboxSelection
             />
-        ));
+        );
 
     };
 
 
     render () {
         return <div style={{ overflow: "auto" }}>
-            {this.displayCustomers(this.state.customers)}
+            {this.displayCustomers()}
         </div>;
     };
 
 }
 
 
-const CustomerTab = (props) => {
+const BalanceComponent = (props) => {
+
+    const [uid, setUid] = useState("");
+    const [customerWalletInfo, setCustomerWalletInfo] = useState(null);
+
     const classes = useStyle();
 
+    useEffect(() => {
+        setUid(props.value);
+        getCustomerWalletInfo();
+    })
+
+
+    function getCustomerWalletInfo () {
+        if(uid!="") {
+            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/wallet/get-customer-wallet-info/" + uid;
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setCustomerWalletInfo(data);
+            });
+        }
+    }
+
+    function displayBalance () {
+        if (customerWalletInfo == null)
+            return <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                <h3>Please Wait</h3>
+            </div>;
+        return <div>
+            <div className={classes.balance}>{"\xA5 " + customerWalletInfo.showa_cash}</div>
+            <div className={classes.yenText}>Yen</div>
+        </div>;
+    };
+    
+
     return (
-        <div>
-            {props.email}
+        <div style={{display: "flex"}}>
+            {displayBalance()}
         </div>
     );
 
+}
+
+
+
+
+const CustomerNameEmailComponent = (props) => {
+
+    const classes = useStyle();
+
+    return (
+        <div style={{display: "flex", flexDirection: "column"}}>
+            
+            <div className={classes.CustomerName}>{props.value.lastNameAlphabet + ', ' + props.value.firstNameAlphabet}</div>
+            <div className={classes.CustomerEmail}>{props.value.email}</div>
+
+        </div>
+    );
+}
+
+
+
+
+const LocationComponent = (props) => {
+
+    const classes = useStyle();
+
+    return (
+        <div style={{display: "flex", flexDirection: "column"}}>
+            
+            <div className={classes.CustomerName}>{props.value.buildingNameRoomNumber + ', ' + props.value.streetAddress}</div>
+            <div className={classes.CustomerEmail}>{props.value.cityAddress + ', ' + props.value.prefecture + '-' + props.value.postalCode}</div>
+
+        </div>
+    );
+}
+
+
+const DetailsComponent = (props) => {
+
+    const dispatch = useDispatch();
+
+    return (
+        <div 
+            style={{display: "flex", flexDirection: "column", cursor: "pointer"}}
+            onClick={()=>{
+                dispatch(changeAppTab("customer_details"));
+                dispatch(changeCustomerId(props.value.uid));
+            }}
+        >
+            <Typography>View Details</Typography>
+        </div>
+    );
 }
