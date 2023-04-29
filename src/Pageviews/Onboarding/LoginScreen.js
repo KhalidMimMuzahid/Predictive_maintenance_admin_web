@@ -10,7 +10,7 @@ import { Fade } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import { useState } from "react";
 import {auth} from "../../firebase";
-import {signInWithEmailAndPassword} from "firebase/auth"
+import {sendPasswordResetEmail, signInWithEmailAndPassword} from "firebase/auth"
 
 const usesStyles = makeStyles((theme) => ({
     sliderContainer: {
@@ -127,6 +127,12 @@ const LoginScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
+
+    const [loginFormOpen, setLoginFormOpen] = useState(true);
+    const [forgotPasswordOpen, setForgotPasswordOpen] = useState(false);
+    const [forgotPasswordInstrOpen, setForgotPasswordInstrOpen] = useState(false);
+
     function Login (){
         if(email===""){
             alert("Please provide an email address to login");
@@ -147,7 +153,25 @@ const LoginScreen = () => {
         })
     
     }
+
+    function SendResetInstruction (){
+        if(forgotPasswordEmail===""){
+            alert("Please provide an email address to login");
+            return;
+        }
     
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+            setForgotPasswordInstrOpen(true);
+            setForgotPasswordOpen(false);
+            setLoginFormOpen(false);
+        }).catch((error)=> {
+            alert(error);
+            return;
+        })
+    
+    }
+
 
     return (
         
@@ -182,64 +206,165 @@ const LoginScreen = () => {
 
                 </Container>
 
-
             </Grid>
 
             <Grid item sm={7} md={7} lg={8} className={classes.loginFormContainer}>
                 
-                <div className={classes.formHolder}>
+                {loginFormOpen && LoginForm()}
+    
+                {forgotPasswordOpen && ForgotPasswordForm()}
 
-                    <div className={classes.welcomeTxet}>Welcome Back!</div>
-                    <div className={classes.spacer}></div>
-                    <div className={classes.spacer}></div>
-
-
-                    <div className={classes.titleTxet}>Username or Email Address</div>
-                    <div className={classes.spacerSmall}></div>
-
-                    <TextField 
-                        variant="outlined" 
-                        placeholder="Email or Username" 
-                        size="small" 
-                        className={classes.input} 
-                        value={email}
-                        onChange={(e)=>{setEmail(e.target.value)}}
-                    />
-                    <div className={classes.spacer}></div>
-
-
-                    <div style={{display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center"}}>
-                        <div className={classes.titleTxet}>Password</div>
-                        <div style={{color: "#24459c", fontSize: "22", fontWeight: "600", cursor: "pointer"}}>
-                            Forgot Password?
-                        </div>
-                    </div>
-                    <div className={classes.spacerSmall}></div>
-
-                    <TextField 
-                        type="password" 
-                        variant="outlined" 
-                        placeholder="Password" 
-                        size="small" 
-                        className={classes.input} 
-                        value={password}
-                        onChange={(e)=>{setPassword(e.target.value)}}
-                    />
-                    <div className={classes.spacer}></div>
-                    <div className={classes.spacer}></div>
-
-
-                    <Button variant="contained" style={{backgroundColor: "#24459c", padding: "5px 40px"}} onClick={Login}>Sign In</Button>
-
-
-                </div>
+                {forgotPasswordInstrOpen && ForgotPasswordInstruction()}
 
             </Grid>
 
         </Grid>
         
     );
+
+
+    function LoginForm (){
+
+        return (
+            
+            <div className={classes.formHolder}>
+    
+                <div className={classes.welcomeTxet}>Welcome Back!</div>
+                <div className={classes.spacer}></div>
+                <div className={classes.spacer}></div>
+    
+    
+                <div className={classes.titleTxet}>Username or Email Address</div>
+                <div className={classes.spacerSmall}></div>
+    
+                <TextField 
+                    variant="outlined" 
+                    placeholder="Email or Username" 
+                    size="small" 
+                    className={classes.input} 
+                    value={email}
+                    onChange={(e)=>{setEmail(e.target.value)}}
+                />
+                <div className={classes.spacer}></div>
+    
+    
+                <div style={{display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center"}}>
+                    <div className={classes.titleTxet}>Password</div>
+                    <div 
+                        style={{color: "#24459c", fontSize: "22", fontWeight: "600", cursor: "pointer"}}
+                        onClick={()=>{
+                            setForgotPasswordInstrOpen(false);
+                            setForgotPasswordOpen(true);
+                            setLoginFormOpen(false);
+                        }}
+                    >
+                        Forgot Password?
+                    </div>
+                </div>
+                <div className={classes.spacerSmall}></div>
+    
+                <TextField 
+                    type="password" 
+                    variant="outlined" 
+                    placeholder="Password" 
+                    size="small" 
+                    className={classes.input} 
+                    value={password}
+                    onChange={(e)=>{setPassword(e.target.value)}}
+                />
+                <div className={classes.spacer}></div>
+                <div className={classes.spacer}></div>
+    
+    
+                <Button variant="contained" style={{backgroundColor: "#24459c", padding: "5px 40px"}} onClick={Login}>Sign In</Button>
+    
+    
+            </div>
+        );
+    }
+
+    function ForgotPasswordForm (){
+
+        return (
+            
+            <div className={classes.formHolder}>
+    
+                <div className={classes.welcomeTxet}>Forgot Password</div>
+                <div className={classes.spacer}></div>
+                <div className={classes.spacer}></div>
+
+                <div style={{color: "black", fontSize: "20", fontWeight: "400"}}>
+                    Enter the email address you used when you joined and we’ll send you instructions to reset your password.
+                </div>
+
+                <div className={classes.spacer}></div>
+                <div className={classes.spacer}></div>    
+
+                <div style={{color: "black", fontSize: "20", fontWeight: "400"}}>
+                    For security reasons, we do NOT store your password. So rest assured that we will never send your password via email.
+                </div>
+
+                <div className={classes.spacer}></div>
+                <div className={classes.spacer}></div>    
+
+                <div className={classes.titleTxet}>Email Address</div>
+                <div className={classes.spacerSmall}></div>
+    
+                <TextField 
+                    variant="outlined" 
+                    placeholder="Email Address"
+                    size="small" 
+                    className={classes.input} 
+                    value={forgotPasswordEmail}
+                    onChange={(e)=>{setForgotPasswordEmail(e.target.value)}}
+                />
+                <div className={classes.spacer}></div>
+                <div className={classes.spacer}></div>
+    
+    
+                <Button variant="contained" style={{backgroundColor: "#24459c", padding: "5px 40px"}} onClick={SendResetInstruction}>Send Reset Instructions</Button>
+    
+    
+            </div>
+        );
+    }
+
+    function ForgotPasswordInstruction (){
+
+        return (
+            
+            <div className={classes.formHolder}>
+    
+                <div className={classes.welcomeTxet}>Forgot Password?</div>
+                <div className={classes.spacer}></div>
+                <div className={classes.spacer}></div>
+
+                <div style={{color: "black", fontSize: "20", fontWeight: "400"}}>
+                    If this {forgotPasswordEmail} email address was used to create an account, instructions to reset your password will be sent to you. Please check your email.
+                </div>
+
+                <div className={classes.spacer}></div>
+                <div className={classes.spacer}></div>    
+    
+                <Button 
+                    variant="contained" 
+                    style={{backgroundColor: "#24459c", padding: "5px 40px"}} 
+                    onClick={()=> {
+                        setForgotPasswordInstrOpen(false);
+                        setForgotPasswordOpen(false);
+                        setLoginFormOpen(true);            
+                    }}
+                >
+                        Sign In
+                </Button>    
+    
+            </div>
+        );
+    }
+
 }
 
 
 export default LoginScreen;
+
+

@@ -16,6 +16,9 @@ import { openSidebar } from "../Redux/actions/index";
 import { Fragment } from "react";
 import Sidebar from "./Sidebar";
 import Drawer from "./Drawer";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import { useEffect } from "react";
 
 
 const useStyle = makeStyles((theme)=> ({
@@ -80,6 +83,19 @@ const useStyle = makeStyles((theme)=> ({
         cursor: "pointer",
         backgroundColor: "#F1F4FB"
     },
+    linkText: {
+        fontSize: "24px",
+        textDecoration: "none",
+        color: "#313E6A",
+    },
+    infoContainer: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: theme.spacing(1)
+    },
+
 }));
 
 const Topbar = () => {
@@ -324,169 +340,7 @@ const Topbar = () => {
 
 
                         {/* user info holder */}
-                        <div className={classes.optionsIcons}>
-
-                            <Avatar alt="Avatar image" style={{ cursor: "pointer" }} onClick={handleClick} src={ UserImage } />
-
-                            <StyledMenu
-                                id="demo-customized-menu"
-                                MenuListProps={{
-                                    'aria-labelledby': 'demo-customized-button',
-                                }}
-                                anchorEl={anchorEl}
-                                open={openEl}
-                                onClose={handleClose}
-                            >
-
-
-                                <div className={classes.infoContainer}>
-                                    <Typography style={{ color: "#424E79", fontSize: "24px", fontWeight: "600" }}>Dipankar Paul</Typography>
-                                    <Typography style={{ color: "#313E6A", fontSize: "18px" }}>Super Admin</Typography>
-                                </div>
-
-                                <Divider />
-
-                                <div className={classes.spacer}></div>
-
-                                <Link
-                                    exact
-                                    to="/admin/settings"
-                                    className={classes.linkText}
-                                >
-                                    <MenuItem
-                                        onClick={
-                                            () => {
-                                                handleClose();
-                                            }
-                                        }
-                                    >
-                                        <Person style={{ color: "#313E6A" }} />
-                                        Profile
-                                    </MenuItem>
-                                </Link>
-                                <Link
-                                    exact
-                                    to="/admin/settings"
-                                    className={classes.linkText}
-                                >
-                                    <MenuItem
-                                        onClick={
-                                            () => {
-                                                handleClose();
-                                            }
-                                        }
-                                    >
-                                        <Settings style={{ color: "#313E6A" }} />
-                                        Settings
-                                    </MenuItem>
-                                </Link>
-                                <Link
-                                    exact
-                                    to="/admin/chat"
-                                    className={classes.linkText}
-                                >
-                                    <MenuItem
-                                        onClick={
-                                            () => {
-                                                handleClose();
-                                            }
-                                        }
-                                    >
-                                        <MailOutline style={{ color: "#313E6A" }} />
-                                        Messages
-                                    </MenuItem>
-                                </Link>
-
-                                <Link
-                                    exact
-                                    to="/admin/dashboard"
-                                    className={classes.linkText}
-                                >
-                                    <MenuItem
-                                        onClick={
-                                            () => {
-                                                window.userType = "admin";
-                                                handleClose();
-                                            }
-                                        }
-                                    >
-                                        <SettingsApplications style={{ color: "#313E6A" }} />
-                                        Switch as Admin
-                                    </MenuItem>
-                                </Link>
-
-                                <Link
-                                    exact
-                                    to="/vendor/dashboard"
-                                    className={classes.linkText}
-                                >
-                                    <MenuItem
-                                        onClick={
-                                            () => {
-                                                window.userType = "vendor";
-                                                handleClose();
-                                            }
-                                        }
-                                    >
-                                        <ShoppingCart style={{ color: "#313E6A" }} />
-                                        Switch as Vendor
-                                    </MenuItem>
-                                </Link>
-
-                                <Link
-                                    exact
-                                    to="/user/dashboard"
-                                    className={classes.linkText}
-                                >
-                                    <MenuItem
-                                        onClick={
-                                            () => {
-                                                window.userType = "user";
-                                                handleClose();
-                                            }
-                                        }
-                                    >
-                                        <SentimentSatisfied style={{ color: "#313E6A" }} />
-                                        Switch as User
-                                    </MenuItem>
-                                </Link>
-
-                                <Link
-                                    exact
-                                    to="/admin/settings"
-                                    className={classes.linkText}
-                                >
-                                    <MenuItem
-                                        onClick={
-                                            () => {
-                                                handleClose();
-                                            }
-                                        }
-                                    >
-                                        <Edit style={{ color: "#313E6A" }} />
-                                        Change Password
-                                    </MenuItem>
-                                </Link>
-                                <Link
-                                    exact
-                                    to="/"
-                                    className={classes.linkText}
-                                >
-                                    <MenuItem
-                                        onClick={
-                                            () => {
-                                                handleClose();
-                                            }
-                                        }
-                                    >
-                                        <PowerSettingsNewOutlined style={{ color: "#313E6A"}} />
-                                        Sign Out
-                                    </MenuItem>
-                                </Link>
-                            </StyledMenu>
-
-                        </div>
-
+                        <AdminInfoHolder />
 
                     </div>
                 }
@@ -623,3 +477,110 @@ const StyledMenu = styled((props) => (
         },
     },
 }));
+
+
+const AdminInfoHolder = () => {
+
+    const classes = useStyle();
+
+    const [admin, setAdmin] = useState(null);
+    const [uid, setUid] = useState("");
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const openEl = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    useEffect(() => {
+        setUid(auth.currentUser.uid);
+        getAdmin();
+    })
+
+    const handleLogout = () => {               
+        signOut(auth).then(() => {
+            // navigat("/");
+            window.location.href = "/";
+            alert("Signed out successfully");
+        }).catch((error) => {
+            alert("Error: " + error);
+        });
+    }
+
+
+    function getAdmin () {
+        if(uid!="") {
+            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/settings/find-admin-with-id/" + uid;
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setAdmin(data);
+            });
+        }
+    }
+
+    function displayAdmin () {
+        if (admin == null)
+            return <div className={classes.spacerSmall} />;
+
+        return <div className={classes.optionsIcons}>
+
+            <Avatar alt="Avatar image" style={{ cursor: "pointer" }} onClick={handleClick} src={admin.adminImageAddress} />
+
+            <StyledMenu
+                id="demo-customized-menu"
+                MenuListProps={{
+                    'aria-labelledby': 'demo-customized-button',
+                }}
+                anchorEl={anchorEl}
+                open={openEl}
+                onClose={handleClose}
+            >
+
+
+                <div className={classes.infoContainer}>
+                    <Typography style={{ color: "#424E79", fontSize: "24px", fontWeight: "600" }}>{admin.name}</Typography>
+                    <Typography style={{ color: "#313E6A", fontSize: "18px" }}>{admin.accessLevel}</Typography>
+                </div>
+
+                <Divider />
+
+                <div className={classes.spacer}></div>
+
+
+                <Link
+                    exact
+                    to="/"
+                    className={classes.linkText}
+                >
+                    <MenuItem
+                        onClick={
+                            () => {
+                                handleClose();
+                                handleLogout();
+                            }
+                        }
+                    >
+                        <PowerSettingsNewOutlined style={{ color: "#313E6A"}} />
+                        Sign Out
+                    </MenuItem>
+                </Link>
+
+            </StyledMenu>
+
+        </div>;
+    };
+
+
+    return (
+        <div>{displayAdmin()}</div>
+    );
+}

@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import WalletDetailsUser from "./pageviews/details";
 import WalletLogsUser from "./pageviews/logs";
 import WalletTransactionsUser from "./pageviews/transactions";
+import UserDemoIcon from "../../../Assets/Home/customer/user_demo_icon.png";
+
 
 const useStyle = makeStyles((theme) => ({
     holder: {
@@ -122,7 +124,17 @@ const useStyle = makeStyles((theme) => ({
         marginBottom: "10px", 
         padding: "10px 8px", 
         borderRadius: "5px",
-    }
+    },
+    userImageHolder: {
+        width: "75px",
+        height: "75px",
+        overflow: "hidden",
+        borderRadius: "50%",
+    },
+    userImage: {
+        width: "100%",
+    },
+
 }));
 
 
@@ -175,7 +187,6 @@ const WalletCustomerDetails = () => {
 
     const [details, setDetails] = useState(true);
     const [transactions, setTransactions] = useState(false);
-    const [logs, setLogs] = useState(false);
 
     const classes = useStyle();
 
@@ -211,7 +222,6 @@ const WalletCustomerDetails = () => {
                                 onClick={() => {
                                     setDetails(true);
                                     setTransactions(false);
-                                    setLogs(false);
                                     handleClose();
                                 }}
                             >
@@ -223,23 +233,10 @@ const WalletCustomerDetails = () => {
                                 onClick={() => {
                                     setDetails(false);
                                     setTransactions(true);
-                                    setLogs(false);
                                     handleClose();
                                 }}
                             >
                                 <div className={transactions ? classes.activeMenuTab : classes.inactiveMenuTab} style={{width: "100%"}}>Transactions</div>
-                            </MenuItem>
-
-
-                            <MenuItem
-                                onClick={() => {
-                                    setDetails(false);
-                                    setTransactions(false);
-                                    setLogs(true);
-                                    handleClose();
-                                }}
-                            >
-                                <div className={logs ? classes.activeMenuTab : classes.inactiveMenuTab} style={{width: "100%"}}>Logs</div>
                             </MenuItem>
                             
                         </StyledMenu>
@@ -273,7 +270,6 @@ const WalletCustomerDetails = () => {
                                 onClick={(e)=> {
                                     setDetails(true);
                                     setTransactions(false);
-                                    setLogs(false);
                                 }}
                             >
                                 Details
@@ -284,21 +280,9 @@ const WalletCustomerDetails = () => {
                                 onClick={(e)=> {
                                     setDetails(false);
                                     setTransactions(true);
-                                    setLogs(false);
                                 }}
                             >
                                 Transactions
-                            </div>
-
-                            <div 
-                                className={logs ? classes.activeMenuTab : classes.inactiveMenuTab}
-                                onClick={(e)=> {
-                                    setDetails(false);
-                                    setTransactions(false);
-                                    setLogs(true);
-                                }}
-                            >
-                                Logs
                             </div>
 
                         </div>
@@ -306,9 +290,6 @@ const WalletCustomerDetails = () => {
                         
                         {
                             details && <WalletDetailsUser uid={currentUid}/>
-                        }
-                        {
-                            logs && <WalletLogsUser />
                         }
                         {
                             transactions && <WalletTransactionsUser />
@@ -399,6 +380,14 @@ const UserInformation = (props) => {
             </div>;
 
         return <div className={classes.customerInfoHolder}>
+
+            {
+                customer.photoAddress == "" 
+                    ? <div className={classes.userImageHolder}> <img src={UserDemoIcon} className={classes.userImage} /> </div>
+                    : <div className={classes.userImageHolder}> <img src={customer.photoAddress} className={classes.userImage}  /> </div>
+            }
+            <div className={classes.spacerSmall} />
+
             <div className={classes.customerName}>{customer.firstNameAlphabet + " " + customer.lastNameAlphabet}</div>
             <div className={classes.customerEmail}>{customer.email}</div>
         </div>;

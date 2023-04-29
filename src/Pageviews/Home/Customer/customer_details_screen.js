@@ -1,7 +1,7 @@
-import { ArrowDownward, ArrowUpward, MoreVert } from "@mui/icons-material";
-import { Container, Grid, IconButton, Menu, MenuItem, Typography } from "@mui/material";
+import { ArrowDownward, ArrowDropDown, ArrowUpward, Edit, MoreVert } from "@mui/icons-material";
+import { Button, Container, Grid, IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import { makeStyles, styled } from "@mui/styles";
-import { useEffect } from "react";
+import { Component, useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import CustomerDetails from "./pageviews/customer_details";
@@ -9,7 +9,8 @@ import CustomerMachineStatus from "./pageviews/customer_machine_status";
 import CustomerInvoice from "./pageviews/customer_invoice";
 import CustomerRequest from "./pageviews/customer_request";
 import CustomerLogs from "./pageviews/customer_logs";
-
+import UserDemoIcon from "../../../Assets/Home/customer/user_demo_icon.png";
+import WashingMachineCountIcon from "../../../Assets/Home/customer/washing_machine_count_icon.svg";
 
 const useStyle = makeStyles((theme) => ({
     holder: {
@@ -125,6 +126,27 @@ const useStyle = makeStyles((theme) => ({
         marginBottom: "10px", 
         padding: "10px 8px", 
         borderRadius: "5px",
+    },
+    customerDetailsHolder : {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+    },
+    userImageHolder: {
+        width: "75px",
+        height: "75px",
+        overflow: "hidden",
+        borderRadius: "50%",
+    },
+    userImage: {
+        width: "100%",
+    },
+    countHolder: {
+        border: "2px solid #F2F2F2", 
+        borderRadius: "7px", 
+        display: "flex", 
+        alignItems: "center",
+        padding: "10px 10px",
     }
 }));
 
@@ -297,7 +319,9 @@ const CustomerDetailsScreen = () => {
 
                 <Grid item xs={12} sm={4} md={3} lg={3}>
                     <Container className={classes.tableHolder}>
-                        text
+                        <CustomerBasicInfo 
+                            uid={currentUid}
+                        />
                     </Container>
                 </Grid>
     
@@ -399,3 +423,144 @@ const CustomerDetailsScreen = () => {
 }
 
 export default CustomerDetailsScreen;
+
+
+const CustomerBasicInfo = (props) => {
+
+    const classes = useStyle();
+
+    const [uid, setUid] = useState("");
+    const [customer, setCustomer] = useState(null);
+
+
+    useEffect(() => {
+        setUid(props.uid);
+        getCustomer();
+    })
+
+
+    function getCustomer () {
+        if(uid!="") {
+            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/wallet/find-user-with-id/" + uid;
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setCustomer(data);
+            });
+        }
+    }
+
+
+    function displayCustomer () {
+        if (customer == null)
+            return <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                <h3>Please Wait</h3>
+            </div>;
+
+        return <div className={classes.customerDetailsHolder}>
+            {
+                customer.photoAddress == "" 
+                    ? <div className={classes.userImageHolder}> <img src={UserDemoIcon} className={classes.userImage} /> </div>
+                    : <div className={classes.userImageHolder}> <img src={customer.photoAddress} className={classes.userImage}  /> </div>
+            }
+            <div className={classes.spacerSmall} />
+
+            <div style={{color: "#838383", fontSize: "18px", fontWeight: "600", display: "flex"}}>
+                {customer.lastNameAlphabet + ", " + customer.firstNameAlphabet}
+            </div>
+            <div  style={{color: "#838383", fontSize: "16px", fontWeight: "400"}}>{customer.email}</div>
+            <div className={classes.spacerSmall} />
+            <div className={classes.spacerSmall} />
+
+            <div style={{display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%"}}>
+                
+                <Button 
+                    style={{backgroundColor: "white", color: "#24459c", border: "1px solid #24459c", padding: "4px 10px"}} endIcon={<Edit style={{color: "#24459c"}}/>}
+                >Edit</Button>
+
+                <Button 
+                    style={{backgroundColor: "#24459c", color: "white", border: "1px solid #24459c", padding: "4px 10px"}} endIcon={<ArrowDropDown style={{color: "white"}}/>}
+                >Actions</Button>
+            </div>
+        </div>;
+    };
+
+
+
+    return (
+        <div>
+            {displayCustomer()}
+            <div className={classes.spacerSmall} />
+            <div className={classes.spacerSmall} />
+            <WashingMachineCountTab 
+                currentUid={uid}
+            />
+        </div>
+    );
+}
+
+
+const WashingMachineCountTab = (props) => {
+
+    const [count, setCount] = useState(0);
+    const [uid, setUid] = useState("");
+
+    const classes = useStyle();
+
+    useEffect(() => {
+        setUid(props.currentUid);
+        getWashingMachineWithUid();
+    })
+
+    function getWashingMachineWithUid () {
+        if(uid!="") {
+            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/customer/get-washing-machine-with-uid/" + uid;
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                    setCount(data.length);
+                });    
+        }
+    }
+
+
+    function displayWashingMachine () {        
+        return (
+            <div className={classes.countHolder}>
+                <div style={{backgroundColor: "#43C6AC", borderRadius: "7px", padding: "8px"}}>
+                    <img src={WashingMachineCountIcon} />
+                </div>
+                <div className={classes.spacerSmall} />
+                <div className={classes.spacerSmall} />
+                <div>
+                    <div style={{color: "#C5C5C5", fontWeight: "400", fontSize: "16"}}>
+                        Washing Machine
+                    </div>
+                    <div style={{color: "#243972", fontWeight: "700", fontSize: "28"}}>
+                        {count}
+                    </div>
+                </div>
+            </div>
+        );
+
+    };
+
+    return (
+        <div style={{ overflow: "auto" }}>
+            {displayWashingMachine()}
+        </div>
+    );
+
+
+}

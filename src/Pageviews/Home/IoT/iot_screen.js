@@ -3,6 +3,9 @@ import { Button, Container, Divider, FormControl, IconButton, Menu, MenuItem, Mo
 import { makeStyles, styled } from "@mui/styles";
 import { DataGrid } from "@mui/x-data-grid";
 import { Component, useEffect, useState } from "react";
+import CsvUploaderLogo from "../../../Assets/Home/iot/csv_uploader_logo.svg";
+import { useRef } from "react";
+import axios from "axios";
 
 const useStyle = makeStyles ((theme)=> ({
     holder: {
@@ -92,7 +95,29 @@ const useStyle = makeStyles ((theme)=> ({
         fontSize: "16",
         fontWeight: "400",
     },
+    csvEmptyHolder: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "start",
+        backgroundColor: "#F1FAFF",
+        padding: "10px 16px",
+        borderRadius: "7px",
+        border: "1px dashed #009EF7",
+        cursor: "pointer"
+    },
+    csvFileContainer: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#F1FAFF",
+        padding: "10px 16px",
+        borderRadius: "7px",
+        border: "1px dashed #009EF7"
+    }
 }));
+
+
+
 
 const IotScreen = () => {
 
@@ -118,6 +143,9 @@ const IotScreen = () => {
         }
     );
 
+    const [csvFile, setCsvFile] = useState(null);
+    const inputRef = useRef();
+
     function makeid(length) {
         let result = '';
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -130,9 +158,7 @@ const IotScreen = () => {
         return result;
     }
 
-
-    const handleSubmit = () => {
-
+    const uploadSingleIotData = () => {
         if(newIot.iotProductType===""){
             alert("Please select a IoT product type to continue");
             return;
@@ -171,9 +197,73 @@ const IotScreen = () => {
             .catch((error)=>{
                 alert("Error: " + error);
             });
-
     }
 
+    const uploadCsvFile = () => {
+        const formData = new FormData();
+        formData.append('IotCsvFile', csvFile);
+
+        axios.post('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/add-iot-from-csv', formData)
+            .then(res => {
+                console.log(res);
+                setOpen(false);
+                alert("IoT data uploaded successfully");
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Error : " + err);
+            });
+    }
+
+    const handleSubmit = () => {
+        if(csvFile) {
+            uploadCsvFile();
+        } else {
+            uploadSingleIotData();
+        }
+    }
+
+    const handleDragOver = (event) => {
+        event.preventDefault();
+    }
+
+    const handleDrop = (event) => {
+        event.preventDefault();
+        setCsvFile(event.dataTransfer.files);
+    }
+
+
+    function displayCsvUploader () {
+
+        if(csvFile) return (
+            <div className={classes.csvFileContainer}>
+                {Array.from(csvFile).map((file, index)=> <li key={index}>{file.name}</li>)}
+            </div>
+        );
+
+        return (
+            <div 
+                className={classes.csvEmptyHolder}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                onClick={()=>inputRef.current.click()}
+            >
+                <img src={CsvUploaderLogo} />
+                <div className={classes.spacerSmall} />
+                <div>
+                    <input 
+                        type="file" 
+                        accept=".csv"
+                        onChange={(event)=> setCsvFile(event.target.files)}
+                        hidden
+                        ref={inputRef}
+                    />
+                    <div style={{color: "#000000", fontSize: "16px", fontWeight: "600"}}>Drop files here or click to upload.</div>
+                    <div style={{color: "#009EF7", fontSize: "14px", fontWeight: "500"}}>You can upload from CSV file</div>
+                </div>
+            </div>
+        );
+    }
 
     return (
 
@@ -184,7 +274,7 @@ const IotScreen = () => {
 
                     <div style={{ width :"100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                         <Typography style={{ fontSize: "24px", fontWeight: "700", }}>Add New IoT</Typography>
-                        <div style={{ color: "black", cursor: "pointer" }} onClick={() => { setOpen(false); }}><Close /></div>
+                        <div style={{ color: "black", cursor: "pointer" }} onClick={() => { setOpen(false); setCsvFile(null); }}><Close /></div>
                     </div>
 
                     <div>
@@ -198,7 +288,6 @@ const IotScreen = () => {
                         <FormControl fullWidth>
                             <TextField
                                 select
-                                labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={newIot.iotProductType}
                                 label="IoT Product Type"
@@ -238,11 +327,17 @@ const IotScreen = () => {
                     <div className={classes.spacerSmall} />
                     <div className={classes.spacerSmall} />
 
+                    <div>{displayCsvUploader()}</div>
+
+                    <div className={classes.spacerSmall} />
+                    <div className={classes.spacerSmall} />
+
                     <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "end"}}>
                         <div 
                             className={classes.cancelButton}
                             onClick={(e)=>{
                                 setOpen(false);
+                                setCsvFile(null);
                             }}
                         >
                             Cancel
@@ -252,6 +347,7 @@ const IotScreen = () => {
                             className={classes.saveButton}
                             onClick={(e)=>{
                                 handleSubmit();
+                                setCsvFile(null);
                             }}
                         >
                             Save
@@ -261,7 +357,6 @@ const IotScreen = () => {
                 </Container>
 
             </Modal>
-
 
             <div className={classes.holder}>
                         
@@ -544,8 +639,6 @@ const CustomerComponent = (props) => {
 }
 
 
-
-
 const ProductComponent = (props) => {
 
     const classes = useStyle();
@@ -559,7 +652,6 @@ const ProductComponent = (props) => {
         </div>
     );
 }
-
 
 
 
@@ -604,38 +696,208 @@ const OptionsComponent = (props) => {
         setAnchorEl(null);
     };
 
+    const [editOpen, setEditOpen] = useState(false);
+    const [editIot, setEditIot] = useState(
+        {
+            iotProductId: '',
+            iotProductType: '',
+            macId: '',
+            price: '',
+        }
+    );
+
+    const handleEditSubmit = () => {
+        if(editIot.iotProductType===""){
+            alert("Please select a IoT product type to continue");
+            return;
+        }
+        if(editIot.macId===""){
+            alert("Please provide the sensor MAC ID to continue");
+            return;
+        }
+        if(editIot.price===""){
+            alert("Please provide price of the sensor to continue");
+            return;
+        }
+        
+        let iotProductId = editIot.iotProductId;
+        let iotProductType = editIot.iotProductType;
+        let macId = editIot.macId;
+        let price = editIot.price;
+
+        fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/edit-iot-sensor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                iotProductId, iotProductType, macId, price
+            })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                setEditOpen(false);
+                alert("Successfully edited the IoT Sensor");
+            })
+            .catch((error)=>{
+                alert("Error: " + error);
+            });
+    }
+
+    const handleDeleteSubmit = () => {
+        
+        let iotProductId = props.value.iotProductId;
+
+        fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/delete-iot-sensor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                iotProductId
+            })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                setEditOpen(false);
+                alert("Successfully deleted the IoT Sensor");
+            })
+            .catch((error)=>{
+                alert("Error: " + error);
+            });
+    }
+
     const classes = useStyle();
     
-    return <div>
+    return <>
 
-        <IconButton onClick={handleClick}><MoreVert /></IconButton>
-        <StyledMenu
-            id="demo-customized-menu"
-            MenuListProps={{
-                'aria-labelledby': 'demo-customized-button',
-            }}
-            anchorEl={anchorEl}
-            open={openEl}
-            onClose={handleClose}
-        >
-            <MenuItem
-                onClick={() => {
-                    handleClose();
-            }}>
-                <Edit style={{ color: "#313E6A" }} />
-                <div className={classes.spacerSmall} />
-                Edit
-            </MenuItem>
+        <Modal open={editOpen}>
 
-            <MenuItem
-                onClick={() => {
-                    handleClose();
-            }}>
-                <Delete style={{ color: "red" }} />
+            <Container className={classes.addUserContainer}>
+
+                <div style={{ width :"100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <Typography style={{ fontSize: "24px", fontWeight: "700", }}>Edit IoT Sensor</Typography>
+                    <div style={{ color: "black", cursor: "pointer" }} onClick={() => { setEditOpen(false); }}><Close /></div>
+                </div>
+
+                <div>
+                    <div className={classes.spacerSmall} />
+                    <div className={classes.spacerSmall} />
+                    <div className={classes.spacerSmall} />
+                </div>
+
+                <div>
+
+                    <FormControl fullWidth>
+                        <TextField
+                            select
+                            id="demo-simple-select"
+                            value={editIot.iotProductType}
+                            label="IoT Product Type"
+                            size="small"
+                            onChange={(e)=>{setEditIot({ ...editIot, iotProductType: e.target.value })}}
+                        >
+                            <MenuItem value="Temperature Sensor">Temperature Sensor</MenuItem>
+                            <MenuItem value="Vibration Sensor">Vibration Sensor</MenuItem>
+                        </TextField>
+                    </FormControl>
+                    <div className={classes.spacerSmall} />
+
+                    <FormControl fullWidth>
+                        <TextField
+                            className={classes.input}
+                            size="small" 
+                            placeholder="MAC ID"
+                            label="MAC ID"
+                            value={editIot.macId}
+                            onChange={(e)=>{setEditIot({ ...editIot, macId: e.target.value })}}
+                        />
+                    </FormControl>
+                    <div className={classes.spacerSmall} />
+
+                    <FormControl fullWidth>
+                        <TextField
+                            className={classes.input}
+                            size="small" 
+                            label="Price (Yen)"
+                            value={editIot.price}
+                            placeholder="Price (Yen)"
+                            onChange={(e)=>{setEditIot({ ...editIot, price: e.target.value })}}
+                        />
+                    </FormControl>
+                    <div className={classes.spacerSmall} />
+
+                </div>
+
                 <div className={classes.spacerSmall} />
-                Delete
-            </MenuItem>
-        </StyledMenu>
-    
-    </div>;
+                <div className={classes.spacerSmall} />
+
+                <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "end"}}>
+                    <div 
+                        className={classes.cancelButton}
+                        onClick={(e)=>{
+                            setEditOpen(false);
+                        }}
+                    >
+                        Cancel
+                    </div>
+                    <div className={classes.spacerSmall} />
+                    <div 
+                        className={classes.saveButton}
+                        onClick={(e)=>{
+                            handleEditSubmit();
+                        }}
+                    >
+                        Save
+                    </div>
+                </div>
+
+            </Container>
+
+        </Modal>
+
+        <div>
+
+            <IconButton onClick={handleClick}><MoreVert /></IconButton>
+            <StyledMenu
+                id="demo-customized-menu"
+                MenuListProps={{
+                    'aria-labelledby': 'demo-customized-button',
+                }}
+                anchorEl={anchorEl}
+                open={openEl}
+                onClose={handleClose}
+            >
+                <MenuItem
+                    onClick={() => {
+                        handleClose();
+                        setEditIot({
+                            iotProductId: props.value.iotProductId,
+                            iotProductType: props.value.iotProductType,
+                            macId: props.value.macId,
+                            price: props.value.price,
+                        });
+                        setEditOpen(true);                
+                }}>
+                    <Edit style={{ color: "#313E6A" }} />
+                    <div className={classes.spacerSmall} />
+                    Edit
+                </MenuItem>
+
+                <MenuItem
+                    onClick={() => {
+                        handleClose();
+                        handleDeleteSubmit();
+                }}>
+                    <Delete style={{ color: "red" }} />
+                    <div className={classes.spacerSmall} />
+                    Delete
+                </MenuItem>
+            </StyledMenu>
+
+        </div>
+    </>;
 }
+

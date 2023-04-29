@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../../Components/Sidebar";
 import Topbar from "../../Components/Topbar";
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import DashboardScreen from "./Dashboard/dashboard_screen";
 import VendorScreen from "./Vendor/vendor_screen";
 import CustomerScreen from "./Customer/customer_screen";
@@ -43,6 +43,40 @@ const useStyle = makeStyles((theme) => ({
         [theme.breakpoints.down("sm")]: {
             marginLeft: "0px",
         },
+    },
+    
+    
+    footerContainer: {
+        marginLeft: "250px",
+        backgroundColor: "white",
+        position: "absolute",
+        bottom: "0",
+        left: "0",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        [theme.breakpoints.down("sm")]: {
+            marginLeft: "0px",
+        },
+    },
+      
+    inactiveFooterContainer: {
+        marginLeft: "60px",
+        backgroundColor: "white",
+        position: "absolute",
+        bottom: "0",
+        left: "0",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        [theme.breakpoints.down("sm")]: {
+            marginLeft: "0px",
+        },
+    },
+    
+    
+    footerSpacer: {
+        height: "100px",
     }
 }));
 
@@ -59,7 +93,7 @@ const HomeScreen = () => {
             <div className={classes.leftbar}>
                 <Sidebar />
             </div>
-            {/* <div className={`container ${!isSidebarOpen ? "inactive" : ""}`}> */}
+
             <div className={isSidebarOpen ? classes.container : classes.inactiveContainer}>
                 <Topbar />
 
@@ -111,10 +145,14 @@ const HomeScreen = () => {
                 {
                     currentTab === "settings" && <SettingsScreen />
                 }
+
+                <div className={classes.footerSpacer}></div>
             
             </div>
+
         </>
     );
 }
 
 export default HomeScreen;
+
