@@ -140,6 +140,7 @@ const IotScreen = () => {
             iotProductType: '',
             macId: '',
             price: '',
+            module: '',
         }
     );
 
@@ -171,6 +172,10 @@ const IotScreen = () => {
             alert("Please provide price of the sensor to continue");
             return;
         }
+        if(newIot.module===""){
+            alert("Please select the module of the sensor to continue");
+            return;
+        }
 
         setNewIot({ ...newIot, iotProductId: makeid(36) });
         
@@ -178,6 +183,7 @@ const IotScreen = () => {
         let iotProductType = newIot.iotProductType;
         let macId = newIot.macId;
         let price = newIot.price;
+        let module = newIot.module;
 
         fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/add-sensor', {
             method: 'POST',
@@ -185,7 +191,7 @@ const IotScreen = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                iotProductId, iotProductType, macId, price
+                iotProductId, iotProductType, macId, price, module
             })
         })
             .then((res) => res.json())
@@ -703,6 +709,7 @@ const OptionsComponent = (props) => {
             iotProductType: '',
             macId: '',
             price: '',
+            module: ''
         }
     );
 
@@ -719,11 +726,16 @@ const OptionsComponent = (props) => {
             alert("Please provide price of the sensor to continue");
             return;
         }
+        if(editIot.module===""){
+            alert("Please select the model of the sensor to continue");
+            return;
+        }
         
         let iotProductId = editIot.iotProductId;
         let iotProductType = editIot.iotProductType;
         let macId = editIot.macId;
         let price = editIot.price;
+        let module = editIot.module;
 
         fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/edit-iot-sensor', {
             method: 'POST',
@@ -731,7 +743,7 @@ const OptionsComponent = (props) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                iotProductId, iotProductType, macId, price
+                iotProductId, iotProductType, macId, price, module
             })
         })
             .then((res) => res.json())
@@ -829,6 +841,23 @@ const OptionsComponent = (props) => {
                     </FormControl>
                     <div className={classes.spacerSmall} />
 
+                    <FormControl fullWidth>
+                        <TextField
+                            select
+                            id="demo-simple-select"
+                            value={editIot.module}
+                            label="IoT Product Type"
+                            size="small"
+                            onChange={(e)=>{setEditIot({ ...editIot, module: e.target.value })}}
+                        >
+                            <MenuItem value="Module 1">Module 1</MenuItem>
+                            <MenuItem value="Module 2">Module 2</MenuItem>
+                            <MenuItem value="Module 3">Module 3</MenuItem>
+                            <MenuItem value="Module 4">Module 4</MenuItem>
+                        </TextField>
+                    </FormControl>
+                    <div className={classes.spacerSmall} />
+
                 </div>
 
                 <div className={classes.spacerSmall} />
@@ -878,6 +907,7 @@ const OptionsComponent = (props) => {
                             iotProductType: props.value.iotProductType,
                             macId: props.value.macId,
                             price: props.value.price,
+                            module: props.value.module,
                         });
                         setEditOpen(true);                
                 }}>

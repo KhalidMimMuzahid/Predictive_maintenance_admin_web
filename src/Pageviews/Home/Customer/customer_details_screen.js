@@ -8,7 +8,6 @@ import CustomerDetails from "./pageviews/customer_details";
 import CustomerMachineStatus from "./pageviews/customer_machine_status";
 import CustomerInvoice from "./pageviews/customer_invoice";
 import CustomerRequest from "./pageviews/customer_request";
-import CustomerLogs from "./pageviews/customer_logs";
 import UserDemoIcon from "../../../Assets/Home/customer/user_demo_icon.png";
 import WashingMachineCountIcon from "../../../Assets/Home/customer/washing_machine_count_icon.svg";
 
@@ -131,6 +130,7 @@ const useStyle = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        overflow: "hidden"
     },
     userImageHolder: {
         width: "75px",
@@ -202,7 +202,6 @@ const CustomerDetailsScreen = () => {
     const [machineStatus, setMachineStatus] = useState(false);
     const [invoice, setInvoice] = useState(false);
     const [request, setRequest] = useState(false);
-    const [logs, setLogs] = useState(false);
 
     const classes = useStyle();
 
@@ -240,7 +239,6 @@ const CustomerDetailsScreen = () => {
                                     setMachineStatus(false);
                                     setInvoice(false);
                                     setRequest(false);
-                                    setLogs(false);
                                     handleClose();
                                 }}
                             >
@@ -254,7 +252,6 @@ const CustomerDetailsScreen = () => {
                                     setMachineStatus(true);
                                     setInvoice(false);
                                     setRequest(false);
-                                    setLogs(false);
                                     handleClose();
                                 }}
                             >
@@ -268,7 +265,6 @@ const CustomerDetailsScreen = () => {
                                     setMachineStatus(false);
                                     setInvoice(true);
                                     setRequest(false);
-                                    setLogs(false);
                                     handleClose();
                                 }}
                             >
@@ -283,7 +279,6 @@ const CustomerDetailsScreen = () => {
                                     setMachineStatus(false);
                                     setInvoice(false);
                                     setRequest(true);
-                                    setLogs(false);
                                     handleClose();
                                 }}
                             >
@@ -291,18 +286,6 @@ const CustomerDetailsScreen = () => {
                             </MenuItem>
 
 
-                            <MenuItem
-                                onClick={() => {
-                                    setDetails(false);
-                                    setMachineStatus(false);
-                                    setInvoice(false);
-                                    setRequest(false);
-                                    setLogs(true);
-                                    handleClose();
-                                }}
-                            >
-                                <div className={logs ? classes.activeMenuTab : classes.inactiveMenuTab} style={{width: "100%"}}>Logs</div>
-                            </MenuItem>
                         </StyledMenu>
 
 
@@ -337,7 +320,6 @@ const CustomerDetailsScreen = () => {
                                     setMachineStatus(false);
                                     setInvoice(false);
                                     setRequest(false);
-                                    setLogs(false);
                                 }}
                             >
                                 Details
@@ -350,7 +332,6 @@ const CustomerDetailsScreen = () => {
                                     setMachineStatus(true);
                                     setInvoice(false);
                                     setRequest(false);
-                                    setLogs(false);
                                 }}
                             >
                                 Machine Status
@@ -363,7 +344,6 @@ const CustomerDetailsScreen = () => {
                                     setMachineStatus(false);
                                     setInvoice(true);
                                     setRequest(false);
-                                    setLogs(false);
                                 }}
                             >
                                 Invoice
@@ -376,24 +356,11 @@ const CustomerDetailsScreen = () => {
                                     setMachineStatus(false);
                                     setInvoice(false);
                                     setRequest(true);
-                                    setLogs(false);
                                 }}
                             >
                                 Request
                             </div>
 
-                            <div 
-                                className={logs ? classes.activeMenuTab : classes.inactiveMenuTab}
-                                onClick={(e)=> {
-                                    setDetails(false);
-                                    setMachineStatus(false);
-                                    setInvoice(false);
-                                    setRequest(false);
-                                    setLogs(true);
-                                }}
-                            >
-                                Logs
-                            </div>
                         </div>
 
                         
@@ -408,9 +375,6 @@ const CustomerDetailsScreen = () => {
                         }
                         {
                             request && <CustomerRequest />
-                        }
-                        {
-                            logs && <CustomerLogs />
                         }
                     </Container>
                 </Grid>
@@ -470,10 +434,10 @@ const CustomerBasicInfo = (props) => {
             }
             <div className={classes.spacerSmall} />
 
-            <div style={{color: "#838383", fontSize: "18px", fontWeight: "600", display: "flex"}}>
+            <div style={{color: "#838383", fontSize: "18px", fontWeight: "600", display: "flex", overflow: "hidden"}}>
                 {customer.lastNameAlphabet + ", " + customer.firstNameAlphabet}
             </div>
-            <div  style={{color: "#838383", fontSize: "16px", fontWeight: "400"}}>{customer.email}</div>
+            <div  style={{color: "#838383", fontSize: "16px", fontWeight: "400", display: "flex", overflow: "hidden"}}>{customer.email}</div>
             <div className={classes.spacerSmall} />
             <div className={classes.spacerSmall} />
 

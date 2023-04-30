@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import WalletDetailsUser from "./pageviews/details";
-import WalletLogsUser from "./pageviews/logs";
 import WalletTransactionsUser from "./pageviews/transactions";
 import UserDemoIcon from "../../../Assets/Home/customer/user_demo_icon.png";
 
