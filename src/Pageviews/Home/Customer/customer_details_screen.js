@@ -492,7 +492,6 @@ const WashingMachineCountTab = (props) => {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
                     setCount(data.length);
                 });    
         }

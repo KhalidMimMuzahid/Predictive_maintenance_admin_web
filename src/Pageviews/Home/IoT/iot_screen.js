@@ -49,7 +49,7 @@ const useStyle = makeStyles ((theme)=> ({
         padding: theme.spacing(2),
         backgroundColor: "white",
         width: "400px",
-        height: "400px",
+        height: "450px",
         position: "absolute",
         top: 0,
         bottom: 0,
@@ -177,11 +177,9 @@ const IotScreen = () => {
             return;
         }
 
-        setNewIot({ ...newIot, iotProductId: makeid(36) });
-        
-        let iotProductId = newIot.iotProductId;
+        let iotProductId = makeid(36);
         let iotProductType = newIot.iotProductType;
-        let macId = newIot.macId;
+        let macId = newIot.macId.toLowerCase();
         let price = newIot.price;
         let module = newIot.module;
 
@@ -196,7 +194,6 @@ const IotScreen = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 setOpen(false);
                 alert("Successfully added new IoT Sensor");
             })
@@ -325,6 +322,23 @@ const IotScreen = () => {
                                 placeholder="Price (Yen)"
                                 onChange={(e)=>{setNewIot({ ...newIot, price: e.target.value })}}
                             />
+                        </FormControl>
+                        <div className={classes.spacerSmall} />
+
+                        <FormControl fullWidth>
+                            <TextField
+                                select
+                                id="demo-simple-select"
+                                value={newIot.module}
+                                label="Module"
+                                size="small"
+                                onChange={(e)=>{setNewIot({ ...newIot, module: e.target.value })}}
+                            >
+                                <MenuItem value="Module 1">Module 1</MenuItem>
+                                <MenuItem value="Module 2">Module 2</MenuItem>
+                                <MenuItem value="Module 3">Module 3</MenuItem>
+                                <MenuItem value="Module 4">Module 4</MenuItem>
+                            </TextField>
                         </FormControl>
                         <div className={classes.spacerSmall} />
 
@@ -519,17 +533,16 @@ const columns = [
 
 
 
-class IotTable extends Component {
+const IotTable = () =>  {
 
-    state = {
-        rows : [],
-    };
+    const [rows, setRows] = useState([]);
 
-    componentDidMount = () => {
-        this.getIot();
-    }
+    useEffect(() => {
+        getIot();
+    })
+
     
-    getIot() {
+    function getIot() {
         fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/get-all-iot-sensor', {
             method: 'GET',
             headers: {
@@ -538,29 +551,28 @@ class IotTable extends Component {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
+
+                var tempRows = new Array();
                 data.map((iot, index) => (
-                    this.addNewItem(iot, index)
+                    // addNewItem(request, index)
+                    tempRows.push({ id: index, product: iot, customer: iot.uid, status: iot.status, price: iot.price, options: iot})
                 ));
+                setRows(tempRows);
+
             });
     }
 
-    addNewItem = (iot, index) => {
-        let { rows } = this.state;
-        rows.push({ id: index, product: iot, customer: iot.uid, status: iot.status, price: iot.price, options: iot});
-        this.setState({rows: rows});
-    };
 
-    displayIoT = () => {
+    function displayIoT () {
 
-        if (this.state.rows.length === 0)
+        if (rows.length === 0)
             return <div style={{ width: "100%", display: "flex", justifyContent: "center", padding:"20px" }}>
                 <h3>No IoT sensor in the server</h3>
             </div>;
         
         return (
             <DataGrid
-                rows={this.state.rows}
+                rows={rows}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
@@ -575,12 +587,9 @@ class IotTable extends Component {
 
     };
 
-
-    render () {
-        return <div style={{ overflow: "auto" }}>
-            {this.displayIoT()}
-        </div>;
-    };
+    return <div style={{ overflow: "auto" }}>
+        {displayIoT()}
+    </div>;
 
 }
 
@@ -748,7 +757,6 @@ const OptionsComponent = (props) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 setEditOpen(false);
                 alert("Successfully edited the IoT Sensor");
             })
@@ -772,7 +780,6 @@ const OptionsComponent = (props) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 setEditOpen(false);
                 alert("Successfully deleted the IoT Sensor");
             })
@@ -846,7 +853,7 @@ const OptionsComponent = (props) => {
                             select
                             id="demo-simple-select"
                             value={editIot.module}
-                            label="IoT Product Type"
+                            label="Module"
                             size="small"
                             onChange={(e)=>{setEditIot({ ...editIot, module: e.target.value })}}
                         >
