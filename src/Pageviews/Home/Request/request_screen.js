@@ -21,12 +21,12 @@ class IotDemoDataAdd extends Component {
         let vibration4 = 2346;
         let vibration5 = 6785;
         let vibration6 = 4567;
-        let temperature1 = 23;
-        let temperature2 = 43;
-        let temperature3 = 45;
-        let temperature4 = 46;
-        let temperature5 = 67;
-        let temperature6 = 24;
+        let temperature1 = 27;
+        let temperature2 = 41;
+        let temperature3 = 43;
+        let temperature4 = 43;
+        let temperature5 = 72;
+        let temperature6 = 20;
 
         fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/update-sensor-data', {
             method: 'POST',
