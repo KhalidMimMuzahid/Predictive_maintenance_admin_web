@@ -242,7 +242,7 @@ const SettingsScreen = () => {
             formData.append('email', newUser.email);
             formData.append('accessLevel', newUser.accessLevel);
     
-            axios.post('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/settings/add-new-admin', formData)
+            axios.post('https://api.showaapp.com/admin/settings/add-new-admin', formData)
                 .then(res => {
                     console.log(res);
                     setOpen(false);

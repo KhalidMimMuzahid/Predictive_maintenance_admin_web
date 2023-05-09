@@ -28,7 +28,7 @@ class IotDemoDataAdd extends Component {
         let temperature5 = 72;
         let temperature6 = 20;
 
-        fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/update-sensor-data', {
+        fetch('https://api.showaapp.com/admin/iot/update-sensor-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

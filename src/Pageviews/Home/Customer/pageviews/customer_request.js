@@ -119,7 +119,7 @@ const RequestTable = (props) => {
     function getReservationRequest() {
 
         if(customerId != "") {
-            fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/customer/get-reservation-request-with-uid/' + customerId, {
+            fetch('https://api.showaapp.com/admin/customer/get-reservation-request-with-uid/' + customerId, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -198,7 +198,7 @@ const MachineModelComponent = (props) => {
 
     function getWashingMachine () {
         if(washingMachineId!=""){
-            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/customer/get-washing-machine-with-id/" + washingMachineId;
+            let url = "https://api.showaapp.com/admin/customer/get-washing-machine-with-id/" + washingMachineId;
             fetch(url, {
                 method: 'GET',
                 headers: {
@@ -256,7 +256,7 @@ const VendorComponent = (props) => {
 
     function getVendor () {
         if(vendorId!=""){
-            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/vendor/get-vendor-machine-with-id/" + vendorId;
+            let url = "https://api.showaapp.com/admin/vendor/get-vendor-machine-with-id/" + vendorId;
             fetch(url, {
                 method: 'GET',
                 headers: {

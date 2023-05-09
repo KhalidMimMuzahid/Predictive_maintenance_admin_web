@@ -183,7 +183,7 @@ const IotScreen = () => {
         let price = newIot.price;
         let module = newIot.module;
 
-        fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/add-sensor', {
+        fetch('https://api.showaapp.com/admin/iot/add-sensor', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -206,7 +206,7 @@ const IotScreen = () => {
         const formData = new FormData();
         formData.append('IotCsvFile', csvFile);
 
-        axios.post('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/add-iot-from-csv', formData)
+        axios.post('https://api.showaapp.com/admin/iot/add-iot-from-csv', formData)
             .then(res => {
                 console.log(res);
                 setOpen(false);
@@ -543,7 +543,7 @@ const IotTable = () =>  {
 
     
     function getIot() {
-        fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/get-all-iot-sensor', {
+        fetch('https://api.showaapp.com/admin/iot/get-all-iot-sensor', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -609,7 +609,7 @@ const CustomerComponent = (props) => {
 
     function getCustomer () {
         if(uid!=""){
-            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/wallet/find-user-with-id/" + uid;
+            let url = "https://api.showaapp.com/admin/wallet/find-user-with-id/" + uid;
             fetch(url, {
                 method: 'GET',
                 headers: {
@@ -746,7 +746,7 @@ const OptionsComponent = (props) => {
         let price = editIot.price;
         let module = editIot.module;
 
-        fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/edit-iot-sensor', {
+        fetch('https://api.showaapp.com/admin/iot/edit-iot-sensor', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -769,7 +769,7 @@ const OptionsComponent = (props) => {
         
         let iotProductId = props.value.iotProductId;
 
-        fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/iot/delete-iot-sensor', {
+        fetch('https://api.showaapp.com/admin/iot/delete-iot-sensor', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

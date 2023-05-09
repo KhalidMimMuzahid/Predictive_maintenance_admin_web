@@ -405,7 +405,7 @@ const CustomerBasicInfo = (props) => {
 
     function getCustomer () {
         if(uid!="") {
-            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/wallet/find-user-with-id/" + uid;
+            let url = "https://api.showaapp.com/admin/wallet/find-user-with-id/" + uid;
             fetch(url, {
                 method: 'GET',
                 headers: {
@@ -483,7 +483,7 @@ const WashingMachineCountTab = (props) => {
 
     function getWashingMachineWithUid () {
         if(uid!="") {
-            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/customer/get-washing-machine-with-uid/" + uid;
+            let url = "https://api.showaapp.com/admin/customer/get-washing-machine-with-uid/" + uid;
             fetch(url, {
                 method: 'GET',
                 headers: {

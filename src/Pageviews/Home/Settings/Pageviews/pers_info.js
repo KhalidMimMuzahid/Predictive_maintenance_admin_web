@@ -65,7 +65,7 @@ const PersonalInfo = () => {
 
     function getAdmin () {
         if(uid!="") {
-            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/settings/find-admin-with-id/" + uid;
+            let url = "https://api.showaapp.com/admin/settings/find-admin-with-id/" + uid;
             fetch(url, {
                 method: 'GET',
                 headers: {
@@ -83,7 +83,7 @@ const PersonalInfo = () => {
 
     function updateNameEmail () {
         if(isChanged) {
-            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/settings/update-name-phone/" + fullName + '/' + phone;
+            let url = "https://api.showaapp.com/admin/settings/update-name-phone/" + fullName + '/' + phone;
             fetch(url, {
                 method: 'PUT',
                 headers: {

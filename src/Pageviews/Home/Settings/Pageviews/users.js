@@ -59,7 +59,7 @@ const Users = () => {
     })
 
     function getAllAdmins () {
-        let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/settings/get-all-admin";
+        let url = "https://api.showaapp.com/admin/settings/get-all-admin";
         fetch(url, {
             method: 'GET',
             headers: {

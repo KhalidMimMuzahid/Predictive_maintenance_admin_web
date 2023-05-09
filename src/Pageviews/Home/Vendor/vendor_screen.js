@@ -196,7 +196,7 @@ class VendorTable extends Component {
 
 
     getVendors() {
-        fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/vendor/get-all-vendor', {
+        fetch('https://api.showaapp.com/admin/vendor/get-all-vendor', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

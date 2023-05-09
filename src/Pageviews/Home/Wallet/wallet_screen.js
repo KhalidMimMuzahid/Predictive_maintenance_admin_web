@@ -143,7 +143,7 @@ class CustomerTable extends Component {
     }
     
     getCustomer() {
-        fetch('http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/customer/get-all-customer', {
+        fetch('https://api.showaapp.com/admin/customer/get-all-customer', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -209,7 +209,7 @@ const BalanceComponent = (props) => {
 
     function getCustomerWalletInfo () {
         if(uid!="") {
-            let url = "http://www.showabackend-env-1.eba-kai5b5bn.ap-northeast-1.elasticbeanstalk.com/admin/wallet/get-customer-wallet-info/" + uid;
+            let url = "https://api.showaapp.com/admin/wallet/get-customer-wallet-info/" + uid;
             fetch(url, {
                 method: 'GET',
                 headers: {
