@@ -137,7 +137,6 @@ const IotScreen = () => {
     const [newIot, setNewIot] = useState(
         {
             iotProductId: '',
-            iotProductType: '',
             macId: '',
             price: '',
             module: '',
@@ -160,10 +159,6 @@ const IotScreen = () => {
     }
 
     const uploadSingleIotData = () => {
-        if(newIot.iotProductType===""){
-            alert("Please select a IoT product type to continue");
-            return;
-        }
         if(newIot.macId===""){
             alert("Please provide the sensor MAC ID to continue");
             return;
@@ -178,7 +173,6 @@ const IotScreen = () => {
         }
 
         let iotProductId = makeid(36);
-        let iotProductType = newIot.iotProductType;
         let macId = newIot.macId.toLowerCase();
         let price = newIot.price;
         let module = newIot.module;
@@ -189,7 +183,7 @@ const IotScreen = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                iotProductId, iotProductType, macId, price, module
+                iotProductId, macId, price, module
             })
         })
             .then((res) => res.json())
@@ -292,16 +286,19 @@ const IotScreen = () => {
                             <TextField
                                 select
                                 id="demo-simple-select"
-                                value={newIot.iotProductType}
-                                label="IoT Product Type"
+                                value={newIot.module}
+                                label="Module"
                                 size="small"
-                                onChange={(e)=>{setNewIot({ ...newIot, iotProductType: e.target.value })}}
+                                onChange={(e)=>{setNewIot({ ...newIot, module: e.target.value })}}
                             >
-                                <MenuItem value="Temperature Sensor">Temperature Sensor</MenuItem>
-                                <MenuItem value="Vibration Sensor">Vibration Sensor</MenuItem>
+                                <MenuItem value="Module 1">Module 1</MenuItem>
+                                <MenuItem value="Module 2">Module 2</MenuItem>
+                                <MenuItem value="Module 3">Module 3</MenuItem>
+                                <MenuItem value="Module 4">Module 4</MenuItem>
                             </TextField>
                         </FormControl>
                         <div className={classes.spacerSmall} />
+
 
                         <FormControl fullWidth>
                             <TextField
@@ -325,22 +322,6 @@ const IotScreen = () => {
                         </FormControl>
                         <div className={classes.spacerSmall} />
 
-                        <FormControl fullWidth>
-                            <TextField
-                                select
-                                id="demo-simple-select"
-                                value={newIot.module}
-                                label="Module"
-                                size="small"
-                                onChange={(e)=>{setNewIot({ ...newIot, module: e.target.value })}}
-                            >
-                                <MenuItem value="Module 1">Module 1</MenuItem>
-                                <MenuItem value="Module 2">Module 2</MenuItem>
-                                <MenuItem value="Module 3">Module 3</MenuItem>
-                                <MenuItem value="Module 4">Module 4</MenuItem>
-                            </TextField>
-                        </FormControl>
-                        <div className={classes.spacerSmall} />
 
                     </div>
 
@@ -661,8 +642,8 @@ const ProductComponent = (props) => {
     return (
         <div style={{display: "flex", flexDirection: "column"}}>
             
-            <div className={classes.tabTitle}>{props.value.iotProductType}</div>
-            <div className={classes.tabSubtitle}>{props.value.macId}</div>
+            <div className={classes.tabTitle}>{props.value.macId}</div>
+            <div className={classes.tabSubtitle}>{props.value.module}</div>
 
         </div>
     );
@@ -715,7 +696,6 @@ const OptionsComponent = (props) => {
     const [editIot, setEditIot] = useState(
         {
             iotProductId: '',
-            iotProductType: '',
             macId: '',
             price: '',
             module: ''
@@ -723,10 +703,6 @@ const OptionsComponent = (props) => {
     );
 
     const handleEditSubmit = () => {
-        if(editIot.iotProductType===""){
-            alert("Please select a IoT product type to continue");
-            return;
-        }
         if(editIot.macId===""){
             alert("Please provide the sensor MAC ID to continue");
             return;
@@ -741,7 +717,6 @@ const OptionsComponent = (props) => {
         }
         
         let iotProductId = editIot.iotProductId;
-        let iotProductType = editIot.iotProductType;
         let macId = editIot.macId;
         let price = editIot.price;
         let module = editIot.module;
@@ -752,7 +727,7 @@ const OptionsComponent = (props) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                iotProductId, iotProductType, macId, price, module
+                iotProductId, macId, price, module
             })
         })
             .then((res) => res.json())
@@ -813,13 +788,15 @@ const OptionsComponent = (props) => {
                         <TextField
                             select
                             id="demo-simple-select"
-                            value={editIot.iotProductType}
-                            label="IoT Product Type"
+                            value={editIot.module}
+                            label="Module"
                             size="small"
-                            onChange={(e)=>{setEditIot({ ...editIot, iotProductType: e.target.value })}}
+                            onChange={(e)=>{setEditIot({ ...editIot, module: e.target.value })}}
                         >
-                            <MenuItem value="Temperature Sensor">Temperature Sensor</MenuItem>
-                            <MenuItem value="Vibration Sensor">Vibration Sensor</MenuItem>
+                            <MenuItem value="Module 1">Module 1</MenuItem>
+                            <MenuItem value="Module 2">Module 2</MenuItem>
+                            <MenuItem value="Module 3">Module 3</MenuItem>
+                            <MenuItem value="Module 4">Module 4</MenuItem>
                         </TextField>
                     </FormControl>
                     <div className={classes.spacerSmall} />
@@ -845,23 +822,6 @@ const OptionsComponent = (props) => {
                             placeholder="Price (Yen)"
                             onChange={(e)=>{setEditIot({ ...editIot, price: e.target.value })}}
                         />
-                    </FormControl>
-                    <div className={classes.spacerSmall} />
-
-                    <FormControl fullWidth>
-                        <TextField
-                            select
-                            id="demo-simple-select"
-                            value={editIot.module}
-                            label="Module"
-                            size="small"
-                            onChange={(e)=>{setEditIot({ ...editIot, module: e.target.value })}}
-                        >
-                            <MenuItem value="Module 1">Module 1</MenuItem>
-                            <MenuItem value="Module 2">Module 2</MenuItem>
-                            <MenuItem value="Module 3">Module 3</MenuItem>
-                            <MenuItem value="Module 4">Module 4</MenuItem>
-                        </TextField>
                     </FormControl>
                     <div className={classes.spacerSmall} />
 
@@ -911,7 +871,6 @@ const OptionsComponent = (props) => {
                         handleClose();
                         setEditIot({
                             iotProductId: props.value.iotProductId,
-                            iotProductType: props.value.iotProductType,
                             macId: props.value.macId,
                             price: props.value.price,
                             module: props.value.module,
