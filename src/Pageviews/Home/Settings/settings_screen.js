@@ -208,6 +208,19 @@ const SettingsScreen = () => {
         setNewUser({ ...newUser, photo: e.target.files[0] });
     }
 
+    function makeid(length) {
+        let result = '';
+        const characters = '123456789';
+        const charactersLength = characters.length;
+        let counter = 0;
+        while (counter < length) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          counter += 1;
+        }
+        return result;
+    }
+
+
     const handleSubmit = () => {
 
         if(newUser.email===""){
@@ -241,6 +254,7 @@ const SettingsScreen = () => {
             formData.append('phone', newUser.phone);
             formData.append('email', newUser.email);
             formData.append('accessLevel', newUser.accessLevel);
+            formData.append('uniqueNumberId', makeid(16));
     
             axios.post('https://api.showaapp.com/admin/settings/add-new-admin', formData)
                 .then(res => {

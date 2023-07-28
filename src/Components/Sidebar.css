@@ -63,6 +63,16 @@
     cursor: pointer;
 }
 
+.side-menu .main-menu .menu-item .submenu {
+    color: #D1D5DB;
+    text-decoration: none;
+    font-size: 15px;
+    display: flex;
+    font-weight: 400;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
 
 .side-menu .main-menu .bottom-spacer {
     height: 100px;

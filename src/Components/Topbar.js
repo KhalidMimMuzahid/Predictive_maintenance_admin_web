@@ -12,13 +12,12 @@ import Contact5 from "../Assets/Component/contact5.jpg";
 import Contact6 from "../Assets/Component/contact6.jpg";
 import UserImage from "../Assets/Component/user_image.jfif";
 import { useDispatch, useSelector } from "react-redux";
-import { openSidebar } from "../Redux/actions/index";
 import { Fragment } from "react";
-import Sidebar from "./Sidebar";
 import Drawer from "./Drawer";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { useEffect } from "react";
+import { setCurrentUser } from "../Redux/actions";
 
 
 const useStyle = makeStyles((theme)=> ({
@@ -187,15 +186,6 @@ const Topbar = () => {
                 </div>                
 
                 <div className={classes.inputHolder}>
-
-                    <div 
-                        className={classes.menuIcon}
-                        onClick={()=>{dispatch(openSidebar(!isSidebarOpen))}}
-                    >
-                        {
-                            isSidebarOpen ? <Close /> : <Dehaze />
-                        }
-                    </div>
 
                     <TextField
                         size="small"
@@ -500,6 +490,8 @@ const AdminInfoHolder = () => {
         getAdmin();
     })
 
+    const dispatch = useDispatch();
+
     const handleLogout = () => {               
         signOut(auth).then(() => {
             // navigat("/");
@@ -522,7 +514,8 @@ const AdminInfoHolder = () => {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    setAdmin(data);
+                    dispatch(setCurrentUser(data));
+                    setAdmin(data); 
             });
         }
     }

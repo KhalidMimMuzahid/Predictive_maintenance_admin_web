@@ -22,15 +22,12 @@ import { Link } from "react-router-dom";
 
 import UserImage from "../Assets/Component/user_image.jfif";
 import { useDispatch, useSelector } from "react-redux";
-import { changeAppTab, openSidebar } from "../Redux/actions";
 
 const Drawer = (props) => {
 
 
     const isSidebarOpen = useSelector((state) => state.openSidebar);
-    const currentTab = useSelector((state) => state.changeAppTab);
-    const dispatch = useDispatch();
-
+    
     return (
         <div className={`side-menu`}>
 
@@ -61,9 +58,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("dashboard"));
+                        // dispatch(changeAppTab("dashboard"));
                     }}>
-                        <div className={`menu-item ${currentTab === "dashboard" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "dashboard" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={dashboard_icon} alt="Dashboard icon" />
                             </div>
@@ -73,10 +70,10 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("vendor"));
+                        // dispatch(changeAppTab("vendor"));
                     }}>
-                        <div className={currentTab === "vendor" ? "active" : ""}>
-                            <div className={`menu-item ${currentTab === "vendor" ? "active" : ""}`} >
+                        <div className={false === "vendor" ? "active" : ""}>
+                            <div className={`menu-item ${false === "vendor" ? "active" : ""}`} >
                                 <div className="menu-icon">
                                     <img src={vendor_icon} alt="Dashboard icon" />
                                 </div>
@@ -87,9 +84,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("customer"));
+                        // dispatch(changeAppTab("customer"));
                     }}>
-                        <div className={`menu-item ${currentTab === "customer" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "customer" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={customer_icon} alt="Dashboard icon" />
                             </div>
@@ -100,9 +97,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("reservation"));
+                        // dispatch(changeAppTab("reservation"));
                     }}>
-                        <div className={`menu-item ${currentTab === "reservation" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "reservation" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={reservation_icon} alt="Dashboard icon" />
                             </div>
@@ -112,9 +109,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("request"));
+                        // dispatch(changeAppTab("request"));
                     }}>
-                        <div className={`menu-item ${currentTab === "request" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "request" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={request_icon} alt="Dashboard icon" />
                             </div>
@@ -124,9 +121,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("iot"));
+                        // dispatch(changeAppTab("iot"));
                     }}>
-                        <div className={`menu-item ${currentTab === "iot" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "iot" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={iot_icon} alt="IoT icon" />
                             </div>
@@ -136,9 +133,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("wallet"));
+                        // dispatch(changeAppTab("wallet"));
                     }}>
-                        <div className={`menu-item ${currentTab === "wallet" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "wallet" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={wallet_icon} alt="Wallet icon" />
                             </div>
@@ -161,9 +158,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("shop"));
+                        // dispatch(changeAppTab("shop"));
                     }}>
-                        <div className={`menu-item ${currentTab === "shop" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "shop" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={shop_icon} alt="Shop icon" />
                             </div>
@@ -173,9 +170,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("inventory"));
+                        // dispatch(changeAppTab("inventory"));
                     }}>
-                        <div className={`menu-item ${currentTab === "inventory" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "inventory" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={inventory_icon} alt="Inventory icon" />
                             </div>
@@ -185,9 +182,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("bids"));
+                        // dispatch(changeAppTab("bids"));
                     }}>
-                        <div className={`menu-item ${currentTab === "bids" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "bids" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={bids_icon} alt="Bids icon" />
                             </div>
@@ -206,9 +203,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("notification"));
+                        // dispatch(changeAppTab("notification"));
                     }}>
-                        <div className={`menu-item ${currentTab === "notification" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "notification" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={notification_icon} alt="Notification icon" />
                             </div>
@@ -218,9 +215,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("offers"));
+                        // dispatch(changeAppTab("offers"));
                     }}>
-                        <div className={`menu-item ${currentTab === "offers" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "offers" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={offers_icon} alt="Offers icon" />
                             </div>
@@ -230,9 +227,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("packages"));
+                        // dispatch(changeAppTab("packages"));
                     }}>
-                        <div className={`menu-item ${currentTab === "packages" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "packages" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={packages_icon} alt="Packages icon" />
                             </div>
@@ -242,9 +239,9 @@ const Drawer = (props) => {
 
                     <li onClick={(e) => {
                         // dispatch(openSidebar(true));
-                        dispatch(changeAppTab("settings"));
+                        // dispatch(changeAppTab("settings"));
                     }}>
-                        <div className={`menu-item ${currentTab === "settings" ? "active" : ""}`} >
+                        <div className={`menu-item ${false === "settings" ? "active" : ""}`} >
                             <div className="menu-icon">
                                 <img src={settings_icon} alt="Settings icon" />
                             </div>

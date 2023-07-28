@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { Component } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { changeAppTab, changeCustomerId } from "../../../Redux/actions";
+import { changeCustomerId } from "../../../Redux/actions";
 import { DataGrid } from "@mui/x-data-grid";
 
 const useStyle = makeStyles((theme) => ({
@@ -389,12 +389,11 @@ const LocationComponent = (props) => {
 const DetailsComponent = (props) => {
 
     const dispatch = useDispatch();
-
+ 
     return (
         <div 
             style={{display: "flex", flexDirection: "column", cursor: "pointer"}}
             onClick={()=>{
-                dispatch(changeAppTab("customer_details"));
                 dispatch(changeCustomerId(props.value.uid));
             }}
         >

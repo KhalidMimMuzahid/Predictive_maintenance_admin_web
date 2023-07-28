@@ -3,21 +3,85 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {
   BrowserRouter,
   Routes,
-  Route,
+  Route
 } from "react-router-dom";
-import HomeScreen from './Pageviews/Home/HomeScreen';
 import LoginScreen from './Pageviews/Onboarding/LoginScreen';
 import {auth} from "./firebase";
 import {onAuthStateChanged} from "firebase/auth"
 import { useEffect } from 'react';
 import { useState } from 'react';
+import DashboardScreen from './Pageviews/Home/Dashboard/dashboard_screen';
+import { makeStyles } from '@mui/styles';
+import { useSelector } from 'react-redux';
+import Topbar from './Components/Topbar';
+import VendorScreen from './Pageviews/Home/Vendor/vendor_screen';
+import CustomerScreen from './Pageviews/Home/Customer/customer_screen';
+import ChatScreen from './Pageviews/Home/Chat/chat_screen';
+import ReservationScreen from './Pageviews/Home/Reservation/reservation_screen';
+import IotScreen from './Pageviews/Home/IoT/iot_screen';
+import WalletScreen from './Pageviews/Home/Wallet/wallet_screen';
+import ShopScreen from './Pageviews/Home/Shop/shop_screen';
+import InventoryScreen from './Pageviews/Home/Inventory/inventory_screen';
+import BidsScreen from './Pageviews/Home/Bids/bids_screen';
+import NotificationScreen from './Pageviews/Home/Notifications/notification_screen';
+import HelpAIScreen from './Pageviews/Home/HelpAI/help_ai_screen';
+import OffersScreen from './Pageviews/Home/Offers/offers_screen';
+import PackagesScreen from './Pageviews/Home/Packages/packages_screen';
+import SettingsScreen from './Pageviews/Home/Settings/settings_screen';
+import CollapsibleSidebar from './Components/CollapsibleSIdebar';
+import CompletedRequest from './Pageviews/Home/Reservation/pageviews/completed_request';
+import OngoingMaintenance from './Pageviews/Home/Reservation/pageviews/ongoing_maintenance';
+import AcceptedRequest from './Pageviews/Home/Reservation/pageviews/accepted_request';
+import OnDemandReservation from './Pageviews/Home/Reservation/pageviews/on_demand_reservation';
+import AllReservation from './Pageviews/Home/Reservation/pageviews/all_reservation';
+import FAQ from './Pageviews/Home/HelpAI/pageviews/faq';
+import LearningResources from './Pageviews/Home/HelpAI/pageviews/learning_resources';
+import AllBidsScreen from './Pageviews/Home/Bids/pageviews/all_bids_screen';
+import OnDemandBidsScreen from './Pageviews/Home/Bids/pageviews/on_demand_bidding_screen';
+import WithinOneWeekBidsScreen from './Pageviews/Home/Bids/pageviews/within_one_week_screen';
+import WithinTwoWeekBidsScreen from './Pageviews/Home/Bids/pageviews/within_two_week_bids';
+import ScheduleTimeBidsScreen from './Pageviews/Home/Bids/pageviews/schedule_time_bids';
+import AllTransaction from './Pageviews/Home/Wallet/pageviews/all_transaction';
+import WithdrawRequest from './Pageviews/Home/Wallet/pageviews/withdraw_request';
+import WalletCustomerDetails from './Pageviews/Home/Wallet/wallet_customer_details';
 
 const theme = createTheme();
 
+const useStyle = makeStyles((theme)=> ({
+  
+  leftbar: {
+      display: "flex",
+      // [theme.breakpoints.down("sm")]: {
+      //     display: "none",
+      // },
+  },
+  container: {
+      marginLeft: "250px",
+      boxSizing: "borderBox",
+      backgroundColor: "#e4e4e4",
+      // [theme.breakpoints.down("sm")]: {
+      //     marginLeft: "0px",
+      // },
+  },
+    
+  inactiveContainer: {
+      marginLeft: "60px",
+      boxSizing: "borderBox",
+      backgroundColor: "#e4e4e4",
+      // [theme.breakpoints.down("sm")]: {
+      //     marginLeft: "0px",
+      // },
+  },
+
+}));
 
 function App() {
 
   const [authUser, setAuthUser] = useState(null);
+
+  const classes = useStyle();
+
+  const isSidebarOpen = useSelector((state) => state.openSidebar);
 
   useEffect(()=> {
     const listen = onAuthStateChanged(auth, (user)=> {
@@ -40,12 +104,88 @@ function App() {
         
         <BrowserRouter>
           
-          <Routes>
-            <Route path="/" element={authUser ? <HomeScreen /> : < LoginScreen />} />
-            <Route path="/login" element={<LoginScreen />} />
-            <Route path="/home" element={<HomeScreen />} />
-          </Routes>
-        
+          {
+            authUser ? (
+              <>
+
+                <CollapsibleSidebar>
+
+                  <Topbar />
+
+                  <Routes>
+                    <Route path="/" element={<DashboardScreen />} />
+                    <Route path="/dashboard" element={<DashboardScreen />} />
+                    <Route path="/vendors" element={<VendorScreen />} />
+                    <Route path="/customer" element={<CustomerScreen />} />
+                    <Route path="/chat" element={<ChatScreen />} />
+                    <Route path="/reservation" element={<ReservationScreen />} />
+                    <Route path="/reservation/all" element={<AllReservation />} />
+                    <Route path="/reservation/ondemand" element={<OnDemandReservation />} />
+                    <Route path="/reservation/accepted" element={<AcceptedRequest />} />
+                    <Route path="/reservation/ongoing" element={<OngoingMaintenance />} />
+                    <Route path="/reservation/completed" element={<CompletedRequest />} />
+                    <Route path="/iot" element={<IotScreen />} />
+                    <Route path="/wallet" element={<WalletScreen />} />
+                    <Route path="/wallet/customer" element={<WalletCustomerDetails />} />
+                    <Route path="/wallet/alltransaction" element={<AllTransaction />} />
+                    <Route path="/wallet/withdrawrequest" element={<WithdrawRequest />} />
+                    <Route path="/shop" element={<ShopScreen />} />
+                    <Route path="/intentory" element={<InventoryScreen />} />
+                    <Route path="/bids" element={<BidsScreen />} />
+                    <Route path="/bids/all" element={<AllBidsScreen />} />
+                    <Route path="/bids/ondemand" element={<OnDemandBidsScreen />} />
+                    <Route path="/bids/oneweek" element={<WithinOneWeekBidsScreen />} />
+                    <Route path="/bids/twoweek" element={<WithinTwoWeekBidsScreen />} />
+                    <Route path="/bids/scheduletime" element={<ScheduleTimeBidsScreen />} />
+                    <Route path="/notifications" element={<NotificationScreen />} />
+                    <Route path="/help/faq" element={<FAQ />} />
+                    <Route path="/help/learningresources" element={<LearningResources />} />
+                    <Route path="/offers" element={<OffersScreen />} />
+                    <Route path="/packages" element={<PackagesScreen />} />
+                    <Route path="/settings" element={<SettingsScreen />} />
+                  </Routes>
+
+
+                </CollapsibleSidebar>
+
+                {/* <div className={classes.leftbar}>
+                    <Sidebar />
+                </div>
+
+                <div className={isSidebarOpen ? classes.container : classes.inactiveContainer}>
+
+                  <Topbar />
+
+                  <Routes>
+                    <Route path="/" element={<DashboardScreen />} />
+                    <Route path="/dashboard" element={<DashboardScreen />} />
+                    <Route path="/vendor" element={<VendorScreen />} />
+                    <Route path="/customer" element={<CustomerScreen />} />
+                    <Route path="/chat" element={<ChatScreen />} />
+                    <Route path="/reservation" element={<ReservationScreen />} />
+                    <Route path="/iot" element={<IotScreen />} />
+                    <Route path="/wallet" element={<WalletScreen />} />
+                    <Route path="/shop" element={<ShopScreen />} />
+                    <Route path="/intentory" element={<InventoryScreen />} />
+                    <Route path="/bids" element={<BidsScreen />} />
+                    <Route path="/notifications" element={<NotificationScreen />} />
+                    <Route path="/helpai" element={<HelpAIScreen />} />
+                    <Route path="/offers" element={<OffersScreen />} />
+                    <Route path="/packages" element={<PackagesScreen />} />
+                    <Route path="/settings" element={<SettingsScreen />} />
+                  </Routes>
+
+                </div> */}
+
+
+              </>
+            ) : (
+              <Routes>
+                <Route path="/" element={< LoginScreen />} />
+              </Routes>
+            )
+          }
+
         </BrowserRouter>
       
       </div>

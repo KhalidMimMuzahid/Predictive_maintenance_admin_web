@@ -717,6 +717,18 @@ const PackageTab = (props) => {
 
     const [featureList, setFeatureList] = useState([]);
 
+    const [editPackage, setEditPackage] = useState(
+        {
+            planType: '',
+            headerTitle: '',
+            packageTitle: '',
+            price: '',
+            numOfSensor: 1,
+            moduleApplicable: '',
+            additionalFeatures: []
+        }
+    );
+
     useEffect(() => {
         createFeatureList();
     }, [])

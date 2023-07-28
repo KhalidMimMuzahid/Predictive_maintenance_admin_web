@@ -1,17 +1,10 @@
-export const changeAppTab = (tabName) => {
+
+export const setCurrentUser = (currentUser) => {
     return {
-        type: "CHANGE_APP_TAB",
-        payload: tabName,
+        type: "SET_CURRENT_USER",
+        payload: currentUser,
     }
 }
-
-export const openSidebar = (isSidebarOpen) => {
-    return {
-        type: "OPEN_SIDEBAR",
-        payload: isSidebarOpen,
-    }
-}
-
 
 export const changeCustomerId = (customerId) => {
     return {
@@ -20,3 +13,16 @@ export const changeCustomerId = (customerId) => {
     }
 }
 
+export const setChatUser = (user) => {
+    return {
+        type: "SET_CHAT_USER",
+        payload: user,
+    }
+}
+
+export const setChatUserType = (userType) => {
+    return {
+        type: "SET_CHAT_USER_TYPE",
+        payload: userType,
+    }
+}

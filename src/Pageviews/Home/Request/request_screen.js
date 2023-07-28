@@ -14,14 +14,14 @@ export default RequestScreen;
 class IotDemoDataAdd extends Component {
 
     addSensorData() {
-        let macId = "23:45:67:89:01:34";
-        let vibration1 = 2134;
-        let vibration2 = 4523;
-        let vibration3 = 3445;
-        let vibration4 = 2346;
-        let vibration5 = 6785;
-        let vibration6 = 4567;
-        let temperature1 = 27;
+        let macId = "23:34:45:56:67:78";
+        let vibration1 = 150;
+        let vibration2 = 67;
+        let vibration3 = 87;
+        let vibration4 = 23;
+        let vibration5 = 45;
+        let vibration6 = 67;
+        let temperature1 = 25;
         let temperature2 = 41;
         let temperature3 = 43;
         let temperature4 = 43;

@@ -6,7 +6,8 @@ import { useState } from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import { rowSelectionStateInitializer } from "@mui/x-data-grid/internals";
 import { useDispatch } from "react-redux";
-import { changeAppTab, changeCustomerId } from "../../../Redux/actions";
+import { changeCustomerId } from "../../../Redux/actions";
+import { NavLink } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
     holder: {
@@ -269,11 +270,12 @@ const DetailsComponent = (props) => {
         <div 
             style={{display: "flex", flexDirection: "column", cursor: "pointer"}}
             onClick={()=>{
-                dispatch(changeAppTab("wallet_customer_details"));
                 dispatch(changeCustomerId(props.value.uid));
             }}
         >
-            <Typography>View Details</Typography>
+            <NavLink to="/wallet/customer">
+                <Typography>View Details</Typography>
+            </NavLink>
         </div>
     );
 }
