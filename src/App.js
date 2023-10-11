@@ -44,6 +44,14 @@ import ScheduleTimeBidsScreen from './Pageviews/Home/Bids/pageviews/schedule_tim
 import AllTransaction from './Pageviews/Home/Wallet/pageviews/all_transaction';
 import WithdrawRequest from './Pageviews/Home/Wallet/pageviews/withdraw_request';
 import WalletCustomerDetails from './Pageviews/Home/Wallet/wallet_customer_details';
+import ControlPanel from './Pageviews/Home/ControlPanel/control_panel_screen';
+import ControlPanelCustomer from './Pageviews/Home/ControlPanel/pageviews/control_panel_customer_screen';
+import ControlPanelInventory from './Pageviews/Home/ControlPanel/pageviews/control_panel_inventory_screen';
+import ControlPanelIot from './Pageviews/Home/ControlPanel/pageviews/control_panel_iot_screen';
+import ControlPanelReservationRequest from './Pageviews/Home/ControlPanel/pageviews/control_panel_reservation_request_screen';
+import ControlPanelShop from './Pageviews/Home/ControlPanel/pageviews/control_panel_shop_screen';
+import ControlPanelVendor from './Pageviews/Home/ControlPanel/pageviews/control_panel_vendor_screen';
+import ControlPanelWallet from './Pageviews/Home/ControlPanel/pageviews/control_panel_wallet_screen';
 
 const theme = createTheme();
 
@@ -142,6 +150,14 @@ function App() {
                     <Route path="/help/learningresources" element={<LearningResources />} />
                     <Route path="/offers" element={<OffersScreen />} />
                     <Route path="/packages" element={<PackagesScreen />} />
+                    <Route path="/control_panel" element={<ControlPanel />} />
+                    <Route path="/control_panel/reservation_request" element={<ControlPanelReservationRequest />} />
+                    <Route path="/control_panel/customer" element={<ControlPanelCustomer />} />
+                    <Route path="/control_panel/vendor" element={<ControlPanelVendor />} />
+                    <Route path="/control_panel/IoT" element={<ControlPanelIot />} />
+                    <Route path="/control_panel/wallet" element={<ControlPanelWallet />} />
+                    <Route path="/control_panel/shop" element={<ControlPanelShop />} />
+                    <Route path="/control_panel/inventory" element={<ControlPanelInventory />} />
                     <Route path="/settings" element={<SettingsScreen />} />
                   </Routes>
 

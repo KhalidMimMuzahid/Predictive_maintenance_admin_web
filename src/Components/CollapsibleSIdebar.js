@@ -177,6 +177,53 @@ const routes = [
         icon: <img src={packages_icon} />
     },
     {
+        name: "Reports",
+        path: "/reports",
+        icon: <img src={settings_icon} />
+    },
+    {
+        name: "Control Panel",
+        path: "/control_panel",
+        icon: <img src={help_ai_icon} />,
+        subRoutes: [
+          {
+            name: "Reservation Request",
+            path: "/control_panel/reservation_request",
+            icon: <img src={bids_sub_icon} />,
+          },
+          {
+            name: "Customer",
+            path: "/control_panel/customer",
+            icon: <img src={bids_sub_icon} />,
+          },
+          {
+            name: "Vendor",
+            path: "/control_panel/vendor",
+            icon: <img src={bids_sub_icon} />,
+          },
+          {
+            name: "IoT",
+            path: "/control_panel/IoT",
+            icon: <img src={bids_sub_icon} />,
+          },
+          {
+            name: "Wallet",
+            path: "/control_panel/wallet",
+            icon: <img src={bids_sub_icon} />,
+          },
+          {
+            name: "Shop",
+            path: "/control_panel/shop",
+            icon: <img src={bids_sub_icon} />,
+          },
+          {
+            name: "Inventory",
+            path: "/control_panel/inventory",
+            icon: <img src={bids_sub_icon} />,
+          },
+        ]
+    },
+    {
         name: "Settings",
         path: "/settings",
         icon: <img src={settings_icon} />
