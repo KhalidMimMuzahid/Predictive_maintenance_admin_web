@@ -52,6 +52,7 @@ import ControlPanelReservationRequest from './Pageviews/Home/ControlPanel/pagevi
 import ControlPanelShop from './Pageviews/Home/ControlPanel/pageviews/control_panel_shop_screen';
 import ControlPanelVendor from './Pageviews/Home/ControlPanel/pageviews/control_panel_vendor_screen';
 import ControlPanelWallet from './Pageviews/Home/ControlPanel/pageviews/control_panel_wallet_screen';
+import ReportScreen from './Pageviews/Home/Reports/reports_screen';
 
 const theme = createTheme();
 
@@ -150,6 +151,7 @@ function App() {
                     <Route path="/help/learningresources" element={<LearningResources />} />
                     <Route path="/offers" element={<OffersScreen />} />
                     <Route path="/packages" element={<PackagesScreen />} />
+                    <Route path="/reports" element={<ReportScreen />} />
                     <Route path="/control_panel" element={<ControlPanel />} />
                     <Route path="/control_panel/reservation_request" element={<ControlPanelReservationRequest />} />
                     <Route path="/control_panel/customer" element={<ControlPanelCustomer />} />

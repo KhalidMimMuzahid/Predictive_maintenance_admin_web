@@ -16,6 +16,8 @@ import offers_icon from "../Assets/Component/offers_icon.svg";
 import packages_icon from "../Assets/Component/packages_icon.svg";
 import settings_icon from "../Assets/Component/settings_icon.svg";
 import bids_sub_icon from "../Assets/Component/sub_icon.svg";
+import control_panel_icon from "../Assets/Component/control_panel_icon.svg";
+import reports_icon from "../Assets/Component/reports_icon.svg";
 
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
@@ -179,12 +181,12 @@ const routes = [
     {
         name: "Reports",
         path: "/reports",
-        icon: <img src={settings_icon} />
+        icon: <img src={reports_icon} />
     },
     {
         name: "Control Panel",
         path: "/control_panel",
-        icon: <img src={help_ai_icon} />,
+        icon: <img src={control_panel_icon} />,
         subRoutes: [
           {
             name: "Reservation Request",
