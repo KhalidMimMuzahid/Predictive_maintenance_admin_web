@@ -159,9 +159,7 @@ const ControlPanelReservationRequestScreen = () => {
                                 setStatusOpen(false);
                                 setNewStatus("");
                             }}
-                        >
-                            Cancel
-                        </div>
+                        >Cancel</div>
                         <div className={classes.spacerSmall} />
                         <div 
                             className={classes.saveButton}
@@ -169,9 +167,7 @@ const ControlPanelReservationRequestScreen = () => {
                                 addNewStatus();
                                 setNewStatus("");
                             }}
-                        >
-                            Save
-                        </div>
+                        >Add</div>
                     </div>
 
                 </div>
