@@ -152,7 +152,6 @@ function App() {
                     <Route path="/offers" element={<OffersScreen />} />
                     <Route path="/packages" element={<PackagesScreen />} />
                     <Route path="/reports" element={<ReportScreen />} />
-                    <Route path="/control_panel" element={<ControlPanel />} />
                     <Route path="/control_panel/reservation_request" element={<ControlPanelReservationRequest />} />
                     <Route path="/control_panel/customer" element={<ControlPanelCustomer />} />
                     <Route path="/control_panel/vendor" element={<ControlPanelVendor />} />
