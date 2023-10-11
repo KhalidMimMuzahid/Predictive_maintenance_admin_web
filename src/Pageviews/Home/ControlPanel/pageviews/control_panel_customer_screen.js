@@ -30,6 +30,9 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const ControlPanelCustomerScreen = () => {
+
+    const classes = useStyle();
+
     return (
         <div className={classes.holder}>
                 
