@@ -133,7 +133,7 @@ const ControlPanelReservationRequestScreen = () => {
 
             <Modal open={statusOpen}>
 
-                <Container className={classes.addContainer}>
+                <div className={classes.addContainer}>
 
                     <div style={{width: "100%", justifyContent: "space-between"}}>
                         <Typography>Add Status</Typography>
@@ -174,7 +174,7 @@ const ControlPanelReservationRequestScreen = () => {
                         </div>
                     </div>
 
-                </Container>
+                </div>
 
             </Modal>
 
