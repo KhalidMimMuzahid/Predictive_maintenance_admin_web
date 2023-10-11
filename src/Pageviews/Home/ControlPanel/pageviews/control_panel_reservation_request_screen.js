@@ -1,3 +1,5 @@
+import { AddCircleOutline } from "@mui/icons-material";
+import { FormControl, Grid, IconButton, MenuItem, TextField } from "@mui/material";
 import { makeStyles, styled } from "@mui/styles";
 
 const useStyle = makeStyles((theme) => ({
@@ -27,6 +29,17 @@ const useStyle = makeStyles((theme) => ({
         backgroundColor: "white",
     },
 
+    optionTitle: {
+        fontSize: "18px",
+        fontWeight: "500",
+        color: "#5A6872",
+    },
+    optionSubtitle: {
+        fontSize: "16px",
+        fontWeight: "400",
+        color: "#69677C",
+    }
+
 }));
 
 
@@ -53,7 +66,44 @@ const ControlPanelReservationRequestScreen = () => {
 
             <div className={classes.tableHolder}>
 
-                test
+                <Grid container spacing={2}>
+
+                <Grid item xs={3} sm={3} md={3} lg={3}>
+
+                    <div className={classes.optionTitle}>Status</div>
+                    <div className={classes.optionSubtitle}>Vendor status on request</div>
+
+                </Grid>
+
+                <Grid item xs={8} sm={8} md={8} lg={8}>
+
+                    <FormControl fullWidth>
+                        <TextField
+                            select
+                            id="demo-simple-select"
+                            label="Module"
+                            size="small"
+                        >
+                            <MenuItem value="Module 1">Module 1</MenuItem>
+                            <MenuItem value="Module 2">Module 2</MenuItem>
+                            <MenuItem value="Module 3">Module 3</MenuItem>
+                            <MenuItem value="Module 4">Module 4</MenuItem>
+                        </TextField>
+                    </FormControl>
+                    
+                </Grid>
+
+                <Grid item xs={1} sm={1} md={1} lg={1}>
+
+                    <IconButton>
+                        <AddCircleOutline />
+                    </IconButton>
+                    
+                </Grid>
+
+                    
+
+                </Grid>
 
             </div>  
 
