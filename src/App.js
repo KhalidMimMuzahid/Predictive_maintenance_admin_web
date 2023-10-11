@@ -44,7 +44,6 @@ import ScheduleTimeBidsScreen from './Pageviews/Home/Bids/pageviews/schedule_tim
 import AllTransaction from './Pageviews/Home/Wallet/pageviews/all_transaction';
 import WithdrawRequest from './Pageviews/Home/Wallet/pageviews/withdraw_request';
 import WalletCustomerDetails from './Pageviews/Home/Wallet/wallet_customer_details';
-import ControlPanel from './Pageviews/Home/ControlPanel/control_panel_screen';
 import ControlPanelCustomer from './Pageviews/Home/ControlPanel/pageviews/control_panel_customer_screen';
 import ControlPanelInventory from './Pageviews/Home/ControlPanel/pageviews/control_panel_inventory_screen';
 import ControlPanelIot from './Pageviews/Home/ControlPanel/pageviews/control_panel_iot_screen';
