@@ -46,9 +46,16 @@ const ControlPanelReservationRequestScreen = () => {
                         <div style={{color: "#24459c"}} className={classes.subtitle}>Reservation Request</div>
                     </div>
                 </div>
-
-
             </div>
+
+            <div className={classes.spacerSmall} />
+            <div className={classes.spacerSmall} />
+
+            <div className={classes.tableHolder}>
+
+                test
+
+            </div>  
 
         </div>
 
