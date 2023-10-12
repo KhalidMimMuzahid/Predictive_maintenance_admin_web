@@ -1,7 +1,7 @@
 import { AddCircleOutline, Close } from "@mui/icons-material";
 import { Container, FormControl, Grid, IconButton, MenuItem, Modal, TextField, Typography } from "@mui/material";
 import { makeStyles, styled } from "@mui/styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useStyle = makeStyles((theme) => ({
     holder: {
@@ -26,14 +26,14 @@ const useStyle = makeStyles((theme) => ({
         justifyContent: "space-between"
     },
     tableHolder: {
-        width: "100%",
+        width: "90%",
         backgroundColor: "white",
         padding: theme.spacing(2),
     },
 
     optionTitle: {
         fontSize: "18px",
-        fontWeight: "500",
+        fontWeight: "600",
         color: "#5A6872",
     },
     optionSubtitle: {
@@ -100,6 +100,10 @@ const ControlPanelReservationRequestScreen = () => {
     const [newRadius, setNewRadius] = useState("");
     const [newArea, setNewArea] = useState("");
 
+    const [statusType, setStatusType] = useState([]);
+    const [radius, setRadius] = useState([]);
+    const [areaType, setAreaType] = useState([]);
+
     const addNewStatus = () => {
 
         if(newStatus===""){
@@ -120,12 +124,87 @@ const ControlPanelReservationRequestScreen = () => {
             .then((data) => {
                 setStatusOpen(false);
                 setNewStatus("");
-                alert("Successfully added new Status");
+                alert(data["message"]);
             })
             .catch((error)=>{
                 alert("Error: " + error);
             });
     }
+
+    const addNewRadius = () => {
+
+        if(newRadius===""){
+            alert("Please provide the new radius to continue");
+            return;
+        }
+
+        fetch('https://api.showaapp.com/admin/control-panel/add-new-radius', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                newRadius
+            })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setRadiusOpen(false);
+                setNewRadius("");
+                alert(data["message"]);
+            })
+            .catch((error)=>{
+                alert("Error: " + error);
+            });
+    }
+
+    const addNewArea = () => {
+
+        if(newArea===""){
+            alert("Please provide the new area to continue");
+            return;
+        }
+
+        fetch('https://api.showaapp.com/admin/control-panel/add-new-area', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                newArea
+            })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setAreaOpen(false);
+                setNewArea("");
+                alert(data["message"]);
+            })
+            .catch((error)=>{
+                alert("Error: " + error);
+            });
+    }
+
+    function getReservationRequest() {
+        var url = "https://api.showaapp.com/admin/control-panel/get-reservation-request";
+
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setStatusType(data["controlPanelReservationRequest"].statusType);
+                    setRadius(data["controlPanelReservationRequest"].radius);
+                    setAreaType(data["controlPanelReservationRequest"].areaType);
+                });
+    }
+
+    useEffect(() => {
+        getReservationRequest();
+    })
 
 
     return (
@@ -133,11 +212,55 @@ const ControlPanelReservationRequestScreen = () => {
 
             <Modal open={statusOpen}>
 
+            <div className={classes.addContainer}>
+
+                <div style={{width: "100%", justifyContent: "space-between", display: "flex"}}>
+                    <Typography>Add Status</Typography>
+                    <div onClick={()=> {setStatusOpen(false);}}><Close /></div>
+                </div>
+
+                <div className={classes.spacerSmall} />
+
+                <TextField
+                    className={classes.input}
+                    size="small" 
+                    placeholder="Status Type"
+                    label="Status Type"
+                    value={newStatus}
+                    onChange={(e)=>{setNewStatus(e.target.value);}}
+                />
+
+                <div className={classes.spacerSmall} />
+
+                <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "end"}}>
+                    <div 
+                        className={classes.cancelButton}
+                        onClick={(e)=>{
+                            setStatusOpen(false);
+                            setNewStatus("");
+                        }}
+                    >Cancel</div>
+                    <div className={classes.spacerSmall} />
+                    <div 
+                        className={classes.saveButton}
+                        onClick={(e)=>{
+                            addNewStatus();
+                            setNewStatus("");
+                        }}
+                    >Add</div>
+                </div>
+
+            </div>
+
+            </Modal>
+
+            <Modal open={radiusOpen}>
+
                 <div className={classes.addContainer}>
 
-                    <div style={{width: "100%", justifyContent: "space-between"}}>
-                        <Typography>Add Status</Typography>
-                        <div onClick={()=> {setStatusOpen(false);}}><Close /></div>
+                    <div style={{width: "100%", justifyContent: "space-between", display: "flex"}}>
+                        <Typography>Add Radius</Typography>
+                        <div onClick={()=> {setRadiusOpen(false);}}><Close /></div>
                     </div>
 
                     <div className={classes.spacerSmall} />
@@ -145,9 +268,10 @@ const ControlPanelReservationRequestScreen = () => {
                     <TextField
                         className={classes.input}
                         size="small" 
-                        placeholder="Status Type"
-                        label="Status Type"
-                        onChange={(e)=>{setNewStatus(e.target.value);}}
+                        placeholder="Radius"
+                        label="Radius"
+                        value={newRadius}
+                        onChange={(e)=>{setNewRadius(e.target.value);}}
                     />
 
                     <div className={classes.spacerSmall} />
@@ -156,16 +280,60 @@ const ControlPanelReservationRequestScreen = () => {
                         <div 
                             className={classes.cancelButton}
                             onClick={(e)=>{
-                                setStatusOpen(false);
-                                setNewStatus("");
+                                setRadiusOpen(false);
+                                setNewRadius("");
                             }}
                         >Cancel</div>
                         <div className={classes.spacerSmall} />
                         <div 
                             className={classes.saveButton}
                             onClick={(e)=>{
-                                addNewStatus();
-                                setNewStatus("");
+                                addNewRadius();
+                                setNewRadius("");
+                            }}
+                        >Add</div>
+                    </div>
+
+                </div>
+
+            </Modal>
+
+            <Modal open={areaOpen}>
+
+                <div className={classes.addContainer}>
+
+                    <div style={{width: "100%", justifyContent: "space-between", display: "flex"}}>
+                        <Typography>Add Area Type</Typography>
+                        <div onClick={()=> {setAreaOpen(false);}}><Close /></div>
+                    </div>
+
+                    <div className={classes.spacerSmall} />
+
+                    <TextField
+                        className={classes.input}
+                        size="small" 
+                        placeholder="Area Type"
+                        label="Area Type"
+                        value={newArea}
+                        onChange={(e)=>{setNewArea(e.target.value);}}
+                    />
+
+                    <div className={classes.spacerSmall} />
+
+                    <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "end"}}>
+                        <div 
+                            className={classes.cancelButton}
+                            onClick={(e)=>{
+                                setAreaOpen(false);
+                                setNewArea("");
+                            }}
+                        >Cancel</div>
+                        <div className={classes.spacerSmall} />
+                        <div 
+                            className={classes.saveButton}
+                            onClick={(e)=>{
+                                addNewArea();
+                                setNewArea("");
                             }}
                         >Add</div>
                     </div>
@@ -194,43 +362,132 @@ const ControlPanelReservationRequestScreen = () => {
     
                     <Grid container spacing={2}>
     
-                    <Grid item xs={3} sm={3} md={3} lg={3}>
+                            <Grid item xs={3} sm={3} md={3} lg={3}>
+            
+                                <div className={classes.optionTitle}>Status</div>
+                                <div className={classes.optionSubtitle}>Vendor status on request</div>
+            
+                            </Grid>
+            
+                            <Grid item xs={8} sm={8} md={8} lg={8}>
+            
+                                <FormControl fullWidth>
+                                    <TextField
+                                        select
+                                        id="demo-simple-select"
+                                        label="Status Type"
+                                        size="small"
+                                    >
+                                        {
+                                            statusType.length != 0 ? statusType.map((status) =>
+                                                <MenuItem value={status}>{status}</MenuItem>
+                                            ) : <MenuItem value="no status">Status Type</MenuItem>
+                                        }
+                                        
+                                    </TextField>
+                                </FormControl>
+                                
+                            </Grid>
+        
+                        <Grid item xs={1} sm={1} md={1} lg={1}>
+        
+                            <IconButton onClick={()=>{setStatusOpen(true);}}>
+                                <AddCircleOutline />
+                            </IconButton>
+                            
+                        </Grid>
     
-                        <div className={classes.optionTitle}>Status</div>
-                        <div className={classes.optionSubtitle}>Vendor status on request</div>
-    
-                    </Grid>
-    
-                    <Grid item xs={8} sm={8} md={8} lg={8}>
-    
-                        <FormControl fullWidth>
-                            <TextField
-                                select
-                                id="demo-simple-select"
-                                label="Module"
-                                size="small"
-                            >
-                                <MenuItem value="Module 1">Module 1</MenuItem>
-                                <MenuItem value="Module 2">Module 2</MenuItem>
-                                <MenuItem value="Module 3">Module 3</MenuItem>
-                                <MenuItem value="Module 4">Module 4</MenuItem>
-                            </TextField>
-                        </FormControl>
                         
-                    </Grid>
-    
-                    <Grid item xs={1} sm={1} md={1} lg={1}>
-    
-                        <IconButton onClick={()=>{setStatusOpen(true);}}>
-                            <AddCircleOutline />
-                        </IconButton>
-                        
-                    </Grid>
-    
-                        
     
                     </Grid>
+
+                    <div className={classes.spacerSmall} />
+                    <div className={classes.spacerSmall} />
+
+                    <Grid container spacing={2}>
     
+                        <Grid item xs={3} sm={3} md={3} lg={3}>
+
+                            <div className={classes.optionTitle}>Nearest Location</div>
+                            <div className={classes.optionSubtitle}>Nearest location of vendor on request</div>
+
+                        </Grid>
+
+                        <Grid item xs={8} sm={8} md={8} lg={8}>
+
+                            <FormControl fullWidth>
+                                <TextField
+                                    select
+                                    id="demo-simple-select"
+                                    label="Select Radius"
+                                    size="small"
+                                >
+                                    {
+                                        radius.length != 0 ? radius.map((radi) =>
+                                            <MenuItem value={radi}>{radi}</MenuItem>
+                                        ) : <MenuItem value="no radius">Radius</MenuItem>
+                                    }
+                                    
+                                </TextField>
+                            </FormControl>
+                            
+                        </Grid>
+
+                        <Grid item xs={1} sm={1} md={1} lg={1}>
+
+                            <IconButton onClick={()=>{setRadiusOpen(true);}}>
+                                <AddCircleOutline />
+                            </IconButton>
+                            
+                        </Grid>
+
+
+                    </Grid>
+
+                    <div className={classes.spacerSmall} />
+                    <div className={classes.spacerSmall} />
+
+                    <Grid container spacing={2}>
+    
+                        <Grid item xs={3} sm={3} md={3} lg={3}>
+
+                            <div className={classes.optionTitle}>Area</div>
+                            <div className={classes.optionSubtitle}>Area of vendor on request</div>
+
+                        </Grid>
+
+                        <Grid item xs={8} sm={8} md={8} lg={8}>
+
+                            <FormControl fullWidth>
+                                <TextField
+                                    select
+                                    id="demo-simple-select"
+                                    label="Area Type"
+                                    size="small"
+                                >
+                                    {
+                                        areaType.length != 0 ? areaType.map((area) =>
+                                            <MenuItem value={area}>{area}</MenuItem>
+                                        ) : <MenuItem value="no area">Area Type</MenuItem>
+                                    }
+                                    
+                                </TextField>
+                            </FormControl>
+                            
+                        </Grid>
+
+                        <Grid item xs={1} sm={1} md={1} lg={1}>
+
+                            <IconButton onClick={()=>{setAreaOpen(true);}}>
+                                <AddCircleOutline />
+                            </IconButton>
+                            
+                        </Grid>
+
+
+                    </Grid>
+
+
                 </div>  
     
             </div>
