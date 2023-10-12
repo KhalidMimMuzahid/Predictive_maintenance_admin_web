@@ -185,7 +185,7 @@ const routes = [
     },
     {
         name: "Control Panel",
-        path: "/control_panel",
+        path: "/#",
         icon: <img src={control_panel_icon} />,
         subRoutes: [
           {
