@@ -425,7 +425,7 @@ const ControlPanelReservationRequestScreen = () => {
                                     {
                                         radius.length != 0 ? radius.map((radi) =>
                                             <MenuItem value={radi}>{radi}</MenuItem>
-                                        ) : <MenuItem value="no radius">Radius</MenuItem>
+                                        ) : <MenuItem value="no radius">Select Radius</MenuItem>
                                     }
                                     
                                 </TextField>

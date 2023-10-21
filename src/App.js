@@ -45,6 +45,7 @@ import AllTransaction from './Pageviews/Home/Wallet/pageviews/all_transaction';
 import WithdrawRequest from './Pageviews/Home/Wallet/pageviews/withdraw_request';
 import WalletCustomerDetails from './Pageviews/Home/Wallet/wallet_customer_details';
 import ControlPanelCustomer from './Pageviews/Home/ControlPanel/pageviews/control_panel_customer_screen';
+import ControlPanelMachine from './Pageviews/Home/ControlPanel/pageviews/control_panel_machine_screen';
 import ControlPanelInventory from './Pageviews/Home/ControlPanel/pageviews/control_panel_inventory_screen';
 import ControlPanelIot from './Pageviews/Home/ControlPanel/pageviews/control_panel_iot_screen';
 import ControlPanelReservationRequest from './Pageviews/Home/ControlPanel/pageviews/control_panel_reservation_request_screen';
@@ -153,6 +154,7 @@ function App() {
                     <Route path="/reports" element={<ReportScreen />} />
                     <Route path="/control_panel/reservation_request" element={<ControlPanelReservationRequest />} />
                     <Route path="/control_panel/customer" element={<ControlPanelCustomer />} />
+                    <Route path="/control_panel/machine" element={<ControlPanelMachine />} />
                     <Route path="/control_panel/vendor" element={<ControlPanelVendor />} />
                     <Route path="/control_panel/IoT" element={<ControlPanelIot />} />
                     <Route path="/control_panel/wallet" element={<ControlPanelWallet />} />

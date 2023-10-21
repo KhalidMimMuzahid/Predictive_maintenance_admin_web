@@ -185,7 +185,7 @@ const routes = [
     },
     {
         name: "Control Panel",
-        path: "/#",
+        path: "/control_panel/reservation_request",
         icon: <img src={control_panel_icon} />,
         subRoutes: [
           {
@@ -196,6 +196,11 @@ const routes = [
           {
             name: "Customer",
             path: "/control_panel/customer",
+            icon: <img src={bids_sub_icon} />,
+          },
+          {
+            name: "Machine",
+            path: "/control_panel/machine",
             icon: <img src={bids_sub_icon} />,
           },
           {
