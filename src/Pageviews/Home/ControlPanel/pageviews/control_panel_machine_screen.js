@@ -169,7 +169,7 @@ const ControlPanelMachine = () => {
             alert("Please select a brand to continue");
         } else if(currentModel === "") {
             alert("Please select a model to continue");
-        } else if(newModel===""){
+        } else if(newIssue===""){
             alert("Please provide the new issue to continue");
             return;
         }
@@ -187,6 +187,7 @@ const ControlPanelMachine = () => {
             .then((data) => {
                 setNewIssue("");
                 alert(data["message"]);
+                setIssueOpen(false);
             })
             .catch((error)=>{
                 alert("Error: " + error);
@@ -519,7 +520,7 @@ const ControlPanelMachine = () => {
             
                             <Grid item xs={1} sm={1} md={1} lg={1}>
             
-                                <IconButton onClick={()=>{setModelOpen(true);}}>
+                                <IconButton onClick={()=>{setIssueOpen(true);}}>
                                     <AddCircleOutline />
                                 </IconButton>
                                 
