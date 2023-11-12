@@ -29,11 +29,6 @@ import OffersScreen from './Pageviews/Home/Offers/offers_screen';
 import PackagesScreen from './Pageviews/Home/Packages/packages_screen';
 import SettingsScreen from './Pageviews/Home/Settings/settings_screen';
 import CollapsibleSidebar from './Components/CollapsibleSIdebar';
-import CompletedRequest from './Pageviews/Home/Reservation/pageviews/completed_request';
-import OngoingMaintenance from './Pageviews/Home/Reservation/pageviews/ongoing_maintenance';
-import AcceptedRequest from './Pageviews/Home/Reservation/pageviews/accepted_request';
-import OnDemandReservation from './Pageviews/Home/Reservation/pageviews/on_demand_reservation';
-import AllReservation from './Pageviews/Home/Reservation/pageviews/all_reservation';
 import FAQ from './Pageviews/Home/HelpAI/pageviews/faq';
 import LearningResources from './Pageviews/Home/HelpAI/pageviews/learning_resources';
 import AllBidsScreen from './Pageviews/Home/Bids/pageviews/all_bids_screen';
@@ -53,6 +48,28 @@ import ControlPanelShop from './Pageviews/Home/ControlPanel/pageviews/control_pa
 import ControlPanelVendor from './Pageviews/Home/ControlPanel/pageviews/control_panel_vendor_screen';
 import ControlPanelWallet from './Pageviews/Home/ControlPanel/pageviews/control_panel_wallet_screen';
 import ReportScreen from './Pageviews/Home/Reports/reports_screen';
+
+import ConnectedAllReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_all_reservation';
+import ConnectedOnDemandReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_on_demand_reservation';
+import ConnectedWithinOneWeekReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_within_one_week_request';
+import ConnectedWithinTwoWeekReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_within_two_week_request';
+import ConnectedScheduleTimeReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_schedule_time_request';
+import ConnectedAcceptedReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_accepted_request';
+import ConnectedOngoingMaintenance from './Pageviews/Home/Reservation/pageviews/connected/connected_ongoing_maintenance';
+import ConnectedRescheduledRequest from './Pageviews/Home/Reservation/pageviews/connected/connected_reschedule_request';
+import ConnectedCompletedReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_completed_request';
+
+import NonConnectedAllReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_all_reservation';
+import NonConnectedOnDemandReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_on_demand_reservation';
+import NonConnectedWithinOneWeekReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_within_one_week_request';
+import NonConnectedWithinTwoWeekReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_within_two_week_request';
+import NonConnectedScheduleTimeReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_schedule_time_request';
+import NonConnectedAcceptedReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_accepted_request';
+import NonConnectedOngoingMaintenance from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_ongoing_maintenance';
+import NonConnectedRescheduledRequest from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_reschedule_request';
+import NonConnectedCompletedReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_completed_request';
+
+
 
 const theme = createTheme();
 
@@ -127,12 +144,27 @@ function App() {
                     <Route path="/vendors" element={<VendorScreen />} />
                     <Route path="/customer" element={<CustomerScreen />} />
                     <Route path="/chat" element={<ChatScreen />} />
-                    <Route path="/reservation" element={<ReservationScreen />} />
-                    <Route path="/reservation/all" element={<AllReservation />} />
-                    <Route path="/reservation/ondemand" element={<OnDemandReservation />} />
-                    <Route path="/reservation/accepted" element={<AcceptedRequest />} />
-                    <Route path="/reservation/ongoing" element={<OngoingMaintenance />} />
-                    <Route path="/reservation/completed" element={<CompletedRequest />} />
+
+                    <Route path="/reservation/connected/all" element={<ConnectedAllReservation />} />
+                    <Route path="/reservation/connected/on-demand" element={<ConnectedOnDemandReservation />} />
+                    <Route path="/reservation/connected/within-one-week" element={<ConnectedWithinOneWeekReservation />} />
+                    <Route path="/reservation/connected/within-two-week" element={<ConnectedWithinTwoWeekReservation />} />
+                    <Route path="/reservation/connected/schedule-time" element={<ConnectedScheduleTimeReservation />} />
+                    <Route path="/reservation/connected/accepted" element={<ConnectedAcceptedReservation />} />
+                    <Route path="/reservation/connected/ongoing" element={<ConnectedOngoingMaintenance />} />
+                    <Route path="/reservation/connected/reschedule" element={<ConnectedRescheduledRequest />} />
+                    <Route path="/reservation/connected/completed" element={<ConnectedCompletedReservation />} />
+
+                    <Route path="/reservation/non-connected/all" element={<NonConnectedAllReservation />} />
+                    <Route path="/reservation/non-connected/on-demand" element={<NonConnectedOnDemandReservation />} />
+                    <Route path="/reservation/non-connected/within-one-week" element={<NonConnectedWithinOneWeekReservation />} />
+                    <Route path="/reservation/non-connected/within-two-week" element={<NonConnectedWithinTwoWeekReservation />} />
+                    <Route path="/reservation/non-connected/schedule-time" element={<NonConnectedScheduleTimeReservation />} />
+                    <Route path="/reservation/non-connected/accepted" element={<NonConnectedAcceptedReservation />} />
+                    <Route path="/reservation/non-connected/ongoing" element={<NonConnectedOngoingMaintenance />} />
+                    <Route path="/reservation/non-connected/reschedule" element={<NonConnectedRescheduledRequest />} />
+                    <Route path="/reservation/non-connected/completed" element={<NonConnectedCompletedReservation />} />
+
                     <Route path="/iot" element={<IotScreen />} />
                     <Route path="/wallet" element={<WalletScreen />} />
                     <Route path="/wallet/customer" element={<WalletCustomerDetails />} />

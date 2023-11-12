@@ -349,7 +349,6 @@ const ControlPanelMachine = () => {
                         value={newIssue}
                         onChange={(e)=>{setNewIssue(e.target.value);}}
                     />
-
                     <div className={classes.spacerSmall} />
 
                     <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "end"}}>

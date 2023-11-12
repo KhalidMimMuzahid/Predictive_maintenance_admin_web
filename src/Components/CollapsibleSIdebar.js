@@ -18,15 +18,17 @@ import settings_icon from "../Assets/Component/settings_icon.svg";
 import bids_sub_icon from "../Assets/Component/sub_icon.svg";
 import control_panel_icon from "../Assets/Component/control_panel_icon.svg";
 import reports_icon from "../Assets/Component/reports_icon.svg";
+import sensor_connected_icon from "../Assets/Component/sensor_connected_icon.svg";
+import sensor_not_connected_icon from "../Assets/Component/sensor_not_connected_icon.svg";
 
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import CollapsibleSidebarSubmenu from "./CollapsibleSidebarSubmenu";
 import { Menu } from "@mui/icons-material";
 
 import logo_small from "../Assets/Component/logo_small.svg";
 import logo_full from "../Assets/Component/logo_full.svg";
+import SidebarItem from "./SIdebarItem";
 
 
 const routes = [
@@ -52,34 +54,113 @@ const routes = [
     },
     {
         name: "Reservation",
-        path: "/reservation",
+        path: "/reservation/connected/all",
         icon: <img src={reservation_icon} />,
-        subRoutes: [
-            {
+        children: [
+          {
+            name: "Sensor Connected",
+            path: "/reservation/connected/all",
+            icon: <img src={sensor_connected_icon} />,
+            children: [
+              {
                 name: "All Reservation Request",
-                path: "/reservation/all",
+                path: "/reservation/connected/all",
                 icon: <img src={bids_sub_icon} />,
-            },
-            {
+              },
+              {
                 name: "On Demand Request",
-                path: "/reservation/ondemand",
+                path: "/reservation/connected/on-demand",
                 icon: <img src={bids_sub_icon} />,
-            },
-            {
-                name: "Accepted Requested",
-                path: "/reservation/accepted",
+              },
+              {
+                name: "Within 1 Week Request",
+                path: "/reservation/connected/within-one-week",
                 icon: <img src={bids_sub_icon} />,
-            },
-            {
-                name: "Ongoing Maintanance",
-                path: "/reservation/ongoing",
+              },
+              {
+                name: "Within 2 Week Request",
+                path: "/reservation/connected/within-two-week",
                 icon: <img src={bids_sub_icon} />,
-            },
-            {
+              },
+              {
+                name: "Schedule Time Request",
+                path: "/reservation/connected/schedule-time",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
+                name: "Accepted Request",
+                path: "/reservation/connected/accepted",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
+                name: "Ongoing Maintenance",
+                path: "/reservation/connected/ongoing",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
+                name: "Reschedule Request",
+                path: "/reservation/connected/reschedule",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
                 name: "Completed Request",
-                path: "/reservation/completed",
+                path: "/reservation/connected/completed",
                 icon: <img src={bids_sub_icon} />,
-            },
+              },
+            ]
+          },
+          {
+            name: "Sensor Non-Connected",
+            path: "/reservation/non-connected/all",
+            icon: <img src={sensor_not_connected_icon} />,
+            children: [
+              {
+                name: "All Reservation Request",
+                path: "/reservation/non-connected/all",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
+                name: "On Demand Request",
+                path: "/reservation/non-connected/on-demand",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
+                name: "Within 1 Week Request",
+                path: "/reservation/non-connected/within-one-week",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
+                name: "Within 2 Week Request",
+                path: "/reservation/non-connected/within-two-week",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
+                name: "Schedule Time Request",
+                path: "/reservation/non-connected/schedule-time",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
+                name: "Accepted Request",
+                path: "/reservation/non-connected/accepted",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
+                name: "Ongoing Maintenance",
+                path: "/reservation/non-connected/ongoing",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
+                name: "Reschedule Request",
+                path: "/reservation/non-connected/reschedule",
+                icon: <img src={bids_sub_icon} />,
+              },
+              {
+                name: "Completed Request",
+                path: "/reservation/non-connected/completed",
+                icon: <img src={bids_sub_icon} />,
+              },
+            ]
+          },
         ]
     },
     {
@@ -91,7 +172,7 @@ const routes = [
         name: "Wallet",
         path: "/wallet",
         icon: <img src={wallet_icon} />,
-        subRoutes: [
+        children: [
             {
                 name: "All Transaction",
                 path: "/wallet/alltransaction",
@@ -118,7 +199,7 @@ const routes = [
         name: "Bids",
         path: "/bids",
         icon: <img src={bids_icon} />,
-        subRoutes: [
+        children: [
             {
                 name: "All Schedule Bidding",
                 path: "/bids/all",
@@ -155,7 +236,7 @@ const routes = [
         name: "Help AI",
         path: "/helpai",
         icon: <img src={help_ai_icon} />,
-        subRoutes: [
+        children: [
             {
                 name: "FAQ",
                 path: "/help/faq",
@@ -187,7 +268,7 @@ const routes = [
         name: "Control Panel",
         path: "/control_panel/reservation_request",
         icon: <img src={control_panel_icon} />,
-        subRoutes: [
+        children: [
           {
             name: "Reservation Request",
             path: "/control_panel/reservation_request",
@@ -283,7 +364,7 @@ const CollapsibleSidebar = ({ children }) => {
         <div className="main-container">
           <motion.div
             animate={{
-              width: isOpen ? "260px" : "45px",
+              width: isOpen ? "300px" : "45px",
   
               transition: {
                 duration: 0.5,
@@ -321,8 +402,10 @@ const CollapsibleSidebar = ({ children }) => {
                 
               </div>
             </div>
+
             <section className="routes">
-              {routes.map((route, index) => {
+              {routes.map((route, index) => <SidebarItem key={index} route={route} isOpen={isOpen} setIsOpen={setIsOpen} showAnimation={showAnimation} />)}
+              {/* {routes.map((route, index) => {
                 if (route.subRoutes) {
                   return (
                     <CollapsibleSidebarSubmenu
@@ -332,7 +415,7 @@ const CollapsibleSidebar = ({ children }) => {
                       isOpen={isOpen}
                     />
                   );
-                }
+                } 
   
                 return (
                   <NavLink
@@ -357,7 +440,7 @@ const CollapsibleSidebar = ({ children }) => {
                     </AnimatePresence>
                   </NavLink>
                 );
-              })}
+              })} */}
             </section>
           </motion.div>
   
