@@ -1,4 +1,3 @@
-
 import { makeStyles, styled } from "@mui/styles";
 
 
@@ -60,7 +59,7 @@ const useStyle = makeStyles((theme) => ({
 
 
 
-const ConnectedRescheduleMaintenance = () => {
+const ConnectedWithinOneWeekRequest = () => {
     const classes = useStyle();
 
     return (
@@ -71,8 +70,8 @@ const ConnectedRescheduleMaintenance = () => {
                         <div className={classes.title}>Reservation</div>
                         <div className={classes.spacerSmall}></div>
                         <div style={{display: "flex"}}> 
-                            <div style={{color: "black"}} className={classes.subtitle}>Dashboard / Reservation/ Sensor-Non Connected/ </div>
-                            <div style={{color: "#24459c"}} className={classes.subtitle}>Reschedule Request</div>
+                            <div style={{color: "black"}} className={classes.subtitle}>Dashboard / Reservation/ Sensor Connected/ </div>
+                            <div style={{color: "#24459c"}} className={classes.subtitle}>Accepted Request</div>
                         </div>
                     </div>
 
@@ -87,4 +86,4 @@ const ConnectedRescheduleMaintenance = () => {
 
 }
 
-export default ConnectedRescheduleMaintenance;
+export default ConnectedWithinOneWeekRequest;

@@ -57,7 +57,9 @@ const useStyle = makeStyles((theme) => ({
     }
 }));
 
-const ConnectedOngoingMaintenance = () => {
+
+
+const ConnectedScheduleTimeRequest = () => {
     const classes = useStyle();
 
     return (
@@ -68,8 +70,8 @@ const ConnectedOngoingMaintenance = () => {
                         <div className={classes.title}>Reservation</div>
                         <div className={classes.spacerSmall}></div>
                         <div style={{display: "flex"}}> 
-                            <div style={{color: "black"}} className={classes.subtitle}>Dashboard / Reservation/ Sensor-Non Connected/ </div>
-                            <div style={{color: "#24459c"}} className={classes.subtitle}>Ongoing Maintenance</div>
+                            <div style={{color: "black"}} className={classes.subtitle}>Dashboard / Reservation/ Sensor Connected/ </div>
+                            <div style={{color: "#24459c"}} className={classes.subtitle}>Accepted Request</div>
                         </div>
                     </div>
 
@@ -84,4 +86,4 @@ const ConnectedOngoingMaintenance = () => {
 
 }
 
-export default ConnectedOngoingMaintenance;
+export default ConnectedScheduleTimeRequest;

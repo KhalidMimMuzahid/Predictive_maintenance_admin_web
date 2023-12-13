@@ -45,7 +45,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 
-const VendorScreen = () => {
+const ServiceProviderScreen = () => {
     const classes = useStyle();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -135,7 +135,7 @@ const VendorScreen = () => {
                 
                 <div className={classes.tableHolder}>
             
-                    <VendorTable />
+                    service provider list
 
                 </div>
 
@@ -144,7 +144,7 @@ const VendorScreen = () => {
     );
 }
 
-export default VendorScreen;
+export default ServiceProviderScreen;
 
 
 const StyledMenu = styled((props) => (
@@ -183,68 +183,68 @@ const StyledMenu = styled((props) => (
 }));
 
 
-class VendorTable extends Component {
+// class VendorTable extends Component {
 
-    state = {
-        vendors: [],
-    }
-
-
-    componentDidMount = () => {
-        this.getVendors();
-    }
+//     state = {
+//         vendors: [],
+//     }
 
 
-    getVendors() {
-        fetch('https://api.showaapp.com/admin/vendor/get-all-vendor', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                this.setState({ vendors: data });
-            });
-    }
+//     componentDidMount = () => {
+//         this.getVendors();
+//     }
 
 
-    displayVendors = (vendors) => {
-
-        if (vendors.length === 0)
-            return <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-                <h3>No vendor in the server</h3>
-            </div>;
-
-
-
-        return vendors.map((vendor, index) => (
-            <VendorTab
-                key={index}
-                email={vendor.email}
-            />
-        ));
-
-    };
+//     getVendors() {
+//         fetch('https://api.showaapp.com/admin/vendor/get-all-vendor', {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//         })
+//             .then((res) => res.json())
+//             .then((data) => {
+//                 console.log(data);
+//                 this.setState({ vendors: data });
+//             });
+//     }
 
 
-    render () {
-        return <div style={{ overflow: "auto" }}>
-            {this.displayVendors(this.state.vendors)}
-        </div>;
-    };
+//     displayVendors = (vendors) => {
 
-}
+//         if (vendors.length === 0)
+//             return <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+//                 <h3>No vendor in the server</h3>
+//             </div>;
 
 
-const VendorTab = (props) => {
-    const classes = useStyle();
 
-    return (
-        <div>
-            {props.email}
-        </div>
-    );
+//         return vendors.map((vendor, index) => (
+//             <VendorTab
+//                 key={index}
+//                 email={vendor.email}
+//             />
+//         ));
 
-}
+//     };
+
+
+//     render () {
+//         return <div style={{ overflow: "auto" }}>
+//             {this.displayVendors(this.state.vendors)}
+//         </div>;
+//     };
+
+// }
+
+
+// const VendorTab = (props) => {
+//     const classes = useStyle();
+
+//     return (
+//         <div>
+//             {props.email}
+//         </div>
+//     );
+
+// }

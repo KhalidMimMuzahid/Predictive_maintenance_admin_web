@@ -58,8 +58,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 
-
-const ConnectedWithinOneWeekRequest = () => {
+const ConnectedCompletedRequest = () => {
     const classes = useStyle();
 
     return (
@@ -70,8 +69,8 @@ const ConnectedWithinOneWeekRequest = () => {
                         <div className={classes.title}>Reservation</div>
                         <div className={classes.spacerSmall}></div>
                         <div style={{display: "flex"}}> 
-                            <div style={{color: "black"}} className={classes.subtitle}>Dashboard / Reservation/ Sensor-Non Connected/ </div>
-                            <div style={{color: "#24459c"}} className={classes.subtitle}>Accepted Request</div>
+                            <div style={{color: "black"}} className={classes.subtitle}>Dashboard / Reservation/ Sensor Connected/ </div>
+                            <div style={{color: "#24459c"}} className={classes.subtitle}>Completed Request</div>
                         </div>
                     </div>
 
@@ -86,4 +85,4 @@ const ConnectedWithinOneWeekRequest = () => {
 
 }
 
-export default ConnectedWithinOneWeekRequest;
+export default ConnectedCompletedRequest;

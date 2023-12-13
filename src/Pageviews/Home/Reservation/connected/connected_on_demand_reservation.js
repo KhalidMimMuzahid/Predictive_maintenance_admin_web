@@ -59,7 +59,7 @@ const useStyle = makeStyles((theme) => ({
 
 
 
-const ConnectedScheduleTimeRequest = () => {
+const ConnectedOnDemandReservation = () => {
     const classes = useStyle();
 
     return (
@@ -70,8 +70,8 @@ const ConnectedScheduleTimeRequest = () => {
                         <div className={classes.title}>Reservation</div>
                         <div className={classes.spacerSmall}></div>
                         <div style={{display: "flex"}}> 
-                            <div style={{color: "black"}} className={classes.subtitle}>Dashboard / Reservation/ Sensor-Non Connected/ </div>
-                            <div style={{color: "#24459c"}} className={classes.subtitle}>Accepted Request</div>
+                            <div style={{color: "black"}} className={classes.subtitle}>Dashboard / Reservation/ Sensor Connected/ </div>
+                            <div style={{color: "#24459c"}} className={classes.subtitle}>On-demand Request</div>
                         </div>
                     </div>
 
@@ -86,4 +86,4 @@ const ConnectedScheduleTimeRequest = () => {
 
 }
 
-export default ConnectedScheduleTimeRequest;
+export default ConnectedOnDemandReservation;

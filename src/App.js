@@ -5,24 +5,33 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import LoginScreen from './Pageviews/Onboarding/LoginScreen';
+
+import { makeStyles } from '@mui/styles';
+import { useSelector } from 'react-redux';
 import {auth} from "./firebase";
 import {onAuthStateChanged} from "firebase/auth"
 import { useEffect } from 'react';
 import { useState } from 'react';
-import DashboardScreen from './Pageviews/Home/Dashboard/dashboard_screen';
-import { makeStyles } from '@mui/styles';
-import { useSelector } from 'react-redux';
+
 import Topbar from './Components/Topbar';
-import VendorScreen from './Pageviews/Home/Vendor/vendor_screen';
+
+import LoginScreen from './Pageviews/Onboarding/LoginScreen';
+
+import DashboardScreen from './Pageviews/Home/Dashboard/dashboard_screen';
+import ServiceProviderScreen from './Pageviews/Home/ServiceProvider/service_provider_screen';
 import CustomerScreen from './Pageviews/Home/Customer/customer_screen';
 import ChatScreen from './Pageviews/Home/Chat/chat_screen';
-import ReservationScreen from './Pageviews/Home/Reservation/reservation_screen';
+import FeedScreen from './Pageviews/Home/Feed/feed_screen';
 import IotScreen from './Pageviews/Home/IoT/iot_screen';
 import WalletScreen from './Pageviews/Home/Wallet/wallet_screen';
-import ShopScreen from './Pageviews/Home/Shop/shop_screen';
+import TeamScreen from './Pageviews/Home/Team/team_screen';
+import InvoiceScreen from './Pageviews/Home/Invoice/invoice_screen';
+import ProjectScreen from './Pageviews/Home/Project/project_screen';
+import DataExportScreen from './Pageviews/Home/DataExport/data_export_screen';
+
+
+import MarketplaceScreen from './Pageviews/Home/Marketplace/marketplace_screen';
 import InventoryScreen from './Pageviews/Home/Inventory/inventory_screen';
-import BidsScreen from './Pageviews/Home/Bids/bids_screen';
 import NotificationScreen from './Pageviews/Home/Notifications/notification_screen';
 import HelpAIScreen from './Pageviews/Home/HelpAI/help_ai_screen';
 import OffersScreen from './Pageviews/Home/Offers/offers_screen';
@@ -31,11 +40,6 @@ import SettingsScreen from './Pageviews/Home/Settings/settings_screen';
 import CollapsibleSidebar from './Components/CollapsibleSIdebar';
 import FAQ from './Pageviews/Home/HelpAI/pageviews/faq';
 import LearningResources from './Pageviews/Home/HelpAI/pageviews/learning_resources';
-import AllBidsScreen from './Pageviews/Home/Bids/pageviews/all_bids_screen';
-import OnDemandBidsScreen from './Pageviews/Home/Bids/pageviews/on_demand_bidding_screen';
-import WithinOneWeekBidsScreen from './Pageviews/Home/Bids/pageviews/within_one_week_screen';
-import WithinTwoWeekBidsScreen from './Pageviews/Home/Bids/pageviews/within_two_week_bids';
-import ScheduleTimeBidsScreen from './Pageviews/Home/Bids/pageviews/schedule_time_bids';
 import AllTransaction from './Pageviews/Home/Wallet/pageviews/all_transaction';
 import WithdrawRequest from './Pageviews/Home/Wallet/pageviews/withdraw_request';
 import WalletCustomerDetails from './Pageviews/Home/Wallet/wallet_customer_details';
@@ -49,26 +53,38 @@ import ControlPanelVendor from './Pageviews/Home/ControlPanel/pageviews/control_
 import ControlPanelWallet from './Pageviews/Home/ControlPanel/pageviews/control_panel_wallet_screen';
 import ReportScreen from './Pageviews/Home/Reports/reports_screen';
 
-import ConnectedAllReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_all_reservation';
-import ConnectedOnDemandReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_on_demand_reservation';
-import ConnectedWithinOneWeekReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_within_one_week_request';
-import ConnectedWithinTwoWeekReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_within_two_week_request';
-import ConnectedScheduleTimeReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_schedule_time_request';
-import ConnectedAcceptedReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_accepted_request';
-import ConnectedOngoingMaintenance from './Pageviews/Home/Reservation/pageviews/connected/connected_ongoing_maintenance';
-import ConnectedRescheduledRequest from './Pageviews/Home/Reservation/pageviews/connected/connected_reschedule_request';
-import ConnectedCompletedReservation from './Pageviews/Home/Reservation/pageviews/connected/connected_completed_request';
+import ConnectedAllReservation from './Pageviews/Home/Reservation/connected/connected_all_reservation';
+import ConnectedOnDemandReservation from './Pageviews/Home/Reservation/connected/connected_on_demand_reservation';
+import ConnectedWithinOneWeekReservation from './Pageviews/Home/Reservation/connected/connected_within_one_week_request';
+import ConnectedWithinTwoWeekReservation from './Pageviews/Home/Reservation/connected/connected_within_two_week_request';
+import ConnectedScheduleTimeReservation from './Pageviews/Home/Reservation/connected/connected_schedule_time_request';
+import ConnectedAcceptedReservation from './Pageviews/Home/Reservation/connected/connected_accepted_request';
+import ConnectedOngoingMaintenance from './Pageviews/Home/Reservation/connected/connected_ongoing_maintenance';
+import ConnectedRescheduledRequest from './Pageviews/Home/Reservation/connected/connected_reschedule_request';
+import ConnectedCompletedReservation from './Pageviews/Home/Reservation/connected/connected_completed_request';
 
-import NonConnectedAllReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_all_reservation';
-import NonConnectedOnDemandReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_on_demand_reservation';
-import NonConnectedWithinOneWeekReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_within_one_week_request';
-import NonConnectedWithinTwoWeekReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_within_two_week_request';
-import NonConnectedScheduleTimeReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_schedule_time_request';
-import NonConnectedAcceptedReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_accepted_request';
-import NonConnectedOngoingMaintenance from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_ongoing_maintenance';
-import NonConnectedRescheduledRequest from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_reschedule_request';
-import NonConnectedCompletedReservation from './Pageviews/Home/Reservation/pageviews/non-connected/non_connected_completed_request';
+import NonConnectedAllReservation from './Pageviews/Home/Reservation/non-connected/non_connected_all_reservation';
+import NonConnectedOnDemandReservation from './Pageviews/Home/Reservation/non-connected/non_connected_on_demand_reservation';
+import NonConnectedWithinOneWeekReservation from './Pageviews/Home/Reservation/non-connected/non_connected_within_one_week_request';
+import NonConnectedWithinTwoWeekReservation from './Pageviews/Home/Reservation/non-connected/non_connected_within_two_week_request';
+import NonConnectedScheduleTimeReservation from './Pageviews/Home/Reservation/non-connected/non_connected_schedule_time_request';
+import NonConnectedAcceptedReservation from './Pageviews/Home/Reservation/non-connected/non_connected_accepted_request';
+import NonConnectedOngoingMaintenance from './Pageviews/Home/Reservation/non-connected/non_connected_ongoing_maintenance';
+import NonConnectedRescheduledRequest from './Pageviews/Home/Reservation/non-connected/non_connected_reschedule_request';
+import NonConnectedCompletedReservation from './Pageviews/Home/Reservation/non-connected/non_connected_completed_request';
 
+
+import ConnectedAllBids from './Pageviews/Home/Bids/connected/connected_all_bids';
+import ConnectedOnDemandBids from './Pageviews/Home/Bids/connected/connected_on_demand_bids';
+import ConnectedWithinOneWeekBids from './Pageviews/Home/Bids/connected/connected_within_one_week_bids';
+import ConnectedWithinTwoWeekBids from './Pageviews/Home/Bids/connected/connected_within_two_week_bids';
+import ConnectedScheduleTimeBids from './Pageviews/Home/Bids/connected/connected_schedule_time_bids';
+
+import NonConnectedAllBids from './Pageviews/Home/Bids/non_connected/non_connected_all_bids';
+import NonConnectedOnDemandBids from './Pageviews/Home/Bids/non_connected/non_connected_on_demand_bids';
+import NonConnectedWithinOneWeekBids from './Pageviews/Home/Bids/non_connected/non_connected_within_one_week_bids';
+import NonConnectedWithinTwoWeekBids from './Pageviews/Home/Bids/non_connected/non_connected_within_two_week_bids';
+import NonConnectedScheduleTimeBids from './Pageviews/Home/Bids/non_connected/non_connected_schedule_time_bids';
 
 
 const theme = createTheme();
@@ -141,9 +157,10 @@ function App() {
                   <Routes>
                     <Route path="/" element={<DashboardScreen />} />
                     <Route path="/dashboard" element={<DashboardScreen />} />
-                    <Route path="/vendors" element={<VendorScreen />} />
+                    <Route path="/service-provider" element={<ServiceProviderScreen />} />
                     <Route path="/customer" element={<CustomerScreen />} />
                     <Route path="/chat" element={<ChatScreen />} />
+                    <Route path="/feed" element={<FeedScreen />} />
 
                     <Route path="/reservation/connected/all" element={<ConnectedAllReservation />} />
                     <Route path="/reservation/connected/on-demand" element={<ConnectedOnDemandReservation />} />
@@ -170,14 +187,27 @@ function App() {
                     <Route path="/wallet/customer" element={<WalletCustomerDetails />} />
                     <Route path="/wallet/alltransaction" element={<AllTransaction />} />
                     <Route path="/wallet/withdrawrequest" element={<WithdrawRequest />} />
-                    <Route path="/shop" element={<ShopScreen />} />
-                    <Route path="/intentory" element={<InventoryScreen />} />
-                    <Route path="/bids" element={<BidsScreen />} />
-                    <Route path="/bids/all" element={<AllBidsScreen />} />
-                    <Route path="/bids/ondemand" element={<OnDemandBidsScreen />} />
-                    <Route path="/bids/oneweek" element={<WithinOneWeekBidsScreen />} />
-                    <Route path="/bids/twoweek" element={<WithinTwoWeekBidsScreen />} />
-                    <Route path="/bids/scheduletime" element={<ScheduleTimeBidsScreen />} />
+                    
+                    <Route path="/team" element={<TeamScreen />} />
+                    <Route path="/invoice" element={<InvoiceScreen />} />
+                    <Route path="/project" element={<ProjectScreen />} />
+                    <Route path="/data-export" element={<DataExportScreen />} />
+                    
+                    <Route path="/marketplace" element={<MarketplaceScreen />} />
+                    <Route path="/inventory" element={<InventoryScreen />} />
+
+                    <Route path="/bids/connected/all" element={<ConnectedAllBids />} />
+                    <Route path="/bids/connected/on-demand" element={<ConnectedOnDemandBids />} />
+                    <Route path="/bids/connected/within-one-week" element={<ConnectedWithinOneWeekBids />} />
+                    <Route path="/bids/connected/within-two-week" element={<ConnectedWithinTwoWeekBids />} />
+                    <Route path="/bids/connected/schedule-time" element={<ConnectedScheduleTimeBids />} />
+
+                    <Route path="/bids/non-connected/all" element={<NonConnectedAllBids />} />
+                    <Route path="/bids/non-connected/on-demand" element={<NonConnectedOnDemandBids />} />
+                    <Route path="/bids/non-connected/within-one-week" element={<NonConnectedWithinOneWeekBids />} />
+                    <Route path="/bids/non-connected/within-two-week" element={<NonConnectedWithinTwoWeekBids />} />
+                    <Route path="/bids/non-connected/schedule-time" element={<NonConnectedScheduleTimeBids />} />
+
                     <Route path="/notifications" element={<NotificationScreen />} />
                     <Route path="/help/faq" element={<FAQ />} />
                     <Route path="/help/learningresources" element={<LearningResources />} />
