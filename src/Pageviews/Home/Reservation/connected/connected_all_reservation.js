@@ -1,10 +1,12 @@
 
-import { Close, Group, MoreVert, Person } from "@mui/icons-material";
+import { Close, Delete, Group, MoreVert, Person } from "@mui/icons-material";
 import { Container, IconButton, Menu, MenuItem, Modal, Snackbar, Typography } from "@mui/material";
 import { makeStyles, styled } from "@mui/styles";
 import { DataGrid } from "@mui/x-data-grid";
 import { Component, Fragment, useEffect } from "react";
 import { useState } from "react";
+import axios from "axios";
+import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 
 
 const useStyle = makeStyles((theme) => ({
@@ -117,6 +119,25 @@ const useStyle = makeStyles((theme) => ({
             width: "100vw",
         }
     },
+    
+    mapModalContainer: {
+        padding: theme.spacing(2),
+        backgroundColor: "white",
+        width: "400px",
+        height: "450px",
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
+        margin: "auto",
+        overflowY: "scroll",
+        borderRadius: "15px",
+        [theme.breakpoints.down("sm")]: {
+            height: "100vh",
+            width: "100vw",
+        }
+    },
 
 
     saveButton: {
@@ -163,7 +184,7 @@ const ConnectedAllReservation = () => {
                 <div className={classes.spacerSmall}></div>
                 <div className={classes.spacerSmall}></div>
 
-                <div className={classes.tableHolder}>
+                <div>
                     <AllReservationTable />
                 </div>
 
@@ -228,18 +249,63 @@ const columns = [
     }
 ];
 
+const selectedColumns = [
+    {
+        field: 'customer_name',
+        headerName: 'CUSTOMER NAME',
+        renderCell: (props) => CustomerNamePhoneComponent(props),
+        flex: 1,
+    },
+    {
+        field: 'reservation_id',
+        headerName: 'REQUEST ID',
+        flex: 1,
+    },
+    {
+        field: 'status',
+        headerName: 'STATUS',
+        renderCell: (props) => StatusComponent(props),
+        flex: 1,
+    },
+    {
+        field: 'schedule',
+        headerName: 'SCHEDULE',
+        flex: 1,
+    },
+    {
+        field: 'service_type',
+        headerName: "SERVICE TYPE",
+        renderCell: (props) => ServiceTypeComponent(props),
+        flex: 1,
+    },
+    {
+        field: 'location',
+        headerName: "LOCATION",
+        renderCell: (props) => LocationComponent(props),
+        flex: 1,
+    },
+    {
+        field: 'issues',
+        headerName: "ISSUES",
+        renderCell: (props) => IssuesComponent(props),
+        flex: 1,
+    },
+];
+
 
 class AllReservationTable extends Component {
     state = {
         allReservationRows : [],
+        selectedRows: [],
+        groupReservations: [],
     };
 
     componentDidMount = () => {
         this.getAllConnectedResrvtaion();
     }
     
-    getAllConnectedResrvtaion() {
-        fetch('https://api.showaapp.com/admin/reservation/get-all-reservation', {
+    async getAllConnectedResrvtaion() {
+        await fetch('https://api.showaapp.com/admin/reservation/get-all-reservation', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -247,7 +313,6 @@ class AllReservationTable extends Component {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 data.map((reservation, index) => (
                     this.addNewItem(reservation, index)
                 ));
@@ -261,6 +326,26 @@ class AllReservationTable extends Component {
     };
 
 
+    onRowsSelectionHandler = (ids) => {
+        var tempRows = new Array();
+
+        ids.map((id)=>{
+            this.state.allReservationRows.find((row) => {
+                if(row.id.toString() === id.toString()) {
+
+                    if(row.assign.assignedVendorId === "") {
+                        tempRows.push(row);
+                    } else {
+                        alert("This reservation is already assigned to a Service Provider");
+                    }
+
+                }
+            })
+        })
+        this.setState({selectedRows: tempRows});
+    };
+
+
     displayReservations() {
 
         if (this.state.allReservationRows.length === 0)
@@ -269,14 +354,178 @@ class AllReservationTable extends Component {
             </div>;
         
         return (
-            <DataGrid
-                rows={this.state.allReservationRows}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5, 10, 25, 50]}
-                autoHeight
-                checkboxSelection
-            />
+
+            <div style={{width: "100%", backgroundColor: "white"}}>
+
+                <DataGrid
+                    rows={this.state.allReservationRows}
+                    columns={columns}
+                    autoHeight
+                    checkboxSelection
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}                    
+                    initialState={{
+                        pagination: { paginationModel: { pageSize: 5 } },
+                    }}
+                    pageSizeOptions={[5, 10, 25]}                    
+                    disableRowSelectionOnClick
+                    isRowSelectable={(params) => params.row.assign.assignedVendorId === ""}
+                    onRowSelectionModelChange={(ids) => {
+                        this.onRowsSelectionHandler(ids);
+                    }}
+                />
+
+            </div>
+
+        );
+
+    };
+
+    makeid(length) {
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        let counter = 0;
+        while (counter < length) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          counter += 1;
+        }
+        return result;
+    }
+
+
+
+    // addReservationtoGroup(row, gid) {
+
+    //     let groupId = gid;
+    //     let washingMachineId = row.service_type;
+    //     let uid = row.customer_name;
+    //     let date = row.issues.date;
+    //     let time = row.issues.time;
+    //     let reservationSchedule = row.issues.reservationSchedule;
+    //     let problems = "";
+    //     let imageAddresses = "";
+
+    //     let tempProbList = row.issues.problems;
+    //     tempProbList.map((problem)=> {
+    //         problems = problems + "#" + problem
+    //     })
+
+    //     let tempImageAddsList = row.issues.imageAddresses;
+    //     tempImageAddsList.map((imageAddress)=> {
+    //         imageAddresses = imageAddresses + "#" + imageAddress
+    //     })
+
+        
+    //     fetch('https://api.showaapp.com/admin/reservation/add-reservation-to-group', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             groupId,
+    //             washingMachineId,
+    //             uid,
+    //             date,
+    //             time,
+    //             reservationSchedule,
+    //             problems,
+    //             imageAddresses
+    //         })
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             this.setState({makeGroupData : data});
+    //         })
+    //         .catch((error)=>{
+    //             alert("Error: " + error);
+    //         });
+
+    // }
+
+
+
+    addReservationGroup (gid) {
+
+        var reservations = new Array();
+
+        this.state.selectedRows.map((row) => {
+            reservations.push({ uid: row.customer_name, assignedVendorId: "", washingMachineId: row.service_type, date: row.issues.date, time: row.issues.time, reservationSchedule: row.issues.reservationSchedule, status: "Pending", problems: row.issues.problems, imageAddresses: row.issues.imageAddresses });
+        });
+
+        
+        fetch('https://api.showaapp.com/admin/reservation/create-reservation-group', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                gid,
+            })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                
+                console.log(data);
+
+                const formData = new FormData();
+                formData.append('reservations', JSON.stringify(reservations));
+        
+                axios.post('https://api.showaapp.com/admin/reservation/add-reservation-to-group', formData, {
+                    headers: {
+                      'Content-Type': 'multipart/form-data'
+                    }
+                  }).then((res) => res.json())
+                    .then((data) => {
+                        console.log(data);
+                        alert("Successfully created group");
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        alert("Error : " + err);
+                    });
+
+            })
+            .catch((error)=>{
+                alert("Error: " + error);
+            });
+
+    }
+
+    displaySelectedReservations() {
+
+        if (this.state.selectedRows.length === 0)
+            return <div />;
+        
+        return (
+
+            <div style={{display: "flex", flexDirection: "row", alignItems: "end", width: "100%"}}>
+
+                <div 
+                    style={{borderRadius: "7px", color: "white", backgroundColor: "#24459c", padding: "8px 16px", margin: "16px", cursor: "pointer"}}
+                    onClick={()=>{
+                        if(this.state.selectedRows.length < 2) {
+                            alert("There is only one reservation selected. Please select at least 2 reservation to create a group.");
+                        } else {
+
+                            let groupId = this.makeid(16);
+
+                            // this.state.selectedRows.map(async (row, index) => {
+                            //     setTimeout(() => { 
+                            //         this.addReservationtoGroup(row, groupId);
+                            //         console.log('Added : ' + (index+1)); 
+                            //     }, 1000);
+                            // })
+
+                            this.addReservationGroup(groupId);
+                            
+                        }
+                    }}
+                >
+                    Add Group
+                </div>
+
+            </div>
         );
 
     };
@@ -285,6 +534,7 @@ class AllReservationTable extends Component {
     render () {
         return <div style={{ overflow: "auto" }}>
             {this.displayReservations()}
+            {this.displaySelectedReservations()}
         </div>;
     };
 
@@ -348,7 +598,6 @@ const StatusComponent = (props) => {
     </div>
 }
 
-
 const ServiceTypeComponent = (props) => {
 
     const [washingMachine, setWashingMachine] = useState(null);
@@ -392,10 +641,14 @@ const ServiceTypeComponent = (props) => {
 
 }
 
+
+
 const LocationComponent = (props) => {
 
     const [washingMachine, setWashingMachine] = useState(null);
     const [showLocationModal, setShowLocationModal] = useState(false);
+
+    const [mapAdds, setMapAdds] = useState("");
 
     const classes = useStyle();
     
@@ -403,6 +656,16 @@ const LocationComponent = (props) => {
         getWashingMachine(props.value);
     }, [])
 
+    function getLatLong (address) {
+        geocodeByAddress(address)
+          .then(results => getLatLng(results[0]))
+          .then(latLng => {
+            console.log('Success', latLng);
+            setMapAdds("https://maps.google.com/maps?q=" + latLng.lat + "," + latLng.lng + "&h1=es;&output=embed");
+            setShowLocationModal(true);
+        })
+          .catch(error => console.error('Error', error));
+      };
 
     function getWashingMachine (wid) {
         if(wid!="") {
@@ -429,7 +692,8 @@ const LocationComponent = (props) => {
         return <div 
             style={{color: "#24459C", backgroundColor: "#DEE5F7", cursor: "pointer", padding: "8px 16px", borderRadius: "25px", fontSize: "10px"}} 
             onClick={(e)=>{
-                setShowLocationModal(true);
+                console.log(washingMachine.address);
+                getLatLong(washingMachine.address);
             }}
         >
             View Location
@@ -440,10 +704,22 @@ const LocationComponent = (props) => {
 
     return <div>
         <Modal open={showLocationModal}>
-            <Container className={classes.addUserContainer}>
+            <Container className={classes.mapModalContainer}>
 
+                <div style={{display: "flex", justifyContent: "space-between"}}>
 
+                    <Typography style={{color: "#24459c", fontSize: "24px", fontWeight: "700"}}>Show Location</Typography>
 
+                    <IconButton style={{right: "10"}} onClick={()=>setShowLocationModal(false)}>
+                        <Close />
+                    </IconButton>
+
+                </div>
+
+                <div style={{position: "relative", height: "90%", zIndex: 2}}>
+                    <iframe src={mapAdds} style={{height: "100%", width: "100%"}}></iframe>
+                </div>
+            
             </Container>
         </Modal>
         {displayLocation()}
@@ -522,6 +798,7 @@ const IssuesComponent = (props) => {
                     columns={issueColumns}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
+                    disableRowSelectionOnClick
                     initialState={{
                         pagination: { paginationModel: { pageSize: 5 } },
                     }}
@@ -609,18 +886,63 @@ const VendorNameComponent = (props) => {
 }
 const VendorLocationComponent = (props) => {
 
+    const [address, setAddress] = useState("");
+    const [mapLink, setMapLink] = useState("");
+
+    const [showLocaitonModal, setShowLoactionModal] = useState(false);
+
+    const classes = useStyle();
+
     function displayLocation () {
-        return <div 
-            style={{color: "#24459C", backgroundColor: "#DEE5F7", cursor: "pointer", padding: "8px 16px", fontSize: "10px", borderRadius: "25px"}} 
-            onClick={(e)=>{                    
-                
-            }}
-        >
-            View Location
-        </div>;
+        return <>
+
+            <div 
+                style={{color: "#24459C", backgroundColor: "#DEE5F7", cursor: "pointer", padding: "8px 16px", fontSize: "10px", borderRadius: "25px"}} 
+                onClick={(e)=>{                    
+                    setAddress(props.value.companyBasicInfo.address.streetAddress + ", " + props.value.companyBasicInfo.address.cityAddress + ", " + props.value.companyBasicInfo.address.prefecture + " - " + props.value.companyBasicInfo.address.postalCode);
+                    getLatLong(address);
+                }}
+            >
+                View Location
+            </div>
+
+        </>;
     };
 
+
+    function getLatLong (address) {
+        geocodeByAddress(address)
+          .then(results => getLatLng(results[0]))
+          .then(latLng => {
+            console.log('Success', latLng);
+            setMapLink("https://maps.google.com/maps?q=" + latLng.lat + "," + latLng.lng + "&h1=es;&output=embed");
+            setShowLoactionModal(true);
+        })
+          .catch(error => console.error('Error', error));
+      };
+    
+
     return <div>
+        <Modal open={showLocaitonModal}>
+            <Container className={classes.mapModalContainer}>
+
+                <div style={{display: "flex", justifyContent: "space-between"}}>
+
+                    <Typography style={{color: "#24459c", fontSize: "24px", fontWeight: "700"}}>Show Location</Typography>
+
+                    <IconButton style={{right: "10"}} onClick={()=>setShowLoactionModal(false)}>
+                        <Close />
+                    </IconButton>
+
+                </div>
+
+                <div style={{position: "relative", height: "90%", zIndex: 2}}>
+                    <iframe src={mapLink} style={{height: "100%", width: "100%"}}></iframe>
+                </div>
+            
+            </Container>
+        </Modal>
+        
         {displayLocation()}
     </div>
 
@@ -730,7 +1052,6 @@ const AssignVendorComponent = (props) => {
             .then((res) => res.json())
             .then((data) => {
                 setVendor(data);
-                console.log(vendor);
             });
     }
 
@@ -750,7 +1071,8 @@ const AssignVendorComponent = (props) => {
                         rows={vendorRows}
                         columns={vendorColumns}
                         pageSize={5}
-                        rowsPerPageOptions={[5]}
+                        rowsPerPageOptions={[5]}                    
+                        disableRowSelectionOnClick
                         initialState={{
                             pagination: { paginationModel: { pageSize: 5 } },
                         }}
@@ -840,10 +1162,59 @@ const AssignVendorComponent = (props) => {
 }
 
 const ActionComponent = (props) => {
+
+    const classes = useStyle();
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const openEl = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    function deleteReservation () {
+        fetch('https://api.showaapp.com/admin/reservation/delete-reservation/' + props.value._id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            alert("Reservation deleted successfully");
+            window.location.href = "/reservation/connected/all";
+        });
+    }
+    
+
     return <div>
-        <IconButton>
+        <IconButton onClick={handleClick}>
             <MoreVert />
         </IconButton>
+
+        <StyledMenu
+            id="demo-customized-menu"
+            MenuListProps={{
+                'aria-labelledby': 'demo-customized-button',
+            }}
+            anchorEl={anchorEl}
+            open={openEl}
+            onClose={handleClose}
+        >
+            <MenuItem
+                onClick={() => {
+                    deleteReservation();
+                    handleClose();
+            }}>
+                <Delete style={{ color: "red" }} />
+                <div className={classes.spacerSmall} />
+                Delete Reservation
+            </MenuItem>
+
+        </StyledMenu>
+
     </div>;
 }
 
@@ -883,4 +1254,3 @@ const StyledMenu = styled((props) => (
         },
     },
 }));
-
