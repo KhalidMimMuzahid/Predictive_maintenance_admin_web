@@ -86,11 +86,12 @@ const CustomerScreen = () => {
                 <div className={classes.topHolder}>
                     <div>
                         <div className={classes.title}>Customer</div>
-                        {/* <div className={classes.spacerSmall}></div>
+                        <div className={classes.spacerSmall}></div>
                         <div style={{display: "flex"}}> 
                             <div style={{color: "black"}} className={classes.subtitle}>Dashboard / </div>
-                            <div style={{color: "#24459c"}} className={classes.subtitle}>IOT</div>
-                        </div> */}
+                            <div style={{color: "black"}} className={classes.subtitle}> Customers /</div>
+                            <div style={{color: "#24459c"}} className={classes.subtitle}> All Customers</div>
+                        </div>
                     </div>
 
                     <div className={classes.buttonHolder}>
@@ -316,7 +317,7 @@ const BalanceComponent = (props) => {
 
 
     function getCustomerWalletInfo () {
-        if(uid!="") {
+        if(uid!=="") {
             let url = "https://api.showaapp.com/admin/wallet/get-customer-wallet-info/" + uid;
             fetch(url, {
                 method: 'GET',

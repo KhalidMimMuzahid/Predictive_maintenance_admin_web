@@ -94,28 +94,28 @@ const usesStyles = makeStyles((theme) => ({
 const fadeImages = [
     {
         url: SliderImage1 ,
-        caption: 'Showa Super Dashboard',
-        subtitle: 'Nec nihil affert partiendo ne, quo no iisque etiam tacimates sed conceptam.'
+        caption: 'Data Analysis',
+        subtitle: 'Analysis business data'
     },
     {
         url: SliderImage2,
-        caption: 'Showa Super Dashboard',
-        subtitle: 'Nec nihil affert partiendo ne, quo no iisque etiam tacimates sed conceptam.'
+        caption: 'AI  Decision',
+        subtitle: 'Effortless automation, smarter living'
     },
     {
         url: SliderImage3,
-        caption: 'Showa Super Dashboard',
-        subtitle: 'Nec nihil affert partiendo ne, quo no iisque etiam tacimates sed conceptam.'
+        caption: 'Monitor Business',
+        subtitle: 'Always monitor your system'
     },
     {
         url: SliderImage4,
-        caption: 'Showa Super Dashboard',
-        subtitle: 'Nec nihil affert partiendo ne, quo no iisque etiam tacimates sed conceptam.'
+        caption: 'Business Growth',
+        subtitle: 'Check your business growth'
     },
     {
         url: SliderImage5,
-        caption: 'Showa Super Dashboard',
-        subtitle: 'Nec nihil affert partiendo ne, quo no iisque etiam tacimates sed conceptam.'
+        caption: 'Connection',
+        subtitle: 'Stay connected, Stay happy'
     },
 ];
 
