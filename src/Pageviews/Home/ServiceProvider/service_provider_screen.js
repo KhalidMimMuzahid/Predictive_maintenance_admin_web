@@ -186,61 +186,55 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-// class VendorTable extends Component {
+class VendorTable extends Component {
+  state = {
+    vendors: [],
+  };
 
-//     state = {
-//         vendors: [],
-//     }
+  componentDidMount = () => {
+    this.getVendors();
+  };
 
-//     componentDidMount = () => {
-//         this.getVendors();
-//     }
+  getVendors() {
+    fetch("https://api.showaapp.com/admin/vendor/get-all-vendor", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({ vendors: data });
+      });
+  }
 
-//     getVendors() {
-//         fetch('https://api.showaapp.com/admin/vendor/get-all-vendor', {
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//         })
-//             .then((res) => res.json())
-//             .then((data) => {
-//                 console.log(data);
-//                 this.setState({ vendors: data });
-//             });
-//     }
+  displayVendors = (vendors) => {
+    if (vendors.length === 0)
+      return (
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <h3>No vendor in the server</h3>
+        </div>
+      );
 
-//     displayVendors = (vendors) => {
+    return vendors.map((vendor, index) => (
+      <VendorTab key={index} email={vendor.email} />
+    ));
+  };
 
-//         if (vendors.length === 0)
-//             return <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-//                 <h3>No vendor in the server</h3>
-//             </div>;
+  render() {
+    return (
+      <div style={{ overflow: "auto" }}>
+        {this.displayVendors(this.state.vendors)}
+      </div>
+    );
+  }
+}
 
-//         return vendors.map((vendor, index) => (
-//             <VendorTab
-//                 key={index}
-//                 email={vendor.email}
-//             />
-//         ));
+const VendorTab = (props) => {
+  const classes = useStyle();
 
-//     };
-
-//     render () {
-//         return <div style={{ overflow: "auto" }}>
-//             {this.displayVendors(this.state.vendors)}
-//         </div>;
-//     };
-
-// }
-
-// const VendorTab = (props) => {
-//     const classes = useStyle();
-
-//     return (
-//         <div>
-//             {props.email}
-//         </div>
-//     );
-
-// }
+  return <div>{props.email}</div>;
+};
