@@ -1,0 +1,165 @@
+import { DataGrid } from "@mui/x-data-grid";
+import { Component } from "react";
+
+// import { changeCustomerId } from "../../../Redux/actions";
+import BalanceComponent from "./components/BalanceComponent";
+import CustomerNameEmailComponent from "./components/CustomerNameEmailComponent";
+import LocationComponent from "./components/LocationComponent";
+import DetailsComponent from "./components/DetailsComponent";
+
+const columns = [
+  {
+    field: "name",
+    headerName: "CUSTOMER NAME",
+    flex: 1,
+    renderCell: (props) => CustomerNameEmailComponent(props),
+  },
+  {
+    field: "email",
+    headerName: "EMAIL",
+    flex: 1,
+  },
+  {
+    field: "machine",
+    headerName: "Machine",
+    flex: 1,
+  },
+  {
+    field: "location",
+    headerName: "LOCATION",
+    flex: 1,
+    renderCell: (props) => LocationComponent(props),
+  },
+  {
+    field: "balance",
+    headerName: "WALLET",
+    headerAlign: "center",
+    renderCell: (props) => BalanceComponent(props),
+  },
+  {
+    field: "subscription",
+    headerName: "SUBSCRIPTION",
+    flex: 1,
+  },
+  {
+    field: "details",
+    headerName: "DETAILS",
+    flex: 1,
+    renderCell: (props) => DetailsComponent(props),
+  },
+  {
+    field: "action",
+    headerName: "ACTION",
+    flex: 1,
+  },
+];
+class CustomerTable extends Component {
+  state = {
+    rows: [],
+  };
+
+  componentDidMount = () => {
+    this.getCustomer();
+  };
+
+  getCustomer() {
+    fetch("https://api.showaapp.com/admin/customer/get-all-customer", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        data.map((customer, index) => this.addNewItem(customer, index));
+      });
+  }
+
+  addNewItem = (customer, index) => {
+    let { rows } = this.state;
+    rows.push({
+      id: index,
+      name: customer,
+      email: customer.email,
+      location: customer,
+      balance: customer.uid,
+      details: customer,
+    });
+    this.setState({ rows: rows });
+  };
+
+  displayCustomers = () => {
+    if (this.state.rows.length === 0)
+      return (
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            padding: "20px",
+          }}
+        >
+          <h3>No customer in the server</h3>
+        </div>
+      );
+
+    return (
+      <DataGrid
+        rows={this.state.rows}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        autoHeight
+        checkboxSelection
+      />
+    );
+  };
+
+  render() {
+    return <div style={{ overflow: "auto" }}>{this.displayCustomers()}</div>;
+  }
+}
+
+// Why this displayAction is made for? // Khalid: if you know please write it down
+const displayAction = (props) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "4px 5px",
+        gap: "10px",
+
+        margin: "0 auto",
+        width: "96px",
+        height: "24px",
+
+        flex: "none",
+        order: "7",
+        flexGrow: "0",
+
+        width: "16px",
+        height: "16px",
+
+        flex: "none",
+        order: "0",
+        flexGrow: "0",
+
+        position: "absolute",
+        left: "39.25%",
+        right: "39.32%",
+        top: "0%",
+        bottom: "0%",
+
+        background: "#8B83BA",
+      }}
+    >
+      {displayAction()}
+    </div>
+  );
+};
+
+export default CustomerTable;
