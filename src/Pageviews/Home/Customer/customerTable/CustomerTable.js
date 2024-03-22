@@ -1,58 +1,9 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Component } from "react";
+import { columns } from "./constant";
 
-// import { changeCustomerId } from "../../../Redux/actions";
-import BalanceComponent from "./components/BalanceComponent";
-import CustomerNameEmailComponent from "./components/CustomerNameEmailComponent";
-import LocationComponent from "./components/LocationComponent";
-import DetailsComponent from "./components/DetailsComponent";
 
-const columns = [
-  {
-    field: "name",
-    headerName: "CUSTOMER NAME",
-    flex: 1,
-    renderCell: (props) => CustomerNameEmailComponent(props),
-  },
-  {
-    field: "email",
-    headerName: "EMAIL",
-    flex: 1,
-  },
-  {
-    field: "machine",
-    headerName: "Machine",
-    flex: 1,
-  },
-  {
-    field: "location",
-    headerName: "LOCATION",
-    flex: 1,
-    renderCell: (props) => LocationComponent(props),
-  },
-  {
-    field: "balance",
-    headerName: "WALLET",
-    headerAlign: "center",
-    renderCell: (props) => BalanceComponent(props),
-  },
-  {
-    field: "subscription",
-    headerName: "SUBSCRIPTION",
-    flex: 1,
-  },
-  {
-    field: "details",
-    headerName: "DETAILS",
-    flex: 1,
-    renderCell: (props) => DetailsComponent(props),
-  },
-  {
-    field: "action",
-    headerName: "ACTION",
-    flex: 1,
-  },
-];
+
 class CustomerTable extends Component {
   state = {
     rows: [],
@@ -71,7 +22,7 @@ class CustomerTable extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log({ data });
         data.map((customer, index) => this.addNewItem(customer, index));
       });
   }
@@ -122,44 +73,44 @@ class CustomerTable extends Component {
 }
 
 // Why this displayAction is made for? // Khalid: if you know please write it down
-const displayAction = (props) => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "4px 5px",
-        gap: "10px",
+// {const displayAction = (props) => {
+//   return (
+//     <div
+//       style={{
+//         display: "flex",
+//         flexDirection: "row",
+//         justifyContent: "center",
+//         alignItems: "center",
+//         padding: "4px 5px",
+//         gap: "10px",
 
-        margin: "0 auto",
-        width: "96px",
-        height: "24px",
+//         margin: "0 auto",
+//         width: "96px",
+//         height: "24px",
 
-        flex: "none",
-        order: "7",
-        flexGrow: "0",
+//         flex: "none",
+//         order: "7",
+//         flexGrow: "0",
 
-        width: "16px",
-        height: "16px",
+//         width: "16px",
+//         height: "16px",
 
-        flex: "none",
-        order: "0",
-        flexGrow: "0",
+//         flex: "none",
+//         order: "0",
+//         flexGrow: "0",
 
-        position: "absolute",
-        left: "39.25%",
-        right: "39.32%",
-        top: "0%",
-        bottom: "0%",
+//         position: "absolute",
+//         left: "39.25%",
+//         right: "39.32%",
+//         top: "0%",
+//         bottom: "0%",
 
-        background: "#8B83BA",
-      }}
-    >
-      {displayAction()}
-    </div>
-  );
-};
+//         background: "#8B83BA",
+//       }}
+//     >
+//       {displayAction()}
+//     </div>
+//   );
+// };}
 
 export default CustomerTable;

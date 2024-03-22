@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
 import { useStyle } from "../../styleComponents";
 const BalanceComponent = (props) => {
-  const [uid, setUid] = useState("");
   const [customerWalletInfo, setCustomerWalletInfo] = useState(null);
 
   const classes = useStyle();
 
   useEffect(() => {
-    setUid(props.value);
-    getCustomerWalletInfo();
-  });
-
-  function getCustomerWalletInfo() {
-    if (uid !== "") {
+    if (props?.value !== "") {
       let url =
-        "https://api.showaapp.com/admin/wallet/get-customer-wallet-info/" + uid;
+        "https://api.showaapp.com/admin/wallet/get-customer-wallet-info/" +
+        props?.value;
       fetch(url, {
         method: "GET",
         headers: {
@@ -26,7 +21,7 @@ const BalanceComponent = (props) => {
           setCustomerWalletInfo(data);
         });
     }
-  }
+  }, [props?.value]);
 
   function displayBalance() {
     if (customerWalletInfo == null)

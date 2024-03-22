@@ -486,9 +486,9 @@ const AdminInfoHolder = () => {
     };
 
     useEffect(() => {
-        setUid(auth.currentUser.uid);
-        getAdmin();
-    })
+      setUid(auth.currentUser.uid);
+      getAdmin();
+    }, []);
 
     const dispatch = useDispatch();
 
