@@ -59,10 +59,11 @@ class CustomerTable extends Component {
       <DataGrid
         rows={this.state.rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        autoHeight
-        checkboxSelection
+        rowHeight={61}
+        // pageSize={5}
+        // rowsPerPageOptions={[5]}
+        // autoHeight
+        // checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
       />
     );
   };

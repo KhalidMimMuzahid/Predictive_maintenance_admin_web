@@ -2,7 +2,7 @@ import { Add, Download, MoreVert, Upload } from "@mui/icons-material";
 import { useState } from "react";
 import { Button, IconButton, MenuItem } from "@mui/material";
 import { useStyle, StyledMenu } from "./styleComponents";
-import CustomerTable from "./customerTable/CustomerTable";
+import { Outlet } from "react-router-dom";
 const CustomerScreen = () => {
   const classes = useStyle();
 
@@ -106,7 +106,7 @@ const CustomerScreen = () => {
       <div className={classes.spacerSmall}></div>
 
       <div className={classes.tableHolder}>
-        <CustomerTable />
+        <Outlet />
       </div>
     </div>
   );

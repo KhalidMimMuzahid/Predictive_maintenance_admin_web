@@ -1,13 +1,17 @@
+import ActionComponent from "./components/ActionComponent";
 import BalanceComponent from "./components/BalanceComponent";
 import CustomerNameEmailComponent from "./components/CustomerNameEmailComponent";
 import DetailsComponent from "./components/DetailsComponent";
 import LocationComponent from "./components/LocationComponent";
+import MachineComponent from "./components/MachineComponent";
+import SubscriptionComponent from "./components/SubscriptionComponent";
 
 export const columns = [
   {
     field: "name",
     headerName: "CUSTOMER NAME",
     flex: 1,
+
     renderCell: (props) => CustomerNameEmailComponent(props),
   },
   {
@@ -19,6 +23,7 @@ export const columns = [
     field: "machine",
     headerName: "Machine",
     flex: 1,
+    renderCell: (props) => MachineComponent(props),
   },
   {
     field: "location",
@@ -36,6 +41,7 @@ export const columns = [
     field: "subscription",
     headerName: "SUBSCRIPTION",
     flex: 1,
+    renderCell: (props) => SubscriptionComponent(props),
   },
   {
     field: "details",
@@ -47,5 +53,6 @@ export const columns = [
     field: "action",
     headerName: "ACTION",
     flex: 1,
+    renderCell: (props) => ActionComponent(props),
   },
 ];

@@ -4,11 +4,10 @@ const BalanceComponent = (props) => {
   const [customerWalletInfo, setCustomerWalletInfo] = useState(null);
 
   const classes = useStyle();
-
   useEffect(() => {
     if (props?.value !== "") {
       let url =
-        "https://api.showaapp.com/admin/wallet/get-customer-wallet-info/" +
+        `${process.env.REACT_APP_BASE_URL}/admin/wallet/get-customer-wallet-info/` +
         props?.value;
       fetch(url, {
         method: "GET",

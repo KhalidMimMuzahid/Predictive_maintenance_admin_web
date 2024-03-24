@@ -85,150 +85,275 @@ import NonConnectedOnDemandBids from './Pageviews/Home/Bids/non_connected/non_co
 import NonConnectedWithinOneWeekBids from './Pageviews/Home/Bids/non_connected/non_connected_within_one_week_bids';
 import NonConnectedWithinTwoWeekBids from './Pageviews/Home/Bids/non_connected/non_connected_within_two_week_bids';
 import NonConnectedScheduleTimeBids from './Pageviews/Home/Bids/non_connected/non_connected_schedule_time_bids';
-
+import CustomerDetails from "./Pageviews/Home/Customer/customerDetails/CustomerDetails";
+import Default from "./Pageviews/Home/Customer/pages/Default";
 
 const theme = createTheme();
 
-const useStyle = makeStyles((theme)=> ({
-  
+const useStyle = makeStyles((theme) => ({
   leftbar: {
-      display: "flex",
-      // [theme.breakpoints.down("sm")]: {
-      //     display: "none",
-      // },
+    display: "flex",
+    // [theme.breakpoints.down("sm")]: {
+    //     display: "none",
+    // },
   },
   container: {
-      marginLeft: "250px",
-      boxSizing: "borderBox",
-      backgroundColor: "#e4e4e4",
-      // [theme.breakpoints.down("sm")]: {
-      //     marginLeft: "0px",
-      // },
-  },
-    
-  inactiveContainer: {
-      marginLeft: "60px",
-      boxSizing: "borderBox",
-      backgroundColor: "#e4e4e4",
-      // [theme.breakpoints.down("sm")]: {
-      //     marginLeft: "0px",
-      // },
+    marginLeft: "250px",
+    boxSizing: "borderBox",
+    backgroundColor: "#e4e4e4",
+    // [theme.breakpoints.down("sm")]: {
+    //     marginLeft: "0px",
+    // },
   },
 
+  inactiveContainer: {
+    marginLeft: "60px",
+    boxSizing: "borderBox",
+    backgroundColor: "#e4e4e4",
+    // [theme.breakpoints.down("sm")]: {
+    //     marginLeft: "0px",
+    // },
+  },
 }));
 
 function App() {
-
   const [authUser, setAuthUser] = useState(null);
 
   const classes = useStyle();
 
   const isSidebarOpen = useSelector((state) => state.openSidebar);
 
-  useEffect(()=> {
-    const listen = onAuthStateChanged(auth, (user)=> {
-      if(user) {
+  useEffect(() => {
+    const listen = onAuthStateChanged(auth, (user) => {
+      if (user) {
         setAuthUser(user);
       } else {
         setAuthUser(null);
       }
     });
-    return ()=>{
+    return () => {
       listen();
-    }
-  },[])
+    };
+  }, []);
 
   return (
-    
     <ThemeProvider theme={theme}>
-      
       <div className="App">
-        
         <BrowserRouter>
-          
-          {
-            authUser ? (
-              <>
+          {authUser ? (
+            <>
+              <CollapsibleSidebar>
+                <Topbar />
 
-                <CollapsibleSidebar>
+                <Routes>
+                  <Route path="/" element={<DashboardScreen />} />
+                  <Route path="/dashboard" element={<DashboardScreen />} />
 
-                  <Topbar />
+                  <Route
+                    path="/service-provider"
+                    element={<ServiceProviderScreen />}
+                  />
+                  {/* customer screen start  */}
+                  <Route path="/customer" element={<CustomerScreen />}>
+                    <Route path="/customer" element={<Default />} />
+                    <Route
+                      path="/customer/:uid"
+                      element={<CustomerDetails />}
+                    />
+                  </Route>
 
-                  <Routes>
-                    <Route path="/" element={<DashboardScreen />} />
-                    <Route path="/dashboard" element={<DashboardScreen />} />
-                    <Route path="/service-provider" element={<ServiceProviderScreen />} />
-                    <Route path="/customer" element={<CustomerScreen />} />
-                    <Route path="/chat" element={<ChatScreen />} />
-                    <Route path="/feed" element={<FeedScreen />} />
+                  {/* customer screen end  */}
+                  <Route path="/chat" element={<ChatScreen />} />
+                  <Route path="/feed" element={<FeedScreen />} />
 
-                    <Route path="/reservation/connected/all" element={<ConnectedAllReservation />} />
-                    <Route path="/reservation/connected/on-demand" element={<ConnectedOnDemandReservation />} />
-                    <Route path="/reservation/connected/within-one-week" element={<ConnectedWithinOneWeekReservation />} />
-                    <Route path="/reservation/connected/within-two-week" element={<ConnectedWithinTwoWeekReservation />} />
-                    <Route path="/reservation/connected/schedule-time" element={<ConnectedScheduleTimeReservation />} />
-                    <Route path="/reservation/connected/accepted" element={<ConnectedAcceptedReservation />} />
-                    <Route path="/reservation/connected/ongoing" element={<ConnectedOngoingMaintenance />} />
-                    <Route path="/reservation/connected/reschedule" element={<ConnectedRescheduledRequest />} />
-                    <Route path="/reservation/connected/completed" element={<ConnectedCompletedReservation />} />
+                  <Route
+                    path="/reservation/connected/all"
+                    element={<ConnectedAllReservation />}
+                  />
+                  <Route
+                    path="/reservation/connected/on-demand"
+                    element={<ConnectedOnDemandReservation />}
+                  />
+                  <Route
+                    path="/reservation/connected/within-one-week"
+                    element={<ConnectedWithinOneWeekReservation />}
+                  />
+                  <Route
+                    path="/reservation/connected/within-two-week"
+                    element={<ConnectedWithinTwoWeekReservation />}
+                  />
+                  <Route
+                    path="/reservation/connected/schedule-time"
+                    element={<ConnectedScheduleTimeReservation />}
+                  />
+                  <Route
+                    path="/reservation/connected/accepted"
+                    element={<ConnectedAcceptedReservation />}
+                  />
+                  <Route
+                    path="/reservation/connected/ongoing"
+                    element={<ConnectedOngoingMaintenance />}
+                  />
+                  <Route
+                    path="/reservation/connected/reschedule"
+                    element={<ConnectedRescheduledRequest />}
+                  />
+                  <Route
+                    path="/reservation/connected/completed"
+                    element={<ConnectedCompletedReservation />}
+                  />
 
-                    <Route path="/reservation/non-connected/all" element={<NonConnectedAllReservation />} />
-                    <Route path="/reservation/non-connected/on-demand" element={<NonConnectedOnDemandReservation />} />
-                    <Route path="/reservation/non-connected/within-one-week" element={<NonConnectedWithinOneWeekReservation />} />
-                    <Route path="/reservation/non-connected/within-two-week" element={<NonConnectedWithinTwoWeekReservation />} />
-                    <Route path="/reservation/non-connected/schedule-time" element={<NonConnectedScheduleTimeReservation />} />
-                    <Route path="/reservation/non-connected/accepted" element={<NonConnectedAcceptedReservation />} />
-                    <Route path="/reservation/non-connected/ongoing" element={<NonConnectedOngoingMaintenance />} />
-                    <Route path="/reservation/non-connected/reschedule" element={<NonConnectedRescheduledRequest />} />
-                    <Route path="/reservation/non-connected/completed" element={<NonConnectedCompletedReservation />} />
+                  <Route
+                    path="/reservation/non-connected/all"
+                    element={<NonConnectedAllReservation />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/on-demand"
+                    element={<NonConnectedOnDemandReservation />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/within-one-week"
+                    element={<NonConnectedWithinOneWeekReservation />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/within-two-week"
+                    element={<NonConnectedWithinTwoWeekReservation />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/schedule-time"
+                    element={<NonConnectedScheduleTimeReservation />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/accepted"
+                    element={<NonConnectedAcceptedReservation />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/ongoing"
+                    element={<NonConnectedOngoingMaintenance />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/reschedule"
+                    element={<NonConnectedRescheduledRequest />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/completed"
+                    element={<NonConnectedCompletedReservation />}
+                  />
 
-                    <Route path="/iot" element={<IotScreen />} />
-                    <Route path="/wallet" element={<WalletScreen />} />
-                    <Route path="/wallet/customer" element={<WalletCustomerDetails />} />
-                    <Route path="/wallet/alltransaction" element={<AllTransaction />} />
-                    <Route path="/wallet/withdrawrequest" element={<WithdrawRequest />} />
-                    
-                    <Route path="/team" element={<TeamScreen />} />
-                    <Route path="/invoice" element={<InvoiceScreen />} />
-                    <Route path="/project" element={<ProjectScreen />} />
-                    <Route path="/data-export" element={<DataExportScreen />} />
-                    
-                    <Route path="/marketplace" element={<MarketplaceScreen />} />
-                    <Route path="/inventory" element={<InventoryScreen />} />
+                  <Route path="/iot" element={<IotScreen />} />
+                  <Route path="/wallet" element={<WalletScreen />} />
+                  <Route
+                    path="/wallet/customer"
+                    element={<WalletCustomerDetails />}
+                  />
+                  <Route
+                    path="/wallet/alltransaction"
+                    element={<AllTransaction />}
+                  />
+                  <Route
+                    path="/wallet/withdrawrequest"
+                    element={<WithdrawRequest />}
+                  />
 
-                    <Route path="/bids/connected/all" element={<ConnectedAllBids />} />
-                    <Route path="/bids/connected/on-demand" element={<ConnectedOnDemandBids />} />
-                    <Route path="/bids/connected/within-one-week" element={<ConnectedWithinOneWeekBids />} />
-                    <Route path="/bids/connected/within-two-week" element={<ConnectedWithinTwoWeekBids />} />
-                    <Route path="/bids/connected/schedule-time" element={<ConnectedScheduleTimeBids />} />
+                  <Route path="/team" element={<TeamScreen />} />
+                  <Route path="/invoice" element={<InvoiceScreen />} />
+                  <Route path="/project" element={<ProjectScreen />} />
+                  <Route path="/data-export" element={<DataExportScreen />} />
 
-                    <Route path="/bids/non-connected/all" element={<NonConnectedAllBids />} />
-                    <Route path="/bids/non-connected/on-demand" element={<NonConnectedOnDemandBids />} />
-                    <Route path="/bids/non-connected/within-one-week" element={<NonConnectedWithinOneWeekBids />} />
-                    <Route path="/bids/non-connected/within-two-week" element={<NonConnectedWithinTwoWeekBids />} />
-                    <Route path="/bids/non-connected/schedule-time" element={<NonConnectedScheduleTimeBids />} />
+                  <Route path="/marketplace" element={<MarketplaceScreen />} />
+                  <Route path="/inventory" element={<InventoryScreen />} />
 
-                    <Route path="/notifications" element={<NotificationScreen />} />
-                    <Route path="/help/faq" element={<FAQ />} />
-                    <Route path="/help/learningresources" element={<LearningResources />} />
-                    <Route path="/offers" element={<OffersScreen />} />
-                    <Route path="/packages" element={<PackagesScreen />} />
-                    <Route path="/reports" element={<ReportScreen />} />
-                    <Route path="/control_panel/reservation_request" element={<ControlPanelReservationRequest />} />
-                    <Route path="/control_panel/customer" element={<ControlPanelCustomer />} />
-                    <Route path="/control_panel/machine" element={<ControlPanelMachine />} />
-                    <Route path="/control_panel/vendor" element={<ControlPanelVendor />} />
-                    <Route path="/control_panel/IoT" element={<ControlPanelIot />} />
-                    <Route path="/control_panel/wallet" element={<ControlPanelWallet />} />
-                    <Route path="/control_panel/shop" element={<ControlPanelShop />} />
-                    <Route path="/control_panel/inventory" element={<ControlPanelInventory />} />
-                    <Route path="/settings" element={<SettingsScreen />} />
-                  </Routes>
+                  <Route
+                    path="/bids/connected/all"
+                    element={<ConnectedAllBids />}
+                  />
+                  <Route
+                    path="/bids/connected/on-demand"
+                    element={<ConnectedOnDemandBids />}
+                  />
+                  <Route
+                    path="/bids/connected/within-one-week"
+                    element={<ConnectedWithinOneWeekBids />}
+                  />
+                  <Route
+                    path="/bids/connected/within-two-week"
+                    element={<ConnectedWithinTwoWeekBids />}
+                  />
+                  <Route
+                    path="/bids/connected/schedule-time"
+                    element={<ConnectedScheduleTimeBids />}
+                  />
 
+                  <Route
+                    path="/bids/non-connected/all"
+                    element={<NonConnectedAllBids />}
+                  />
+                  <Route
+                    path="/bids/non-connected/on-demand"
+                    element={<NonConnectedOnDemandBids />}
+                  />
+                  <Route
+                    path="/bids/non-connected/within-one-week"
+                    element={<NonConnectedWithinOneWeekBids />}
+                  />
+                  <Route
+                    path="/bids/non-connected/within-two-week"
+                    element={<NonConnectedWithinTwoWeekBids />}
+                  />
+                  <Route
+                    path="/bids/non-connected/schedule-time"
+                    element={<NonConnectedScheduleTimeBids />}
+                  />
 
-                </CollapsibleSidebar>
+                  <Route
+                    path="/notifications"
+                    element={<NotificationScreen />}
+                  />
+                  <Route path="/help/faq" element={<FAQ />} />
+                  <Route
+                    path="/help/learningresources"
+                    element={<LearningResources />}
+                  />
+                  <Route path="/offers" element={<OffersScreen />} />
+                  <Route path="/packages" element={<PackagesScreen />} />
+                  <Route path="/reports" element={<ReportScreen />} />
+                  <Route
+                    path="/control_panel/reservation_request"
+                    element={<ControlPanelReservationRequest />}
+                  />
+                  <Route
+                    path="/control_panel/customer"
+                    element={<ControlPanelCustomer />}
+                  />
+                  <Route
+                    path="/control_panel/machine"
+                    element={<ControlPanelMachine />}
+                  />
+                  <Route
+                    path="/control_panel/vendor"
+                    element={<ControlPanelVendor />}
+                  />
+                  <Route
+                    path="/control_panel/IoT"
+                    element={<ControlPanelIot />}
+                  />
+                  <Route
+                    path="/control_panel/wallet"
+                    element={<ControlPanelWallet />}
+                  />
+                  <Route
+                    path="/control_panel/shop"
+                    element={<ControlPanelShop />}
+                  />
+                  <Route
+                    path="/control_panel/inventory"
+                    element={<ControlPanelInventory />}
+                  />
+                  <Route path="/settings" element={<SettingsScreen />} />
+                </Routes>
+              </CollapsibleSidebar>
 
-                {/* <div className={classes.leftbar}>
+              {/* <div className={classes.leftbar}>
                     <Sidebar />
                 </div>
 
@@ -256,22 +381,15 @@ function App() {
                   </Routes>
 
                 </div> */}
-
-
-              </>
-            ) : (
-              <Routes>
-                <Route path="/" element={< LoginScreen />} />
-              </Routes>
-            )
-          }
-
+            </>
+          ) : (
+            <Routes>
+              <Route path="/" element={<LoginScreen />} />
+            </Routes>
+          )}
         </BrowserRouter>
-      
       </div>
-    
     </ThemeProvider>
-
   );
 }
 

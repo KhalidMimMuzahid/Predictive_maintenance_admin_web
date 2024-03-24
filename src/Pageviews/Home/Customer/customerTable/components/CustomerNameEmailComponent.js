@@ -1,15 +1,39 @@
-import { useStyle } from "../../styleComponents";
+import { Avatar, Box, Typography } from "@mui/material";
 
 const CustomerNameEmailComponent = (props) => {
-  const classes = useStyle();
-
+  const dummyPhoto = "https://i.ibb.co/85Nc6x7/handsome-boy.webp";
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <div className={classes.CustomerName}>
-        {props.value.lastNameAlphabet + ", " + props.value.firstNameAlphabet}
-      </div>
-      <div className={classes.CustomerEmail}>{props.value.email}</div>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        justifyItems: "center",
+        alignItems: "center",
+        gap: "17px",
+      }}
+    >
+      <Box>
+        <Avatar
+          sx={{ width: "36px" }}
+          alt={`${props?.value?.firstNameAlphabet}`}
+          src={props?.value?.photoAddress || dummyPhoto}
+        />
+      </Box>
+      <Box>
+        <Typography
+          variant="h6"
+          component="h6"
+          sx={{ fontSize: "12px", fontWeight: "900" }}
+        >
+          {props?.value?.firstNameAlphabet ||
+            "" + props?.value?.lastNameAlphabet ||
+            ""}
+        </Typography>{" "}
+        <Typography variant="h6" component="h6" sx={{ fontSize: "12px" }}>
+          phone
+        </Typography>
+      </Box>
+    </Box>
   );
 };
 
