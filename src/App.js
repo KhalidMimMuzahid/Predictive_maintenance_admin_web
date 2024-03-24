@@ -87,6 +87,13 @@ import NonConnectedWithinTwoWeekBids from './Pageviews/Home/Bids/non_connected/n
 import NonConnectedScheduleTimeBids from './Pageviews/Home/Bids/non_connected/non_connected_schedule_time_bids';
 import CustomerDetails from "./Pageviews/Home/Customer/customerDetails/CustomerDetails";
 import Default from "./Pageviews/Home/Customer/pages/Default";
+import Details from "./Pageviews/Home/Customer/customerDetails/rightSection/body/details/Details";
+import PersonalInfo from "./Pageviews/Home/Customer/customerDetails/rightSection/body/details/body/personalInfo/PersonalInfo";
+import Address from "./Pageviews/Home/Customer/customerDetails/rightSection/body/details/body/address/Address";
+import Wallet from "./Pageviews/Home/Customer/customerDetails/rightSection/body/details/body/wallet/Wallet";
+import MachineStatus from "./Pageviews/Home/Customer/customerDetails/rightSection/body/machineStatus/MachineStatus";
+import Invoice from "./Pageviews/Home/Customer/customerDetails/rightSection/body/invoice/Invoice";
+import Request from "./Pageviews/Home/Customer/customerDetails/rightSection/body/request/Request";
 
 const theme = createTheme();
 
@@ -156,10 +163,43 @@ function App() {
                   {/* customer screen start  */}
                   <Route path="/customer" element={<CustomerScreen />}>
                     <Route path="/customer" element={<Default />} />
-                    <Route
-                      path="/customer/:uid"
-                      element={<CustomerDetails />}
-                    />
+                    <Route path="/customer/:uid" element={<CustomerDetails />}>
+                      {/* start  */}
+                      <Route
+                        path="/customer/:uid/details"
+                        element={<Details />}
+                      >
+                        <Route
+                          path="/customer/:uid/details"
+                          element={<PersonalInfo />}
+                        />
+                        <Route
+                          path="/customer/:uid/details/personal-info"
+                          element={<PersonalInfo />}
+                        />
+                        <Route
+                          path="/customer/:uid/details/address"
+                          element={<Address />}
+                        />
+                        <Route
+                          path="/customer/:uid/details/wallet"
+                          element={<Wallet />}
+                        />
+                      </Route>
+                      {/* end  */}
+                      <Route
+                        path="/customer/:uid/machine-status"
+                        element={<MachineStatus />}
+                      />
+                      <Route
+                        path="/customer/:uid/invoice"
+                        element={<Invoice />}
+                      />
+                      <Route
+                        path="/customer/:uid/request"
+                        element={<Request />}
+                      />
+                    </Route>
                   </Route>
 
                   {/* customer screen end  */}
