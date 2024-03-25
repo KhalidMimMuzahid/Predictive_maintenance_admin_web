@@ -11,7 +11,6 @@ const CustomerDetails = () => {
   const [wallet, setWallet] = useState(null);
   const [subscriptionPackage, setSubscriptionPackage] = useState(null);
   const [allMachines, setAllMachines] = useState(null);
-  console.log({ uid });
 
   //   fetch those data
 
