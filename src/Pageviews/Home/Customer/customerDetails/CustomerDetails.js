@@ -11,7 +11,7 @@ const CustomerDetails = () => {
   const [wallet, setWallet] = useState(null);
   const [subscriptionPackage, setSubscriptionPackage] = useState(null);
   const [allMachines, setAllMachines] = useState(null);
-  console.log({ uid });
+  console.log({ uid, user, wallet, subscriptionPackage, allMachines });
 
   //   fetch those data
 
@@ -78,7 +78,9 @@ const CustomerDetails = () => {
   return (
     <Box sx={{ display: "flex" }}>
       {/* left sidebar  */}
-      <Box sx={{ border: "1px solid black" }}>
+      <Box
+        sx={{ border: "1px solid black", bgcolor: "white", padding: "12px" }}
+      >
         <LeftSection
           user={user}
           wallet={wallet}

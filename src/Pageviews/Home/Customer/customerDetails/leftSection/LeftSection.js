@@ -6,8 +6,8 @@ import Profile from "./profile/Profile";
 const LeftSection = ({ user, wallet, subscriptionPackage }) => {
   return (
     <div>
-      <Profile />
-      <Wallet />
+      <Profile user={user} />
+      <Wallet wallet={wallet} />
       <Subscription />
     </div>
   );
