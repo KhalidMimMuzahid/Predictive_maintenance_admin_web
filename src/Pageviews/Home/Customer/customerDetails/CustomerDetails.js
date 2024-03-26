@@ -13,7 +13,6 @@ const CustomerDetails = () => {
   const [allMachines, setAllMachines] = useState(null);
 
   //   fetch those data
-
   // subscription
   // machiens
 
@@ -33,7 +32,7 @@ const CustomerDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         // setUser(data?.user);
-        if (data?.success) {
+        if (data?.message === "success") {
           setWallet(data?.user_wallet_info);
         } else {
           // throww error
@@ -75,10 +74,14 @@ const CustomerDetails = () => {
   }, [uid]);
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", gap: "20px" }}>
       {/* left sidebar  */}
       <Box
-        sx={{ border: "1px solid black", bgcolor: "white", padding: "12px" }}
+        sx={{
+          bgcolor: "white",
+          padding: "12px",
+          width: "22%",
+        }}
       >
         <LeftSection
           user={user}
@@ -87,8 +90,8 @@ const CustomerDetails = () => {
         />
       </Box>
       {/* right sidebar  */}
-      <Box sx={{ border: "1px solid black", width: "100%" }}>
-        <RightSection />
+      <Box sx={{ border: "", width: "100%" }}>
+        <RightSection user={user} wallet={wallet} />
       </Box>
     </Box>
   );

@@ -22,11 +22,17 @@ const RightSection = () => {
     }
   }, []);
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <Box sx={{ border: "1px solid black" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        border: "1px solid #5A5C73",
+      }}
+    >
+      <Box>
         <Header />
       </Box>
-      <Box sx={{ border: "1px solid black" }}>
+      <Box>
         <Body />
       </Box>
     </Box>

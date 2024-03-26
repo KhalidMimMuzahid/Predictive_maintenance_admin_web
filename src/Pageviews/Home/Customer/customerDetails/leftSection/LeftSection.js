@@ -2,14 +2,22 @@ import React from "react";
 import Wallet from "./wallet/Wallet";
 import { Subscription } from "./subscription/Subscription";
 import Profile from "./profile/Profile";
+import { Box } from "@mui/material";
 
 const LeftSection = ({ user, wallet, subscriptionPackage }) => {
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px 0",
+        padding: "10px 16px 16px 16px",
+      }}
+    >
       <Profile user={user} />
       <Wallet wallet={wallet} />
-      <Subscription />
-    </div>
+      <Subscription subscriptionPackage={subscriptionPackage} />
+    </Box>
   );
 };
 
