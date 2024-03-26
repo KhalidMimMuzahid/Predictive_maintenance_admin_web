@@ -93,7 +93,7 @@ const Request = () => {
     },
     {
       field: "assignedVendorId",
-      headerName: "VENDOR",
+      headerName: "VENDOR NAME",
       width: 150,
       renderCell: (params) => (
         <Typography variant="p" sx={{ color: "#25213B", fontSize: "12px" }}>
