@@ -3,6 +3,7 @@ import { Button, IconButton, Menu, MenuItem } from "@mui/material";
 import { makeStyles, styled } from "@mui/styles";
 import { Component } from "react";
 import { useState } from "react";
+import ServiceProviderTable from "./serviceProviderTable/ServiceProviderTable";
 
 const useStyle = makeStyles((theme) => ({
   holder: {
@@ -145,7 +146,9 @@ const ServiceProviderScreen = () => {
       <div className={classes.spacerSmall}></div>
       <div className={classes.spacerSmall}></div>
 
-      <div className={classes.tableHolder}>service provider list</div>
+      <div className={classes.tableHolder}>
+        <ServiceProviderTable />
+      </div>
     </div>
   );
 };
@@ -186,52 +189,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-class VendorTable extends Component {
-  state = {
-    vendors: [],
-  };
 
-  componentDidMount = () => {
-    this.getVendors();
-  };
-
-  getVendors() {
-    fetch("https://api.showaapp.com/admin/vendor/get-all-vendor", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        this.setState({ vendors: data });
-      });
-  }
-
-  displayVendors = (vendors) => {
-    if (vendors.length === 0)
-      return (
-        <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
-          <h3>No vendor in the server</h3>
-        </div>
-      );
-
-    return vendors.map((vendor, index) => (
-      <VendorTab key={index} email={vendor.email} />
-    ));
-  };
-
-  render() {
-    return (
-      <div style={{ overflow: "auto" }}>
-        {this.displayVendors(this.state.vendors)}
-      </div>
-    );
-  }
-}
 
 const VendorTab = (props) => {
   const classes = useStyle();
