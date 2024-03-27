@@ -55,7 +55,7 @@ class CustomerTable extends Component {
       );
 
     return (
-      <Box>
+      <Box sx={{ background: "white", borderRadius: "4px", marginTop: "8px" }}>
         <DataGrid
           rows={this.state.rows}
           columns={columns}
@@ -65,8 +65,6 @@ class CustomerTable extends Component {
           // autoHeight
           // checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
         />
-
-        <Box></Box>
       </Box>
     );
   };

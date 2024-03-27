@@ -128,31 +128,29 @@ const MachineStatus = () => {
   ];
 
   return (
-    <div>
-      <Box
-        sx={{
-          margin: "auto",
-          padding: "0 20px",
-        }}
-      >
-        <DataGrid
-          rows={machine?.map((data, id) => {
-            return { ...data, id };
-          })}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
-              },
+    <Box
+      sx={{
+        margin: "auto",
+        padding: "0 20px",
+      }}
+    >
+      <DataGrid
+        rows={machine?.map((data, id) => {
+          return { ...data, id };
+        })}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
             },
-          }}
-          pageSizeOptions={[5]}
-          checkboxSelection
-          disableRowSelectionOnClick
-        />
-      </Box>
-    </div>
+          },
+        }}
+        pageSizeOptions={[5]}
+        checkboxSelection
+        disableRowSelectionOnClick
+      />
+    </Box>
   );
 };
 

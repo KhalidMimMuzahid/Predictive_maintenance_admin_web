@@ -53,6 +53,6 @@ export const columns = [
     field: "action",
     headerName: "ACTION",
     flex: 1,
-    renderCell: (props) => ActionComponent(props),
+    renderCell: (props) => <ActionComponent props={props} />,
   },
 ];

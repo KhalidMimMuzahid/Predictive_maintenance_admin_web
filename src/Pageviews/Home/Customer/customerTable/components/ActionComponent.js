@@ -11,11 +11,10 @@ import {
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { StyledMenu } from "../../styleComponents";
-
 import editIcon from "../../../../../Assets/Home/customer/edit.png";
 import viewIcon from "../../../../../Assets/Home/customer/view.png";
 
-const ActionComponent = (props) => {
+const ActionComponent = ({ props }) => {
   // const navigate = useNavigate();
   // const handleChange = (e) => {
   //   console.log(e.target.value);
@@ -35,7 +34,6 @@ const ActionComponent = (props) => {
     setAnchorEl(null);
   };
 
-  console.log(props);
 
   return (
     // <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
