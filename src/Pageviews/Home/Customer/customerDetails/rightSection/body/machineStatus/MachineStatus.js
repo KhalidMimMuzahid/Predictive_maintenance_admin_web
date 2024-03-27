@@ -3,7 +3,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import machineIcon from "../../../../../../../Assets/Home/customer/machine.png";
-import Action from "../request/components/Action";
+import Action from "../request/components/RequestAction";
+import MachineStatusAction from "./component/MachineStatusAction";
 
 const MachineStatus = () => {
   const [machine, setMachine] = useState([]);
@@ -23,7 +24,6 @@ const MachineStatus = () => {
         }
       });
   }, [uid?.uid]);
-
 
   const columns = [
     {
@@ -123,7 +123,7 @@ const MachineStatus = () => {
       field: "action",
       headerName: "ACTION",
       width: 100,
-      renderCell: (props) => <Action props={props} />,
+      renderCell: (props) => <MachineStatusAction />,
     },
   ];
 

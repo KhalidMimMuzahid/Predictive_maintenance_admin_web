@@ -1,8 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Component } from "react";
 import { columns } from "./constant";
-
-
+import { Box } from "@mui/material";
 
 class CustomerTable extends Component {
   state = {
@@ -56,15 +55,19 @@ class CustomerTable extends Component {
       );
 
     return (
-      <DataGrid
-        rows={this.state.rows}
-        columns={columns}
-        rowHeight={61}
-        // pageSize={5}
-        // rowsPerPageOptions={[5]}
-        // autoHeight
-        // checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
-      />
+      <Box>
+        <DataGrid
+          rows={this.state.rows}
+          columns={columns}
+          rowHeight={61}
+          // pageSize={5}
+          // rowsPerPageOptions={[5]}
+          // autoHeight
+          // checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
+        />
+
+        <Box></Box>
+      </Box>
     );
   };
 

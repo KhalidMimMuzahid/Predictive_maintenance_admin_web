@@ -2,7 +2,8 @@ import { Box, Button, FormControl, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import RequestId from "./components/Action";
+import RequestId from "./components/RequestAction";
+import RequestAction from "./components/RequestAction";
 
 const Request = () => {
   // /customer/reservation/common/get-my-reservations/:uid
@@ -41,6 +42,8 @@ const Request = () => {
         // }
       });
   }, [params?.uid]);
+
+  console.log(requests);
 
   const columns = [
     {
@@ -107,26 +110,60 @@ const Request = () => {
       headerName: "STATUS",
       width: 150,
       renderCell: (params) => (
-        <Typography
-          variant="p"
-          sx={{
-            border: "1px solid #FFA503",
-            color: "#FFA503",
-            px: "16px",
-            py: "4px",
-            borderRadius: "20px",
-            fontSize: "11px",
-          }}
-        >
-          {params?.row?.status}
-        </Typography>
+        <Box>
+          {params?.row?.status === "Pending" && (
+            <Typography
+              variant="p"
+              sx={{
+                border: "1px solid #FFA503",
+                color: "#FFA503",
+                px: "16px",
+                py: "4px",
+                borderRadius: "20px",
+                fontSize: "11px",
+              }}
+            >
+              {params?.row?.status}
+            </Typography>
+          )}
+          {params?.row?.status === "Canceled" && (
+            <Typography
+              variant="p"
+              sx={{
+                border: "1px solid #FF4858",
+                color: "#FF4858",
+                px: "16px",
+                py: "4px",
+                borderRadius: "20px",
+                fontSize: "11px",
+              }}
+            >
+              {params?.row?.status}
+            </Typography>
+          )}
+          {params?.row?.status === "Completed" && (
+            <Typography
+              variant="p"
+              sx={{
+                border: "1px solid #2FD573",
+                color: "#FFFFFF",
+                px: "16px",
+                py: "4px",
+                borderRadius: "20px",
+                fontSize: "11px",
+              }}
+            >
+              {params?.row?.status}
+            </Typography>
+          )}
+        </Box>
       ),
     },
     {
       field: "action",
       headerName: "ACTION",
       width: 100,
-      renderCell: (props) => RequestId(props),
+      renderCell: (props) => <RequestAction props={props} />,
     },
   ];
 

@@ -1,5 +1,4 @@
 import ActionComponent from "./components/ActionComponent";
-import Action from "../customerDetails/rightSection/body/request/components/Action";
 import BalanceComponent from "./components/BalanceComponent";
 import CustomerNameEmailComponent from "./components/CustomerNameEmailComponent";
 import DetailsComponent from "./components/DetailsComponent";
@@ -54,8 +53,6 @@ export const columns = [
     field: "action",
     headerName: "ACTION",
     flex: 1,
-    renderCell: (props) => (
-      <Action link={`/customer/${props?.row?.details?.uid}/details`} />
-    ),
+    renderCell: (props) => ActionComponent(props),
   },
 ];

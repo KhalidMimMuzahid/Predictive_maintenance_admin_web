@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import { StyledMenu } from "../../../../../styleComponents";
 import viewIcon from "../../../../../../../../Assets/Home/customer/view.png";
 import editIcon from "../../../../../../../../Assets/Home/customer/edit.png";
+import closeIcon from "../../../../../../../../Assets/Home/customer/Machine_Status/suspended.png";
+import deleteIcon from "../../../../../../../../Assets/Home/customer/delete.png";
 import { Link } from "react-router-dom";
 
-const Action = ({ link }) => {
+const RequestAction = ({ link }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const openEl = Boolean(anchorEl);
 
@@ -43,10 +45,26 @@ const Action = ({ link }) => {
               </Typography>
             </MenuItem>
           </Link>
+          <Link style={{ textDecoration: "none" }}>
+            <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
+              <img src={closeIcon} alt="" />
+              <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+                Close
+              </Typography>
+            </MenuItem>
+          </Link>
+          <Link style={{ textDecoration: "none" }}>
+            <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
+              <img src={deleteIcon} alt="" />
+              <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+                Delete
+              </Typography>
+            </MenuItem>
+          </Link>
         </Box>
       </StyledMenu>
     </Box>
   );
 };
 
-export default Action;
+export default RequestAction;
