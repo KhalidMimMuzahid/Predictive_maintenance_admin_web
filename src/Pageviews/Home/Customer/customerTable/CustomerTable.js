@@ -61,7 +61,7 @@ class CustomerTable extends Component {
           columns={columns}
           rowHeight={61}
           // pageSize={5}
-          // rowsPerPageOptions={[5]}
+          // rowsPerPageOptions={5}
           // autoHeight
           // checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
         />
@@ -73,46 +73,5 @@ class CustomerTable extends Component {
     return <div style={{ overflow: "auto" }}>{this.displayCustomers()}</div>;
   }
 }
-
-// Why this displayAction is made for? // Khalid: if you know please write it down
-// {const displayAction = (props) => {
-//   return (
-//     <div
-//       style={{
-//         display: "flex",
-//         flexDirection: "row",
-//         justifyContent: "center",
-//         alignItems: "center",
-//         padding: "4px 5px",
-//         gap: "10px",
-
-//         margin: "0 auto",
-//         width: "96px",
-//         height: "24px",
-
-//         flex: "none",
-//         order: "7",
-//         flexGrow: "0",
-
-//         width: "16px",
-//         height: "16px",
-
-//         flex: "none",
-//         order: "0",
-//         flexGrow: "0",
-
-//         position: "absolute",
-//         left: "39.25%",
-//         right: "39.32%",
-//         top: "0%",
-//         bottom: "0%",
-
-//         background: "#8B83BA",
-//       }}
-//     >
-//       {displayAction()}
-//     </div>
-//   );
-// };}
 
 export default CustomerTable;
