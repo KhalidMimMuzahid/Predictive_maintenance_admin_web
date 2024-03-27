@@ -156,13 +156,62 @@ function App() {
                   <Route path="/" element={<DashboardScreen />} />
                   <Route path="/dashboard" element={<DashboardScreen />} />
 
+                  {/* service provider start */}
+
                   <Route
                     path="/service-provider"
                     element={<ServiceProviderScreen />}
+<<<<<<< HEAD
                   />
 
 
                   
+=======
+                  >
+                    <Route path="/service-provider" element={<Default />} />
+                    <Route
+                      path="/service-provider/:uid"
+                      element={<CustomerDetails />}
+                    >
+                      {/* start  */}
+                      <Route
+                        path="/service-provider/:uid/details"
+                        element={<Details />}
+                      >
+                        <Route
+                          path="/service-provider/:uid/details"
+                          element={<PersonalInfo />}
+                        />
+                        <Route
+                          path="/service-provider/:uid/details/personal-info"
+                          element={<PersonalInfo />}
+                        />
+                        <Route
+                          path="/service-provider/:uid/details/address"
+                          element={<Address />}
+                        />
+                        <Route
+                          path="/service-provider/:uid/details/wallet"
+                          element={<Wallet />}
+                        />
+                      </Route>
+                      {/* end  */}
+                      <Route
+                        path="/service-provider/:uid/machine-status"
+                        element={<MachineStatus />}
+                      />
+                      <Route
+                        path="/service-provider/:uid/invoice"
+                        element={<Invoice />}
+                      />
+                      <Route
+                        path="/service-provider/:uid/request"
+                        element={<Request />}
+                      />
+                    </Route>
+                  </Route>
+                  {/* service provider end */}
+>>>>>>> d3b40d57ecfc41ad60d2310213334f2f36015a04
                   {/* customer screen start  */}
                   <Route path="/customer" element={<CustomerScreen />}>
                     <Route path="/customer" element={<Default />} />
