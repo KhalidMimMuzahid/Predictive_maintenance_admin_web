@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import machineIcon from "../../../../../../../Assets/Home/customer/machine.png";
+import Action from "../request/components/Action";
 
 const MachineStatus = () => {
   const [machine, setMachine] = useState([]);
@@ -22,6 +23,7 @@ const MachineStatus = () => {
         }
       });
   }, [uid?.uid]);
+
 
   const columns = [
     {
@@ -121,29 +123,7 @@ const MachineStatus = () => {
       field: "action",
       headerName: "ACTION",
       width: 100,
-      renderCell: (props) => (
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <FormControl fullWidth>
-            {/* <label
-              onClick={() => SetIsShowActionOption(!isShowActionOption)}
-              htmlFor="demo-simple-select"
-            >
-              <Button>ACTION</Button>
-            </label> */}
-            {isShowActionOption && (
-              <select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Action"
-              >
-                <option value="view">Action</option>
-                <option value="view">VIEW</option>
-                <option value="edit">EDIT</option>
-              </select>
-            )}
-          </FormControl>
-        </Box>
-      ),
+      renderCell: (props) => <Action props={props} />,
     },
   ];
 

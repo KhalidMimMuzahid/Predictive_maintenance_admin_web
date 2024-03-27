@@ -81,6 +81,7 @@ const CustomerDetails = () => {
           bgcolor: "white",
           padding: "12px",
           width: "22%",
+          borderRadius: "5px",
         }}
       >
         <LeftSection
@@ -90,7 +91,16 @@ const CustomerDetails = () => {
         />
       </Box>
       {/* right sidebar  */}
-      <Box sx={{ border: "", width: "100%" }}>
+      <Box
+        sx={{
+          bgcolor: "white",
+          width: "100%",
+          height: "auto",
+          display: "flex",
+          flexDirection: "column",
+          borderRadius: "5px",
+        }}
+      >
         <RightSection user={user} wallet={wallet} />
       </Box>
     </Box>

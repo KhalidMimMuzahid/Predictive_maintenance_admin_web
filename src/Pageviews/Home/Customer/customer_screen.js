@@ -105,7 +105,7 @@ const CustomerScreen = () => {
       <div className={classes.spacerSmall}></div>
       <div className={classes.spacerSmall}></div>
 
-      <div className={classes.tableHolder}>
+      <div>
         <Outlet />
       </div>
     </div>

@@ -26,7 +26,7 @@ const RightSection = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        border: "1px solid #5A5C73",
+        height: "auto",
       }}
     >
       <Box>

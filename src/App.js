@@ -160,6 +160,9 @@ function App() {
                     path="/service-provider"
                     element={<ServiceProviderScreen />}
                   />
+
+
+                  
                   {/* customer screen start  */}
                   <Route path="/customer" element={<CustomerScreen />}>
                     <Route path="/customer" element={<Default />} />

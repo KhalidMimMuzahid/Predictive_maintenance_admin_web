@@ -2,7 +2,7 @@ import { Box, Button, FormControl, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import RequestId from "./components/RequestId";
+import RequestId from "./components/Action";
 
 const Request = () => {
   // /customer/reservation/common/get-my-reservations/:uid
@@ -17,7 +17,6 @@ const Request = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log({ data });
         if (data?.connectedReservations) {
           const connectedReservations = data?.connectedReservations?.map(
             (each) => {
@@ -127,28 +126,7 @@ const Request = () => {
       field: "action",
       headerName: "ACTION",
       width: 100,
-      renderCell: (props) => (
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <FormControl fullWidth>
-            <label
-              onClick={() => SetIsShowActionOption(!isShowActionOption)}
-              htmlFor="demo-simple-select"
-            >
-              <Button>ACTION</Button>
-            </label>
-            {isShowActionOption && (
-              <select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Action"
-              >
-                <option value="view">VIEW</option>
-                <option value="edit">EDIT</option>
-              </select>
-            )}
-          </FormControl>
-        </Box>
-      ),
+      renderCell: (props) => RequestId(props),
     },
   ];
 
