@@ -31,7 +31,7 @@ export const columns = [
   },
   {
     field: "options",
-    headerName: "",
-    renderCell: (props) => OptionsComponent(props),
+    headerName: "ACTION",
+    renderCell: (props) => <OptionsComponent props={props} />,
   },
 ];
