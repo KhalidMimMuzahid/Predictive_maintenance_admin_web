@@ -1,6 +1,5 @@
 /* App.js */
 import React, { Component } from "react";
-import CanvasJSReact from "@canvasjs/react-charts";
 import { Box, Typography } from "@mui/material";
 import rectangle from "../../../../../Assets/Home/customer/Rectangle.png";
 
@@ -8,90 +7,83 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class LeftSide extends Component {
-  constructor() {
+  constructor(props) {
     super();
-    this.toggleDataSeries = this.toggleDataSeries.bind(this);
-  }
+    this.graphObjectData = props;
 
-  toggleDataSeries(e) {
-    if (typeof e.dataSeries.visible === "undefined" || e.dataSeries.visible) {
-      e.dataSeries.visible = false;
-    } else {
-      e.dataSeries.visible = true;
-    }
-    this.chart.render();
+    this.state = {
+      series: [
+        {
+          name: "High - 2013",
+          data: [28, 29, 33, 36, 32, 32, 33],
+        },
+        {
+          name: "Low - 2013",
+          data: [12, 11, 14, 18, 17, 13, 13],
+        },
+      ],
+      options: {
+        chart: {
+          height: 350,
+          type: "line",
+          dropShadow: {
+            enabled: true,
+            color: "#000",
+            top: 18,
+            left: 7,
+            blur: 10,
+            opacity: 0.2,
+          },
+          toolbar: {
+            show: false,
+          },
+        },
+        colors: ["#77B6EA", "#545454"],
+        dataLabels: {
+          enabled: true,
+        },
+        stroke: {
+          curve: "smooth",
+        },
+        title: {
+          text: "Average High & Low Temperature",
+          align: "left",
+        },
+        grid: {
+          borderColor: "#e7e7e7",
+          row: {
+            colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+            opacity: 0.5,
+          },
+        },
+        markers: {
+          size: 1,
+        },
+        xaxis: {
+          categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+          title: {
+            text: "Month",
+          },
+        },
+        yaxis: {
+          title: {
+            text: "Temperature",
+          },
+          min: 5,
+          max: 40,
+        },
+        legend: {
+          position: "top",
+          horizontalAlign: "right",
+          floating: true,
+          offsetY: -25,
+          offsetX: -5,
+        },
+      },
+    };
   }
 
   render() {
-    const options = {
-      theme: "light5",
-      animationEnabled: true,
-      axisY: {
-        titleFontColor: "#6D78AD",
-        lineColor: "#6D78AD",
-        labelFontColor: "#6D78AD",
-        tickColor: "#6D78AD",
-      },
-      axisY2: {
-        titleFontColor: "#51CDA0",
-        lineColor: "#51CDA0",
-        labelFontColor: "#51CDA0",
-        tickColor: "#51CDA0",
-      },
-      toolTip: {
-        shared: true,
-      },
-      legend: {
-        cursor: "pointer",
-        itemclick: this.toggleDataSeries,
-      },
-      data: [
-        {
-          type: "spline",
-          name: "",
-          showInLegend: true,
-          xValueFormatString: "MMM YYYY",
-          yValueFormatString: "#,##0 Units",
-          dataPoints: [
-            { x: new Date(2024, 0, 1), y: 5400 },
-            { x: new Date(2024, 1, 1), y: 2600 },
-            { x: new Date(2024, 2, 1), y: 0 },
-            { x: new Date(2024, 3, 1), y: 2400 },
-            { x: new Date(2024, 4, 1), y: 5000 },
-            { x: new Date(2024, 5, 1), y: 9000 },
-            { x: new Date(2024, 6, 1), y: 6000 },
-            { x: new Date(2024, 7, 1), y: 5000 },
-            { x: new Date(2024, 8, 1), y: 7200 },
-            { x: new Date(2024, 9, 1), y: 7100 },
-            { x: new Date(2024, 10, 1), y: 5000 },
-            { x: new Date(2024, 11, 1), y: 1000 },
-          ],
-        },
-        {
-          type: "spline",
-          name: "",
-          axisYType: "primary",
-          showInLegend: true,
-          xValueFormatString: "MMM YYYY",
-          yValueFormatString: "#,##0 Units",
-          dataPoints: [
-            { x: new Date(2024, 0, 1), y: 1500 },
-            { x: new Date(2024, 1, 1), y: 6800 },
-            { x: new Date(2024, 2, 1), y: 7000 },
-            { x: new Date(2024, 3, 1), y: 5000 },
-            { x: new Date(2024, 4, 1), y: 2000 },
-            { x: new Date(2024, 5, 1), y: 5000 },
-            { x: new Date(2024, 6, 1), y: 2000 },
-            { x: new Date(2024, 7, 1), y: 4400 },
-            { x: new Date(2024, 8, 1), y: 4500 },
-            { x: new Date(2024, 9, 1), y: 2600 },
-            { x: new Date(2024, 10, 1), y: 3000 },
-            { x: new Date(2024, 11, 1), y: 3000 },
-          ],
-        },
-      ],
-    };
-
     return (
       <Box
         sx={{
@@ -139,10 +131,12 @@ class LeftSide extends Component {
         </Box>
         <hr style={{ bgColor: "#E6EFF5", opacity: "25%" }} />
         <Box sx={{ padding: "24px 34px" }}>
-          <CanvasJSChart
-            options={options}
-            onRef={(ref) => (this.chart = ref)}
-          />
+          {/* <ReactApexChart
+            options={this.state.options}
+            series={this.state.series}
+            type="line"
+            height={350}
+          /> */}
         </Box>
       </Box>
     );
