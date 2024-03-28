@@ -21,7 +21,7 @@ class CustomerTable extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log({ data });
+        // console.log({ data });
         data.map((customer, index) => this.addNewItem(customer, index));
       });
   }
