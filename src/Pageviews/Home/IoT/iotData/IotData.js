@@ -6,7 +6,13 @@ import TotalAvailableDevice from "./totalAvailableDevice/TotalAvailableDevice";
 
 const IotData = () => {
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        gap: "24px",
+        marginBottom: "28px",
+      }}
+    >
       <TotalIOTDevice />
       <TotalGeneralDevice />
       <TotalAvailableDevice />

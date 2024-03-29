@@ -13,11 +13,19 @@ const StatusComponent = (props) => {
         fontWeight: "400",
         backgroundColor:
           status == "Active"
-            ? "#14B8A6"
+            ? "#F3FAE7"
             : status == "In Store"
-            ? "#FFB020"
+            ? "#FFE9C2"
             : status == "In Active"
-            ? "#F15F5F"
+            ? "#FDCCD1"
+            : "#24459c",
+        color:
+          status == "Active"
+            ? "#7FC008"
+            : status == "In Store"
+            ? "#000000"
+            : status == "In Active"
+            ? "#000000"
             : "#24459c",
       }}
     >

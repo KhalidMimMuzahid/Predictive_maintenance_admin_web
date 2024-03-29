@@ -120,6 +120,9 @@ const DeleteModal = ({ deleteOpen, setDeleteOpen }) => {
               fontSize: "14px",
               fontWeight: "600",
               color: "#FFFFFF",
+              "&:hover": {
+                background: "#F15F5F",
+              },
             }}
           >
             Delete

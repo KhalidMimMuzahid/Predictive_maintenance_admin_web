@@ -1,54 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { useStyle } from "../../../styles/iotStyle";
+import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
 
-const CustomerComponent = (props) => {
-  const [uid, setUid] = useState("");
+const CustomerComponent = ({ props }) => {
   const [customer, setCustomer] = useState(null);
 
-  const classes = useStyle();
-
   useEffect(() => {
-    setUid(props.value);
-    getCustomer();
-  }, [props.value]);
-
-  function getCustomer() {
-    if (uid != "") {
-      let url =
-        "https://api.showaapp.com/admin/wallet/find-user-with-id/" + uid;
-      fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setCustomer(data);
-        });
-    }
-  }
+    let url = `https://api.showaapp.com/admin/wallet/find-user-with-id/${props?.row?.customer}`;
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCustomer(data);
+      });
+  }, [props?.row?.customer]);
 
   function displayCustomer() {
-    if (uid === "") {
-      return <div></div>;
-    } else {
-      if (customer == null)
-        return (
-          <div
-            style={{ width: "100%", display: "flex", justifyContent: "center" }}
-          >
-            <h3>Please Wait</h3>
-          </div>
-        );
-
+    if (customer == null) {
       return (
-        <div>
-          <div className={classes.tabTitle}>
-            {customer.firstNameAlphabet + " " + customer.lastNameAlphabet}
-          </div>
-          <div className={classes.tabSubtitle}>{customer.phone}</div>
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <h3>Please Wait</h3>
         </div>
+      );
+    } else {
+      return (
+        <Box>
+          <Typography
+            sx={{
+              color: "#25213B",
+              fontWeight: "600",
+              textTransform: "uppercase",
+            }}
+          >
+            {customer?.firstNameAlphabet + " " + customer?.lastNameAlphabet}
+          </Typography>
+          <div sx={{ color: "#6E6893" }}>{customer?.phone}</div>
+        </Box>
       );
     }
   }

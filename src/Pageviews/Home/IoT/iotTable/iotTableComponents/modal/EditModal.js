@@ -148,6 +148,9 @@ const EditModal = ({ editOpen, setEditOpen, props }) => {
               fontSize: "14px",
               fontWeight: "600",
               color: "#FFFFFF",
+              "&:hover": {
+                background: "#24459C",
+              },
             }}
           >
             Save
