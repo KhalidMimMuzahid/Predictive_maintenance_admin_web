@@ -6,7 +6,9 @@ const CustomerComponent = ({ props }) => {
   const [customer, setCustomer] = useState(null);
 
   useEffect(() => {
-    let url = `https://api.showaapp.com/admin/wallet/find-user-with-id/${props?.row?.customer}`;
+    // console.log({ props });
+
+    let url = `https://api.showaapp.com/customer/profile/user/find-user-with-id/${props?.row?.options?.uid}`;
     fetch(url, {
       method: "GET",
       headers: {
@@ -15,9 +17,10 @@ const CustomerComponent = ({ props }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCustomer(data);
+        // console.log({ data });
+        setCustomer(data?.user);
       });
-  }, [props?.row?.customer]);
+  }, [props?.row?.options?.uid]);
 
   function displayCustomer() {
     if (customer == null) {

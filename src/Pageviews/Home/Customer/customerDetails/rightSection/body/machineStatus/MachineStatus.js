@@ -18,6 +18,7 @@ const MachineStatus = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data?.success) {
+          // console.log({ machine: data?.data });
           setMachine(data?.data);
         } else {
           setMachine([]);
@@ -134,22 +135,24 @@ const MachineStatus = () => {
         padding: "0 20px",
       }}
     >
-      <DataGrid
-        rows={machine?.map((data, id) => {
-          return { ...data, id };
-        })}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
+      {true && (
+        <DataGrid
+          rows={machine?.map((data, id) => {
+            return { ...data, id };
+          })}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
             },
-          },
-        }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
+          }}
+          pageSizeOptions={[5]}
+          checkboxSelection
+          disableRowSelectionOnClick
+        />
+      )}
     </Box>
   );
 };
