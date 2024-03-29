@@ -288,59 +288,60 @@ const columns = [
   {
     field: "customer_name",
     headerName: "CUSTOMER NAME",
-    renderCell: (props) => CustomerNamePhoneComponent(props),
-    flex: 1,
+    renderCell: (props) => <CustomerNamePhoneComponent props={props} />,
+    width: 150,
   },
   {
     field: "reservation_id",
     headerName: "REQUEST ID",
-    flex: 1,
+    width: 150,
   },
   {
     field: "status",
     headerName: "STATUS",
-    renderCell: (props) => StatusComponent(props),
-    flex: 1,
+    renderCell: (props) => <StatusComponent props={props} />,
+    width: 150,
   },
   {
     field: "schedule",
     headerName: "SCHEDULE",
-    flex: 1,
+    width: 150,
   },
   {
     field: "service_type",
     headerName: "SERVICE TYPE",
-    renderCell: (props) => ServiceTypeComponent(props),
-    flex: 1,
+    renderCell: (props) => <ServiceTypeComponent props={props} />,
+    width: 150,
   },
   {
     field: "location",
     headerName: "LOCATION",
-    renderCell: (props) => LocationComponent(props),
-    flex: 1,
+    renderCell: (props) => <LocationComponent props={props} />,
+    width: 150,
   },
   {
     field: "issues",
     headerName: "ISSUES",
-    renderCell: (props) => IssuesComponent(props),
-    flex: 1,
+    renderCell: (props) => <IssuesComponent props={props} />,
+    width: 150,
   },
   {
     field: "bidStatus",
     headerName: "BID STATUS",
-    renderCell: (props) => BidStatusComponent(props),
-    flex: 1,
+    renderCell: (props) => <BidStatusComponent props={props} />,
+    width: 150,
   },
   {
     field: "assign",
     headerName: "ASSIGN",
-    renderCell: (props) => AssignVendorComponent(props),
-    flex: 1,
+    renderCell: (props) => <AssignVendorComponent props={props} />,
+    width: 150,
   },
   {
     field: "action",
     headerName: "ACTION",
-    renderCell: (props) => ActionComponent(props),
+    renderCell: (props) => <ActionComponent props={props} />,
+    width: 150,
   },
 ];
 
@@ -367,7 +368,7 @@ class AllReservationTable extends Component {
     )
       .then((res) => res.json())
       .then((data) => {
-        data.map((reservation, index) => this.addNewItem(reservation, index));
+        data?.map((reservation, index) => this.addNewItem(reservation, index));
       });
   }
 
@@ -397,7 +398,7 @@ class AllReservationTable extends Component {
 
     var tempRows = new Array();
 
-    ids.map((id) => {
+    ids?.map((id) => {
       this.state.allReservationRows.find((row) => {
         if (row.id.toString() === id.toString()) {
           tempRows.push(row);
@@ -467,7 +468,7 @@ class AllReservationTable extends Component {
   addReservationGroup(gid) {
     var reservations = new Array();
 
-    this.state.selectedRows.map((row) => {
+    this.state.selectedRows?.map((row) => {
       reservations.push({
         id: row.issues._id,
         uid: row.customer_name,
@@ -525,7 +526,7 @@ class AllReservationTable extends Component {
             } else {
               let groupId = this.makeid(16);
 
-              // this.state.selectedRows.map(async (row, index) => {
+              // this.state.selectedRows?.map(async (row, index) => {
               //     setTimeout(() => {
               //         this.addReservationtoGroup(row, groupId);
               //         console.log('Added : ' + (index+1));
@@ -552,7 +553,7 @@ class AllReservationTable extends Component {
   }
 }
 
-const CustomerNamePhoneComponent = (props) => {
+const CustomerNamePhoneComponent = ({ props }) => {
   const [customer, setCustomer] = useState(null);
 
   const classes = useStyle();
@@ -601,7 +602,7 @@ const CustomerNamePhoneComponent = (props) => {
   return <div>{displayCustomer()}</div>;
 };
 
-const StatusComponent = (props) => {
+const StatusComponent = ({ props }) => {
   const classes = useStyle();
 
   return (
@@ -625,7 +626,7 @@ const StatusComponent = (props) => {
   );
 };
 
-const BidStatusComponent = (props) => {
+const BidStatusComponent = ({ props }) => {
   const classes = useStyle();
 
   return (
@@ -643,7 +644,7 @@ const BidStatusComponent = (props) => {
   );
 };
 
-const ServiceTypeComponent = (props) => {
+const ServiceTypeComponent = ({ props }) => {
   const [washingMachine, setWashingMachine] = useState(null);
 
   useEffect(() => {
@@ -687,7 +688,7 @@ const ServiceTypeComponent = (props) => {
   return <div>{displayWashingMachine()}</div>;
 };
 
-const LocationComponent = (props) => {
+const LocationComponent = ({ props }) => {
   const [washingMachine, setWashingMachine] = useState(null);
   const [showLocationModal, setShowLocationModal] = useState(false);
 
@@ -766,7 +767,7 @@ const LocationComponent = (props) => {
   return (
     <div>
       <Modal open={showLocationModal}>
-        <Container className={classes.mapModalContainer}>
+        <Container className={classes?.mapModalContainer}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Typography
               style={{ color: "#24459c", fontSize: "24px", fontWeight: "700" }}
@@ -806,7 +807,7 @@ const issueColumns = [
     flex: 1,
   },
 ];
-const IssuesComponent = (props) => {
+const IssuesComponent = ({ props }) => {
   const classes = useStyle();
 
   const [issueModal, setIssueModal] = useState(false);
@@ -815,7 +816,7 @@ const IssuesComponent = (props) => {
 
   useEffect(() => {
     var tempRows = new Array();
-    props.value.problems.map((issue, index) =>
+    props.value.problems?.map((issue, index) =>
       tempRows.push({ id: index + 1, issue: issue })
     );
     setIssueRows(tempRows);
@@ -856,7 +857,7 @@ const IssuesComponent = (props) => {
               gridColumnGap: "10px",
             }}
           >
-            {props.value.imageAddresses.map((imageAddress, index) => {
+            {props.value.imageAddresses?.map((imageAddress, index) => {
               return (
                 <div style={{ width: "200px", height: "200px" }}>
                   <img
@@ -1065,7 +1066,7 @@ const VendorLocationComponent = (props) => {
   return (
     <div>
       <Modal open={showLocaitonModal}>
-        <Container className={classes.mapModalContainer}>
+        <Container className={classes?.mapModalContainer}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Typography
               style={{ color: "#24459c", fontSize: "24px", fontWeight: "700" }}
@@ -1155,7 +1156,7 @@ const VendorActionComponent = (props) => {
     </div>
   );
 };
-const AssignVendorComponent = (props) => {
+const AssignVendorComponent = ({ props }) => {
   const classes = useStyle();
 
   const [openVendorModal, setOpenVendorModal] = useState(false);
@@ -1187,7 +1188,7 @@ const AssignVendorComponent = (props) => {
       .then((res) => res.json())
       .then((data) => {
         var tempRows = new Array();
-        data.map((vendor, index) =>
+        data?.map((vendor, index) =>
           // addNewItem(request, index)
           tempRows.push({
             id: index + 1,
@@ -1364,7 +1365,7 @@ const AssignVendorComponent = (props) => {
   }
 };
 
-const ActionComponent = (props) => {
+const ActionComponent = ({ props }) => {
   const classes = useStyle();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -1649,7 +1650,7 @@ const GroupAssignVendorComponent = (props) => {
       .then((res) => res.json())
       .then((data) => {
         var tempRows = new Array();
-        data.map((vendor, index) =>
+        data?.map((vendor, index) =>
           tempRows.push({
             id: index + 1,
             vendor_name: vendor,
@@ -1699,13 +1700,13 @@ const GroupAssignVendorComponent = (props) => {
           <DataGrid
             rows={vendorRows}
             columns={vendorGroupColumns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
+            pageSize={10}
+            rowsPerPageOptions={[15]}
             disableRowSelectionOnClick
             initialState={{
-              pagination: { paginationModel: { pageSize: 5 } },
+              pagination: { paginationModel: { pageSize: 15 } },
             }}
-            pageSizeOptions={[5, 10, 25]}
+            pageSizeOptions={[15, 25, 50]}
             autoHeight
           />
         </>
@@ -1974,7 +1975,7 @@ class AllGroupTable extends Component {
     )
       .then((res) => res.json())
       .then((data) => {
-        data.map((group, index) => this.addNewItem(group, index));
+        data?.map((group, index) => this.addNewItem(group, index));
         console.log(this.state.allReservationGroups);
       });
   }
@@ -2236,7 +2237,7 @@ const ExpandedLocationComponent = (props) => {
   return (
     <div>
       <Modal open={showLocationModal}>
-        <Container className={classes.mapModalContainer}>
+        <Container className={classes?.mapModalContainer}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Typography
               style={{ color: "#24459c", fontSize: "24px", fontWeight: "700" }}
@@ -2274,7 +2275,7 @@ const ExpandedIssuesComponent = (props) => {
 
   useEffect(() => {
     var tempRows = new Array();
-    props.problems.map((issue, index) =>
+    props.problems?.map((issue, index) =>
       tempRows.push({ id: index + 1, issue: issue })
     );
     setIssueRows(tempRows);
@@ -2315,7 +2316,7 @@ const ExpandedIssuesComponent = (props) => {
               gridColumnGap: "10px",
             }}
           >
-            {props.imageAddresses.map((imageAddress, index) => {
+            {props.imageAddresses?.map((imageAddress, index) => {
               return (
                 <div style={{ width: "200px", height: "200px" }}>
                   <img

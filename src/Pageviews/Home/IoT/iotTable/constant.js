@@ -9,35 +9,33 @@ export const columns = [
   {
     field: "product",
     headerName: "PRODUCT",
-    flex: 1,
+    width: 270,
     renderCell: (props) => ProductComponent(props),
   },
   {
     field: "state",
     headerName: "STATE",
-    flex: 1,
+    width: 270,
     renderCell: (props) => (
-      <Typography sx={{ color: "#6E6893", fontWeight: "500" }}>
-        {props?.row?.options?.purpose}
-      </Typography>
+      <Typography sx={{ color: "#6E6893", fontWeight: "500" }}></Typography>
     ),
   },
   {
     field: "customer",
     headerName: "CUSTOMER",
-    flex: 1,
+    width: 270,
     renderCell: (props) => <CustomerComponent props={props} />,
   },
   {
     field: "status",
     headerName: "STATUS",
-    flex: 1,
+    width: 270,
     renderCell: (props) => StatusComponent(props),
   },
   {
     field: "price",
     headerName: "PRICE",
-    flex: 1,
+    width: 270,
     renderCell: (props) => PriceComponent(props),
   },
   {

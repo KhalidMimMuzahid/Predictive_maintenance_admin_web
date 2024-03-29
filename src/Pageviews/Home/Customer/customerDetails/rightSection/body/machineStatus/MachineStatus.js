@@ -2,9 +2,9 @@ import { Box, Button, FormControl, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import machineIcon from "../../../../../../../Assets/Home/customer/machine.png";
 import Action from "../request/components/RequestAction";
 import MachineStatusAction from "./component/MachineStatusAction";
+import { columns } from "./component/constant";
 
 const MachineStatus = () => {
   const [machine, setMachine] = useState([]);
@@ -17,6 +17,7 @@ const MachineStatus = () => {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data?.success) {
           // console.log({ machine: data?.data });
           setMachine(data?.data);
@@ -25,108 +26,6 @@ const MachineStatus = () => {
         }
       });
   }, [uid?.uid]);
-
-  const columns = [
-    {
-      field: "name",
-      headerName: "MACHINE",
-      width: 350,
-      renderCell: (params) => (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: "0 16px",
-          }}
-        >
-          <Box
-            sx={{
-              width: "36px",
-              height: "36px",
-              borderRadius: "100%",
-              boxShadow: "2px 2px 2px 2px rgba(0, 0, 0, 0.1)",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <img src={machineIcon} alt="" />
-          </Box>
-          <Box style={{ display: "flex", flexDirection: "column" }}>
-            <Typography
-              sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
-            >
-              {params.row.name}
-            </Typography>
-            <Typography variant="p" sx={{ fontSize: "12px", color: "#6E6893" }}>
-              {params.row.uid}
-            </Typography>
-          </Box>
-        </Box>
-      ),
-    },
-    {
-      field: "address",
-      headerName: "MAC ADDRESS",
-      width: 300,
-      renderCell: (props) => (
-        <Typography
-          sx={{ color: "#25213B", fontSize: "14px", fontWeight: "400" }}
-        >
-          {props?.row?.address}
-        </Typography>
-      ),
-    },
-    {
-      field: "status",
-      headerName: "STATUS",
-      width: 150,
-      renderCell: (params) => (
-        <Typography
-          variant="p"
-          sx={{
-            bgcolor: "#2FD573",
-            color: "#FFFFFF",
-            px: "16px",
-            py: "4px",
-            borderRadius: "20px",
-            fontSize: "11px",
-          }}
-        >
-          {params?.row?.status}
-        </Typography>
-      ),
-    },
-    {
-      field: "environment",
-      headerName: "MACHINE STATUS",
-      width: 150,
-      renderCell: (params) => (
-        <Typography
-          variant="p"
-          sx={{
-            color: "#F15F5F",
-            bgcolor: "#FFB8B8",
-            px: "16px",
-            py: "4px",
-            borderRadius: "20px",
-            fontSize: "11px",
-          }}
-        >
-          {params?.row?.environment}
-        </Typography>
-      ),
-    },
-    {
-      field: "action",
-      headerName: "ACTION",
-      width: 100,
-      renderCell: (props) => <MachineStatusAction />,
-    },
-  ];
 
   return (
     <Box

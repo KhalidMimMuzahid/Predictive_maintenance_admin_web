@@ -10,49 +10,50 @@ export const columns = [
   {
     field: "name",
     headerName: "CUSTOMER NAME",
-    flex: 1,
+    width: 230,
 
     renderCell: (props) => CustomerNameEmailComponent(props),
   },
   {
     field: "email",
     headerName: "EMAIL",
-    flex: 1,
+    width: 200,
   },
   {
     field: "machine",
     headerName: "Machine",
-    flex: 1,
+    width: 200,
     renderCell: (props) => MachineComponent(props),
   },
   {
     field: "location",
     headerName: "LOCATION",
-    flex: 1,
+    width: 250,
     renderCell: (props) => LocationComponent(props),
   },
   {
     field: "balance",
     headerName: "WALLET",
     headerAlign: "center",
+    with: 280,
     renderCell: (props) => BalanceComponent(props),
   },
   {
     field: "subscription",
     headerName: "SUBSCRIPTION",
-    flex: 1,
+    width: 250,
     renderCell: (props) => SubscriptionComponent(props),
   },
   {
     field: "details",
     headerName: "DETAILS",
-    flex: 1,
+    width: 200,
     renderCell: (props) => DetailsComponent(props),
   },
   {
     field: "action",
     headerName: "ACTION",
-    flex: 1,
+    width: 200,
     renderCell: (props) => <ActionComponent props={props} />,
   },
 ];

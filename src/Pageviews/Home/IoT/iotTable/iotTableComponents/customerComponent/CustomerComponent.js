@@ -6,7 +6,6 @@ const CustomerComponent = ({ props }) => {
   const [customer, setCustomer] = useState(null);
 
   useEffect(() => {
-    // console.log({ props });
 
     let url = `https://api.showaapp.com/customer/profile/user/find-user-with-id/${props?.row?.options?.uid}`;
     fetch(url, {

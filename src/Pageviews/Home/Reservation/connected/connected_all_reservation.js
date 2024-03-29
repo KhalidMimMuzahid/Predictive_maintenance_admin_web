@@ -353,7 +353,7 @@ class AllReservationTable extends Component {
         })
             .then((res) => res.json())
             .then((data) => {
-                data.map((reservation, index) => (
+                data?.map((reservation, index) => (
                     this.addNewItem(reservation, index)
                 ));
             });
@@ -374,7 +374,7 @@ class AllReservationTable extends Component {
 
         var tempRows = new Array();
 
-        ids.map((id)=>{
+        ids?.map((id)=>{
             this.state.allReservationRows.find((row) => {
                 if(row.id.toString() === id.toString()) {
 
@@ -404,11 +404,11 @@ class AllReservationTable extends Component {
                     autoHeight
                     checkboxSelection
                     pageSize={5}
-                    rowsPerPageOptions={[5]}                    
+                    rowsPerPageOptions={[15]}                    
                     initialState={{
-                        pagination: { paginationModel: { pageSize: 5 } },
+                        pagination: { paginationModel: { pageSize: 15 } },
                     }}
-                    pageSizeOptions={[5, 10, 25]}                    
+                    pageSizeOptions={[15, 25, 50]}                    
                     disableRowSelectionOnClick
                     isRowSelectable={(params) => (params.row.assign.assignedVendorId === "" && params.row.schedule != "On-Demand" && params.row.bidStatus == "" && (this.state.schedule == "" || params.row.reservationSchedule == this.state.schedule))}
                     onRowSelectionModelChange={(ids) => {
@@ -440,7 +440,7 @@ class AllReservationTable extends Component {
 
         var reservations = new Array();
 
-        this.state.selectedRows.map((row) => {
+        this.state.selectedRows?.map((row) => {
             reservations.push({ id: row.issues._id, uid: row.customer_name, assignedVendorId: "", washingMachineId: row.service_type, date: row.issues.date, time: row.issues.time, reservationSchedule: row.issues.reservationSchedule, status: "Pending", problems: row.issues.problems, imageAddresses: row.issues.imageAddresses });
         });
 
@@ -473,7 +473,7 @@ class AllReservationTable extends Component {
 
                             let groupId = this.makeid(16);
 
-                            // this.state.selectedRows.map(async (row, index) => {
+                            // this.state.selectedRows?.map(async (row, index) => {
                             //     setTimeout(() => { 
                             //         this.addReservationtoGroup(row, groupId);
                             //         console.log('Added : ' + (index+1)); 
@@ -675,7 +675,7 @@ const LocationComponent = (props) => {
 
     return <div>
         <Modal open={showLocationModal}>
-            <Container className={classes.mapModalContainer}>
+            <Container className={classes?.mapModalContainer}>
 
                 <div style={{display: "flex", justifyContent: "space-between"}}>
 
@@ -718,7 +718,7 @@ const IssuesComponent = (props) => {
     
     useEffect(() => {
         var tempRows = new Array();
-        props.value.problems.map((issue, index) => (
+        props.value.problems?.map((issue, index) => (
             tempRows.push({ id: index + 1, issue: issue})
         ));
         setIssueRows(tempRows);
@@ -739,7 +739,7 @@ const IssuesComponent = (props) => {
                 <div style={{display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridRowGap: "10px", gridColumnGap: "10px"}}>
 
                     {
-                        props.value.imageAddresses.map((imageAddress, index)=>{
+                        props.value.imageAddresses?.map((imageAddress, index)=>{
                             return <div style={{width: "200px", height: "200px"}}>
                                 <img style={{width: "100%", height: "100%", objectFit: "contain"}} src={imageAddress} />
                             </div>
@@ -893,7 +893,7 @@ const VendorLocationComponent = (props) => {
 
     return <div>
         <Modal open={showLocaitonModal}>
-            <Container className={classes.mapModalContainer}>
+            <Container className={classes?.mapModalContainer}>
 
                 <div style={{display: "flex", justifyContent: "space-between"}}>
 
@@ -1004,7 +1004,7 @@ const AssignVendorComponent = (props) => {
             .then((data) => {
 
                 var tempRows = new Array();
-                data.map((vendor, index) => (
+                data?.map((vendor, index) => (
                     // addNewItem(request, index)
                     tempRows.push({ id: index + 1, vendor_name: vendor, location: vendor, action: {vendor : vendor, reservation: props.value}})
                 ));
@@ -1400,7 +1400,7 @@ const GroupAssignVendorComponent = (props) => {
             .then((data) => {
 
                 var tempRows = new Array();
-                data.map((vendor, index) => (
+                data?.map((vendor, index) => (
                     tempRows.push({ id: index + 1, vendor_name: vendor, location: vendor, action: {vendor : vendor, group: props.value}})
                 ));
                 setVendorRows(tempRows);
@@ -1647,7 +1647,7 @@ class AllGroupTable extends Component {
         })
             .then((res) => res.json())
             .then((data) => {
-                data.map((group, index) => (
+                data?.map((group, index) => (
                     this.addNewItem(group, index)
                 ));
                 console.log(this.state.allReservationGroups);
@@ -1882,7 +1882,7 @@ const ExpandedLocationComponent = (props) => {
 
     return <div>
         <Modal open={showLocationModal}>
-            <Container className={classes.mapModalContainer}>
+            <Container className={classes?.mapModalContainer}>
 
                 <div style={{display: "flex", justifyContent: "space-between"}}>
 
@@ -1915,7 +1915,7 @@ const ExpandedIssuesComponent = (props) => {
     
     useEffect(() => {
         var tempRows = new Array();
-        props.problems.map((issue, index) => (
+        props.problems?.map((issue, index) => (
             tempRows.push({ id: index + 1, issue: issue})
         ));
         setIssueRows(tempRows);
@@ -1936,7 +1936,7 @@ const ExpandedIssuesComponent = (props) => {
                 <div style={{display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridRowGap: "10px", gridColumnGap: "10px"}}>
 
                     {
-                        props.imageAddresses.map((imageAddress, index)=>{
+                        props.imageAddresses?.map((imageAddress, index)=>{
                             return <div style={{width: "200px", height: "200px"}}>
                                 <img style={{width: "100%", height: "100%", objectFit: "contain"}} src={imageAddress} />
                             </div>

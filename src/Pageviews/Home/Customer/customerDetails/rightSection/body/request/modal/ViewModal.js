@@ -1,6 +1,6 @@
+import React from "react";
 import { Close } from "@mui/icons-material";
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
-import React from "react";
 
 const ViewModal = ({ viewOpen, setViewOpen, props }) => {
   return (
@@ -30,7 +30,7 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
               textAlign: "center",
             }}
           >
-            View IoT Sensor
+            View Request
           </Typography>
           <Button
             sx={{
@@ -50,16 +50,6 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
 
         <Box sx={{ padding: "8px 16px" }}>
           <Box>
-            <Typography
-              sx={{
-                color: "#5A6B85",
-                fontSize: "18px",
-                fontWeight: "700",
-                padding: "16px 12px",
-              }}
-            >
-              Product Details
-            </Typography>
             <Box>
               <Box
                 sx={{
@@ -105,9 +95,7 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
                 </Typography>
                 <Typography
                   sx={{ color: "#6B7280", fontSize: "14px", fontWeight: "600" }}
-                >
-                  
-                </Typography>
+                ></Typography>
               </Box>
               <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
               <Box
