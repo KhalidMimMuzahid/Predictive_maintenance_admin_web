@@ -100,6 +100,6 @@ export const columns = [
     field: "action",
     headerName: "ACTION",
     width: 100,
-    renderCell: (props) => <MachineStatusAction />,
+    renderCell: (props) => <MachineStatusAction props={props} />,
   },
 ];

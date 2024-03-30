@@ -1,9 +1,37 @@
 import { Close } from "@mui/icons-material";
-import { Box, Button, Container, Modal, Typography } from "@mui/material";
-import { LineChart } from "@mui/x-charts";
-import React from "react";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Modal,
+  Typography,
+} from "@mui/material";
+import Select from "@mui/material/Select";
+import React, { useEffect, useState } from "react";
+import SensorDataChart from "./sensorDataChart/SensorDataChart";
 
 const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
+  const [sensorList, setSensorList] = useState([]);
+  const [selectedSensorID, setSelectedSensorID] = useState(1);
+  useEffect(() => {
+    fetch(
+      `${process.env.REACT_APP_BASE_URL}/customer/iot/get-sensor-list-with-washing-machine-id/66012496388cbec918c26a1f`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          setSensorList(data?.data);
+        }
+      });
+  }, [props?.row?._id]);
+
+  const handleChange = (event) => {
+    setSelectedSensorID(event.target.value);
+  };
+
   return (
     <Modal
       sx={{
@@ -48,151 +76,37 @@ const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
             <Close />
           </Button>
         </Box>
-
-        <Box sx={{ padding: "16px 16px" }}>
-          <Box>
-            <Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "16px 32px",
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: "#111827",
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    width: "40%",
-                  }}
-                >
-                  Machine Status
-                </Typography>
-                <Typography
-                  sx={{ color: "#F15F5F", fontSize: "14px", fontWeight: "600" }}
-                >
-                  Abnormal
-                </Typography>
-              </Box>
-              <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-
-                  padding: "16px 32px",
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: "#111827",
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    width: "40%",
-                  }}
-                >
-                  Temperature 1
-                </Typography>
-                <Typography
-                  sx={{ color: "#6B7280", fontSize: "14px", fontWeight: "600" }}
-                >
-                  85° C
-                </Typography>
-              </Box>
-              <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-
-                  padding: "16px 32px",
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: "#111827",
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    width: "40%",
-                  }}
-                >
-                  Vibration 1
-                </Typography>
-                <Typography
-                  sx={{ color: "#6B7280", fontSize: "14px", fontWeight: "600" }}
-                >
-                  22 Hz
-                </Typography>
-              </Box>
-              <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: "#111827",
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    width: "40%",
-                    textAlign: "start",
-                    padding: "10px 32px 0 32px",
-                  }}
-                >
-                  Temperature Chart
-                </Typography>
-                <LineChart
-                  xAxis={[
-                    { data: [1, 2, 3, 5, 8, 10, 12, 15, 18, 22, 26, 30] },
-                  ]}
-                  series={[
-                    {
-                      data: [30, 42, 8, 45, 30, 31, 15, 35, 40, 39, 30, 38],
-                    },
-                  ]}
-                  width={500}
-                  height={200}
-                />
-              </Box>
-              <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: "#111827",
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    width: "40%",
-                    textAlign: "start",
-                    padding: "10px 32px 0 32px",
-                  }}
-                >
-                  Vibration Chart
-                </Typography>
-                <LineChart
-                  xAxis={[
-                    { data: [1, 2, 3, 5, 8, 10, 12, 15, 18, 22, 26, 30] },
-                  ]}
-                  series={[
-                    {
-                      data: [30, 42, 8, 45, 30, 31, 15, 35, 40, 39, 30, 38],
-                    },
-                  ]}
-                  width={500}
-                  height={200}
-                />
-              </Box>
-              <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
-            </Box>
-          </Box>
+        <Box>
+          <Typography
+            sx={{
+              color: "#111827",
+              fontSize: "14px",
+              fontWeight: "600",
+              width: "40%",
+            }}
+          >
+            Select Sensor
+          </Typography>
+          <FormControl variant="filled" fullWidth sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-filled-label">Sensor</InputLabel>
+            <Select
+              labelId="demo-simple-select-filled-label"
+              id="demo-simple-select-filled"
+              value={selectedSensorID}
+              onChange={handleChange}
+            >
+              {sensorList?.map((sensorData, i) => (
+                <MenuItem key={i} value={i + 1}>
+                  Sensor {i + 1}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </Box>
+
+        {selectedSensorID && (
+          <SensorDataChart selectedSensorID={selectedSensorID} />
+        )}
       </Container>
     </Modal>
   );

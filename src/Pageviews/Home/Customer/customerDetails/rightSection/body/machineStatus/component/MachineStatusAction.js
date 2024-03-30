@@ -21,6 +21,7 @@ const MachineStatusAction = ({ props }) => {
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [suspendedOpen, setSuspendedOpen] = useState(false);
 
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
