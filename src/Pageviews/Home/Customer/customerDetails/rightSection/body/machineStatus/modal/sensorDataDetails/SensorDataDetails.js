@@ -35,7 +35,7 @@ const SensorDataDetails = ({ selectedSensorID }) => {
               padding: "16px 12px",
             }}
           >
-            Sensor Data of: {selectedSensorID}
+            Sensor Data of Sensor Data of: {selectedSensorID}
           </Typography>
           <Box
             sx={{
