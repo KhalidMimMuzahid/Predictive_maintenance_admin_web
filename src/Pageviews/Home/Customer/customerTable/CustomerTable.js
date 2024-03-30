@@ -1,7 +1,8 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Component } from "react";
 import { columns } from "./constant";
-import { Box } from "@mui/material";
+import { Box, TextField, InputAdornment, FormControl, InputLabel, Select } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 
 class CustomerTable extends Component {
   state = {
@@ -54,18 +55,70 @@ class CustomerTable extends Component {
         </div>
       );
 
+
+
     return (
-      <Box sx={{ background: "white", borderRadius: "4px", marginTop: "8px" }}>
-        <DataGrid
-          rows={this.state.rows}
-          columns={columns}
-          rowHeight={61}
+      <div>
+
+        <Box sx={{ background: "white", borderRadius: "4px", marginTop: "8px", paddingTop: "10px" }}>
+          <TextField
+            placeholder="Search Customer"
+            variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+            style={{ margineTop: "20px", background: "white", width: "100%", margineBottom: "20px" }}
+          />
+
+          <Box sx={{ maxWidth: 720, marginRight: "10px", marginTop: "20px", marginLeft:"30px", marginBottom: "20px", display: "flex", gap: "20px" }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">All</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+              >
+                {/* <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem> */}
+              </Select>
+            </FormControl>
+
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Newest</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+              >
+              </Select>
+            </FormControl>
+
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Jan 1 - Jan 31</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+              >
+               
+              </Select>
+            </FormControl>
+          </Box>
+
+
+          <DataGrid
+            rows={this.state.rows}
+            columns={columns}
+            rowHeight={61}
           // pageSize={5}
           // rowsPerPageOptions={5}
           // autoHeight
           // checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
-        />
-      </Box>
+          />
+        </Box>
+      </div>
     );
   };
 
