@@ -156,7 +156,7 @@ function App() {
                   <Route path="/" element={<DashboardScreen />} />
                   <Route path="/dashboard" element={<DashboardScreen />} />
 
-                  {/* service provider start */}
+                  {/* service provider startssss */}
 
                   <Route
                     path="/service-provider"
