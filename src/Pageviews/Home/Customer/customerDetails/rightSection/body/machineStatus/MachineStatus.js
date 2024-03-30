@@ -17,7 +17,6 @@ const MachineStatus = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data?.success) {
           // console.log({ machine: data?.data });
           setMachine(data?.data);

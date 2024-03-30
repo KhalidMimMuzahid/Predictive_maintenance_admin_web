@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { LineChart } from "@mui/x-charts";
 import React, { useEffect, useState } from "react";
 
-const SensorDataChart = ({ selectedSensorID }) => {
+const SensorDataDetails = ({ selectedSensorID }) => {
   const [sensorDataAll, setSensorDataAll] = useState([]);
 
   useEffect(() => {
@@ -11,16 +11,32 @@ const SensorDataChart = ({ selectedSensorID }) => {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data) {
           setSensorDataAll(data);
         }
       });
   }, []);
-  
+
+  const newArray = sensorDataAll?.sensorData?.map(
+    (sensor) => sensor?.temperature1
+  );
+  console.log(newArray);
+
   return (
     <Box sx={{ padding: "16px 16px" }}>
       <Box>
         <Box>
+          <Typography
+            sx={{
+              color: "#5A6B85",
+              fontSize: "18px",
+              fontWeight: "700",
+              padding: "16px 12px",
+            }}
+          >
+            Sensor Data of: {selectedSensorID}
+          </Typography>
           <Box
             sx={{
               display: "flex",
@@ -161,4 +177,4 @@ const SensorDataChart = ({ selectedSensorID }) => {
   );
 };
 
-export default SensorDataChart;
+export default SensorDataDetails;
