@@ -96,7 +96,7 @@ const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
               onChange={handleChange}
             >
               {sensorList?.map((sensorData, i) => (
-                <MenuItem key={i} value={i + 1}>
+                <MenuItem key={i} value={i}>
                   Sensor {i + 1}
                 </MenuItem>
               ))}
