@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import Select from "@mui/material/Select";
 import React, { useEffect, useState } from "react";
-import SensorDataChart from "./sensorDataChart/SensorDataChart";
+import SensorDataDetails from "./sensorDataDetails/SensorDataDetails";
 
 const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
   const [sensorList, setSensorList] = useState([]);
@@ -96,7 +96,7 @@ const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
               onChange={handleChange}
             >
               {sensorList?.map((sensorData, i) => (
-                <MenuItem key={i} value={i + 1}>
+                <MenuItem key={i} value={i}>
                   Sensor {i + 1}
                 </MenuItem>
               ))}
@@ -105,7 +105,7 @@ const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
         </Box>
 
         {selectedSensorID && (
-          <SensorDataChart selectedSensorID={selectedSensorID} />
+          <SensorDataDetails selectedSensorID={selectedSensorID} />
         )}
       </Container>
     </Modal>

@@ -1,9 +1,20 @@
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
 import { LineChart } from "@mui/x-charts";
 import React, { useEffect, useState } from "react";
+import TemperatureChart from "./TemperatureChart";
+import VibrationChart from "./VibrationChart";
 
-const SensorDataChart = ({ selectedSensorID }) => {
+const SensorDataDetails = ({ selectedSensorID }) => {
   const [sensorDataAll, setSensorDataAll] = useState([]);
+  const [selectedTempPeriod, setSelectedTEmpPeriod] = useState("temperature1");
+  const [selectedVibPeriod, setSelectedVibPeriod] = useState("vibration1");
 
   useEffect(() => {
     fetch(
@@ -16,10 +27,67 @@ const SensorDataChart = ({ selectedSensorID }) => {
         }
       });
   }, []);
-  
+
+  const handleChange = (event) => {
+    if (event?.target?.value === 1) {
+      setSelectedTEmpPeriod("temperature1");
+      setSelectedVibPeriod("vibration1");
+    } else if (event?.target?.value === 2) {
+      setSelectedTEmpPeriod("temperature2");
+      setSelectedVibPeriod("vibration2");
+    } else if (event?.target?.value === 3) {
+      setSelectedTEmpPeriod("temperature3");
+      setSelectedVibPeriod("vibration3");
+    } else if (event?.target?.value === 4) {
+      setSelectedTEmpPeriod("temperature4");
+      setSelectedVibPeriod("vibration4");
+    } else if (event?.target?.value === 5) {
+      setSelectedTEmpPeriod("temperature5");
+      setSelectedVibPeriod("vibration5");
+    } else if (event?.target?.value === 6) {
+      setSelectedTEmpPeriod("temperature6");
+      setSelectedVibPeriod("vibration6");
+    }
+  };
+
+  const tempArray = sensorDataAll?.sensorData?.map(
+    (sensor) => sensor[selectedTempPeriod]
+  );
+  const vibrationArray = sensorDataAll?.sensorData?.map(
+    (sensor) => sensor[selectedVibPeriod]
+  );
+
+
   return (
     <Box sx={{ padding: "16px 16px" }}>
       <Box>
+        <Box>
+          <Typography
+            sx={{
+              color: "#111827",
+              fontSize: "14px",
+              fontWeight: "600",
+              width: "40%",
+            }}
+          >
+            Sensor Data of No. {selectedSensorID}
+          </Typography>
+          <FormControl variant="filled" fullWidth sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-filled-label">Period</InputLabel>
+            <Select
+              labelId="demo-simple-select-filled-label"
+              id="demo-simple-select-filled"
+              onChange={handleChange}
+            >
+              <MenuItem value={1}>Period 1</MenuItem>
+              <MenuItem value={2}>Period 2</MenuItem>
+              <MenuItem value={3}>Period 3</MenuItem>
+              <MenuItem value={4}>Period 4</MenuItem>
+              <MenuItem value={5}>Period 5</MenuItem>
+              <MenuItem value={6}>Period 6</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
         <Box>
           <Box
             sx={{
@@ -95,65 +163,11 @@ const SensorDataChart = ({ selectedSensorID }) => {
             </Typography>
           </Box>
           <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Typography
-              sx={{
-                color: "#111827",
-                fontSize: "14px",
-                fontWeight: "600",
-                width: "40%",
-                textAlign: "start",
-                padding: "10px 32px 0 32px",
-              }}
-            >
-              Temperature Chart
-            </Typography>
-            <LineChart
-              xAxis={[{ data: [1, 2, 3, 5, 8, 10, 12, 15, 18, 22, 26, 30] }]}
-              series={[
-                {
-                  data: [30, 42, 8, 45, 30, 31, 15, 35, 40, 39, 30, 38],
-                },
-              ]}
-              width={500}
-              height={200}
-            />
-          </Box>
+          {tempArray?.length > 0 && <TemperatureChart tempArray={tempArray} />}
           <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Typography
-              sx={{
-                color: "#111827",
-                fontSize: "14px",
-                fontWeight: "600",
-                width: "40%",
-                textAlign: "start",
-                padding: "10px 32px 0 32px",
-              }}
-            >
-              Vibration Chart
-            </Typography>
-            <LineChart
-              xAxis={[{ data: [1, 2, 3, 5, 8, 10, 12, 15, 18, 22, 26, 30] }]}
-              series={[
-                {
-                  data: [30, 42, 8, 45, 30, 31, 15, 35, 40, 39, 30, 38],
-                },
-              ]}
-              width={500}
-              height={200}
-            />
-          </Box>
+          {vibrationArray?.length > 0 && (
+            <VibrationChart vibrationArray={vibrationArray} />
+          )}
           <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
         </Box>
       </Box>
@@ -161,4 +175,4 @@ const SensorDataChart = ({ selectedSensorID }) => {
   );
 };
 
-export default SensorDataChart;
+export default SensorDataDetails;
