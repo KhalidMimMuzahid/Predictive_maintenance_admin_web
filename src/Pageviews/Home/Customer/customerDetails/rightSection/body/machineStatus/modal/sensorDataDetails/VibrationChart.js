@@ -3,7 +3,6 @@ import { LineChart } from "@mui/x-charts";
 import React from "react";
 
 const VibrationChart = ({ vibrationArray }) => {
-  console.log(vibrationArray);
   return (
     <Box
       sx={{
@@ -24,7 +23,7 @@ const VibrationChart = ({ vibrationArray }) => {
         Vibration Chart
       </Typography>
       <LineChart
-        xAxis={[{ data: [1, 2, 3, 5, 8, 10, 12, 15, 18, 22, 26, 30] }]}
+        xAxis={[{ data: vibrationArray?.map((data, index) => index * 5) }]}
         series={[
           {
             data: vibrationArray,

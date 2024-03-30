@@ -24,6 +24,8 @@ const SensorDataDetails = ({ selectedSensorID }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
+
+          console.log({ data });
           setSensorDataAll(data);
           setShouldRefreshPeriodData((prev) => !prev);
           setSelectPeriod(1);
@@ -57,7 +59,7 @@ const SensorDataDetails = ({ selectedSensorID }) => {
               width: "40%",
             }}
           >
-            Sensor Data of No. {selectedSensorID}
+            {/* Sensor Data of No. {selectedSensorID} */}
           </Typography>
           <FormControl variant="filled" fullWidth sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-filled-label">Period</InputLabel>
