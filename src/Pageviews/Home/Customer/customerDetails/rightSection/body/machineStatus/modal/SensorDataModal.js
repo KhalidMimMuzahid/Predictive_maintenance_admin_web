@@ -15,20 +15,30 @@ import SensorDataDetails from "./sensorDataDetails/SensorDataDetails";
 
 const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
   const [sensorList, setSensorList] = useState([]);
-  const [selectedSensorID, setSelectedSensorID] = useState(1);
+  const [selectedSensorID, setSelectedSensorID] = useState(
+    sensorList[0]?._id || null
+  );
   useEffect(() => {
     fetch(
-      `${process.env.REACT_APP_BASE_URL}/customer/iot/get-sensor-list-with-washing-machine-id/66012496388cbec918c26a1f`
+      `${
+        process.env.REACT_APP_BASE_URL
+      }/customer/iot/get-sensor-list-with-washing-machine-id/${"66012496388cbec918c26a1f"}`
     )
       .then((res) => res.json())
       .then((data) => {
         if (data) {
           setSensorList(data?.data);
+
+          setSelectedSensorID(data?.data[0]?._id || null);
         }
       });
   }, [props?.row?._id]);
+  // useEffect(()=>{
+  //   setSelectedSensorID(sensorList[0]?._id || null)
 
+  // },[selectedSensorID])
   const handleChange = (event) => {
+    // console.log(event.target.value);
     setSelectedSensorID(event.target.value);
   };
 
@@ -96,7 +106,7 @@ const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
               onChange={handleChange}
             >
               {sensorList?.map((sensorData, i) => (
-                <MenuItem key={i} value={i}>
+                <MenuItem key={i} value={sensorData?._id}>
                   Sensor {i + 1}
                 </MenuItem>
               ))}

@@ -6,57 +6,44 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import { LineChart } from "@mui/x-charts";
 import React, { useEffect, useState } from "react";
 import TemperatureChart from "./TemperatureChart";
 import VibrationChart from "./VibrationChart";
 
 const SensorDataDetails = ({ selectedSensorID }) => {
   const [sensorDataAll, setSensorDataAll] = useState([]);
-  const [selectedTempPeriod, setSelectedTEmpPeriod] = useState("temperature1");
-  const [selectedVibPeriod, setSelectedVibPeriod] = useState("vibration1");
+  const [selectedPeriod, setSelectPeriod] = useState(1);
+  const [tempArray, setTempArray] = useState([]);
+  const [vibrationArray, setVibrationArray] = useState([]);
 
+  const [shouldRefreshPeriodData, setShouldRefreshPeriodData] = useState(true);
   useEffect(() => {
     fetch(
-      `${process.env.REACT_APP_BASE_URL}/customer/iot/get-sensor-data-paginate/6601218b388cbec918c1f815?page=1&limit=10`
+      `${process.env.REACT_APP_BASE_URL}/customer/iot/get-sensor-data-paginate/${selectedSensorID}?page=1&limit=10`
     )
       .then((res) => res.json())
       .then((data) => {
         if (data) {
           setSensorDataAll(data);
+          setShouldRefreshPeriodData((prev) => !prev);
+          setSelectPeriod(1);
         }
       });
-  }, []);
+  }, [selectedSensorID]);
 
   const handleChange = (event) => {
-    if (event?.target?.value === 1) {
-      setSelectedTEmpPeriod("temperature1");
-      setSelectedVibPeriod("vibration1");
-    } else if (event?.target?.value === 2) {
-      setSelectedTEmpPeriod("temperature2");
-      setSelectedVibPeriod("vibration2");
-    } else if (event?.target?.value === 3) {
-      setSelectedTEmpPeriod("temperature3");
-      setSelectedVibPeriod("vibration3");
-    } else if (event?.target?.value === 4) {
-      setSelectedTEmpPeriod("temperature4");
-      setSelectedVibPeriod("vibration4");
-    } else if (event?.target?.value === 5) {
-      setSelectedTEmpPeriod("temperature5");
-      setSelectedVibPeriod("vibration5");
-    } else if (event?.target?.value === 6) {
-      setSelectedTEmpPeriod("temperature6");
-      setSelectedVibPeriod("vibration6");
-    }
+    setSelectPeriod(event?.target?.value);
   };
-
-  const tempArray = sensorDataAll?.sensorData?.map(
-    (sensor) => sensor[selectedTempPeriod]
-  );
-  const vibrationArray = sensorDataAll?.sensorData?.map(
-    (sensor) => sensor[selectedVibPeriod]
-  );
-
+  useEffect(() => {
+    const periodTempArray = sensorDataAll?.sensorData?.map(
+      (sensor) => sensor[`temperature${selectedPeriod}`]
+    );
+    setTempArray(periodTempArray);
+    const periodVibrationArray = sensorDataAll?.sensorData?.map(
+      (sensor) => sensor[`vibration${selectedPeriod}`]
+    );
+    setVibrationArray(periodVibrationArray);
+  }, [selectedPeriod, shouldRefreshPeriodData]);
 
   return (
     <Box sx={{ padding: "16px 16px" }}>
@@ -75,6 +62,7 @@ const SensorDataDetails = ({ selectedSensorID }) => {
           <FormControl variant="filled" fullWidth sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-filled-label">Period</InputLabel>
             <Select
+              value={selectedPeriod}
               labelId="demo-simple-select-filled-label"
               id="demo-simple-select-filled"
               onChange={handleChange}
