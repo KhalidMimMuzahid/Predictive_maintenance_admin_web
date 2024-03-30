@@ -1,18 +1,28 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { Component } from "react";
+import { Component, useContext, useEffect, useState } from "react";
 import { columns } from "./constant";
 import { Box } from "@mui/material";
+import { AppContext } from "../../../../contextApi/appProvider";
 
-class CustomerTable extends Component {
-  state = {
-    rows: [],
+const CustomerTable = () => {
+  const { setDownloadData } = useContext(AppContext);
+
+  const [rows, setRows] = useState([]);
+
+  const addNewItem = (customer, index) => {
+    setRows((prev) => [
+      ...prev,
+      {
+        id: index,
+        name: customer,
+        email: customer.email,
+        location: customer,
+        balance: customer.uid,
+        details: customer,
+      },
+    ]);
   };
-
-  componentDidMount = () => {
-    this.getCustomer();
-  };
-
-  getCustomer() {
+  useEffect(() => {
     fetch("https://api.showaapp.com/admin/customer/get-all-customer", {
       method: "GET",
       headers: {
@@ -22,25 +32,12 @@ class CustomerTable extends Component {
       .then((res) => res.json())
       .then((data) => {
         // console.log({ data });
-        data.map((customer, index) => this.addNewItem(customer, index));
+        data.map((customer, index) => addNewItem(customer, index));
       });
-  }
+  }, []);
 
-  addNewItem = (customer, index) => {
-    let { rows } = this.state;
-    rows.push({
-      id: index,
-      name: customer,
-      email: customer.email,
-      location: customer,
-      balance: customer.uid,
-      details: customer,
-    });
-    this.setState({ rows: rows });
-  };
-
-  displayCustomers = () => {
-    if (this.state.rows.length === 0)
+  const displayCustomers = () => {
+    if (rows?.length === 0)
       return (
         <div
           style={{
@@ -57,21 +54,28 @@ class CustomerTable extends Component {
     return (
       <Box sx={{ background: "white", borderRadius: "4px", marginTop: "8px" }}>
         <DataGrid
-          rows={this.state.rows}
+          rows={rows}
           columns={columns}
           rowHeight={61}
           // pageSize={5}
           // rowsPerPageOptions={5}
           // autoHeight
-          // checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
+          checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
+          onRowSelectionModelChange={(data, index) => {
+            const selectedRowData = data?.map((index, i) => {
+              return {
+                "SL No": i + 1,
+                ...rows[index],
+              };
+            });
+            setDownloadData(selectedRowData);
+          }}
         />
       </Box>
     );
   };
 
-  render() {
-    return <div style={{ overflow: "auto" }}>{this.displayCustomers()}</div>;
-  }
-}
+  return <div style={{ overflow: "auto" }}>{displayCustomers()}</div>;
+};
 
 export default CustomerTable;

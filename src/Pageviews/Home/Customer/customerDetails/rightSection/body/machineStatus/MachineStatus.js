@@ -1,14 +1,17 @@
 import { Box, Button, FormControl, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Action from "../request/components/RequestAction";
 import MachineStatusAction from "./component/MachineStatusAction";
 import { columns } from "./component/constant";
+import { AppContext } from "../../../../../../../contextApi/appProvider";
 
 const MachineStatus = () => {
   const [machine, setMachine] = useState([]);
   const [isShowActionOption, SetIsShowActionOption] = useState(false);
+
+  const { setDownloadData } = useContext(AppContext);
 
   const uid = useParams();
   useEffect(() => {
@@ -27,6 +30,9 @@ const MachineStatus = () => {
       });
   }, [uid?.uid]);
 
+  const rowsTemp = machine?.map((data, id) => {
+    return { ...data, id };
+  });
   return (
     <Box
       sx={{
@@ -36,9 +42,7 @@ const MachineStatus = () => {
     >
       {true && (
         <DataGrid
-          rows={machine?.map((data, id) => {
-            return { ...data, id };
-          })}
+          rows={rowsTemp}
           columns={columns}
           initialState={{
             pagination: {
@@ -50,6 +54,23 @@ const MachineStatus = () => {
           pageSizeOptions={[5]}
           checkboxSelection
           disableRowSelectionOnClick
+          onRowSelectionModelChange={(data, index) => {
+            const selectedRowData = data?.map((index, i) => {
+              return {
+                "SL No": i + 1,
+                name: rowsTemp[index]?.name,
+                model: rowsTemp[index]?.model,
+                brand: rowsTemp[index]?.brand,
+                typeOfMachine: rowsTemp[index]?.typeOfMachine,
+                typeOfShop: rowsTemp[index]?.typeOfShop,
+                environment: rowsTemp[index]?.environment,
+                address: rowsTemp[index]?.address,
+                uid: rowsTemp[index]?.uid,
+                _id: rowsTemp[index]?._id,
+              };
+            });
+            setDownloadData(selectedRowData);
+          }}
         />
       )}
     </Box>

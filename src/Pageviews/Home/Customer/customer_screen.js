@@ -1,9 +1,12 @@
 import { Add, Download, MoreVert, Upload } from "@mui/icons-material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, IconButton, MenuItem } from "@mui/material";
 import { useStyle, StyledMenu } from "./styleComponents";
 import { Outlet } from "react-router-dom";
+import { AppContext } from "../../../contextApi/appProvider";
+import { downloadTableData } from "../../../Utils/downloadTableData";
 const CustomerScreen = () => {
+  const { downloadData, setDownloadData } = useContext(AppContext);
   const classes = useStyle();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -45,6 +48,7 @@ const CustomerScreen = () => {
           </Button>
           <div className={classes.spacerSmall} />
           <Button
+            onClick={() => downloadTableData(downloadData, setDownloadData)}
             style={{ backgroundColor: "white", color: "black" }}
             startIcon={<Download />}
           >

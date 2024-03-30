@@ -1,11 +1,11 @@
 /* App.js */
 import React, { Component } from "react";
-import CanvasJSReact from "@canvasjs/react-charts";
+// import CanvasJSReact from "@canvasjs/react-charts";
 import { Box, Typography } from "@mui/material";
 import rectangle from "../../../../../Assets/Home/customer/Rectangle.png";
 
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+// var CanvasJS = CanvasJSReact.CanvasJS;
+// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class RightSide extends Component {
   render() {
@@ -70,9 +70,7 @@ class RightSide extends Component {
             </select>
           </Box>
         </Box>
-        <Box>
-          <CanvasJSChart options={options} />
-        </Box>
+        <Box>{/* <CanvasJSChart options={options} /> */}</Box>
       </Box>
     );
   }
