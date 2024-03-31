@@ -1,13 +1,8 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Component, useContext, useEffect, useState } from "react";
 import { columns } from "./constant";
-<<<<<<< HEAD
 import { Box } from "@mui/material";
 import { AppContext } from "../../../../contextApi/appProvider";
-=======
-import { Box, TextField, InputAdornment, FormControl, InputLabel, Select } from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
->>>>>>> 580a6ea2d14fcc34505f0c63f991b73a5a9c9a29
 
 const CustomerTable = () => {
   const { setDownloadData } = useContext(AppContext);
