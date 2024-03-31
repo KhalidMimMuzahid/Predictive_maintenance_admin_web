@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -9,29 +10,30 @@ import {
 import React, { useEffect, useState } from "react";
 import TemperatureChart from "./TemperatureChart";
 import VibrationChart from "./VibrationChart";
-
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 const SensorDataDetails = ({ selectedSensorID }) => {
   const [sensorDataAll, setSensorDataAll] = useState([]);
   const [selectedPeriod, setSelectPeriod] = useState(1);
   const [tempArray, setTempArray] = useState([]);
   const [vibrationArray, setVibrationArray] = useState([]);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   const [shouldRefreshPeriodData, setShouldRefreshPeriodData] = useState(true);
   useEffect(() => {
     fetch(
-      `${process.env.REACT_APP_BASE_URL}/customer/iot/get-sensor-data-paginate/${selectedSensorID}?page=1&limit=10`
+      `${process.env.REACT_APP_BASE_URL}/customer/iot/get-sensor-data-paginate/${selectedSensorID}?page=${page}&limit=${limit}`
     )
       .then((res) => res.json())
       .then((data) => {
         if (data) {
-
-          console.log({ data });
           setSensorDataAll(data);
           setShouldRefreshPeriodData((prev) => !prev);
           setSelectPeriod(1);
         }
       });
-  }, [selectedSensorID]);
+  }, [selectedSensorID, page, limit]);
 
   const handleChange = (event) => {
     setSelectPeriod(event?.target?.value);
@@ -49,6 +51,41 @@ const SensorDataDetails = ({ selectedSensorID }) => {
 
   return (
     <Box sx={{ padding: "16px 16px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Button
+          disabled={!Boolean(sensorDataAll?.nextPage)}
+          onClick={() => setPage(sensorDataAll?.nextPage)}
+        >
+          <KeyboardArrowLeftIcon />
+          Prev
+        </Button>
+        <Select
+          placeholder="Limit"
+          value="default"
+          onChange={(e) => setLimit(e?.target?.value)}
+        >
+          <MenuItem value="default" disabled>
+            limit {`(${limit})`}
+          </MenuItem>
+          <MenuItem value={10}>10</MenuItem>
+          <MenuItem value={15}>15</MenuItem>
+          <MenuItem value={25}>25</MenuItem>
+        </Select>
+        <Button
+          disabled={!Boolean(sensorDataAll?.prevPage)}
+          onClick={() => setPage(sensorDataAll?.prevPage)}
+        >
+          Next
+          <KeyboardArrowRightIcon />
+        </Button>
+      </Box>
+
       <Box>
         <Box>
           <Typography
