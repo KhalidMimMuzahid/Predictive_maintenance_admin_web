@@ -1,10 +1,18 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button,TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import editIcon from "../../../../../../../../../Assets/Home/customer/customer_edit.png";
 
 const Address = () => {
   const [user, setUser] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [editedValues, setEditedValues] = useState({
+    postalCode: "",
+    prefecture: "",
+    address1: "",
+    address2: "",
+    occupation: ""
+  });
   const { uid } = useParams();
   useEffect(() => {
     fetch(
@@ -15,6 +23,32 @@ const Address = () => {
         setUser(data?.user);
       });
   }, [uid]);
+
+
+  const handleEdit = () => {
+    setEditedValues({
+      postalCode: user?.postalCode,
+      prefecture: user?.prefecture,
+      address1: user?.streetAddress,
+      address2: user?.cityAddress,
+      occupation: user?.occupation
+    });
+    setEditMode(true);
+  };
+
+  const handleChange = (field, value) => {
+    setEditedValues(prevState => ({
+      ...prevState,
+      [field]: value
+    }));
+  };
+
+  const handleSubmit = () => {
+  
+    console.log("Edited fields:", editedValues);
+    setEditMode(false); // exit edit mode
+  };
+  
 
   return (
     <Box sx={{ paddingY: "12px" }}>
@@ -31,11 +65,16 @@ const Address = () => {
         >
           Address
         </Typography>
-        <Button>
-          <img src={editIcon} alt="" />
-        </Button>
+
+        {!editMode && (
+          <Button onClick={handleEdit}>
+            <img src={editIcon} alt="" />
+          </Button>
+        )}
+
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
+      
       <Box
         sx={{
           display: "flex",
@@ -55,12 +94,22 @@ const Address = () => {
         >
           Postal Code:
         </Typography>
-        <Typography
-          variant="p"
-          sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
-        >
-          {user?.postalCode}
-        </Typography>
+        
+        {!editMode ? (
+          <Typography
+            variant="p"
+            sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
+          >
+            {user?.postalCode}
+          </Typography>
+        ) : (
+          <TextField
+            defaultValue={user?.postalCode}
+            onChange={(e) => handleChange("postalCode", e.target.value)}
+            variant="outlined"
+            fullWidth
+          />
+        )}
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
       <Box
@@ -82,7 +131,9 @@ const Address = () => {
         >
           Prefecture
         </Typography>
-        <Typography
+
+        {!editMode ? (
+           <Typography
           variant="p"
           sx={{
             fontWeight: "600",
@@ -93,6 +144,15 @@ const Address = () => {
         >
           {user?.prefecture}
         </Typography>
+        ) : (
+          <TextField
+            defaultValue= {user?.prefecture}
+            onChange={(e) => handleChange("prefecture", e.target.value)}
+            variant="outlined"
+            fullWidth
+          />
+        )}
+        
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
       <Box
@@ -114,12 +174,25 @@ const Address = () => {
         >
           Address1:
         </Typography>
-        <Typography
-          variant="p"
-          sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
-        >
-          {user?.streetAddress + ", " + user?.cityAddress}
-        </Typography>
+
+        
+        {!editMode ? (
+            <Typography
+            variant="p"
+            sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
+          >
+            {user?.streetAddress + ", " + user?.cityAddress}
+          </Typography>
+        ) : (
+          <TextField
+            defaultValue= {user?.streetAddress + ", " + user?.cityAddress}
+            variant="outlined"
+            onChange={(e) => handleChange("address1", e.target.value)}
+            fullWidth
+          />
+        )}
+
+       
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
       <Box
@@ -141,19 +214,30 @@ const Address = () => {
         >
           Address2:
         </Typography>
-        <Typography variant="p">
-          <Typography
-            variant="p"
-            sx={{
-              fontWeight: "600",
-              color: "#6B7280",
-              fontSize: "14px",
-              textTransform: "uppercase",
-            }}
-          >
-            {user?.cityAddress}
-          </Typography>
-        </Typography>
+        {!editMode ? (
+             <Typography variant="p">
+             <Typography
+               variant="p"
+               sx={{
+                 fontWeight: "600",
+                 color: "#6B7280",
+                 fontSize: "14px",
+                 textTransform: "uppercase",
+               }}
+             >
+               {user?.cityAddress}
+             </Typography>
+           </Typography>
+        ) : (
+          <TextField
+            defaultValue=  {user?.cityAddress}
+            onChange={(e) => handleChange("cityAddress", e.target.value)}
+            variant="outlined"
+            fullWidth
+          />
+        )}
+
+       
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
       <Box
@@ -175,20 +259,38 @@ const Address = () => {
         >
           Occupation:
         </Typography>
-        <Typography variant="p">
-          <Typography
-            variant="p"
-            sx={{
-              fontWeight: "600",
-              color: "#6B7280",
-              fontSize: "14px",
-            }}
-          >
-            {user?.occupation}
-          </Typography>
-        </Typography>
+        {!editMode ? (
+             <Typography variant="p">
+             <Typography
+               variant="p"
+               sx={{
+                 fontWeight: "600",
+                 color: "#6B7280",
+                 fontSize: "14px",
+               }}
+             >
+               {user?.occupation}
+             </Typography>
+           </Typography>
+        ) : (
+          <TextField
+            defaultValue=  {user?.occupation}
+            onChange={(e) => handleChange("occupation", e.target.value)}
+            variant="outlined"
+            fullWidth
+          />
+        )}
+       
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
+
+      {editMode && (
+        <Box sx={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
+          <Button onClick={handleSubmit} variant="contained" color="primary">
+            Submit
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 };

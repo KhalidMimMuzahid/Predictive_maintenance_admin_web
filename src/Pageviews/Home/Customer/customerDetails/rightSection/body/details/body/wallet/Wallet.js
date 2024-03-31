@@ -1,10 +1,12 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import editIcon from "../../../../../../../../../Assets/Home/customer/customer_edit.png";
 
 const Wallet = () => {
   const [wallet, setWallet] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [editedValue, setEditedValue] = useState("");
   const { uid } = useParams();
 
   useEffect(() => {
@@ -22,6 +24,17 @@ const Wallet = () => {
       });
   }, [uid]);
 
+  const handleEdit = () => {
+    setEditedValue(wallet?.uid); // set input value to current value
+    setEditMode(true);
+  };
+
+   // Perform submit action and update value
+  const handleSubmit = () => {
+    console.log("Submitted value:", editedValue);
+    setEditMode(false); 
+  };
+
   return (
     <Box sx={{ paddingY: "12px" }}>
       <Box
@@ -37,9 +50,11 @@ const Wallet = () => {
         >
           Wallet
         </Typography>
-        <Button>
-          <img src={editIcon} alt="" />
-        </Button>
+        {!editMode && (
+          <Button onClick={handleEdit}>
+            <img src={editIcon} alt="" />
+          </Button>
+        )}
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
       <Box
@@ -61,13 +76,32 @@ const Wallet = () => {
         >
           Account No.
         </Typography>
-        <Typography
-          variant="p"
-          sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
-        >
-          {wallet?.uid}
-        </Typography>
+        {editMode ? (
+          //  input field that show when edit button is clicked 
+          <TextField
+            value={editedValue}
+            onChange={(e) => setEditedValue(e.target.value)}
+            variant="outlined"
+            fullWidth
+          />
+        ) : (
+          <Typography
+            variant="p"
+            sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
+          >
+            {wallet?.uid}
+          </Typography>
+        )}
       </Box>
+
+      {/* submit button  */}
+      {editMode && (
+        <Box sx={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
+          <Button onClick={handleSubmit} variant="contained" color="primary">
+            Submit
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 };

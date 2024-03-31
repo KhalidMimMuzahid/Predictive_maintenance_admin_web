@@ -109,7 +109,7 @@ const useStyle = makeStyles((theme) => ({
     boxSizing: "borderBox",
     backgroundColor: "#e4e4e4",
     // [theme.breakpoints.down("sm")]: {
-    //     marginLeft: "0px",
+    //     marginLeft: "0px"            ,
     // },
   },
 
@@ -118,7 +118,7 @@ const useStyle = makeStyles((theme) => ({
     boxSizing: "borderBox",
     backgroundColor: "#e4e4e4",
     // [theme.breakpoints.down("sm")]: {
-    //     marginLeft: "0px",
+    //     marginLeft: "0px"          ,
     // },
   },
 }));
@@ -156,7 +156,7 @@ function App() {
                   <Route path="/" element={<DashboardScreen />} />
                   <Route path="/dashboard" element={<DashboardScreen />} />
 
-                  {/* service provider start */}
+                  {/* service provider startssss */}
 
                   <Route
                     path="/service-provider"
