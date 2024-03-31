@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -9,6 +10,8 @@ import {
 import React, { useEffect, useState } from "react";
 import TemperatureChart from "./TemperatureChart";
 import VibrationChart from "./VibrationChart";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 const SensorDataDetails = ({ selectedSensorID }) => {
   const [sensorDataAll, setSensorDataAll] = useState([]);
@@ -24,7 +27,6 @@ const SensorDataDetails = ({ selectedSensorID }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
-
           console.log({ data });
           setSensorDataAll(data);
           setShouldRefreshPeriodData((prev) => !prev);
@@ -49,6 +51,27 @@ const SensorDataDetails = ({ selectedSensorID }) => {
 
   return (
     <Box sx={{ padding: "16px 16px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Button>
+          <KeyboardArrowLeftIcon />
+          Prev
+        </Button>
+        <Select placeholder="Limit">
+          <MenuItem>10</MenuItem>
+          <MenuItem>15</MenuItem>
+          <MenuItem>25</MenuItem>
+        </Select>
+        <Button>
+          Next
+          <KeyboardArrowRightIcon />
+        </Button>
+      </Box>
       <Box>
         <Box>
           <Typography

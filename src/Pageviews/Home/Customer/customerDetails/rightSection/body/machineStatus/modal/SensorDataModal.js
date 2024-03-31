@@ -114,6 +114,7 @@ const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
           </FormControl>
         </Box>
 
+
         {selectedSensorID && (
           <SensorDataDetails selectedSensorID={selectedSensorID} />
         )}

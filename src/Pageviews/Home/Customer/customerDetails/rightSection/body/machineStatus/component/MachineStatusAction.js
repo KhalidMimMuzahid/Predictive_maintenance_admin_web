@@ -6,7 +6,6 @@ import editIcon from "../../../../../../../../Assets/Home/customer/edit.png";
 import sensorIcon from "../../../../../../../../Assets/Home/customer/Machine_Status/sensor.png";
 import suspendedIcon from "../../../../../../../../Assets/Home/customer/Machine_Status/suspended.png";
 import deleteIcon from "../../../../../../../../Assets/Home/customer/delete.png";
-import { Link } from "react-router-dom";
 import EditModal from "../modal/EditModal";
 import DeleteModal from "../modal/DeleteModal";
 import SensorDataModal from "../modal/SensorDataModal";
