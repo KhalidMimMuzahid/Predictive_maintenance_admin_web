@@ -68,7 +68,10 @@ const MachineStatus = () => {
                 _id: rowsTemp[index]?._id,
               };
             });
-            setDownloadData(selectedRowData);
+            setDownloadData({
+              selectedRowData,
+              fileName: "Machine Data Details",
+            });
           }}
         />
       )}
