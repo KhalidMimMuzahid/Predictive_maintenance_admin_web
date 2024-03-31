@@ -29,7 +29,9 @@ function downloadCSV(csvString, filename) {
 export const downloadTableData = async (downloadData, setDownloadData) => {
   console.log({ downloadData });
 
-  const csv = json2csv(downloadData);
-  downloadCSV(csv, "example.csv");
+  const fileName = downloadData?.fileName || "Table Data";
+
+  const csv = json2csv(downloadData?.selectedRowData);
+  downloadCSV(csv, fileName);
   setDownloadData([]);
 };

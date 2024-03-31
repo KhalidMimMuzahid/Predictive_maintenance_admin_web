@@ -85,7 +85,6 @@ const SensorDataDetails = ({ selectedSensorID }) => {
           <KeyboardArrowRightIcon />
         </Button>
       </Box>
-
       <Box>
         <Box>
           <Typography

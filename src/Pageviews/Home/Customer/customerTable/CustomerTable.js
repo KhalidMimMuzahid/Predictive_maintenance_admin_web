@@ -71,12 +71,31 @@ const CustomerTable = () => {
           checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
           onRowSelectionModelChange={(data, index) => {
             const selectedRowData = data?.map((index, i) => {
+              console.log("From CSV", rows[index]);
               return {
                 "SL No": i + 1,
-                ...rows[index],
+                _id: rows[index]?.details?._id,
+                name:
+                  rows[index]?.details?.firstNameAlphabet +
+                  " " +
+                  rows[index]?.details?.lastNameAlphabet,
+                email: rows[index]?.details?.email,
+                dob: rows[index]?.details?.dob,
+                gender: rows[index]?.details?.gender,
+                phone: rows[index]?.details?.phone,
+                occupation: rows[index]?.details?.occupation,
+                address:
+                  rows[index]?.details?.streetAddress +
+                  " " +
+                  rows[index]?.details?.cityAddress,
+                postalCode: rows[index]?.details?.postalCode,
+                uid: rows[index]?.details?.uid,
+                stripeCustomerId: rows[index]?.details?.stripeCustomerId,
+                uniqueNumberId: rows[index]?.details?.uniqueNumberId,
+                updatedAt: rows[index]?.details?.updatedAt,
               };
             });
-            setDownloadData(selectedRowData);
+            setDownloadData({ selectedRowData, fileName: "Customer Details" });
           }}
         />
       </Box>

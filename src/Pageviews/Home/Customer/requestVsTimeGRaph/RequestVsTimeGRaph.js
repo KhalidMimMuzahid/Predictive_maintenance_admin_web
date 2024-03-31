@@ -14,11 +14,7 @@ const RequestVsTimeGRaph = () => {
       .then((data) => {
         // console.log({ graphObjectData: data?.data });
         setGraphObjectData(data?.data);
-        console.log(
-          Object.entries(data?.data).map((each) => {
-            return { x: each[0], y: each[1] };
-          })
-        );
+
         setIsLoading(false);
       });
   }, []);
