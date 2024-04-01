@@ -4,6 +4,7 @@ import { makeStyles, styled } from "@mui/styles";
 import { Component } from "react";
 import { useState } from "react";
 import ServiceProviderTable from "./serviceProviderTable/ServiceProviderTable";
+import { Outlet } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   holder: {
@@ -146,8 +147,8 @@ const ServiceProviderScreen = () => {
       <div className={classes.spacerSmall}></div>
       <div className={classes.spacerSmall}></div>
 
-      <div className={classes.tableHolder}>
-        <ServiceProviderTable />
+      <div>
+        <Outlet />
       </div>
     </div>
   );
@@ -188,11 +189,3 @@ const StyledMenu = styled((props) => (
     },
   },
 }));
-
-
-
-const VendorTab = (props) => {
-  const classes = useStyle();
-
-  return <div>{props.email}</div>;
-};

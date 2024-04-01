@@ -1,6 +1,6 @@
 import React from "react";
 
-const RightSection = () => {
+const RightSection = ({ serviceProviderDetails }) => {
   return <div>RightSection</div>;
 };
 
