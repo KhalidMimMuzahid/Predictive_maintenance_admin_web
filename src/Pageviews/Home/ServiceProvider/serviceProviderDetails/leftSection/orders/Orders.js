@@ -38,7 +38,7 @@ const Orders = () => {
         </Box>
         <img
           src={orderRecieved}
-          style={{ width: "36px", height: "36px" }}
+          style={{ width: "32px", height: "32px" }}
           alt=""
         />
       </Box>
@@ -66,7 +66,7 @@ const Orders = () => {
         </Box>
         <img
           src={orderComplete}
-          style={{ width: "36px", height: "36px" }}
+          style={{ width: "32px", height: "32px" }}
           alt=""
         />
       </Box>
@@ -94,7 +94,7 @@ const Orders = () => {
         </Box>
         <img
           src={cancellation}
-          style={{ width: "36px", height: "36px" }}
+          style={{ width: "32px", height: "32px" }}
           alt=""
         />
       </Box>
@@ -120,7 +120,7 @@ const Orders = () => {
             7,890
           </Typography>
         </Box>
-        <img src={revenue} style={{ width: "36px", height: "36px" }} alt="" />
+        <img src={revenue} style={{ width: "32px", height: "32px" }} alt="" />
       </Box>
     </Box>
   );

@@ -32,7 +32,7 @@ const Header = () => {
         Schedule
       </NavLink>
       <NavLink style={navLinkStyle} to={`/service-provider/${uid}/setting`}>
-        Setting
+        Settings
       </NavLink>
     </Box>
   );

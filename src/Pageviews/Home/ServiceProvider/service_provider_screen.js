@@ -1,10 +1,12 @@
 import { Add, Download, MoreVert, Upload } from "@mui/icons-material";
 import { Button, IconButton, Menu, MenuItem } from "@mui/material";
 import { makeStyles, styled } from "@mui/styles";
-import { Component } from "react";
+import { Component, useContext } from "react";
 import { useState } from "react";
 import ServiceProviderTable from "./serviceProviderTable/ServiceProviderTable";
 import { Outlet } from "react-router-dom";
+import { AppContext } from "../../../contextApi/appProvider";
+import { downloadTableData } from "../../../Utils/downloadTableData";
 
 const useStyle = makeStyles((theme) => ({
   holder: {
@@ -47,6 +49,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const ServiceProviderScreen = () => {
+  const { downloadData, setDownloadData } = useContext(AppContext);
   const classes = useStyle();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -87,6 +90,7 @@ const ServiceProviderScreen = () => {
           </Button>
           <div className={classes.spacerSmall} />
           <Button
+            onClick={() => downloadTableData(downloadData, setDownloadData)}
             style={{ backgroundColor: "white", color: "black" }}
             startIcon={<Download />}
           >
