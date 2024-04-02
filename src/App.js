@@ -90,6 +90,11 @@ import Invoice from "./Pageviews/Home/Customer/customerDetails/rightSection/body
 import Request from "./Pageviews/Home/Customer/customerDetails/rightSection/body/request/Request";
 import ServiceProviderPageDefault from "./Pageviews/Home/ServiceProvider/pages/ServiceProviderPageDefault";
 import ServiceProviderDetails from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/ServiceProviderDetails";
+import ServiceProviderRequest from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/request/ServiceProviderRequest";
+import Revenue from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/revenue/Revenue";
+import Team from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/team/Team";
+import Schedule from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/schedule/Schedule";
+import Settings from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/settings/Settings";
 
 const theme = createTheme();
 
@@ -168,24 +173,28 @@ function App() {
                     >
                       {/* start  */}
                       <Route
-                        path="/service-provider/:uid/details"
-                        element={<Details />}
+                        path="/service-provider/:uid"
+                        // element={<ServiceProviderRequest />}
                       >
                         <Route
-                          path="/service-provider/:uid/details"
-                          element={<PersonalInfo />}
+                          path="/service-provider/:uid/request"
+                          element={<ServiceProviderRequest />}
                         />
                         <Route
-                          path="/service-provider/:uid/details/personal-info"
-                          element={<PersonalInfo />}
+                          path="/service-provider/:uid/revenue"
+                          element={<Revenue />}
                         />
                         <Route
-                          path="/service-provider/:uid/details/address"
-                          element={<Address />}
+                          path="/service-provider/:uid/team"
+                          element={<Team />}
                         />
                         <Route
-                          path="/service-provider/:uid/details/wallet"
-                          element={<Wallet />}
+                          path="/service-provider/:uid/schedule"
+                          element={<Schedule />}
+                        />
+                        <Route
+                          path="/service-provider/:uid/setting"
+                          element={<Settings />}
                         />
                       </Route>
                       {/* end  */}

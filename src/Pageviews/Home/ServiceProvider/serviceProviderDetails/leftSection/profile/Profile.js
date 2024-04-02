@@ -25,20 +25,20 @@ const Profile = ({ serviceProviderDetails }) => {
           justifyContent: "center",
           alignItems: "center",
         }}
-        src={serviceProviderDetails?.photoAddress}
+        src={serviceProviderDetails?.shopInfo?.companyProfilePhotoAddress[0]}
         alt=""
       />
       <Typography
         variant="h4"
         sx={{ fontSize: "18px", color: "#838383", textTransform: "uppercase" }}
       >
-        {serviceProviderDetails?.firstNameAlphabet}
+        {serviceProviderDetails?.companyBasicInfo?.companyName}
       </Typography>
       <Typography sx={{ fontSize: "12px", color: "#65748B" }}>
-        {serviceProviderDetails?.email}
+        {serviceProviderDetails?.companyBasicInfo?.emergencyContact?.email}
       </Typography>
       <Typography sx={{ fontSize: "14px", color: "#65748B" }}>
-        {serviceProviderDetails?.phone}
+        {serviceProviderDetails?.companyBasicInfo?.telephone}
       </Typography>
     </Box>
   );

@@ -57,10 +57,7 @@ const ServiceProviderDetails = () => {
           borderRadius: "5px",
         }}
       >
-        <RightSection
-          serviceProviderDetails={serviceProviderDetails}
-          // wallet={wallet}
-        />
+        <RightSection serviceProviderDetails={serviceProviderDetails} />
       </Box>
     </Box>
   );
