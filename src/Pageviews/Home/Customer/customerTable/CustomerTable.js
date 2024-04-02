@@ -23,7 +23,7 @@ const CustomerTable = () => {
     ]);
   };
   useEffect(() => {
-    fetch("https://api.showaapp.com/admin/customer/get-all-customer", {
+    fetch(`${process.env.REACT_APP_BASE_URL}/admin/customer/get-all-customer`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
