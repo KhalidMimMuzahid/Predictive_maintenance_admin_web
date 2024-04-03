@@ -64,7 +64,7 @@ const ServiceProviderScreen = () => {
   return (
     <div className={classes.holder}>
       <div className={classes.topHolder}>
-        <div>
+        {/* <div>
           <div className={classes.title}>Vendor</div>
           <div className={classes.spacerSmall}></div>
           <div style={{ display: "flex" }}>
@@ -79,9 +79,9 @@ const ServiceProviderScreen = () => {
               All Vendor
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className={classes.buttonHolder}>
+        {/* <div className={classes.buttonHolder}>
           <Button
             style={{ backgroundColor: "white", color: "black" }}
             startIcon={<Upload />}
@@ -100,9 +100,9 @@ const ServiceProviderScreen = () => {
           <Button style={{ backgroundColor: "#24459c", color: "white" }}>
             Add Customer
           </Button>
-        </div>
+        </div> */}
 
-        <div className={classes.smallMenuHolder}>
+        {/* <div className={classes.smallMenuHolder}>
           <IconButton onClick={handleClick}>
             <MoreVert />
           </IconButton>
@@ -146,7 +146,7 @@ const ServiceProviderScreen = () => {
               Add Vendor
             </MenuItem>
           </StyledMenu>
-        </div>
+        </div> */}
       </div>
       <div className={classes.spacerSmall}></div>
       <div className={classes.spacerSmall}></div>

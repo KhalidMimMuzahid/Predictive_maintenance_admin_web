@@ -134,6 +134,6 @@ export const columns = [
     field: "action",
     headerName: "ACTION",
     width: 100,
-    renderCell: (props) => <ServiceProviderRequestAction />,
+    renderCell: (props) => <ServiceProviderRequestAction props={props} />,
   },
 ];

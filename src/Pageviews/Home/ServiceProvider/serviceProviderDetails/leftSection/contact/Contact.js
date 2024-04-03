@@ -105,12 +105,12 @@ const Contact = ({ serviceProviderDetails }) => {
             <Typography
               sx={{ fontSize: "12px", fontWeight: "400", color: "#728096" }}
             >
-              Phone
+              Current Address
             </Typography>
             <Typography
               sx={{ fontSize: "13px", fontWeight: "700", color: "#424E79" }}
             >
-              01832302170
+              {serviceProviderDetails?.companyBasicInfo?.address?.cityAddress}
             </Typography>
           </Box>
         </Box>

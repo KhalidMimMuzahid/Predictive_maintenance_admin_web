@@ -6,6 +6,8 @@ import viewIcon from "../../../../../../../../Assets/Home/customer/view.png";
 import editIcon from "../../../../../../../../Assets/Home/customer/edit.png";
 import closeIcon from "../../../../../../../../Assets/Home/customer/Machine_Status/suspended.png";
 import deleteIcon from "../../../../../../../../Assets/Home/customer/delete.png";
+import DeleteModal from "../modal/DeleteModal";
+import ViewCustomerDetailsMainModal from "../reservationDetails/ViewReservationDetailsMainModal";
 // import { Link } from "react-router-dom";
 // import EditModal from "../modal/EditModal";
 // import DeleteModal from "../modal/DeleteModal";
@@ -13,7 +15,10 @@ import deleteIcon from "../../../../../../../../Assets/Home/customer/delete.png"
 
 const ServiceProviderRequestAction = ({ props }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [viewOpen, setViewOpen] = useState(false);
+  const [
+    viewReservationDetailsMainModalOpen,
+    setViewReservationDetailsMainModalOpen,
+  ] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [closeOpen, setCloseOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -29,27 +34,31 @@ const ServiceProviderRequestAction = ({ props }) => {
 
   return (
     <>
-      {/* {viewOpen && (
-        <ViewModal
-          viewOpen={viewOpen}
-          setViewOpen={setViewOpen}
+      {viewReservationDetailsMainModalOpen && (
+        <ViewCustomerDetailsMainModal
+          viewReservationDetailsMainModalOpen={
+            viewReservationDetailsMainModalOpen
+          }
+          setViewReservationDetailsMainModalOpen={
+            setViewReservationDetailsMainModalOpen
+          }
           props={props}
         />
       )}
-      {editOpen && (
+      {/* {editOpen && (
         <EditModal
           editOpen={editOpen}
           setEditOpen={setEditOpen}
           props={props}
         />
-      )}
+      )} */}
       {deleteOpen && (
         <DeleteModal
           deleteOpen={deleteOpen}
           setDeleteOpen={setDeleteOpen}
           props={props}
         />
-      )} */}
+      )}
       <Box>
         <IconButton onClick={handleClick}>
           <MoreVert />
@@ -59,7 +68,9 @@ const ServiceProviderRequestAction = ({ props }) => {
           <Box sx={{ background: "#F4F2FF" }}>
             <MenuItem
               onClick={() => {
-                setViewOpen(!viewOpen);
+                setViewReservationDetailsMainModalOpen(
+                  !viewReservationDetailsMainModalOpen
+                );
               }}
               sx={{ display: "flex", gap: "0 6px" }}
             >

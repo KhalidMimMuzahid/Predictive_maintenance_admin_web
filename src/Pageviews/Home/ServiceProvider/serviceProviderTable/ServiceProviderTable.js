@@ -19,12 +19,15 @@ import {
   TextField,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { columns } from "./component/constant";
 import { StyledMenu, useStyle } from "../../Customer/styleComponents";
+import { AppContext } from "../../../../contextApi/appProvider";
+import { downloadTableData } from "../../../../Utils/downloadTableData";
 
 const ServiceProviderTable = () => {
+  const { downloadData, setDownloadData } = useContext(AppContext);
   const classes = useStyle();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -86,6 +89,7 @@ const ServiceProviderTable = () => {
           </Button>
           <div className={classes.spacerSmall} />
           <Button
+            onClick={() => downloadTableData(downloadData, setDownloadData)}
             style={{ backgroundColor: "white", color: "black" }}
             startIcon={<Download />}
           >
