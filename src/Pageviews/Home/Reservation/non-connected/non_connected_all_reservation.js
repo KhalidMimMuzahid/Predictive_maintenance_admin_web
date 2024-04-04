@@ -1186,17 +1186,23 @@ const AssignVendorComponent = (props) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        var tempRows = new Array();
-        data.map((vendor, index) =>
-          // addNewItem(request, index)
-          tempRows.push({
-            id: index + 1,
-            vendor_name: vendor,
-            location: vendor,
-            action: { vendor: vendor, reservation: props.value },
-          })
-        );
-        setVendorRows(tempRows);
+
+        // this line solve runtime error 
+        if (Array.isArray(data)) {
+          var tempRows = new Array();
+          data.map((vendor, index) =>
+            // addNewItem(request, index)
+            tempRows.push({
+              id: index + 1,
+              vendor_name: vendor,
+              location: vendor,
+              action: { vendor: vendor, reservation: props.value },
+            })
+          );
+          setVendorRows(tempRows);
+
+        }
+       
       });
   }
 
