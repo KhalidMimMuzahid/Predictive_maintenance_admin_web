@@ -1,5 +1,6 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
+import { Box, Button, Typography } from "@mui/material";
+import editIcon from "../../../../../../../../../../../Assets/Home/service_provider/editIcon.png";
 
 const CustomerDetails = () => {
   return (
@@ -17,6 +18,9 @@ const CustomerDetails = () => {
         >
           Customer Details
         </Typography>
+        <Button>
+          <img src={editIcon} alt="" />
+        </Button>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
 

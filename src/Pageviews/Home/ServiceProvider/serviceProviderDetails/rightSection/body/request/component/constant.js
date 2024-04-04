@@ -7,7 +7,7 @@ export const columns = [
   {
     field: "customerDetails",
     headerName: "CUSTOMER NAME",
-    width: 200,
+    width: 180,
     renderCell: (params) => (
       <Box
         sx={{

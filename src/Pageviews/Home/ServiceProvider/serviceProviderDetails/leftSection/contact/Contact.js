@@ -63,10 +63,10 @@ const Contact = ({ serviceProviderDetails }) => {
         >
           <EmailOutlinedIcon
             sx={{
-              background: "#A1A9E1",
+              background: "#F5D981",
               padding: "8px",
               borderRadius: "100%",
-              color: "#4454C3",
+              color: "#ECB403",
               mr: "6px",
             }}
           />

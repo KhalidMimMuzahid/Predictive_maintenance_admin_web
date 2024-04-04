@@ -1,6 +1,7 @@
 import { Box, Button, FormControl, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useContext, useEffect, useState } from "react";
+import editIcon from "../../../../../../../../../../../Assets/Home/service_provider/editIcon.png";
 
 const Machine = () => {
   return (
@@ -18,6 +19,9 @@ const Machine = () => {
         >
           Machine Details
         </Typography>
+        <Button>
+          <img src={editIcon} alt="" />
+        </Button>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
 
