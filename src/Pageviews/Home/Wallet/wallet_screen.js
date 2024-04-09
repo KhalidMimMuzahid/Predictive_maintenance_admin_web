@@ -1,5 +1,5 @@
 import { Add, Download, MoreVert, Upload } from "@mui/icons-material";
-import { Button, IconButton, Menu, MenuItem, Typography } from "@mui/material";
+import { Box, Button, IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import { makeStyles, styled } from "@mui/styles";
 import { Component, useEffect } from "react";
 import { useState } from "react";
@@ -8,13 +8,15 @@ import { rowSelectionStateInitializer } from "@mui/x-data-grid/internals";
 import { useDispatch } from "react-redux";
 import { changeCustomerId } from "../../../Redux/actions";
 import { NavLink } from "react-router-dom";
+import RequestVsTimeGraph from "./RequestVsTimeGraph/RequestVsTimeGraph";
+import Cards from "./RequestVsTimeGraph/component/Cards";
 
 const useStyle = makeStyles((theme) => ({
     holder: {
         padding: theme.spacing(2),
     },
     title: {
-        color: "black", 
+        color: "black",
         fontWeight: "700",
         fontSize: 24
     },
@@ -48,19 +50,19 @@ const useStyle = makeStyles((theme) => ({
         },
     },
     customerName: {
-        color: "#25213B", 
+        color: "#25213B",
         fontSize: "14",
     },
     customerEmail: {
-        color: "#6E6893", 
+        color: "#6E6893",
         fontSize: "14",
     },
     yenText: {
-        color: "#6E6893", 
+        color: "#6E6893",
         fontSize: "12",
     },
     balance: {
-        color: "#25213B", 
+        color: "#25213B",
         fontSize: "14",
     }
 }));
@@ -69,32 +71,53 @@ const useStyle = makeStyles((theme) => ({
 const WalletScreen = () => {
 
     const classes = useStyle();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2000); // Simulating a delay of 2 seconds
+    }, []);
+    if (isLoading) {
+        return <h1>Loading...</h1>;
+    }
 
     return (
         <div className={classes.holder}>
-                
 
-        <div className={classes.topHolder}>
-            <div>
-                <div className={classes.title}>Wallet</div>
-                <div className={classes.spacerSmall}></div>
-                <div style={{display: "flex"}}> 
-                    <div style={{color: "black"}} className={classes.subtitle}>Dashboard / </div>
-                    <div style={{color: "#24459c"}} className={classes.subtitle}>Wallet</div>
+
+            <div className={classes.topHolder}>
+                <div>
+                    <div className={classes.title}>Wallet</div>
+                    <div className={classes.spacerSmall}></div>
+                    <div style={{ display: "flex" }}>
+                        <div style={{ color: "black" }} className={classes.subtitle}>Dashboard / </div>
+                        <div style={{ color: "#24459c" }} className={classes.subtitle}>Wallet</div>
+                    </div>
                 </div>
+
+            </div>
+
+
+            <div className={classes.spacerSmall}></div>
+            <div className={classes.spacerSmall}></div>
+
+            <Box>
+                <Cards />
+            </Box>
+
+            <Box sx={{ marginBlock: '15px' }}>
+                <RequestVsTimeGraph />
+            </Box>
+
+            <div className={classes.tableHolder}>
+
+                <CustomerTable />
+
             </div>
 
         </div>
-        <div className={classes.spacerSmall}></div>
-        <div className={classes.spacerSmall}></div>
-        
-        <div className={classes.tableHolder}>
-    
-            <CustomerTable />
-
-        </div>
-
-    </div>
 
     );
 }
@@ -136,13 +159,13 @@ const columns = [
 class CustomerTable extends Component {
 
     state = {
-        rows : [],
+        rows: [],
     };
 
     componentDidMount = () => {
         this.getCustomer();
     }
-    
+
     getCustomer() {
         fetch('https://api.showaapp.com/admin/customer/get-all-customer', {
             method: 'GET',
@@ -161,17 +184,17 @@ class CustomerTable extends Component {
 
     addNewItem = (customer, index) => {
         let { rows } = this.state;
-        rows.push({ id: index, name: customer, user_id: customer.uid, phone: customer.phone, balance: customer.uid, details: customer});
-        this.setState({rows: rows});
+        rows.push({ id: index, name: customer, user_id: customer.uid, phone: customer.phone, balance: customer.uid, details: customer });
+        this.setState({ rows: rows });
     };
 
     displayCustomers = () => {
 
         if (this.state.rows.length === 0)
-            return <div style={{ width: "100%", display: "flex", justifyContent: "center", padding:"20px" }}>
+            return <div style={{ width: "100%", display: "flex", justifyContent: "center", padding: "20px" }}>
                 <h3>No customer in the server</h3>
             </div>;
-        
+
         return (
             <DataGrid
                 rows={this.state.rows}
@@ -186,7 +209,7 @@ class CustomerTable extends Component {
     };
 
 
-    render () {
+    render() {
         return <div style={{ overflow: "auto" }}>
             {this.displayCustomers()}
         </div>;
@@ -208,8 +231,8 @@ const BalanceComponent = (props) => {
     })
 
 
-    function getCustomerWalletInfo () {
-        if(uid!="") {
+    function getCustomerWalletInfo() {
+        if (uid != "") {
             let url = "https://api.showaapp.com/admin/wallet/get-customer-wallet-info/" + uid;
             fetch(url, {
                 method: 'GET',
@@ -220,11 +243,11 @@ const BalanceComponent = (props) => {
                 .then((res) => res.json())
                 .then((data) => {
                     setCustomerWalletInfo(data);
-            });
+                });
         }
     }
 
-    function displayBalance () {
+    function displayBalance() {
         if (customerWalletInfo == null)
             return <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
                 <h3>Please Wait</h3>
@@ -234,10 +257,10 @@ const BalanceComponent = (props) => {
             <div className={classes.yenText}>Yen</div>
         </div>;
     };
-    
+
 
     return (
-        <div style={{display: "flex"}}>
+        <div style={{ display: "flex" }}>
             {displayBalance()}
         </div>
     );
@@ -252,8 +275,8 @@ const CustomerNameEmailComponent = (props) => {
     const classes = useStyle();
 
     return (
-        <div style={{display: "flex", flexDirection: "column"}}>
-            
+        <div style={{ display: "flex", flexDirection: "column" }}>
+
             <div className={classes.CustomerName}>{props.value.lastNameAlphabet + ', ' + props.value.firstNameAlphabet}</div>
             <div className={classes.CustomerEmail}>{props.value.email}</div>
 
@@ -267,9 +290,9 @@ const DetailsComponent = (props) => {
     const dispatch = useDispatch();
 
     return (
-        <div 
-            style={{display: "flex", flexDirection: "column", cursor: "pointer"}}
-            onClick={()=>{
+        <div
+            style={{ display: "flex", flexDirection: "column", cursor: "pointer" }}
+            onClick={() => {
                 dispatch(changeCustomerId(props.value.uid));
             }}
         >

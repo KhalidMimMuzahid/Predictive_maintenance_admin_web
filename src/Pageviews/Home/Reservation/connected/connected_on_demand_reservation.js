@@ -495,14 +495,14 @@ const StatusComponent = (props) => {
         props.value == "Pending"
           ? classes.pendingContainer
           : props.value == "Ongoing"
-          ? classes.ongoingContainer
-          : props.value == "Accepted"
-          ? classes.acceptedContainer
-          : props.value == "Canceled"
-          ? classes.cenceledContainer
-          : props.value == "Completed"
-          ? classes.completedContainer
-          : classes.pendingContainer
+            ? classes.ongoingContainer
+            : props.value == "Accepted"
+              ? classes.acceptedContainer
+              : props.value == "Canceled"
+                ? classes.cenceledContainer
+                : props.value == "Completed"
+                  ? classes.completedContainer
+                  : classes.pendingContainer
       }
     >
       {props.value}
@@ -519,8 +519,8 @@ const BidStatusComponent = (props) => {
         props.value == "Ongoing"
           ? classes.ongoingBidContainer
           : props.value == "Closed"
-          ? classes.closedBidContainer
-          : classes.spacerSmall
+            ? classes.closedBidContainer
+            : classes.spacerSmall
       }
     >
       {props.value}
@@ -591,10 +591,10 @@ const LocationComponent = (props) => {
         console.log("Success", latLng);
         setMapAdds(
           "https://maps.google.com/maps?q=" +
-            latLng.lat +
-            "," +
-            latLng.lng +
-            "&h1=es;&output=embed"
+          latLng.lat +
+          "," +
+          latLng.lng +
+          "&h1=es;&output=embed"
         );
         setShowLocationModal(true);
       })
@@ -914,12 +914,12 @@ const VendorLocationComponent = (props) => {
           onClick={(e) => {
             setAddress(
               props.value.companyBasicInfo.address.streetAddress +
-                ", " +
-                props.value.companyBasicInfo.address.cityAddress +
-                ", " +
-                props.value.companyBasicInfo.address.prefecture +
-                " - " +
-                props.value.companyBasicInfo.address.postalCode
+              ", " +
+              props.value.companyBasicInfo.address.cityAddress +
+              ", " +
+              props.value.companyBasicInfo.address.prefecture +
+              " - " +
+              props.value.companyBasicInfo.address.postalCode
             );
             getLatLong(address);
           }}
@@ -937,10 +937,10 @@ const VendorLocationComponent = (props) => {
         console.log("Success", latLng);
         setMapLink(
           "https://maps.google.com/maps?q=" +
-            latLng.lat +
-            "," +
-            latLng.lng +
-            "&h1=es;&output=embed"
+          latLng.lat +
+          "," +
+          latLng.lng +
+          "&h1=es;&output=embed"
         );
         setShowLoactionModal(true);
       })
@@ -994,9 +994,9 @@ const VendorActionComponent = (props) => {
   function assignVendor() {
     fetch(
       "https://api.showaapp.com/admin/reservation/assign-vendor/" +
-        props.value.reservation._id +
-        "/" +
-        props.value.vendor.uid,
+      props.value.reservation._id +
+      "/" +
+      props.value.vendor.uid,
       {
         method: "GET",
         headers: {
@@ -1071,24 +1071,28 @@ const AssignVendorComponent = (props) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        var tempRows = new Array();
-        data.map((vendor, index) =>
-          // addNewItem(request, index)
-          tempRows.push({
-            id: index + 1,
-            vendor_name: vendor,
-            location: vendor,
-            action: { vendor: vendor, reservation: props.value },
-          })
-        );
-        setVendorRows(tempRows);
+         // this line solve runtime error 
+        if (Array.isArray(data)) {
+          var tempRows = new Array();
+          data.map((vendor, index) =>
+            // addNewItem(request, index)
+            tempRows.push({
+              id: index + 1,
+              vendor_name: vendor,
+              location: vendor,
+              action: { vendor: vendor, reservation: props.value },
+            })
+          );
+          setVendorRows(tempRows);
+        }
+
       });
   }
 
   function getServiceProviderWithId() {
     fetch(
       "https://api.showaapp.com/admin/service-provider/get-service-provider-with-id/" +
-        props.value.assignedVendorId,
+      props.value.assignedVendorId,
       {
         method: "GET",
         headers: {
@@ -1264,7 +1268,7 @@ const ActionComponent = (props) => {
   function deleteReservation() {
     fetch(
       "https://api.showaapp.com/admin/reservation/delete-reservation/" +
-        props.value._id,
+      props.value._id,
       {
         method: "GET",
         headers: {
@@ -1282,7 +1286,7 @@ const ActionComponent = (props) => {
   function sendForBidding() {
     fetch(
       "https://api.showaapp.com/admin/reservation/send-for-bidding/" +
-        props.value._id,
+      props.value._id,
       {
         method: "GET",
         headers: {
@@ -1301,7 +1305,7 @@ const ActionComponent = (props) => {
   function closeBidding() {
     fetch(
       "https://api.showaapp.com/admin/reservation/close-bidding/" +
-        props.value._id,
+      props.value._id,
       {
         method: "GET",
         headers: {
@@ -1438,9 +1442,9 @@ const VendorGroupActionComponent = (props) => {
   function assignVendor() {
     fetch(
       "https://api.showaapp.com/admin/reservation/assign-vendor-to-group/" +
-        props.value.group.groupId +
-        "/" +
-        props.value.vendor.uid,
+      props.value.group.groupId +
+      "/" +
+      props.value.vendor.uid,
       {
         method: "GET",
         headers: {
@@ -1494,8 +1498,8 @@ const GroupBidStatusComponent = (props) => {
         props == "Ongoing"
           ? classes.ongoingBidContainer
           : props == "Closed"
-          ? classes.closedBidContainer
-          : classes.spacerSmall
+            ? classes.closedBidContainer
+            : classes.spacerSmall
       }
     >
       {props}
@@ -1549,7 +1553,7 @@ const GroupAssignVendorComponent = (props) => {
   function getServiceProviderWithId() {
     fetch(
       "https://api.showaapp.com/admin/service-provider/get-service-provider-with-id/" +
-        props.assignedVendorId,
+      props.assignedVendorId,
       {
         method: "GET",
         headers: {
@@ -1705,7 +1709,7 @@ const GroupActionComponent = (props) => {
   function deleteGroup() {
     fetch(
       "https://api.showaapp.com/admin/reservation/delete-group/" +
-        props.groupId,
+      props.groupId,
       {
         method: "GET",
         headers: {
@@ -1723,7 +1727,7 @@ const GroupActionComponent = (props) => {
   function sendForBidding() {
     fetch(
       "https://api.showaapp.com/admin/reservation/send-group-for-bidding/" +
-        props.groupId,
+      props.groupId,
       {
         method: "GET",
         headers: {
@@ -1742,7 +1746,7 @@ const GroupActionComponent = (props) => {
   function closeBidding() {
     fetch(
       "https://api.showaapp.com/admin/reservation/close-bidding-for-group/" +
-        props.groupId,
+      props.groupId,
       {
         method: "GET",
         headers: {
@@ -1823,14 +1827,14 @@ const GroupStatusComponent = (props) => {
         props == "Pending"
           ? classes.pendingContainer
           : props == "Ongoing"
-          ? classes.ongoingContainer
-          : props == "Accepted"
-          ? classes.acceptedContainer
-          : props == "Canceled"
-          ? classes.cenceledContainer
-          : props == "Completed"
-          ? classes.completedContainer
-          : classes.pendingContainer
+            ? classes.ongoingContainer
+            : props == "Accepted"
+              ? classes.acceptedContainer
+              : props == "Canceled"
+                ? classes.cenceledContainer
+                : props == "Completed"
+                  ? classes.completedContainer
+                  : classes.pendingContainer
       }
     >
       {props}
@@ -2061,10 +2065,10 @@ const ExpandedLocationComponent = (props) => {
         console.log("Success", latLng);
         setMapAdds(
           "https://maps.google.com/maps?q=" +
-            latLng.lat +
-            "," +
-            latLng.lng +
-            "&h1=es;&output=embed"
+          latLng.lat +
+          "," +
+          latLng.lng +
+          "&h1=es;&output=embed"
         );
         setShowLocationModal(true);
       })

@@ -335,6 +335,7 @@ function App() {
 
                   <Route path="/iot" element={<IotScreen />} />
                   <Route path="/wallet" element={<WalletScreen />} />
+                 
                   <Route
                     path="/wallet/customer"
                     element={<WalletCustomerDetails />}
