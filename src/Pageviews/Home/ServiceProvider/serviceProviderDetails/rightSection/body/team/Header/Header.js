@@ -1,7 +1,7 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
 
-const Header = () => {
+const Header = ({ addMemberOpen, setAddMemberOpen }) => {
   return (
     <Box>
       <Box
@@ -55,6 +55,9 @@ const Header = () => {
             "&:hover": {
               background: "#24459C",
             },
+          }}
+          onClick={() => {
+            setAddMemberOpen(!addMemberOpen);
           }}
         >
           Add Member

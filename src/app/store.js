@@ -1,0 +1,1 @@
+// It will be store of Redux

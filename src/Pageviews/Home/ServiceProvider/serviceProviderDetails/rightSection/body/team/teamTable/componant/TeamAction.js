@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import viewIcon from "../../../../../../../../../Assets/Home/customer/view.png";
 import editIcon from "../../../../../../../../../Assets/Home/customer/edit.png";
 import { StyledMenu } from "../../../../../../../Customer/styleComponents";
+import TeamViewModal from "../modal/TeamViewModal";
+import TeamEditModal from "../modal/TeamEditModal";
 
 const TeamAction = ({ props }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [viewOpen, setViewOpen] = useState(false);
-  const [editOpen, setEditOpen] = useState(false);
+  const [teamViewOpen, setTeamViewOpen] = useState(false);
+  const [teamEditOpen, setTeamEditOpen] = useState(false);
   const openEl = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -21,20 +23,20 @@ const TeamAction = ({ props }) => {
 
   return (
     <>
-      {/* {viewOpen && (
-        <ViewModal
-          viewOpen={viewOpen}
-          setViewOpen={setViewOpen}
+      {teamViewOpen && (
+        <TeamViewModal
+          teamViewOpen={teamViewOpen}
+          setTeamViewOpen={setTeamViewOpen}
           props={props}
         />
       )}
-      {editOpen && (
-        <EditModal
-          editOpen={editOpen}
-          setEditOpen={setEditOpen}
+      {teamEditOpen && (
+        <TeamEditModal
+          teamEditOpen={teamEditOpen}
+          setTeamEditOpen={setTeamEditOpen}
           props={props}
         />
-      )} */}
+      )}
       <Box>
         <IconButton onClick={handleClick}>
           <MoreVert />
@@ -44,7 +46,7 @@ const TeamAction = ({ props }) => {
           <Box sx={{ background: "#F4F2FF" }}>
             <MenuItem
               onClick={() => {
-                setViewOpen(!viewOpen);
+                setTeamViewOpen(!teamViewOpen);
               }}
               sx={{ display: "flex", gap: "0 6px" }}
             >
@@ -56,7 +58,7 @@ const TeamAction = ({ props }) => {
 
             <MenuItem
               onClick={() => {
-                setEditOpen(!editOpen);
+                setTeamEditOpen(!teamEditOpen);
               }}
               sx={{ display: "flex", gap: "0 6px" }}
             >
