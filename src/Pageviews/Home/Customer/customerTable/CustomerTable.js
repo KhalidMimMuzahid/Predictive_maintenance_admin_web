@@ -3,11 +3,16 @@ import { Component, useContext, useEffect, useState } from "react";
 import { columns } from "./constant";
 import { Box } from "@mui/material";
 import { AppContext } from "../../../../contextApi/appProvider";
+import { useGetCustomersQuery } from "../../../../features/customers/customersSlice";
 
 const CustomerTable = () => {
   const { setDownloadData } = useContext(AppContext);
 
   const [rows, setRows] = useState([]);
+
+  const { data: customers, isLoading, isError, error } = useGetCustomersQuery();
+
+  console.log("Coming From Redux", customers, isLoading, isError, error);
 
   const addNewItem = (customer, index) => {
     setRows((prev) => [
