@@ -22,7 +22,7 @@ export const columns = [
   {
     field: "machine",
     headerName: "Machine",
-    width: 200,
+    width: 100,
     renderCell: (props) => MachineComponent(props),
   },
   {

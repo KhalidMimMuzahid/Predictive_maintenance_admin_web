@@ -1,13 +1,56 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: flex;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  flex: 1;
+  margin: 0 0 0 -2px;
+  --c: no-repeat linear-gradient(#046d8b 0 0);
+  background: var(--c) 0 0, var(--c) 100% 0, var(--c) 100% 100%, var(--c) 0 100%,
+    var(--c) 0 50%;
+  animation: l17 1s infinite alternate;
+}
+.loader:before {
+  transform: scale(-1);
+  margin: 0 -2px 0 0;
+}
+@keyframes l17 {
+  0%,
+  5% {
+    background-size: 0 4px, 4px 0, 0 4px, 4px 0, 0 4px;
+  }
+  20% {
+    background-size: 100% 4px, 4px 0, 0 4px, 4px 0, 0 4px;
+  }
+  40% {
+    background-size: 100% 4px, 4px 100%, 0 4px, 4px 0, 0 4px;
+  }
+  60% {
+    background-size: 100% 4px, 4px 100%, 100% 4px, 4px 0, 0 4px;
+  }
+  80% {
+    background-size: 100% 4px, 4px 100%, 100% 4px, 4px 50%, 0 4px;
+  }
+  95%,
+  100% {
+    background-size: 100% 4px, 4px 100%, 100% 4px, 4px 50%, 100% 4px;
+  }
 }

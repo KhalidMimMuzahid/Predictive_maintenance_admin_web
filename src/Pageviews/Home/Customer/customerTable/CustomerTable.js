@@ -4,6 +4,7 @@ import { columns } from "./constant";
 import { Box } from "@mui/material";
 import { AppContext } from "../../../../contextApi/appProvider";
 import { useGetCustomersQuery } from "../../../../features/customers/customersSlice";
+import Loader from "../../../../Utils/Loader";
 
 const CustomerTable = () => {
   const { setDownloadData } = useContext(AppContext);
@@ -11,8 +12,6 @@ const CustomerTable = () => {
   const [rows, setRows] = useState([]);
 
   const { data: customers, isLoading, isError, error } = useGetCustomersQuery();
-
-  console.log("Coming From Redux", customers, isLoading, isError, error);
 
   const addNewItem = (customer, index) => {
     setRows((prev) => [
@@ -42,7 +41,7 @@ const CustomerTable = () => {
   }, []);
 
   const displayCustomers = () => {
-    if (rows?.length === 0)
+    if (isLoading || isError)
       return (
         <div
           style={{
@@ -52,7 +51,7 @@ const CustomerTable = () => {
             padding: "20px",
           }}
         >
-          <h3>No customer in the server</h3>
+          <Loader />
         </div>
       );
 
@@ -68,7 +67,6 @@ const CustomerTable = () => {
           checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
           onRowSelectionModelChange={(data, index) => {
             const selectedRowData = data?.map((index, i) => {
-              console.log("From CSV", rows[index]);
               return {
                 "SL No": i + 1,
                 _id: rows[index]?.details?._id,

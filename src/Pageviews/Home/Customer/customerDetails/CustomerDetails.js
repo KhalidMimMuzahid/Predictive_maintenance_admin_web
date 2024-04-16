@@ -3,18 +3,26 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LeftSection from "./leftSection/LeftSection";
 import RightSection from "./rightSection/RightSection";
-import { Wallet } from "@mui/icons-material";
+import {
+  useGetCustomerDetailsQuery,
+  useGetCustomerSubscriptionDataQuery,
+  useGetCustomerWalletQuery,
+} from "../../../../features/customers/customersSlice";
 
 const CustomerDetails = () => {
   const { uid } = useParams();
   const [user, setUser] = useState(null);
-  const [wallet, setWallet] = useState(null);
-  const [subscriptionPackage, setSubscriptionPackage] = useState(null);
+  // const [wallet, setWallet] = useState(null);
   const [allMachines, setAllMachines] = useState(null);
 
   //   fetch those data
   // subscription
   // machiens
+
+  // Coming From Redux
+  const { data: customerDetailsData } = useGetCustomerDetailsQuery(uid);
+  const { data: walletData } = useGetCustomerWalletQuery(uid);
+  const { data: subscriptionData } = useGetCustomerSubscriptionDataQuery(uid);
 
   useEffect(() => {
     fetch(
@@ -25,6 +33,7 @@ const CustomerDetails = () => {
         setUser(data?.user);
       });
   }, [uid]);
+
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_BASE_URL}/customer/wallet/get-user-wallet-info/${uid}`
@@ -33,7 +42,7 @@ const CustomerDetails = () => {
       .then((data) => {
         // setUser(data?.user);
         if (data?.message === "success") {
-          setWallet(data?.user_wallet_info);
+          // setWallet(data?.user_wallet_info);
         } else {
           // throww error
         }
@@ -53,7 +62,7 @@ const CustomerDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          setSubscriptionPackage(data?.currentPackages);
+          // setSubscriptionPackage(data?.currentPackages);
         } else {
           // throw error
         }
@@ -85,9 +94,9 @@ const CustomerDetails = () => {
         }}
       >
         <LeftSection
-          user={user}
-          wallet={wallet}
-          subscriptionPackage={subscriptionPackage}
+          user={customerDetailsData?.user}
+          wallet={walletData?.wallet}
+          subscriptionPackage={subscriptionData?.currentPackages}
         />
       </Box>
       {/* right sidebar  */}
@@ -101,7 +110,7 @@ const CustomerDetails = () => {
           borderRadius: "5px",
         }}
       >
-        <RightSection user={user} wallet={wallet} />
+        <RightSection user={user} wallet={walletData?.wallet} />
       </Box>
     </Box>
   );

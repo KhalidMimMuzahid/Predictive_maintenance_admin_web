@@ -11,7 +11,24 @@ export const customersApi = createApi({
       query: () => "/admin/customer/get-all-customer",
       providesTags: [],
     }),
+    getCustomerDetails: builder.query({
+      query: (uid) => `/customer/profile/user/find-user-with-id/${uid}`,
+      providesTags: [],
+    }),
+    getCustomerWallet: builder.query({
+      query: (uid) => `/customer/wallet/get-user-wallet-info/${uid}`,
+      providesTags: [],
+    }),
+    getCustomerSubscriptionData: builder.query({
+      query: (uid) => `/customer/subscription/get-current-packages/${uid}`,
+      providesTags: [],
+    }),
   }),
 });
 
-export const { useGetCustomersQuery } = customersApi;
+export const {
+  useGetCustomersQuery,
+  useGetCustomerDetailsQuery,
+  useGetCustomerWalletQuery,
+  useGetCustomerSubscriptionDataQuery,
+} = customersApi;
