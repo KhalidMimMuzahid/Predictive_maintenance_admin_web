@@ -3,9 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 const initialState = {
   user: {},
-  role: "",
   isLoading: true,
-  googleLoading: false,
   isError: false,
   error: "",
 };

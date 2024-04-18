@@ -13,7 +13,7 @@ const Cards = () => {
       {/* card 1 */}
       <Card
         style={{
-          borderRadius: "10px",
+          borderRadius: "12px",
           backgroundColor: "#F1F4FB",
           width: "350px",
         }}
@@ -46,7 +46,11 @@ const Cards = () => {
                 7,890
               </Typography>
             </Box>
-            <img src={img1} alt="webscript" />
+            <img
+              style={{ width: "60px", height: "60px" }}
+              src={img1}
+              alt="webscript"
+            />
           </Box>
           <Box
             sx={{
@@ -78,7 +82,7 @@ const Cards = () => {
       {/* card 2  */}
       <Card
         style={{
-          borderRadius: "10px",
+          borderRadius: "12px",
           backgroundColor: "#F1F4FB",
           width: "350px",
         }}
@@ -111,7 +115,11 @@ const Cards = () => {
                 7,89
               </Typography>
             </Box>
-            <img src={img2} alt="webscript" />
+            <img
+              style={{ width: "60px", height: "60px" }}
+              src={img2}
+              alt="webscript"
+            />
           </Box>
           <Box
             sx={{
@@ -144,7 +152,7 @@ const Cards = () => {
 
       <Card
         style={{
-          borderRadius: "10px",
+          borderRadius: "12px",
           backgroundColor: "#F1F4FB",
           width: "350px",
         }}
@@ -177,7 +185,11 @@ const Cards = () => {
                 2,678
               </Typography>
             </Box>
-            <img src={img3} alt="webscript" />
+            <img
+              style={{ width: "60px", height: "60px" }}
+              src={img3}
+              alt="webscript"
+            />
           </Box>
           <Box
             sx={{
@@ -209,7 +221,7 @@ const Cards = () => {
       {/* card 4*/}
       <Card
         style={{
-          borderRadius: "10px",
+          borderRadius: "12px",
           backgroundColor: "#F1F4FB",
           width: "350px",
         }}
@@ -242,7 +254,11 @@ const Cards = () => {
                 7,890
               </Typography>
             </Box>
-            <img src={img1} alt="webscript" />
+            <img
+              style={{ width: "60px", height: "60px" }}
+              src={img1}
+              alt="webscript"
+            />
           </Box>
           <Box
             sx={{
@@ -274,7 +290,7 @@ const Cards = () => {
       {/* card 5 */}
       <Card
         style={{
-          borderRadius: "10px",
+          borderRadius: "12px",
           backgroundColor: "#F1F4FB",
           width: "350px",
         }}
@@ -307,7 +323,11 @@ const Cards = () => {
                 ¥78034
               </Typography>
             </Box>
-            <img src={img5} alt="webscript" />
+            <img
+              style={{ width: "60px", height: "60px" }}
+              src={img5}
+              alt="webscript"
+            />
           </Box>
           <Box
             sx={{

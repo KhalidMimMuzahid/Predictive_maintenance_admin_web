@@ -1,9 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { GetLocalStorageData } from "../../Utils/getLocalStorageData";
 
 export const customersApi = createApi({
   reducerPath: "customersApi",
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_BASE_URL,
+    prepareHeaders: (headers) => {
+      const accessToken = GetLocalStorageData("accessToken");
+      if (accessToken) {
+        headers.set("authorization", `${accessToken}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: [],
   endpoints: (builder) => ({

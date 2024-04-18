@@ -16,10 +16,13 @@ import {
   CancelOutlined,
   Close,
 } from "@mui/icons-material";
+import Person4Icon from "@mui/icons-material/Person4";
 import {
   AppBar,
   Avatar,
   Badge,
+  Box,
+  Button,
   Divider,
   IconButton,
   InputAdornment,
@@ -33,7 +36,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Contact1 from "../Assets/Component/contact1.jpg";
 import Contact2 from "../Assets/Component/contact2.jpg";
 import Contact3 from "../Assets/Component/contact3.jpg";
@@ -48,6 +51,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { useEffect } from "react";
 import { setCurrentUser } from "../Redux/actions";
+import useIsAdmin from "../Hooks/useIsAdmin";
 
 const useStyle = makeStyles((theme) => ({
   toolbar: {
@@ -536,9 +540,7 @@ const StyledMenu = styled((props) => (
 
 const AdminInfoHolder = () => {
   const classes = useStyle();
-
-  const [admin, setAdmin] = useState(null);
-  const [uid, setUid] = useState("");
+  const { user } = useSelector((state) => state.auth);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const openEl = Boolean(anchorEl);
@@ -549,80 +551,89 @@ const AdminInfoHolder = () => {
     setAnchorEl(null);
   };
 
-  useEffect(() => {
-    setUid(auth.currentUser.uid);
-    getAdmin();
-  }, []);
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [isAdmin, setIsAdmin, adminData, setAdminData] = useIsAdmin(user?.uid);
 
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        // navigat("/");
-        window.location.href = "/";
         alert("Signed out successfully");
+        setIsAdmin(false);
+        setAdminData({});
+        navigate("/");
       })
       .catch((error) => {
         alert("Error: " + error);
       });
   };
 
-  function getAdmin() {
-    if (uid != "") {
-      let url =
-        "https://api.showaapp.com/admin/settings/find-admin-with-id/" + uid;
-      fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          dispatch(setCurrentUser(data));
-          setAdmin(data);
-        });
-    }
-  }
+  // function getAdmin() {
+  //   if (uid != "") {
+  //     let url =
+  //       "https://api.showaapp.com/admin/settings/find-admin-with-id/" + uid;
+  //     fetch(url, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         dispatch(setCurrentUser(data));
+  //         setAdmin(data);
+  //       });
+  //   }
+  // }
 
   function displayAdmin() {
-    if (admin == null) return <div className={classes.spacerSmall} />;
+    // if (admin == null) return <Button variant="contained">Logout</Button>;
 
     return (
-      <div className={classes.optionsIcons}>
-        <Avatar
-          alt="Avatar image"
-          style={{ cursor: "pointer" }}
-          onClick={handleClick}
-          src={admin.adminImageAddress}
-        />
+      <Box sx={{ marginLeft: "2px" }}>
+        <div className={classes.optionsIcons}>
+          <Avatar
+            alt="Avatar image"
+            style={{
+              cursor: "pointer",
+              width: "32px",
+              height: "32px",
+              border: "2px solid",
+              borderRadius: "100%",
+            }}
+            onClick={handleClick}
+            src={adminData?.adminImageAddress}
+          />
+          <StyledMenu
+            id="demo-customized-menu"
+            MenuListProps={{
+              "aria-labelledby": "demo-customized-button",
+            }}
+            anchorEl={anchorEl}
+            open={openEl}
+            onClose={handleClose}
+          >
+            <div className={classes.infoContainer}>
+              <Typography
+                style={{
+                  color: "#424E79",
+                  fontSize: "20px",
+                  fontWeight: "600",
+                }}
+              >
+                {adminData?.name}
+              </Typography>
+              <Typography style={{ color: "#313E6A", fontSize: "16px" }}>
+                {adminData?.accessLevel}
+              </Typography>
+            </div>
 
-        <StyledMenu
-          id="demo-customized-menu"
-          MenuListProps={{
-            "aria-labelledby": "demo-customized-button",
-          }}
-          anchorEl={anchorEl}
-          open={openEl}
-          onClose={handleClose}
-        >
-          <div className={classes.infoContainer}>
-            <Typography
-              style={{ color: "#424E79", fontSize: "24px", fontWeight: "600" }}
-            >
-              {admin.name}
-            </Typography>
-            <Typography style={{ color: "#313E6A", fontSize: "18px" }}>
-              {admin.accessLevel}
-            </Typography>
-          </div>
+            <Divider />
 
-          <Divider />
+            <div className={classes.spacer}></div>
 
-          <div className={classes.spacer}></div>
-
-          <Link exact to="/" className={classes.linkText}>
+            {/* <Link exact to="/" className={classes.linkText}> */}
             <MenuItem
               onClick={() => {
                 handleClose();
@@ -632,9 +643,10 @@ const AdminInfoHolder = () => {
               <PowerSettingsNewOutlined style={{ color: "#313E6A" }} />
               Sign Out
             </MenuItem>
-          </Link>
-        </StyledMenu>
-      </div>
+            {/* </Link> */}
+          </StyledMenu>
+        </div>
+      </Box>
     );
   }
 

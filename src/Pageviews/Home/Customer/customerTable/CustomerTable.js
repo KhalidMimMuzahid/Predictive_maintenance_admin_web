@@ -12,6 +12,7 @@ const CustomerTable = () => {
   const [rows, setRows] = useState([]);
 
   const { data: customers, isLoading, isError, error } = useGetCustomersQuery();
+  console.log(customers);
 
   const addNewItem = (customer, index) => {
     setRows((prev) => [
@@ -35,7 +36,7 @@ const CustomerTable = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log({ data });
+        console.log({ data });
         data.map((customer, index) => addNewItem(customer, index));
       });
   }, []);

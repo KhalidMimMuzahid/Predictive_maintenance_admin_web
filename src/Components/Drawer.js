@@ -1,6 +1,5 @@
 import "./Sidebar.css";
 import React from "react";
-import logo_small from "../Assets/Component/logo_small.svg";
 import logo_full from "../Assets/Component/logo_full.svg";
 import dashboard_icon from "../Assets/Component/dashboard_icon.svg";
 import vendor_icon from "../Assets/Component/vendor_icon.svg";
@@ -19,247 +18,263 @@ import settings_icon from "../Assets/Component/settings_icon.svg";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-
 import UserImage from "../Assets/Component/user_image.jfif";
 import { useDispatch, useSelector } from "react-redux";
 
 const Drawer = (props) => {
+  const isSidebarOpen = useSelector((state) => state.openSidebar);
 
+  return (
+    <div className={`side-menu`}>
+      <div className="top-section">
+        <div className="logo">
+          <img src={logo_full} alt="webscript" />
+        </div>
+      </div>
 
-    const isSidebarOpen = useSelector((state) => state.openSidebar);
-    
-    return (
-        <div className={`side-menu`}>
+      <div className="divider"></div>
 
-            <div className="top-section">
-                <div className="logo">
+      <div className="main-menu">
+        <ul>
+          {isSidebarOpen ? (
+            <li>
+              <div className="menu-category">General</div>
+            </li>
+          ) : null}
 
-                    <img src={logo_full} alt="webscript" />
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("dashboard"));
+            }}
+          >
+            <div
+              className={`menu-item ${false === "dashboard" ? "active" : ""}`}
+            >
+              <div className="menu-icon">
+                <img src={dashboard_icon} alt="Dashboard icon" />
+              </div>
+              <span>Dashboard</span>
+            </div>
+          </li>
 
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("vendor"));
+            }}
+          >
+            <div className={false === "vendor" ? "active" : ""}>
+              <div
+                className={`menu-item ${false === "vendor" ? "active" : ""}`}
+              >
+                <div className="menu-icon">
+                  <img src={vendor_icon} alt="Dashboard icon" />
                 </div>
+                <span>Vendor</span>
+              </div>
             </div>
+          </li>
 
-            <div className="divider"></div>
-
-
-            
-            
-
-            <div className="main-menu">
-                <ul>
-
-                    {
-                        isSidebarOpen
-                            ? <li><div className="menu-category">
-                                General
-                            </div></li>
-                            : null
-                    }
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("dashboard"));
-                    }}>
-                        <div className={`menu-item ${false === "dashboard" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={dashboard_icon} alt="Dashboard icon" />
-                            </div>
-                            <span>Dashboard</span>
-                        </div>
-                    </li>
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("vendor"));
-                    }}>
-                        <div className={false === "vendor" ? "active" : ""}>
-                            <div className={`menu-item ${false === "vendor" ? "active" : ""}`} >
-                                <div className="menu-icon">
-                                    <img src={vendor_icon} alt="Dashboard icon" />
-                                </div>
-                                <span>Vendor</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("customer"));
-                    }}>
-                        <div className={`menu-item ${false === "customer" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={customer_icon} alt="Dashboard icon" />
-                            </div>
-                            <span>Customers</span>
-                        </div>
-                    </li>
-
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("reservation"));
-                    }}>
-                        <div className={`menu-item ${false === "reservation" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={reservation_icon} alt="Dashboard icon" />
-                            </div>
-                            <span>Reservation</span>
-                        </div>
-                    </li>
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("request"));
-                    }}>
-                        <div className={`menu-item ${false === "request" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={request_icon} alt="Dashboard icon" />
-                            </div>
-                            <span>Request</span>
-                        </div>
-                    </li>
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("iot"));
-                    }}>
-                        <div className={`menu-item ${false === "iot" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={iot_icon} alt="IoT icon" />
-                            </div>
-                            <span>IoT</span>
-                        </div>
-                    </li>
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("wallet"));
-                    }}>
-                        <div className={`menu-item ${false === "wallet" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={wallet_icon} alt="Wallet icon" />
-                            </div>
-                            <span>Wallet</span>
-                        </div>
-                    </li>
-
-
-
-
-
-
-                    {
-                        isSidebarOpen
-                            ? <li><div className="menu-category">
-                                Products
-                            </div></li>
-                            : null
-                    }
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("shop"));
-                    }}>
-                        <div className={`menu-item ${false === "shop" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={shop_icon} alt="Shop icon" />
-                            </div>
-                            <span>Shop</span>
-                        </div>
-                    </li>
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("inventory"));
-                    }}>
-                        <div className={`menu-item ${false === "inventory" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={inventory_icon} alt="Inventory icon" />
-                            </div>
-                            <span>Inventory</span>
-                        </div>
-                    </li>
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("bids"));
-                    }}>
-                        <div className={`menu-item ${false === "bids" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={bids_icon} alt="Bids icon" />
-                            </div>
-                            <span>Bids</span>
-                        </div>
-                    </li>
-
-
-                    {
-                        isSidebarOpen
-                            ? <li><div className="menu-category">
-                                Settings
-                            </div></li>
-                            : null
-                    }
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("notification"));
-                    }}>
-                        <div className={`menu-item ${false === "notification" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={notification_icon} alt="Notification icon" />
-                            </div>
-                            <span>Notifications</span>
-                        </div>
-                    </li>
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("offers"));
-                    }}>
-                        <div className={`menu-item ${false === "offers" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={offers_icon} alt="Offers icon" />
-                            </div>
-                            <span>Offers</span>
-                        </div>
-                    </li>
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("packages"));
-                    }}>
-                        <div className={`menu-item ${false === "packages" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={packages_icon} alt="Packages icon" />
-                            </div>
-                            <span>Packages</span>
-                        </div>
-                    </li>
-
-                    <li onClick={(e) => {
-                        // dispatch(openSidebar(true));
-                        // dispatch(changeAppTab("settings"));
-                    }}>
-                        <div className={`menu-item ${false === "settings" ? "active" : ""}`} >
-                            <div className="menu-icon">
-                                <img src={settings_icon} alt="Settings icon" />
-                            </div>
-                            <span>Settings</span>
-                        </div>
-                    </li>
-
-
-                    <div className="bottom-spacer">
-                    </div>
-
-                </ul>
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("customer"));
+            }}
+          >
+            <div
+              className={`menu-item ${false === "customer" ? "active" : ""}`}
+            >
+              <div className="menu-icon">
+                <img src={customer_icon} alt="Dashboard icon" />
+              </div>
+              <span>Customers</span>
             </div>
+          </li>
 
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("reservation"));
+            }}
+          >
+            <div
+              className={`menu-item ${false === "reservation" ? "active" : ""}`}
+            >
+              <div className="menu-icon">
+                <img src={reservation_icon} alt="Dashboard icon" />
+              </div>
+              <span>Reservation</span>
+            </div>
+          </li>
 
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("request"));
+            }}
+          >
+            <div className={`menu-item ${false === "request" ? "active" : ""}`}>
+              <div className="menu-icon">
+                <img src={request_icon} alt="Dashboard icon" />
+              </div>
+              <span>Request</span>
+            </div>
+          </li>
 
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("iot"));
+            }}
+          >
+            <div className={`menu-item ${false === "iot" ? "active" : ""}`}>
+              <div className="menu-icon">
+                <img src={iot_icon} alt="IoT icon" />
+              </div>
+              <span>IoT</span>
+            </div>
+          </li>
 
-            {/* <div className="side-menu-footer">
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("wallet"));
+            }}
+          >
+            <div className={`menu-item ${false === "wallet" ? "active" : ""}`}>
+              <div className="menu-icon">
+                <img src={wallet_icon} alt="Wallet icon" />
+              </div>
+              <span>Wallet</span>
+            </div>
+          </li>
+
+          {isSidebarOpen ? (
+            <li>
+              <div className="menu-category">Products</div>
+            </li>
+          ) : null}
+
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("shop"));
+            }}
+          >
+            <div className={`menu-item ${false === "shop" ? "active" : ""}`}>
+              <div className="menu-icon">
+                <img src={shop_icon} alt="Shop icon" />
+              </div>
+              <span>Shop</span>
+            </div>
+          </li>
+
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("inventory"));
+            }}
+          >
+            <div
+              className={`menu-item ${false === "inventory" ? "active" : ""}`}
+            >
+              <div className="menu-icon">
+                <img src={inventory_icon} alt="Inventory icon" />
+              </div>
+              <span>Inventory</span>
+            </div>
+          </li>
+
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("bids"));
+            }}
+          >
+            <div className={`menu-item ${false === "bids" ? "active" : ""}`}>
+              <div className="menu-icon">
+                <img src={bids_icon} alt="Bids icon" />
+              </div>
+              <span>Bids</span>
+            </div>
+          </li>
+
+          {isSidebarOpen ? (
+            <li>
+              <div className="menu-category">Settings</div>
+            </li>
+          ) : null}
+
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("notification"));
+            }}
+          >
+            <div
+              className={`menu-item ${
+                false === "notification" ? "active" : ""
+              }`}
+            >
+              <div className="menu-icon">
+                <img src={notification_icon} alt="Notification icon" />
+              </div>
+              <span>Notifications</span>
+            </div>
+          </li>
+
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("offers"));
+            }}
+          >
+            <div className={`menu-item ${false === "offers" ? "active" : ""}`}>
+              <div className="menu-icon">
+                <img src={offers_icon} alt="Offers icon" />
+              </div>
+              <span>Offers</span>
+            </div>
+          </li>
+
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("packages"));
+            }}
+          >
+            <div
+              className={`menu-item ${false === "packages" ? "active" : ""}`}
+            >
+              <div className="menu-icon">
+                <img src={packages_icon} alt="Packages icon" />
+              </div>
+              <span>Packages</span>
+            </div>
+          </li>
+
+          <li
+            onClick={(e) => {
+              // dispatch(openSidebar(true));
+              // dispatch(changeAppTab("settings"));
+            }}
+          >
+            <div
+              className={`menu-item ${false === "settings" ? "active" : ""}`}
+            >
+              <div className="menu-icon">
+                <img src={settings_icon} alt="Settings icon" />
+              </div>
+              <span>Settings</span>
+            </div>
+          </li>
+
+          <div className="bottom-spacer"></div>
+        </ul>
+      </div>
+
+      {/* <div className="side-menu-footer">
                 <div className="avatar">
                     <img src={UserImage} alt="user" />
                 </div>
@@ -268,9 +283,8 @@ const Drawer = (props) => {
                     <p>Super Admin</p>
                 </div>
             </div> */}
-
-        </div>
-    );
-}
+    </div>
+  );
+};
 
 export default Drawer;

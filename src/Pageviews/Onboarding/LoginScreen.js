@@ -165,7 +165,28 @@ const LoginScreen = () => {
     dispatch(loginUser({ email, password }))
       .then((result) => {
         if (result?.payload?.uid) {
-          alert("Login Successful");
+          fetch(
+            `http://localhost:5000/api/v2/user/showa-user/sign-in?uid=12345w6542383453335`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              if (data?.success) {
+                localStorage.setItem(
+                  "showa-admin",
+                  JSON.stringify(data?.data?.token)
+                );
+                alert("Login Successful");
+              } else {
+                alert("Login Unsuccessful");
+                return;
+              }
+            });
         }
       })
       .catch((error) => {
