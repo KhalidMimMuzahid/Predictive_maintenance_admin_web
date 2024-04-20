@@ -51,12 +51,12 @@ const LeftSide = ({ graphObjectData }) => {
       </Box>
       <hr style={{ bgColor: "#E6EFF5", opacity: "25%" }} />
       <Box sx={{ padding: "24px 34px" }}>
-        <LineChart
+        {/* <LineChart
           // xAxis={[{ data: Object.keys(graphObjectData) }]}
           xAxis={[
             {
               scaleType: "point",
-              data: Object.keys(graphObjectData),
+              data: Object?.keys(graphObjectData),
               domain: [0, "auto"],
             },
           ]}
@@ -71,7 +71,7 @@ const LeftSide = ({ graphObjectData }) => {
           height={300}
           margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
           grid={{ vertical: true, horizontal: true }}
-        />
+        /> */}
       </Box>
     </Box>
   );

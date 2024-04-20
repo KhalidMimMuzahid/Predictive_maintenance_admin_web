@@ -17,7 +17,7 @@ const ActionComponent = ({ props }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  // console.log(props?.row);
   return (
     <Box>
       <IconButton onClick={handleClick}>
@@ -27,7 +27,7 @@ const ActionComponent = ({ props }) => {
       <StyledMenu anchorEl={anchorEl} open={openEl} onClose={handleClose}>
         <Box sx={{ background: "#F4F2FF" }}>
           <Link
-            to={`/customer/${props?.row?.details?.uid}/details`}
+            to={`/customer/${props?.row?.uid}/details`}
             style={{ textDecoration: "none" }}
           >
             <MenuItem sx={{ display: "flex", gap: "0 6px" }}>

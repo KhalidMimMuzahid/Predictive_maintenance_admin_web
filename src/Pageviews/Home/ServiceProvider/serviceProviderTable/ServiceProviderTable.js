@@ -52,6 +52,7 @@ const ServiceProviderTable = () => {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data?.success) {
           setServiceProviders(data?.data);
         } else {

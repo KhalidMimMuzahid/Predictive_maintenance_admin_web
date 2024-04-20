@@ -47,7 +47,7 @@ import UserImage from "../Assets/Component/user_image.jfif";
 import { useDispatch, useSelector } from "react-redux";
 import { Fragment } from "react";
 import Drawer from "./Drawer";
-import { signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { useEffect } from "react";
 import { setCurrentUser } from "../Redux/actions";
@@ -541,6 +541,8 @@ const StyledMenu = styled((props) => (
 const AdminInfoHolder = () => {
   const classes = useStyle();
   const { user } = useSelector((state) => state.auth);
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
 
   const [anchorEl, setAnchorEl] = useState(null);
   const openEl = Boolean(anchorEl);
@@ -550,12 +552,12 @@ const AdminInfoHolder = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [isAdmin, setIsAdmin, adminData, setAdminData] = useIsAdmin(user?.uid);
-
+  const [isAdmin, setIsAdmin, adminData, setAdminData] = useIsAdmin(
+    currentUser?.uid
+  );
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -603,7 +605,7 @@ const AdminInfoHolder = () => {
               borderRadius: "100%",
             }}
             onClick={handleClick}
-            src={adminData?.adminImageAddress}
+            src={user?.user?.showaUser?.photoUrl}
           />
           <StyledMenu
             id="demo-customized-menu"
@@ -622,10 +624,15 @@ const AdminInfoHolder = () => {
                   fontWeight: "600",
                 }}
               >
-                {adminData?.name}
+                {user?.user?.showaUser?.name?.firstName +
+                  " " +
+                  user?.user?.showaUser?.name?.lastName}
               </Typography>
               <Typography style={{ color: "#313E6A", fontSize: "16px" }}>
-                {adminData?.accessLevel}
+                {user?.user?.role}
+              </Typography>
+              <Typography style={{ color: "#313E6A", fontSize: "14px" }}>
+                {user?.user?.email}
               </Typography>
             </div>
 

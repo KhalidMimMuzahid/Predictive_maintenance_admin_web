@@ -3,16 +3,20 @@ import { Component, useContext, useEffect, useState } from "react";
 import { columns } from "./constant";
 import { Box } from "@mui/material";
 import { AppContext } from "../../../../contextApi/appProvider";
-import { useGetCustomersQuery } from "../../../../features/customers/customersSlice";
 import Loader from "../../../../Utils/Loader";
+import { useGetAllCustomersQuery } from "../../../../features/customers/customersSlice";
 
 const CustomerTable = () => {
   const { setDownloadData } = useContext(AppContext);
 
   const [rows, setRows] = useState([]);
 
-  const { data: customers, isLoading, isError, error } = useGetCustomersQuery();
-  console.log(customers);
+  const {
+    data: customers,
+    isLoading,
+    isError,
+    error,
+  } = useGetAllCustomersQuery();
 
   const addNewItem = (customer, index) => {
     setRows((prev) => [
@@ -27,19 +31,19 @@ const CustomerTable = () => {
       },
     ]);
   };
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/admin/customer/get-all-customer`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log({ data });
-        data.map((customer, index) => addNewItem(customer, index));
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`${process.env.REACT_APP_BASE_URL}/admin/customer/get-all-customer`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log({ data });
+  //       data.map((customer, index) => addNewItem(customer, index));
+  //     });
+  // }, []);
 
   const displayCustomers = () => {
     if (isLoading || isError)
@@ -59,7 +63,9 @@ const CustomerTable = () => {
     return (
       <Box sx={{ background: "white", borderRadius: "4px", marginTop: "8px" }}>
         <DataGrid
-          rows={rows}
+          rows={customers?.data?.map((data, id) => {
+            return { ...data, id };
+          })}
           columns={columns}
           rowHeight={61}
           // pageSize={5}

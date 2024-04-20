@@ -1,7 +1,10 @@
 import { Avatar, Box, Typography } from "@mui/material";
 
-const CustomerNameEmailComponent = (props) => {
+const CustomerNameEmailComponent = ({ props }) => {
   const dummyPhoto = "https://i.ibb.co/85Nc6x7/handsome-boy.webp";
+
+  console.log(props?.row?.showaUser?.photoUrl);
+
   return (
     <Box
       sx={{
@@ -15,8 +18,7 @@ const CustomerNameEmailComponent = (props) => {
       <Box>
         <Avatar
           sx={{ width: "36px" }}
-          alt={`${props?.value?.firstNameAlphabet}`}
-          src={props?.value?.photoAddress || dummyPhoto}
+          src={props?.row?.showaUser?.photoUrl || dummyPhoto}
         />
       </Box>
       <Box>
@@ -25,12 +27,12 @@ const CustomerNameEmailComponent = (props) => {
           component="h6"
           sx={{ fontSize: "12px", fontWeight: "900" }}
         >
-          {props?.value?.firstNameAlphabet ||
-            "" + props?.value?.lastNameAlphabet ||
-            ""}
+          {props?.row?.showaUser?.name?.firstName +
+            " " +
+            props?.row?.showaUser?.name?.lastName}
         </Typography>{" "}
         <Typography variant="h6" component="h6" sx={{ fontSize: "12px" }}>
-          phone
+          {props?.row?.showaUser?.phone}
         </Typography>
       </Box>
     </Box>

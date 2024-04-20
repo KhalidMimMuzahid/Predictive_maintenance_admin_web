@@ -23,6 +23,7 @@ const CustomerDetails = () => {
   const { data: customerDetailsData } = useGetCustomerDetailsQuery(uid);
   const { data: walletData } = useGetCustomerWalletQuery(uid);
   const { data: subscriptionData } = useGetCustomerSubscriptionDataQuery(uid);
+  // console.log(customerDetailsData, walletData, subscriptionData);
 
   useEffect(() => {
     fetch(

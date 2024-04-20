@@ -7,10 +7,10 @@ const useIsAdmin = (uid) => {
   const [adminData, setAdminData] = useState({});
   useEffect(() => {
     if (uid) {
-      fetch(`https://api.showaapp.com/admin/settings/find-admin-with-id/${uid}`)
+      fetch(`http://localhost:5000/api/v2/user/showa-user/sign-in?uid=${uid}`)
         .then((res) => res.json())
         .then((data) => {
-          if (data?.uniqueNumberId) {
+          if (data?.data?.token) {
             setIsAdmin(true);
             setAdminData(data);
           }

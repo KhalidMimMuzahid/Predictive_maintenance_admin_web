@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
@@ -95,6 +95,7 @@ import Revenue from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rig
 import Team from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/team/Team";
 import Schedule from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/schedule/Schedule";
 import Settings from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/settings/Settings";
+import { setUser, toggleLoading } from "./features/authentication/authSlice";
 
 const theme = createTheme();
 
@@ -130,6 +131,37 @@ function App() {
   const classes = useStyle();
 
   const isSidebarOpen = useSelector((state) => state.openSidebar);
+
+  // OnAuthStateChanged
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        fetch(
+          `http://localhost:5000/api/v2/user/showa-user/sign-in?uid=${user?.uid}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            if (data?.success) {
+              dispatch(setUser(data?.data));
+              localStorage.setItem(
+                "user-token",
+                JSON.stringify(data?.data?.token)
+              );
+            }
+          });
+      } else {
+        dispatch(toggleLoading());
+      }
+    });
+  }, [dispatch]);
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
@@ -335,7 +367,7 @@ function App() {
 
                   <Route path="/iot" element={<IotScreen />} />
                   <Route path="/wallet" element={<WalletScreen />} />
-                 
+
                   <Route
                     path="/wallet/customer"
                     element={<WalletCustomerDetails />}

@@ -6,17 +6,18 @@ export const customersApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_BASE_URL,
     prepareHeaders: (headers) => {
-      const accessToken = GetLocalStorageData("accessToken");
+      const accessToken = GetLocalStorageData("user-token");
+      console.log(accessToken);
       if (accessToken) {
-        headers.set("authorization", `${accessToken}`);
+        headers.set("authorization", `Bearer ${accessToken}`);
       }
       return headers;
     },
   }),
   tagTypes: [],
   endpoints: (builder) => ({
-    getCustomers: builder.query({
-      query: () => "/admin/customer/get-all-customer",
+    getAllCustomers: builder.query({
+      query: () => "/user/get-all-showa-customers",
       providesTags: [],
     }),
     getCustomerDetails: builder.query({
@@ -35,7 +36,7 @@ export const customersApi = createApi({
 });
 
 export const {
-  useGetCustomersQuery,
+  useGetAllCustomersQuery,
   useGetCustomerDetailsQuery,
   useGetCustomerWalletQuery,
   useGetCustomerSubscriptionDataQuery,

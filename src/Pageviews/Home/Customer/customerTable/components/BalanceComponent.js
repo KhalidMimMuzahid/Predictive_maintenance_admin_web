@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useStyle } from "../../styleComponents";
-const BalanceComponent = (props) => {
+const BalanceComponent = ({ props }) => {
   const [customerWalletInfo, setCustomerWalletInfo] = useState(null);
 
   const classes = useStyle();
@@ -34,9 +34,9 @@ const BalanceComponent = (props) => {
     return (
       <div>
         <div className={classes.balance}>
-          {"\xA5 " + customerWalletInfo.showa_cash}
+          Showa Balance: {"\xA5 " + customerWalletInfo?.showa_cash || 5000}
         </div>
-        <div className={classes.yenText}>Yen</div>
+        <div className={classes.yenText}>Showa Points: 5000</div>
       </div>
     );
   }

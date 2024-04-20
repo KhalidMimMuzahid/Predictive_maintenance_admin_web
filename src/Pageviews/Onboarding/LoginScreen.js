@@ -21,7 +21,7 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { loginUser } from "../../features/authentication/authSlice";
+import { loginUser, setUser } from "../../features/authentication/authSlice";
 import { useDispatch } from "react-redux";
 
 const usesStyles = makeStyles((theme) => ({
@@ -166,7 +166,7 @@ const LoginScreen = () => {
       .then((result) => {
         if (result?.payload?.uid) {
           fetch(
-            `http://localhost:5000/api/v2/user/showa-user/sign-in?uid=12345w6542383453335`,
+            `http://localhost:5000/api/v2/user/showa-user/sign-in?uid=${result?.payload?.uid}`,
             {
               method: "GET",
               headers: {
@@ -177,11 +177,12 @@ const LoginScreen = () => {
             .then((res) => res.json())
             .then((data) => {
               if (data?.success) {
+                setUser(data?.data);
                 localStorage.setItem(
-                  "showa-admin",
+                  "user-token",
                   JSON.stringify(data?.data?.token)
                 );
-                alert("Login Successful");
+                alert(data?.message);
               } else {
                 alert("Login Unsuccessful");
                 return;

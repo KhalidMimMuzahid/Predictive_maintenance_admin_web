@@ -1,12 +1,16 @@
-import { Box } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Cards from "./RequestVsTimeGraph/component/Cards";
 import RequestVsTimeGraph from "./RequestVsTimeGraph/RequestVsTimeGraph";
+import { useSelector } from "react-redux";
+import { getAuth } from "firebase/auth";
+import useIsAdmin from "../../../Hooks/useIsAdmin";
 
 const useStyle = makeStyles((theme) => ({
   holder: {
@@ -72,6 +76,12 @@ const DashboardScreen = () => {
   const [months, setMonths] = useState("");
   const [items, setItems] = useState("");
 
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+  const [isAdmin, setIsAdmin, adminData, setAdminData] = useIsAdmin(
+    currentUser?.uid
+  );
+
   const handleChange = (event) => {
     setProvider(event.target.value);
   };
@@ -101,7 +111,7 @@ const DashboardScreen = () => {
         <div>
           <div className={classes.title}>Dashboard</div>
           <div className={classes.spacerSmall}></div>
-          <div style={{ display: "flex", gap: "720px", alignItems: "center" }}>
+          {/* <div style={{ display: "flex", gap: "720px", alignItems: "center" }}>
             <div style={{ display: "flex" }}>
               <div style={{ color: "black" }} className={classes.subtitle}>
                 Good Afternoon, /{" "}
@@ -196,7 +206,19 @@ const DashboardScreen = () => {
                 </FormControl>
               </div>
             </div>
-          </div>
+          </div> */}
+          <Box sx={{ display: "flex", gap: "8px", marginY: "4px" }}>
+            <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>
+              Good Afternoon,
+            </Typography>
+            <Typography
+              sx={{ fontSize: "14px", fontWeight: "600", color: "#24459C" }}
+            >
+              {adminData?.data?.user?.showaUser?.name?.firstName +
+                " " +
+                adminData?.data?.user?.showaUser?.name?.lastName}
+            </Typography>
+          </Box>
         </div>
       </div>
 
@@ -379,6 +401,9 @@ const DashboardScreen = () => {
                 </Select>
               </FormControl>
             </div>
+            <Button>
+              <MoreHorizIcon />
+            </Button>
           </div>
         </Box>
         <hr style={{ bgColor: "#E6EFF5", opacity: "25%" }} />
