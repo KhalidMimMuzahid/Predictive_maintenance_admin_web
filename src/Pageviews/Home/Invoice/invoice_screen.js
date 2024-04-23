@@ -1,6 +1,9 @@
 import { Upload } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
+import OverView from "./OverView";
+import Comparison from "./Comparison";
+import InvoiceRequestTable from "./InvoiceRequestTable";
 
 const InvoiceScreen = () => {
   return (
@@ -37,6 +40,18 @@ const InvoiceScreen = () => {
             Create Invoice
           </Button>
         </Box>
+      </Box>
+      <Box
+        sx={{
+          paddingY: "40px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+        }}
+      >
+        <OverView />
+        <Comparison />
+        <InvoiceRequestTable />
       </Box>
     </Box>
   );
