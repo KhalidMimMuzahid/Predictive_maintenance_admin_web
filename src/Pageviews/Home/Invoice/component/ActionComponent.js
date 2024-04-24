@@ -8,8 +8,10 @@ import React, { useState } from "react";
 import { StyledMenu } from "../../Customer/styleComponents";
 import SendModal from "../modal/SendModal";
 import DeleteModal from "../modal/DeleteModal";
+import EditInvoiceModal from "../modal/EditInvoiceModal";
 
 const ActionComponent = ({ props }) => {
+  const [isEditInvoiceModalOpen, setIsEditInvoiceModalOpen] = useState(false);
   const [isSendModalOpen, setIsSendModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -25,6 +27,12 @@ const ActionComponent = ({ props }) => {
 
   return (
     <>
+      {isEditInvoiceModalOpen && (
+        <EditInvoiceModal
+          isEditInvoiceModalOpen={isEditInvoiceModalOpen}
+          setIsEditInvoiceModalOpen={setIsEditInvoiceModalOpen}
+        />
+      )}
       {isSendModalOpen && (
         <SendModal
           isSendModalOpen={isSendModalOpen}
@@ -50,7 +58,10 @@ const ActionComponent = ({ props }) => {
                 View
               </Typography>
             </MenuItem>
-            <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
+            <MenuItem
+              onClick={() => setIsEditInvoiceModalOpen(!isEditInvoiceModalOpen)}
+              sx={{ display: "flex", gap: "0 6px" }}
+            >
               <CreateOutlinedIcon />
               <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
                 Edit

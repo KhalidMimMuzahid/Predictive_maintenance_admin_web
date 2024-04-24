@@ -183,7 +183,12 @@ const CreateInvoiceModal = ({
               >
                 <Button
                   onClick={() => setIsCustomerListOpen(!isCustomerListOpen)}
-                  sx={{ border: "1px dashed #4D5983", padding: "6px 20px" }}
+                  sx={{
+                    border: "1px dashed #4D5983",
+                    padding: "6px 20px",
+                    fontSize: "16px",
+                    fontWeight: "600",
+                  }}
                 >
                   Select Customer / Service Provider
                 </Button>

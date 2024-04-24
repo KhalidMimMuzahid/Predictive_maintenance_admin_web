@@ -22,7 +22,7 @@ const InvoiceScreen = () => {
             Invoice
           </Typography>
           <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <Typography>Dashboard/ </Typography>
+            <Typography>Dashboard / </Typography>
             <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
               Invoice{" "}
             </Typography>
@@ -52,7 +52,7 @@ const InvoiceScreen = () => {
       </Box>
       <Box
         sx={{
-          paddingY: "40px",
+          paddingY: "28px",
           display: "flex",
           flexDirection: "column",
           gap: "20px",
