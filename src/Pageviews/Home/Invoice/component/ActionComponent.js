@@ -6,8 +6,12 @@ import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import React, { useState } from "react";
 import { StyledMenu } from "../../Customer/styleComponents";
+import SendModal from "../modal/SendModal";
+import DeleteModal from "../modal/DeleteModal";
 
 const ActionComponent = ({ props }) => {
+  const [isSendModalOpen, setIsSendModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openEl = Boolean(anchorEl);
 
@@ -20,40 +24,64 @@ const ActionComponent = ({ props }) => {
   };
 
   return (
-    <Box>
-      <IconButton onClick={handleClick}>
-        <MoreVert />
-      </IconButton>
+    <>
+      {isSendModalOpen && (
+        <SendModal
+          isSendModalOpen={isSendModalOpen}
+          setIsSendModalOpen={setIsSendModalOpen}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteModal
+          isDeleteModalOpen={isDeleteModalOpen}
+          setIsDeleteModalOpen={setIsDeleteModalOpen}
+        />
+      )}
+      <Box>
+        <IconButton onClick={handleClick}>
+          <MoreVert />
+        </IconButton>
 
-      <StyledMenu anchorEl={anchorEl} open={openEl} onClose={handleClose}>
-        <Box sx={{ background: "#F4F2FF" }}>
-          <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
-            <VisibilityOutlinedIcon />
-            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
-              View
-            </Typography>
-          </MenuItem>
-          <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
-            <CreateOutlinedIcon />
-            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
-              Edit
-            </Typography>
-          </MenuItem>
-          <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
-            <SendOutlinedIcon />
-            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
-              Send
-            </Typography>
-          </MenuItem>
-          <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
-            <DeleteOutlineOutlinedIcon />
-            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
-              Delete
-            </Typography>
-          </MenuItem>
-        </Box>
-      </StyledMenu>
-    </Box>
+        <StyledMenu anchorEl={anchorEl} open={openEl} onClose={handleClose}>
+          <Box sx={{ background: "#F4F2FF" }}>
+            <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
+              <VisibilityOutlinedIcon />
+              <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+                View
+              </Typography>
+            </MenuItem>
+            <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
+              <CreateOutlinedIcon />
+              <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+                Edit
+              </Typography>
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                setIsSendModalOpen(!isSendModalOpen);
+              }}
+              sx={{ display: "flex", gap: "0 6px" }}
+            >
+              <SendOutlinedIcon />
+              <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+                Send
+              </Typography>
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                setIsDeleteModalOpen(!isDeleteModalOpen);
+              }}
+              sx={{ display: "flex", gap: "0 6px" }}
+            >
+              <DeleteOutlineOutlinedIcon />
+              <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+                Delete
+              </Typography>
+            </MenuItem>
+          </Box>
+        </StyledMenu>
+      </Box>
+    </>
   );
 };
 

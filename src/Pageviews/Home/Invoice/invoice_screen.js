@@ -1,13 +1,21 @@
 import { Upload } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import OverView from "./OverView";
 import Comparison from "./Comparison";
 import InvoiceRequestTable from "./InvoiceRequestTable";
+import CreateInvoiceModal from "./modal/CreateInvoiceModal";
 
 const InvoiceScreen = () => {
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   return (
     <Box sx={{ padding: "40px" }}>
+      {isCreateModalOpen && (
+        <CreateInvoiceModal
+          isCreateModalOpen={isCreateModalOpen}
+          setIsCreateModalOpen={setIsCreateModalOpen}
+        />
+      )}
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box>
           <Typography sx={{ fontSize: "24px", fontWeight: "700" }}>
@@ -26,6 +34,7 @@ const InvoiceScreen = () => {
             Import
           </Button>
           <Button
+            onClick={() => setIsCreateModalOpen(!isCreateModalOpen)}
             sx={{
               background: "#24459C",
               "&:hover": {

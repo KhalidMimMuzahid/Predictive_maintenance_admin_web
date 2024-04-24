@@ -12,12 +12,12 @@ const OverView = () => {
           item
           sx={{
             width: "30%",
+            height: "200px",
             background: "#F1F4FB",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            padding: "40px 102px",
             borderRadius: "20px",
           }}
         >
@@ -36,12 +36,12 @@ const OverView = () => {
           item
           sx={{
             width: "30%",
+            height: "200px",
             background: "#F1F4FB",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            padding: "40px 102px",
             borderRadius: "20px",
           }}
         >
@@ -60,12 +60,12 @@ const OverView = () => {
           item
           sx={{
             width: "30%",
+            height: "200px",
             background: "#F1F4FB",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            padding: "40px 102px",
             borderRadius: "20px",
           }}
         >
@@ -84,12 +84,12 @@ const OverView = () => {
           item
           sx={{
             width: "30%",
+            height: "200px",
             background: "#F1F4FB",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            padding: "40px 102px",
             borderRadius: "20px",
           }}
         >
@@ -108,12 +108,12 @@ const OverView = () => {
           item
           sx={{
             width: "30%",
+            height: "200px",
             background: "#F1F4FB",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            padding: "40px 102px",
             borderRadius: "20px",
           }}
         >
