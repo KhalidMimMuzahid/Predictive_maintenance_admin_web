@@ -8,12 +8,6 @@ const ProjectScreen = () => {
   const [isCreateNewTaskOpen, setIsCreateNewTaskOpen] = useState(false);
   return (
     <Box sx={{ padding: "40px" }}>
-      {/* {isCreateNewTaskOpen && (
-        <CreateInvoiceModal
-          isCreateNewTaskOpen={isCreateNewTaskOpen}
-          setIsCreateNewTaskOpen={setIsCreateNewTaskOpen}
-        />
-      )} */}
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box>
           <Typography sx={{ fontSize: "24px", fontWeight: "700" }}>

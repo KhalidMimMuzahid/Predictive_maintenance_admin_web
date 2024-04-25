@@ -11,6 +11,7 @@ import RequestVsTimeGraph from "./RequestVsTimeGraph/RequestVsTimeGraph";
 import { useSelector } from "react-redux";
 import { getAuth } from "firebase/auth";
 import useIsAdmin from "../../../Hooks/useIsAdmin";
+import Loader from "../../../Utils/Loader";
 
 const useStyle = makeStyles((theme) => ({
   holder: {
@@ -102,7 +103,7 @@ const DashboardScreen = () => {
     }, 2000); // Simulating a delay of 2 seconds
   }, []);
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   return (
