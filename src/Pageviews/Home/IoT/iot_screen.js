@@ -1,4 +1,16 @@
-import { Add, Category, Close, Dehaze, Delete, Download, Edit, MoreVert, Person } from "@mui/icons-material";
+import {
+  Add,
+  Category,
+  CategoryOutlined,
+  Close,
+  Dehaze,
+  Delete,
+  Download,
+  Edit,
+  MoreVert,
+  Person,
+  Upload,
+} from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -11,7 +23,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import {  useState } from "react";
+import { useState } from "react";
 import CsvUploaderLogo from "../../../Assets/Home/iot/csv_uploader_logo.svg";
 import { useRef } from "react";
 import axios from "axios";
@@ -148,7 +160,7 @@ const IotScreen = () => {
         onDrop={handleDrop}
         onClick={() => inputRef.current.click()}
       >
-        <img src={CsvUploaderLogo} />
+        <img src={CsvUploaderLogo} alt="" />
         <div className={classes.spacerSmall} />
         <div>
           <input
@@ -175,7 +187,138 @@ const IotScreen = () => {
 
   return (
     <>
-      <Modal open={open}>
+      <Modal
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        open={open}
+      >
+        <Container
+          sx={{
+            width: "35%",
+            background: "white",
+            borderRadius: "20px",
+            padding: "24px",
+          }}
+        >
+          <Box sx={{ position: "relative" }}>
+            <Typography
+              sx={{
+                fontSize: "24px",
+                fontWeight: "700",
+                color: "#24459C",
+                textAlign: "center",
+              }}
+            >
+              Add IoT Sensor
+            </Typography>
+            <Button
+              sx={{
+                color: "#D1D5DB",
+                cursor: "pointer",
+                position: "absolute",
+                top: "0",
+                right: "0",
+              }}
+              onClick={() => {
+                setOpen(false);
+                setCsvFile(null);
+              }}
+            >
+              <Close />
+            </Button>
+          </Box>
+
+          <div style={{ marginTop: "16px" }}>
+            <FormControl fullWidth>
+              <TextField
+                select
+                id="demo-simple-select"
+                value={newIot.module}
+                label="Module"
+                size="small"
+                onChange={(e) => {
+                  setNewIot({ ...newIot, module: e.target.value });
+                }}
+              >
+                <MenuItem value="Module 1">Module 1</MenuItem>
+                <MenuItem value="Module 2">Module 2</MenuItem>
+                <MenuItem value="Module 3">Module 3</MenuItem>
+                <MenuItem value="Module 4">Module 4</MenuItem>
+              </TextField>
+            </FormControl>
+            <div className={classes.spacerSmall} />
+
+            <FormControl fullWidth>
+              <TextField
+                className={classes.input}
+                size="small"
+                placeholder="MAC ID"
+                label="MAC ID"
+                onChange={(e) => {
+                  setNewIot({ ...newIot, macId: e.target.value });
+                }}
+              />
+            </FormControl>
+            <div className={classes.spacerSmall} />
+
+            <FormControl fullWidth>
+              <TextField
+                className={classes.input}
+                size="small"
+                label="Price (Yen)"
+                placeholder="Price (Yen)"
+                onChange={(e) => {
+                  setNewIot({ ...newIot, price: e.target.value });
+                }}
+              />
+            </FormControl>
+            <div className={classes.spacerSmall} />
+          </div>
+
+          <div className={classes.spacerSmall} />
+          <div className={classes.spacerSmall} />
+
+          <div>{displayCsvUploader()}</div>
+
+          <div className={classes.spacerSmall} />
+          <div className={classes.spacerSmall} />
+
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "end",
+            }}
+          >
+            <div
+              className={classes.cancelButton}
+              onClick={(e) => {
+                setOpen(false);
+                setCsvFile(null);
+              }}
+            >
+              Cancel
+            </div>
+            <div className={classes.spacerSmall} />
+            <div
+              className={classes.saveButton}
+              onClick={(e) => {
+                handleSubmit();
+                setCsvFile(null);
+              }}
+            >
+              Save
+            </div>
+          </div>
+        </Container>
+      </Modal>
+
+      {/* <Modal open={open}>
         <Container className={classes.addUserContainer}>
           <div
             style={{
@@ -188,13 +331,7 @@ const IotScreen = () => {
             <Typography style={{ fontSize: "24px", fontWeight: "700" }}>
               Add New IoT
             </Typography>
-            <div
-              style={{ color: "black", cursor: "pointer" }}
-              onClick={() => {
-                setOpen(false);
-                setCsvFile(null);
-              }}
-            >
+            <div style={{ color: "black", cursor: "pointer" }}>
               <Close />
             </div>
           </div>
@@ -289,7 +426,7 @@ const IotScreen = () => {
             </div>
           </div>
         </Container>
-      </Modal>
+      </Modal> */}
 
       <div className={classes.holder}>
         <div className={classes.topHolder}>
@@ -301,6 +438,7 @@ const IotScreen = () => {
                 Dashboard /{" "}
               </div>
               <div style={{ color: "#24459c" }} className={classes.subtitle}>
+                {" "}
                 IOT
               </div>
             </div>
@@ -308,11 +446,12 @@ const IotScreen = () => {
 
           <div className={classes.buttonHolder}>
             <Button style={{ backgroundColor: "white", color: "black" }}>
+              <Download />
               Import
             </Button>
             <div className={classes.spacerSmall} />
             <Button style={{ backgroundColor: "white", color: "black" }}>
-              Category
+              <CategoryOutlined /> Category
             </Button>
             <div className={classes.spacerSmall} />
             <Button

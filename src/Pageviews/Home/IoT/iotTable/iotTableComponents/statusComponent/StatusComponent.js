@@ -1,16 +1,16 @@
 import React from "react";
 
-const StatusComponent = (props) => {
-  let status = props.value;
+const StatusComponent = ({ props }) => {
+  let status = props.row?.status;
 
   return (
     <div
       style={{
-        padding: "2px 16px",
+        padding: "4px 32px",
         color: "white",
-        borderRadius: "15px",
-        fontSize: "16px",
-        fontWeight: "400",
+        borderRadius: "20px",
+        fontSize: "12px",
+        fontWeight: "600",
         backgroundColor:
           status == "Active"
             ? "#F3FAE7"
@@ -29,7 +29,7 @@ const StatusComponent = (props) => {
             : "#24459c",
       }}
     >
-      {status}
+      🟠 {status}
     </div>
   );
 };

@@ -5,53 +5,41 @@ import { Box } from "@mui/system";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Cancel, Search } from "@mui/icons-material";
 import TuneIcon from "@mui/icons-material/Tune";
+import { useGetAllIotQuery } from "../../../../features/iot/iotSlice";
+import Loader from "../../../../Utils/Loader";
 
 const IotTable = () => {
-  const [rows, setRows] = useState([]);
+  const { data: iot, isLoading, isError, error } = useGetAllIotQuery();
 
-  useEffect(() => {
-    getIot();
-  });
-
-  function getIot() {
-    fetch("https://api.showaapp.com/admin/iot/get-all-iot-sensor", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        var tempRows = new Array();
-        data.map((iot, index) =>
-          // addNewItem(request, index)
-          tempRows.push({
-            id: index,
-            product: iot,
-            customer: iot.uid,
-            status: iot.status,
-            price: iot.price,
-            options: iot,
-          })
-        );
-        setRows(tempRows);
-      });
-  }
+  // function getIot() {
+  //   fetch("https://api.showaapp.com/admin/iot/get-all-iot-sensor", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       var tempRows = new Array();
+  //       data.map((iot, index) =>
+  //         // addNewItem(request, index)
+  //         tempRows.push({
+  //           id: index,
+  //           product: iot,
+  //           customer: iot.uid,
+  //           status: iot.status,
+  //           price: iot.price,
+  //           options: iot,
+  //         })
+  //       );
+  //       setRows(tempRows);
+  //     });
+  // }
 
   function displayIoT() {
-    if (rows.length === 0)
-      return (
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            padding: "20px",
-          }}
-        >
-          <h3>No IoT sensor in the server</h3>
-        </div>
-      );
+    if (isLoading || isError) {
+      return <Loader />;
+    }
 
     return (
       <Box sx={{ background: "white", padding: "20px", borderRadius: "5px" }}>
@@ -104,7 +92,9 @@ const IotTable = () => {
           />
         </Box>
         <DataGrid
-          rows={rows}
+          rows={iot?.map((data, id) => {
+            return { ...data, id };
+          })}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}

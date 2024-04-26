@@ -138,19 +138,16 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        fetch(
-          `http://localhost:5000/api/v2/user/showa-user/sign-in?uid=${user?.uid}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
+        fetch(`http://localhost:5000/api/v2/user/sign-in?uid=${user?.uid}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data?.success) {
-              dispatch(setUser(data?.data));
+              dispatch(setUser(data?.data?.user));
               localStorage.setItem(
                 "user-token",
                 JSON.stringify(data?.data?.token)

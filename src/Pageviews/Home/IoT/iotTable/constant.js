@@ -10,14 +10,16 @@ export const columns = [
     field: "product",
     headerName: "PRODUCT",
     width: 270,
-    renderCell: (props) => ProductComponent(props),
+    renderCell: (props) => <ProductComponent props={props} />,
   },
   {
     field: "state",
     headerName: "STATE",
     width: 270,
     renderCell: (props) => (
-      <Typography sx={{ color: "#6E6893", fontWeight: "500" }}></Typography>
+      <Typography sx={{ color: "#6E6893", fontWeight: "500" }}>
+        Not Found
+      </Typography>
     ),
   },
   {
@@ -30,13 +32,13 @@ export const columns = [
     field: "status",
     headerName: "STATUS",
     width: 270,
-    renderCell: (props) => StatusComponent(props),
+    renderCell: (props) => <StatusComponent props={props} />,
   },
   {
     field: "price",
     headerName: "PRICE",
     width: 270,
-    renderCell: (props) => PriceComponent(props),
+    renderCell: (props) => <PriceComponent props={props} />,
   },
   {
     field: "options",

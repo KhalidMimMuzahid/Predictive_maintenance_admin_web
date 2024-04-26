@@ -558,6 +558,7 @@ const AdminInfoHolder = () => {
   const [isAdmin, setIsAdmin, adminData, setAdminData] = useIsAdmin(
     currentUser?.uid
   );
+
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -605,7 +606,7 @@ const AdminInfoHolder = () => {
               borderRadius: "100%",
             }}
             onClick={handleClick}
-            src={user?.user?.showaUser?.photoUrl}
+            src={user?.showaUser?.photoUrl}
           />
           <StyledMenu
             id="demo-customized-menu"
@@ -624,15 +625,15 @@ const AdminInfoHolder = () => {
                   fontWeight: "600",
                 }}
               >
-                {user?.user?.showaUser?.name?.firstName +
+                {user?.showaUser?.name?.firstName +
                   " " +
-                  user?.user?.showaUser?.name?.lastName}
+                  user?.showaUser?.name?.lastName}
               </Typography>
               <Typography style={{ color: "#313E6A", fontSize: "16px" }}>
-                {user?.user?.role}
+                {user?.role}
               </Typography>
               <Typography style={{ color: "#313E6A", fontSize: "14px" }}>
-                {user?.user?.email}
+                {user?.email}
               </Typography>
             </div>
 

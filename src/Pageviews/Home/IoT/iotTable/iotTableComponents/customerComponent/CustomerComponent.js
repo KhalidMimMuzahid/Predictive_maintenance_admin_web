@@ -4,10 +4,10 @@ import { Typography } from "@mui/material";
 
 const CustomerComponent = ({ props }) => {
   const [customer, setCustomer] = useState(null);
+  console.log(customer);
 
   useEffect(() => {
-
-    let url = `https://api.showaapp.com/customer/profile/user/find-user-with-id/${props?.row?.options?.uid}`;
+    let url = `https://api.showaapp.com/customer/profile/user/find-user-with-id/${props?.row?.uid}`;
     fetch(url, {
       method: "GET",
       headers: {
@@ -19,7 +19,7 @@ const CustomerComponent = ({ props }) => {
         // console.log({ data });
         setCustomer(data?.user);
       });
-  }, [props?.row?.options?.uid]);
+  }, [props?.row?.uid]);
 
   function displayCustomer() {
     if (customer == null) {
