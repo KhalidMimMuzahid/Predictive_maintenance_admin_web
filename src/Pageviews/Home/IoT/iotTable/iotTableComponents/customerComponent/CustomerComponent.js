@@ -4,7 +4,6 @@ import { Typography } from "@mui/material";
 
 const CustomerComponent = ({ props }) => {
   const [customer, setCustomer] = useState(null);
-  console.log(customer);
 
   useEffect(() => {
     let url = `https://api.showaapp.com/customer/profile/user/find-user-with-id/${props?.row?.uid}`;

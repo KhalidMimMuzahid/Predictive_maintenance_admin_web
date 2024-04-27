@@ -164,6 +164,7 @@ const LoginScreen = () => {
 
     dispatch(loginUser({ email, password }))
       .then((result) => {
+        console.log(result);
         if (result?.payload?.uid) {
           fetch(
             `http://localhost:5000/api/v2/user/sign-in?uid=${result?.payload?.uid}`,

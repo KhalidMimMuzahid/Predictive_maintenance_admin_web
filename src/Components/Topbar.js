@@ -558,7 +558,6 @@ const AdminInfoHolder = () => {
   const [isAdmin, setIsAdmin, adminData, setAdminData] = useIsAdmin(
     currentUser?.uid
   );
-
   const handleLogout = () => {
     signOut(auth)
       .then(() => {

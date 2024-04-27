@@ -7,7 +7,6 @@ export const iotApi = createApi({
     baseUrl: "https://api.showaapp.com",
     prepareHeaders: (headers) => {
       const accessToken = GetLocalStorageData("user-token");
-      console.log(accessToken);
       if (accessToken) {
         headers.set("authorization", `Bearer ${accessToken}`);
       }
