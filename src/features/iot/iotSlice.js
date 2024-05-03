@@ -4,7 +4,7 @@ import { GetLocalStorageData } from "../../Utils/getLocalStorageData";
 export const iotApi = createApi({
   reducerPath: "iotApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://api.showaapp.com",
+    baseUrl: process.env.REACT_APP_BASE_URL,
     prepareHeaders: (headers) => {
       const accessToken = GetLocalStorageData("user-token");
       if (accessToken) {
@@ -13,13 +13,21 @@ export const iotApi = createApi({
       return headers;
     },
   }),
-  tagTypes: [],
+  tagTypes: ["add-sensor-module"],
   endpoints: (builder) => ({
     getAllIot: builder.query({
-      query: () => "/admin/iot/get-all-iot-sensor",
+      query: () => "/get-in-stock-sensor-module",
       providesTags: [],
+    }),
+    postIOT: builder.mutation({
+      query: (formData) => ({
+        url: "/sensor-module/add-sensor-module",
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: ["add-sensor-module"],
     }),
   }),
 });
 
-export const { useGetAllIotQuery } = iotApi;
+export const { useGetAllIotQuery, usePostIOTMutation } = iotApi;

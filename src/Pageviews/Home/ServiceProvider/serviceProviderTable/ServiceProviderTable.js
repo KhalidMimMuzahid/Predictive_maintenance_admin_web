@@ -151,49 +151,6 @@ const ServiceProviderTable = () => {
       <div className={classes.spacerSmall}></div>
       <div className={classes.spacerSmall}></div>
 
-      {/* <Box>
-        <img
-          src={dummyGraphSS}
-          style={{ width: "100%", paddingBottom: "40px" }}
-          alt=""
-        />
-      </Box> */}
-
-      {/* Service Provider Start 1st Page*/}
-      {/* <Box sx={{ background: "#FFFFFF", padding: "20px", borderRadius: "4px" }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            paddingBottom: "20px",
-          }}
-        >
-          <Typography>Recent Vendors</Typography>
-          <Typography>See All</Typography>
-        </Box>
-
-        <DataGrid
-          rows={vendors?.map((data, id) => {
-            return { ...data, id };
-          })}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 10,
-              },
-            },
-          }}
-          pageSizeOptions={[10]}
-          checkboxSelection
-          disableRowSelectionOnClick
-        />
-      </Box> */}
-      {/* Service Provider End */}
-
-      {/* Service Provider Start 2nd Page */}
-
       <Box sx={{ background: "#FFFFFF", padding: "20px", borderRadius: "4px" }}>
         <Box>
           <TextField

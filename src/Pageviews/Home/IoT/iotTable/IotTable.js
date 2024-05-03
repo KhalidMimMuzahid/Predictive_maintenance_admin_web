@@ -11,35 +11,11 @@ import Loader from "../../../../Utils/Loader";
 const IotTable = () => {
   const { data: iot, isLoading, isError, error } = useGetAllIotQuery();
 
-  // function getIot() {
-  //   fetch("https://api.showaapp.com/admin/iot/get-all-iot-sensor", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       var tempRows = new Array();
-  //       data.map((iot, index) =>
-  //         // addNewItem(request, index)
-  //         tempRows.push({
-  //           id: index,
-  //           product: iot,
-  //           customer: iot.uid,
-  //           status: iot.status,
-  //           price: iot.price,
-  //           options: iot,
-  //         })
-  //       );
-  //       setRows(tempRows);
-  //     });
-  // }
-
   function displayIoT() {
     if (isLoading || isError) {
       return <Loader />;
     }
+    console.log(iot);
 
     return (
       <Box sx={{ background: "white", padding: "20px", borderRadius: "5px" }}>
@@ -91,7 +67,7 @@ const IotTable = () => {
             }}
           />
         </Box>
-        <DataGrid
+        {/* <DataGrid
           rows={iot?.map((data, id) => {
             return { ...data, id };
           })}
@@ -104,7 +80,7 @@ const IotTable = () => {
           pageSizeOptions={[5, 10, 25]}
           autoHeight
           checkboxSelection
-        />
+        /> */}
       </Box>
     );
   }

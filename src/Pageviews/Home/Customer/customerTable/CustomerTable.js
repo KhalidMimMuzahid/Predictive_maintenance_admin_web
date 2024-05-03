@@ -31,19 +31,6 @@ const CustomerTable = () => {
       },
     ]);
   };
-  // useEffect(() => {
-  //   fetch(`${process.env.REACT_APP_BASE_URL}/admin/customer/get-all-customer`, {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log({ data });
-  //       data.map((customer, index) => addNewItem(customer, index));
-  //     });
-  // }, []);
 
   const displayCustomers = () => {
     if (isLoading || isError)

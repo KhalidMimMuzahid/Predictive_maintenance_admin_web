@@ -11,100 +11,34 @@ import {
 } from "@mui/material";
 import React, { useRef, useState } from "react";
 import CsvUploaderLogo from "../../../../Assets/Home/iot/csv_uploader_logo.svg";
+import { useForm } from "react-hook-form";
+import { usePostIOTMutation } from "../../../../features/iot/iotSlice";
 
 const AddNewProductModal = ({
   addNewProductModalOpen,
   setAddNewProductModalOpen,
 }) => {
+  const [postIOT, { data, isError, error, isLoading, isSuccess }] =
+    usePostIOTMutation();
   const [csvFile, setCsvFile] = useState(null);
-  const [singleIotData, setSingleIotData] = useState({
-    name: "",
-    module: "",
-    macID: "",
-    price: "",
-  });
   const inputRef = useRef();
-  const [newIot, setNewIot] = useState({});
 
-  function displayCsvUploader() {
-    if (csvFile)
-      return (
-        <div>
-          {Array.from(csvFile).map((file, index) => (
-            <li key={index}>{file.name}</li>
-          ))}
-        </div>
-      );
+  // React Hook Form
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (formData, e) => {
+    e.preventDefault();
+    postIOT(formData);
+  };
+
+  if (data !== undefined) {
+    alert(data?.message);
   }
-
-  const uploadSingleIotData = () => {
-    // let macId = newIot.macId.toLowerCase();
-    // let price = newIot.price;
-    // let module = newIot.module;
-    // fetch("https://api.showaapp.com/admin/iot/add-sensor", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     iotProductId,
-    //     macId,
-    //     price,
-    //     module,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setOpen(false);
-    //     alert("Successfully added new IoT Sensor");
-    //   })
-    //   .catch((error) => {
-    //     alert("Error: " + error);
-    //   });
-  };
-
-  const uploadCsvFile = () => {
-    // const formData = new FormData();
-    // formData.append("IotCsvFile", csvFile);
-    // axios
-    //   .post("https://api.showaapp.com/admin/iot/add-iot-from-csv", formData)
-    //   .then((res) => {
-    //     console.log(res);
-    //     setOpen(false);
-    //     alert("IoT data uploaded successfully");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     alert("Error : " + err);
-    //   });
-  };
-
-  const handleSubmit = () => {
-    if (singleIotData?.name === "") {
-      alert("Please provide the Sensor name");
-      return;
-    } else if (singleIotData?.module === "") {
-      alert("Please provide the module");
-      return;
-    } else if (singleIotData?.macID === "") {
-      alert("Please provide macID");
-      return;
-    } else if (singleIotData?.price === "") {
-      alert("Please provide the price");
-      return;
-    } else {
-      console.log(singleIotData);
-    }
-  };
-
   const handleDragOver = (event) => {
     event.preventDefault();
-    console.log(event);
   };
 
   const handleDrop = (event) => {
     event.preventDefault();
-    console.log(event);
     setCsvFile(event.dataTransfer.files);
   };
 
@@ -160,59 +94,95 @@ const AddNewProductModal = ({
           </Button>
         </Box>
 
-        <FormControl
-          sx={{
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          style={{
             display: "flex",
             flexDirection: "column",
             gap: "10px",
             paddingTop: "16px",
           }}
         >
-          <TextField
-            onChange={(e) =>
-              setSingleIotData({ ...singleIotData, name: e.target.value })
-            }
-            sx={{ background: "#F6F6F6" }}
-            id="outlined-basic"
-            size="medium"
-            label="Sensor Name"
-            variant="outlined"
-          />
-          <TextField
-            sx={{ background: "#F6F6F6" }}
-            select
-            id="demo-simple-select"
-            label="Module"
-            size="medium"
-            onChange={(e) =>
-              setSingleIotData({ ...singleIotData, module: e.target.value })
-            }
-          >
-            <MenuItem value="Module 1">Module 1</MenuItem>
-            <MenuItem value="Module 2">Module 2</MenuItem>
-            <MenuItem value="Module 3">Module 3</MenuItem>
-            <MenuItem value="Module 4">Module 4</MenuItem>
-          </TextField>
-
-          <TextField
-            sx={{ background: "#F6F6F6" }}
-            size="medium"
-            placeholder="MAC ID"
-            label="MAC ID"
-            onChange={(e) =>
-              setSingleIotData({ ...singleIotData, macAddress: e.target.value })
-            }
-          />
-
-          <TextField
-            sx={{ background: "#F6F6F6" }}
-            size="medium"
-            label="Price (Yen)"
-            placeholder="Price (Yen)"
-            onChange={(e) => {
-              setSingleIotData({ ...singleIotData, price: e.target.value });
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "8px",
+              mb: "8px",
             }}
-          />
+          >
+            <input
+              {...register("name")}
+              style={{
+                background: "#F6F6F6",
+                padding: "16px",
+                border: "none",
+                borderRadius: "4px",
+                color: "#65748B",
+                fontSize: "16px",
+                fontWeight: "700",
+              }}
+              id="outlined-basic"
+              type="text"
+              label="Sensor Name"
+              placeholder="Sensor Name"
+            />
+            <select
+              {...register("moduleType")}
+              style={{
+                background: "#F6F6F6",
+                padding: "16px",
+                border: "none",
+                borderRadius: "4px",
+                color: "#65748B",
+                fontSize: "16px",
+                fontWeight: "700",
+              }}
+              select
+              id="demo-simple-select"
+              label="Module"
+              size="medium"
+            >
+              <option value="module-1">Module 1</option>
+              <option value="module-2">Module 2</option>
+              <option value="module-3">Module 3</option>
+              <option value="module-4">Module 4</option>
+            </select>
+
+            <input
+              style={{
+                background: "#F6F6F6",
+                padding: "16px",
+                border: "none",
+                borderRadius: "4px",
+                color: "#65748B",
+                fontSize: "16px",
+                fontWeight: "700",
+              }}
+              size="medium"
+              placeholder="MAC ID"
+              label="MAC ID"
+              {...register("macAddress")}
+            />
+
+            <input
+              style={{
+                background: "#F6F6F6",
+                padding: "16px",
+                border: "none",
+                borderRadius: "4px",
+                color: "#65748B",
+                fontSize: "16px",
+                fontWeight: "700",
+              }}
+              type="number"
+              label="Price (Yen)"
+              placeholder="Price (Yen)"
+              {...register("price")}
+            />
+          </Box>
+
+          {/* CSV */}
           <Box
             onDragOver={handleDragOver}
             onDrop={handleDrop}
@@ -256,51 +226,54 @@ const AddNewProductModal = ({
               </Box>
             </Box>
           </Box>
-        </FormControl>
-
-        <Box
-          sx={{
-            padding: "12px 28px",
-            display: "flex",
-            justifyContent: "end",
-            gap: "24px",
-          }}
-        >
-          <Button
-            onClick={() => {
-              setAddNewProductModalOpen(!addNewProductModalOpen);
-            }}
+          {/* CSV */}
+          {isError && <Typography>{error?.message}</Typography>}
+          <Box
             sx={{
-              width: "160px",
-              height: "36px",
-              borderRadius: "20px",
-              padding: "8px 10px",
-              background: "white",
-              fontSize: "14px",
-              color: "#959596",
+              padding: "12px 28px",
+              display: "flex",
+              justifyContent: "end",
+              gap: "24px",
             }}
           >
-            Cancel
-          </Button>
-          <Button
-            onClick={handleSubmit()}
-            sx={{
-              width: "160px",
-              height: "36px",
-              borderRadius: "20px",
-              padding: "8px 10px",
-              background: "#24459C",
-              fontSize: "14px",
-              fontWeight: "600",
-              color: "#FFFFFF",
-              "&:hover": {
+            <Button
+              onClick={() => {
+                setAddNewProductModalOpen(!addNewProductModalOpen);
+              }}
+              sx={{
+                width: "160px",
+                height: "36px",
+                borderRadius: "20px",
+                padding: "8px 10px",
+                background: "white",
+                fontSize: "14px",
+                color: "#959596",
+              }}
+            >
+              Cancel
+            </Button>
+            <button
+              type="submit"
+              style={{
+                width: "160px",
+                height: "36px",
+                borderRadius: "20px",
+                border: "none",
+                cursor: "pointer",
+                padding: "8px 10px",
                 background: "#24459C",
-              },
-            }}
-          >
-            Save
-          </Button>
-        </Box>
+                fontSize: "14px",
+                fontWeight: "600",
+                color: "#FFFFFF",
+                "&:hover": {
+                  background: "#24459C",
+                },
+              }}
+            >
+              Save
+            </button>
+          </Box>
+        </form>
       </Container>
     </Modal>
   );
