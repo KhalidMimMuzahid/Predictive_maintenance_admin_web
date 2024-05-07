@@ -52,7 +52,7 @@ const LocationComponent = ({ props }) => {
         <div
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
-          <h3>Please Wait</h3>
+          <h3 style={{ fontSize: "12px" }}>Please Wait</h3>
         </div>
       );
 

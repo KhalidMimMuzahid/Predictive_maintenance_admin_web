@@ -18,7 +18,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <CustomerNamePhoneComponent props={props} />,
-    flex: 180,
+    width: 200,
   },
   {
     field: "reservation_id",
@@ -28,7 +28,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <RequestIdComponent props={props} />,
-    flex: 120,
+    width: 150,
   },
   {
     field: "status",
@@ -38,7 +38,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <StatusComponent props={props} />,
-    flex: 120,
+    width: 120,
   },
   {
     field: "schedule",
@@ -48,7 +48,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <ScheduleComponent props={props} />,
-    flex: 150,
+    width: 175,
   },
   {
     field: "machineType",
@@ -58,7 +58,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <MachineTypeComponent props={props} />,
-    flex: 150,
+    width: 175,
   },
   {
     field: "location",
@@ -68,7 +68,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <LocationComponent props={props} />,
-    flex: 150,
+    width: 150,
   },
   {
     field: "invoice",
@@ -78,7 +78,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <InvoiceComponent props={props} />,
-    flex: 150,
+    width: 210,
   },
   {
     field: "problems",
@@ -88,7 +88,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <IssuesComponent props={props} />,
-    flex: 120,
+    width: 200,
   },
   // {
   //   field: "bidStatus",
@@ -98,7 +98,7 @@ export const columns = [
   //     </Typography>
   //   ),
   //   renderCell: (props) => <BidStatusComponent props={props} />,
-  //   flex: 150,
+  //   width: 150,
   // },
   // {
   //   field: "assign",
@@ -108,7 +108,7 @@ export const columns = [
   //     </Typography>
   //   ),
   //   renderCell: (props) => <AssignVendorComponent props={props} />,
-  //   flex: 200,
+  //   width: 200,
   // },
   {
     field: "action",
@@ -118,6 +118,6 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <ActionComponent props={props} />,
-    flex: 100,
+    width: 100,
   },
 ];

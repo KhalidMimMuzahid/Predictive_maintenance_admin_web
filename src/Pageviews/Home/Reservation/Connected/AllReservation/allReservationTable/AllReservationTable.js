@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useGetAllReservationQuery } from "../../../../../../features/reservation/reservationSlice";
 import { columns } from "../component/allReservationTableComponent/allReservationTableConstant";
 
 const AllReservationTable = () => {
+  const [selectedReservations, setSelectedReservations] = useState([]);
   const {
     data: allReservationRows,
     isLoading,
     isError,
     error,
   } = useGetAllReservationQuery();
-  console.log(allReservationRows);
   return (
     <Box>
       {allReservationRows?.data?.length > 0 && (
@@ -29,8 +29,11 @@ const AllReservationTable = () => {
           }}
           pageSizeOptions={[15, 25, 50]}
           disableRowSelectionOnClick
-          onRowSelectionModelChange={(ids) => {
-            this.onRowsSelectionHandler(ids);
+          onRowSelectionModelChange={(data, index) => {
+            const selectedRowData = data?.map(
+              (index, i) => allReservationRows?.data[index]?._id
+            );
+            setSelectedReservations(selectedRowData);
           }}
         />
       )}

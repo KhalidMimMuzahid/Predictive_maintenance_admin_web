@@ -4,7 +4,9 @@ import React from "react";
 const ScheduleComponent = ({ props }) => {
   return (
     <div>
-      <Typography>{props?.row?.schedule?.category}</Typography>
+      <Typography sx={{ fontWeight: "600", fontSize: "12px" }}>
+        {props?.row?.schedule?.category}
+      </Typography>
     </div>
   );
 };
