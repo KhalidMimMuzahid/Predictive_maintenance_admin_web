@@ -16,10 +16,16 @@ export const reservationApi = createApi({
   tagTypes: [],
   endpoints: (builder) => ({
     getAllReservation: builder.query({
-      query: () => "/reservation/all-reservation",
+      query: () =>
+        "/reservation/all-reservation?machineType=non-connected&reservationType=all",
       providesTags: [],
+    }),
+    getShowaUserInfo: builder.query({
+      query: (showaUser) =>
+        `/user/showa-user/get-showa-user?showaUser=${showaUser}`,
     }),
   }),
 });
 
-export const { useGetAllReservationQuery } = reservationApi;
+export const { useGetAllReservationQuery, useGetShowaUserInfoQuery } =
+  reservationApi;

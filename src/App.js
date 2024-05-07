@@ -48,8 +48,6 @@ import ControlPanelVendor from "./Pageviews/Home/ControlPanel/pageviews/control_
 import ControlPanelWallet from "./Pageviews/Home/ControlPanel/pageviews/control_panel_wallet_screen";
 import ReportScreen from "./Pageviews/Home/Reports/reports_screen";
 
-import ConnectedAllReservation from "./Pageviews/Home/Reservation/connected/connected_all_reservation";
-
 import ConnectedAllBids from "./Pageviews/Home/Bids/connected/connected_all_bids";
 import ConnectedOnDemandBids from "./Pageviews/Home/Bids/connected/connected_on_demand_bids";
 import ConnectedWithinOneWeekBids from "./Pageviews/Home/Bids/connected/connected_within_one_week_bids";

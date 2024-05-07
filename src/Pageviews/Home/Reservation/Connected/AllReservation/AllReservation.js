@@ -1,5 +1,7 @@
-import { Box, Tab, Tabs } from "@mui/material";
+import { GroupOutlined } from "@mui/icons-material";
+import { Box, Button, Tab, Tabs, Typography } from "@mui/material";
 import { useState } from "react";
+import AllReservationTable from "./allReservationTable/AllReservationTable";
 
 const AllReservation = () => {
   const [tabValue, setTabValue] = useState(0);
@@ -10,23 +12,44 @@ const AllReservation = () => {
 
   return (
     // Header
-    <div>
-      <div>
-        <div>
-          <div>Reservation</div>
-          <div></div>
-          <div style={{ display: "flex" }}>
-            <div style={{ color: "black" }}>
-              Dashboard / Reservation/ Sensor Connected/{" "}
-            </div>
-            <div style={{ color: "#24459c" }}>All Reservation Request</div>
-          </div>
-        </div>
-      </div>
-
-      <div></div>
-      <div></div>
-
+    <Box sx={{ padding: "40px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Box>
+          <Typography sx={{ fontSize: "24px", fontWeight: "700" }}>
+            Invoice
+          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            <Typography>Dashboard / </Typography>
+            <Typography>Reservation / </Typography>
+            <Typography>Sensor Connected / </Typography>
+            <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
+              All Reservation Request{" "}
+            </Typography>
+          </Box>
+        </Box>
+        <Box sx={{}}>
+          <Button
+            sx={{
+              background: "#24459C",
+              color: "#E6E8EB",
+              fontWeight: "600",
+              padding: "6px 16px",
+              "&:hover": {
+                background: "#24459C",
+              },
+            }}
+          >
+            <GroupOutlined sx={{ marginRight: "16px" }} />
+            Group
+          </Button>
+        </Box>
+      </Box>
       <div>
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -35,13 +58,13 @@ const AllReservation = () => {
               onChange={handleChange}
               aria-label="basic tabs example"
             >
-              <Tab label="Reservations" />
-              <Tab label="Groups" />
+              <Tab sx={{ fontWeight: "600" }} label="Reservations" />
             </Tabs>
           </Box>
+          <AllReservationTable />
         </Box>
       </div>
-    </div>
+    </Box>
   );
 };
 

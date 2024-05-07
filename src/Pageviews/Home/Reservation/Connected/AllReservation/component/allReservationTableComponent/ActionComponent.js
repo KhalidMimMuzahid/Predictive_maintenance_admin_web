@@ -73,7 +73,7 @@ const ActionComponent = ({ props }) => {
         <MoreVert />
       </IconButton>
 
-      <Box
+      {/* <Box
         id="demo-customized-menu"
         MenuListProps={{
           "aria-labelledby": "demo-customized-button",
@@ -92,7 +92,7 @@ const ActionComponent = ({ props }) => {
           Delete Reservation
         </MenuItem>
 
-        {props.value.bidStatus === "" && (
+        {props?.value?.bidStatus === "" && (
           <MenuItem
             onClick={() => {
               sendForBidding();
@@ -104,7 +104,7 @@ const ActionComponent = ({ props }) => {
           </MenuItem>
         )}
 
-        {props.value.bidStatus === "Ongoing" && (
+        {props?.value?.bidStatus === "Ongoing" && (
           <MenuItem
             onClick={() => {
               closeBidding();
@@ -115,7 +115,7 @@ const ActionComponent = ({ props }) => {
             Close Bidding
           </MenuItem>
         )}
-      </Box>
+      </Box> */}
     </div>
   );
 };
