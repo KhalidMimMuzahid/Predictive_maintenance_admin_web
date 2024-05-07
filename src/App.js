@@ -49,24 +49,6 @@ import ControlPanelWallet from "./Pageviews/Home/ControlPanel/pageviews/control_
 import ReportScreen from "./Pageviews/Home/Reports/reports_screen";
 
 import ConnectedAllReservation from "./Pageviews/Home/Reservation/connected/connected_all_reservation";
-import ConnectedOnDemandReservation from "./Pageviews/Home/Reservation/connected/connected_on_demand_reservation";
-import ConnectedWithinOneWeekReservation from "./Pageviews/Home/Reservation/connected/connected_within_one_week_request";
-import ConnectedWithinTwoWeekReservation from "./Pageviews/Home/Reservation/connected/connected_within_two_week_request";
-import ConnectedScheduleTimeReservation from "./Pageviews/Home/Reservation/connected/connected_schedule_time_request";
-import ConnectedAcceptedReservation from "./Pageviews/Home/Reservation/connected/connected_accepted_request";
-import ConnectedOngoingMaintenance from "./Pageviews/Home/Reservation/connected/connected_ongoing_maintenance";
-import ConnectedRescheduledRequest from "./Pageviews/Home/Reservation/connected/connected_reschedule_request";
-import ConnectedCompletedReservation from "./Pageviews/Home/Reservation/connected/connected_completed_request";
-
-import NonConnectedAllReservation from "./Pageviews/Home/Reservation/non-connected/non_connected_all_reservation";
-import NonConnectedOnDemandReservation from "./Pageviews/Home/Reservation/non-connected/non_connected_on_demand_reservation";
-import NonConnectedWithinOneWeekReservation from "./Pageviews/Home/Reservation/non-connected/non_connected_within_one_week_request";
-import NonConnectedWithinTwoWeekReservation from "./Pageviews/Home/Reservation/non-connected/non_connected_within_two_week_request";
-import NonConnectedScheduleTimeReservation from "./Pageviews/Home/Reservation/non-connected/non_connected_schedule_time_request";
-import NonConnectedAcceptedReservation from "./Pageviews/Home/Reservation/non-connected/non_connected_accepted_request";
-import NonConnectedOngoingMaintenance from "./Pageviews/Home/Reservation/non-connected/non_connected_ongoing_maintenance";
-import NonConnectedRescheduledRequest from "./Pageviews/Home/Reservation/non-connected/non_connected_reschedule_request";
-import NonConnectedCompletedReservation from "./Pageviews/Home/Reservation/non-connected/non_connected_completed_request";
 
 import ConnectedAllBids from "./Pageviews/Home/Bids/connected/connected_all_bids";
 import ConnectedOnDemandBids from "./Pageviews/Home/Bids/connected/connected_on_demand_bids";
@@ -96,6 +78,7 @@ import Team from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightS
 import Schedule from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/schedule/Schedule";
 import Settings from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/settings/Settings";
 import { setUser, toggleLoading } from "./features/authentication/authSlice";
+import AllReservation from "./Pageviews/Home/Reservation/Connected/AllReservation/AllReservation";
 
 const theme = createTheme();
 
@@ -290,8 +273,10 @@ function App() {
 
                   <Route
                     path="/reservation/connected/all"
-                    element={<ConnectedAllReservation />}
+                    element={<AllReservation />}
                   />
+
+                  {/* 
                   <Route
                     path="/reservation/connected/on-demand"
                     element={<ConnectedOnDemandReservation />}
@@ -361,6 +346,9 @@ function App() {
                     path="/reservation/non-connected/completed"
                     element={<NonConnectedCompletedReservation />}
                   />
+
+
+ */}
 
                   <Route path="/iot" element={<IotScreen />} />
                   <Route path="/wallet" element={<WalletScreen />} />
