@@ -252,7 +252,7 @@ const TeamTable = () => {
               updatedAt: rows[index]?.details?.updatedAt,
             };
           });
-          setDownloadData({ selectedRowData, fileName: "Customer Details" });
+          setDownloadData({ selectedRowData, fileName: "Company List" });
         }}
       />
     </Box>

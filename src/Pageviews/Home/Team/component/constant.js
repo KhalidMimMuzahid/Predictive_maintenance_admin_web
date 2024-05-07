@@ -85,7 +85,8 @@ export const columns = [
           {props?.row?.location?.street}{" "}
         </Typography>
         <Box sx={{ display: "flex" }}>
-          <Typography>{props?.row?.location?.city}</Typography>
+          <Typography>{props?.row?.location?.city} </Typography>
+          <span style={{ marginLeft: "5px" }}></span>
           <Typography>{props?.row?.location?.country}</Typography>
         </Box>
       </Box>
