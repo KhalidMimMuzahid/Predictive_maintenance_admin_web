@@ -195,13 +195,18 @@ const generalRoutes = [
         icon: <img src={bids_sub_icon} />,
       },
       {
-        name: "Assigned To Branch ",
-        path: "/res-group/assigned-to-branch",
+        name: "Ongoing",
+        path: "/res-group/ongoing",
         icon: <img src={bids_sub_icon} />,
       },
       {
-        name: "Assigned To Team ",
-        path: "/res-group/assigned-to-team",
+        name: "Completed",
+        path: "/res-group/completed",
+        icon: <img src={bids_sub_icon} />,
+      },
+      {
+        name: "Pending",
+        path: "/res-group/pending",
         icon: <img src={bids_sub_icon} />,
       },
     ],
