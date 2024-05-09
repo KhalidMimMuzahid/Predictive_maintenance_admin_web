@@ -1,37 +1,30 @@
 import { GroupOutlined } from "@mui/icons-material";
 import { Box, Button, Tab, Tabs, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AllReservationTable from "./allReservationTable/AllReservationTable";
-import { usePostReservationGroupMutation } from "../../../../../features/reservation/reservationSlice";
+import MakeGroupModal from "../../commonComponent/modal/MakeGroupModal";
 
 const AllReservation = () => {
   const [tabValue, setTabValue] = useState(0);
   const [selectedReservations, setSelectedReservations] = useState([]);
+  const [viewOpen, setViewOpen] = useState(false);
 
-  const [makeReservationGroup, { data, isError, error, isLoading, isSuccess }] =
-    usePostReservationGroupMutation();
-
-  useEffect(() => {
-    if (isSuccess & !isLoading) {
-      alert(data?.message);
-      // here we need to re fetch the data for all reservation group table
-    }
-    if (isError & !isLoading) {
-      alert(error?.data?.message);
-    }
-  }, [isLoading]);
+  const handleGroupReservation = () => {
+    setViewOpen(true);
+  };
 
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
   };
 
-  const handleGroupReservation = () => {
-    makeReservationGroup({ reservationRequests: selectedReservations });
-  };
-
   return (
     // Header
     <Box sx={{ padding: "40px" }}>
+      <MakeGroupModal
+        viewOpen={viewOpen}
+        setViewOpen={setViewOpen}
+        selectedReservations={selectedReservations}
+      />
       <Box
         sx={{
           display: "flex",
