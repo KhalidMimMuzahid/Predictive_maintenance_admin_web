@@ -3,35 +3,30 @@ import { Box, Button, Tab, Tabs, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import AllReservationTable from "./allReservationTable/AllReservationTable";
 import { usePostReservationGroupMutation } from "../../../../../features/reservation/reservationSlice";
+import MakeGroupModal from "../../commonComponent/modal/MakeGroupModal";
 
 const WithinOneWeek = () => {
   const [tabValue, setTabValue] = useState(0);
   const [selectedReservations, setSelectedReservations] = useState([]);
 
-  const [makeReservationGroup, { data, isError, error, isLoading, isSuccess }] =
-    usePostReservationGroupMutation();
+  const [viewOpen, setViewOpen] = useState(false);
 
-  useEffect(() => {
-    if (isSuccess & !isLoading) {
-      alert(data?.message);
-      // here we need to re fetch the data for all reservation group table
-    }
-    if (isError & !isLoading) {
-      alert(error?.data?.message);
-    }
-  }, [isLoading]);
+  const handleGroupReservation = () => {
+    setViewOpen(true);
+  };
 
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
   };
 
-  const handleGroupReservation = () => {
-    makeReservationGroup({ reservationRequests: selectedReservations });
-  };
-
   return (
     // Header
     <Box sx={{ padding: "40px" }}>
+      <MakeGroupModal
+        viewOpen={viewOpen}
+        setViewOpen={setViewOpen}
+        selectedReservations={selectedReservations}
+      />
       <Box
         sx={{
           display: "flex",
@@ -48,7 +43,7 @@ const WithinOneWeek = () => {
             <Typography>Reservation / </Typography>
             <Typography>Sensor Connected / </Typography>
             <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
-              On Demand Request Request{" "}
+              Within One Week Request{" "}
             </Typography>
           </Box>
         </Box>
