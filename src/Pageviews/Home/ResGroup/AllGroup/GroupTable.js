@@ -25,7 +25,7 @@ const GroupTable = () => {
           // pageSize={5}
           // rowsPerPageOptions={5}
           // autoHeight
-          checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
+          checkboxSelection
         />
       )}
     </Box>

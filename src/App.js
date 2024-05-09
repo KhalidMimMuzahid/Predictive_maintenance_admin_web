@@ -76,8 +76,36 @@ import Team from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightS
 import Schedule from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/schedule/Schedule";
 import Settings from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/settings/Settings";
 import { setUser, toggleLoading } from "./features/authentication/authSlice";
+
+
+// connected 
 import AllReservation from "./Pageviews/Home/Reservation/Connected/AllReservation/AllReservation";
 import AllGroup from "./Pageviews/Home/ResGroup/AllGroup/AllGroup";
+import OnDemand from "./Pageviews/Home/Reservation/Connected/OnDemand/OnDemand";
+import WithinOneWeek from "./Pageviews/Home/Reservation/Connected/WithinOneWeek/WithinOneWeek";
+import WithinTwoWeek from "./Pageviews/Home/Reservation/Connected/WithinTwoWeek/WithinTwoWeek";
+import AcceptedRequest from "./Pageviews/Home/Reservation/Connected/AcceptedRequest/AcceptedRequest";
+import ScheduleTime from "./Pageviews/Home/Reservation/Connected/ScheduleTime/ScheduleTime";
+import OnGoing from "./Pageviews/Home/Reservation/Connected/OnGoing/OnGoing";
+import ReSchedule from "./Pageviews/Home/Reservation/Connected/ReShedule/ReSchedule";
+import Completed from "./Pageviews/Home/Reservation/Connected/Completed/Completed";
+
+// non connected
+import AllReservationNonConnected from "./Pageviews/Home/Reservation/NonConnected/AllReservation/AllReservation";
+import OnDemandNonConnected from "./Pageviews/Home/Reservation/NonConnected/OnDemand/OnDemand";
+import WithinOneWeekNonConnected from "./Pageviews/Home/Reservation/NonConnected/WithinOneWeek/WithinOneWeek";
+import WithinTwoWeekNonConnected from "./Pageviews/Home/Reservation/NonConnected/WithinTwoWeek/WithinTwoWeek";
+import AcceptedRequestNonConnected from "./Pageviews/Home/Reservation/NonConnected/AcceptedRequest/AcceptedRequest";
+import ScheduleTimeNonConnected from "./Pageviews/Home/Reservation/NonConnected/ScheduleTime/ScheduleTime";
+import OnGoingNonConnected from "./Pageviews/Home/Reservation/NonConnected/OnGoing/OnGoing";
+import ReScheduleNonConnected from "./Pageviews/Home/Reservation/NonConnected/ReShedule/ReSchedule";
+import CompletedNonConnected from "./Pageviews/Home/Reservation/NonConnected/Completed/Completed";
+
+
+
+
+
+
 
 const theme = createTheme();
 
@@ -274,40 +302,81 @@ function App() {
                     path="/reservation/connected/all"
                     element={<AllReservation />}
                   />
-
-                  {/* 
                   <Route
                     path="/reservation/connected/on-demand"
-                    element={<ConnectedOnDemandReservation />}
+                    element={<OnDemand />}
                   />
+
                   <Route
                     path="/reservation/connected/within-one-week"
-                    element={<ConnectedWithinOneWeekReservation />}
+                    element={<WithinOneWeek />}
                   />
                   <Route
                     path="/reservation/connected/within-two-week"
-                    element={<ConnectedWithinTwoWeekReservation />}
+                    element={<WithinTwoWeek />}
                   />
                   <Route
                     path="/reservation/connected/schedule-time"
-                    element={<ConnectedScheduleTimeReservation />}
+                    element={<ScheduleTime />}
                   />
                   <Route
                     path="/reservation/connected/accepted"
-                    element={<ConnectedAcceptedReservation />}
+                    element={<AcceptedRequest />}
                   />
                   <Route
                     path="/reservation/connected/ongoing"
-                    element={<ConnectedOngoingMaintenance />}
+                    element={<OnGoing />}
                   />
                   <Route
                     path="/reservation/connected/reschedule"
-                    element={<ConnectedRescheduledRequest />}
+                    element={<ReSchedule />}
                   />
                   <Route
                     path="/reservation/connected/completed"
-                    element={<ConnectedCompletedReservation />}
+                    element={<Completed />}
                   />
+
+                  {/* non connected  */}
+                  <Route
+                    path="/reservation/non-connected/all"
+                    element={<AllReservationNonConnected />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/on-demand"
+                    element={<OnDemandNonConnected />}
+                  />
+
+                  <Route
+                    path="/reservation/non-connected/within-one-week"
+                    element={<WithinOneWeekNonConnected />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/within-two-week"
+                    element={<WithinTwoWeekNonConnected />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/schedule-time"
+                    element={<ScheduleTimeNonConnected />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/accepted"
+                    element={<AcceptedRequestNonConnected />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/ongoing"
+                    element={<OnGoingNonConnected />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/reschedule"
+                    element={<ReScheduleNonConnected />}
+                  />
+                  <Route
+                    path="/reservation/non-connected/completed"
+                    element={<CompletedNonConnected />}
+                  />
+                  {/* 
+                 
+        
 
                   <Route
                     path="/reservation/non-connected/all"

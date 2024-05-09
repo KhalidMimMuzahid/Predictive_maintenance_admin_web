@@ -16,16 +16,29 @@ export const reservationApi = createApi({
   tagTypes: [],
   endpoints: (builder) => ({
     getAllReservation: builder.query({
-      query: () =>
-        "/reservation/all-reservation?machineType=non-connected&reservationType=all",
+      query: ({ machineType, reservationType }) =>
+        `/reservation/all-reservation?machineType=${machineType}&reservationType=${reservationType}`,
       providesTags: [],
     }),
+
     getShowaUserInfo: builder.query({
       query: (showaUser) =>
         `/user/showa-user/get-showa-user?showaUser=${showaUser}`,
     }),
+
+    postReservationGroup: builder.mutation({
+      query: (formData) => ({
+        url: "/reservations-group/create",
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: ["make-reservation-request-group"],
+    }),
   }),
 });
 
-export const { useGetAllReservationQuery, useGetShowaUserInfoQuery } =
-  reservationApi;
+export const {
+  useGetAllReservationQuery,
+  useGetShowaUserInfoQuery,
+  usePostReservationGroupMutation,
+} = reservationApi;

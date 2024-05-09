@@ -1,6 +1,9 @@
 import { Typography } from "@mui/material";
 import GroupNameComponent from "./GroupNameComponent";
 import GroupIdComponent from "./GroupIdComponent";
+import ClosedStatusComponent from "./ClosedStatusComponent";
+import BidsComponent from "./BidsComponent";
+import AllGroupActionComponent from "./AllGroupActionComponent";
 
 export const columns = [
   {
@@ -30,7 +33,7 @@ export const columns = [
         CLOSED STATUS
       </Typography>
     ),
-    renderCell: (props) => <Typography>Status</Typography>,
+    renderCell: (props) => <ClosedStatusComponent props={props?.row?.data} />,
     width: 300,
   },
   {
@@ -38,7 +41,7 @@ export const columns = [
     headerName: (
       <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>BIDS</Typography>
     ),
-    renderCell: (props) => <Typography>Bids</Typography>,
+    renderCell: (props) => <BidsComponent props={props?.row?.data} />,
     width: 300,
   },
   {
@@ -48,7 +51,7 @@ export const columns = [
         ACTION
       </Typography>
     ),
-    renderCell: (props) => <Typography>...</Typography>,
+    renderCell: (props) => <AllGroupActionComponent props={props?.row?.data} />,
     width: 300,
   },
 ];

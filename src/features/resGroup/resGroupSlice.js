@@ -19,7 +19,15 @@ export const resGroupApi = createApi({
       query: () => "/reservations-group/all-reservations-group",
       providesTags: [],
     }),
+    postBidsAssign: builder.mutation({
+      query: ({ reservationRequestGroup, _id }) => ({
+        url: `/reservations-group/select-bidding-winner?reservationRequestGroup=${reservationRequestGroup}&bid=${_id}`,
+        method: "PATCH",
+      }),
+      providesTags: ["Test"],
+    }),
   }),
 });
 
-export const { useGetAllResGroupsQuery } = resGroupApi;
+export const { useGetAllResGroupsQuery, usePostBidsAssignMutation } =
+  resGroupApi;
