@@ -1,13 +1,32 @@
 import { GroupOutlined } from "@mui/icons-material";
 import { Box, Button, Tab, Tabs, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AllReservationTable from "./allReservationTable/AllReservationTable";
+import { usePostReservationGroupMutation } from "../../../../../features/reservation/reservationSlice";
 
 const AllReservation = () => {
   const [tabValue, setTabValue] = useState(0);
+  const [selectedReservations, setSelectedReservations] = useState([]);
+
+  const [makeReservationGroup, { data, isError, error, isLoading, isSuccess }] =
+    usePostReservationGroupMutation();
+
+  useEffect(() => {
+    if (isSuccess & !isLoading) {
+      alert(data?.message);
+      // here we need to re fetch the data for all reservation group table
+    }
+    if (isError & !isLoading) {
+      alert(error?.data?.message);
+    }
+  }, [isLoading]);
 
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
+  };
+
+  const handleGroupReservation = () => {
+    makeReservationGroup({ reservationRequests: selectedReservations });
   };
 
   return (
@@ -22,7 +41,7 @@ const AllReservation = () => {
       >
         <Box>
           <Typography sx={{ fontSize: "24px", fontWeight: "700" }}>
-            Invoice
+            Reservation
           </Typography>
           <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <Typography>Dashboard / </Typography>
@@ -35,6 +54,8 @@ const AllReservation = () => {
         </Box>
         <Box sx={{}}>
           <Button
+            disabled={!selectedReservations?.length}
+            onClick={handleGroupReservation}
             sx={{
               background: "#24459C",
               color: "#E6E8EB",
@@ -61,7 +82,9 @@ const AllReservation = () => {
               <Tab sx={{ fontWeight: "600" }} label="Reservations" />
             </Tabs>
           </Box>
-          <AllReservationTable />
+          <AllReservationTable
+            setSelectedReservations={setSelectedReservations}
+          />
         </Box>
       </div>
     </Box>
