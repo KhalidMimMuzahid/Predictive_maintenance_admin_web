@@ -3,7 +3,7 @@ import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import React from "react";
 
 const IssuesModal = ({ issuesModalOpen, setIssuesModalOpen, problem }) => {
-  console.log(problem);
+  console.log(problem?.images);
   return (
     <Modal
       sx={{
@@ -106,7 +106,21 @@ const IssuesModal = ({ issuesModalOpen, setIssuesModalOpen, problem }) => {
               <Box>
                 <Box sx={{ display: "flex" }}>
                   <Box sx={{ padding: "2px", background: "#FFF" }}>
-                    {/* <img src={washingmachine} alt="" /> */}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "4px",
+                      }}
+                    >
+                      {problem?.images?.map((img, i) => (
+                        <img
+                          src={img?.image}
+                          style={{ width: "120px", height: "90px" }}
+                          alt=""
+                        />
+                      ))}
+                    </Box>
                   </Box>
                 </Box>
               </Box>

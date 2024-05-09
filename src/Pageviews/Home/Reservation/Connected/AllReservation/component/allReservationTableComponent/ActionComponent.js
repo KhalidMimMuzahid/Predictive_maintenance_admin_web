@@ -1,6 +1,16 @@
-import { Delete, Equalizer, MoreVert, Stop } from "@mui/icons-material";
-import { Box, IconButton, MenuItem } from "@mui/material";
+import {
+  Close,
+  CreateOutlined,
+  Delete,
+  DeleteOutlineOutlined,
+  Equalizer,
+  MoreVert,
+  Stop,
+  VisibilityOutlined,
+} from "@mui/icons-material";
+import { Box, IconButton, MenuItem, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { StyledMenu } from "../../../../../Customer/styleComponents";
 
 const ActionComponent = ({ props }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -73,49 +83,47 @@ const ActionComponent = ({ props }) => {
         <MoreVert />
       </IconButton>
 
-      {/* <Box
-        id="demo-customized-menu"
-        MenuListProps={{
-          "aria-labelledby": "demo-customized-button",
-        }}
-        anchorEl={anchorEl}
-        open={openEl}
-        onClose={handleClose}
-      >
-        <MenuItem
-          onClick={() => {
-            deleteReservation();
-            handleClose();
-          }}
-        >
-          <Delete style={{ color: "red" }} />
-          Delete Reservation
-        </MenuItem>
-
-        {props?.value?.bidStatus === "" && (
+      <StyledMenu anchorEl={anchorEl} open={openEl} onClose={handleClose}>
+        <Box sx={{ background: "#F4F2FF" }}>
+          <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
+            <VisibilityOutlined />
+            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+              View
+            </Typography>
+          </MenuItem>
+          <MenuItem
+            // onClick={() => setIsEditInvoiceModalOpen(!isEditInvoiceModalOpen)}
+            sx={{ display: "flex", gap: "0 6px" }}
+          >
+            <CreateOutlined />
+            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+              Edit
+            </Typography>
+          </MenuItem>
           <MenuItem
             onClick={() => {
-              sendForBidding();
-              handleClose();
+              // setIsSendModalOpen(!isSendModalOpen);
             }}
+            sx={{ display: "flex", gap: "0 6px" }}
           >
-            <Equalizer style={{ color: "pink" }} />
-            Send for Bidding
+            <Close />
+            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+              Close
+            </Typography>
           </MenuItem>
-        )}
-
-        {props?.value?.bidStatus === "Ongoing" && (
           <MenuItem
             onClick={() => {
-              closeBidding();
-              handleClose();
+              // setIsDeleteModalOpen(!isDeleteModalOpen);
             }}
+            sx={{ display: "flex", gap: "0 6px" }}
           >
-            <Stop style={{ color: "purple" }} />
-            Close Bidding
+            <DeleteOutlineOutlined />
+            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+              Delete
+            </Typography>
           </MenuItem>
-        )}
-      </Box> */}
+        </Box>
+      </StyledMenu>
     </div>
   );
 };

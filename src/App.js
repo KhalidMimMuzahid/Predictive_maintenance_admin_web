@@ -77,6 +77,7 @@ import Schedule from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/ri
 import Settings from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/settings/Settings";
 import { setUser, toggleLoading } from "./features/authentication/authSlice";
 import AllReservation from "./Pageviews/Home/Reservation/Connected/AllReservation/AllReservation";
+import AllGroup from "./Pageviews/Home/ResGroup/AllGroup/AllGroup";
 
 const theme = createTheme();
 
@@ -347,6 +348,10 @@ function App() {
 
 
  */}
+
+                  {/* Res Group Start */}
+                  <Route path="/res-group/all-group" element={<AllGroup />} />
+                  {/* Res Group End */}
 
                   <Route path="/iot" element={<IotScreen />} />
                   <Route path="/wallet" element={<WalletScreen />} />
