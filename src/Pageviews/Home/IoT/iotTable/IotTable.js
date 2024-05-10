@@ -9,15 +9,30 @@ import { useGetAllIotQuery } from "../../../../features/iot/iotSlice";
 import Loader from "../../../../Utils/Loader";
 
 const IotTable = () => {
-  const { data: iot, isLoading, isError, error } = useGetAllIotQuery();
+  const {
+    data: iot,
+    isLoading,
+    isError,
+    error,
+    isSuccess,
+  } = useGetAllIotQuery();
 
-  function displayIoT() {
-    if (isLoading || isError) {
-      return <Loader />;
+  useEffect(() => {
+    if (isSuccess & !isLoading) {
+      console.log({ iot });
     }
-    console.log(iot);
+    if (isError & !isLoading) {
+      alert(error?.data?.message);
+    }
+  }, [isLoading]);
 
-    return (
+  // if (isLoading || isError) {
+  //   return <Loader />;
+  // }
+
+  return (
+    <div style={{ overflow: "auto" }}>
+      {" "}
       <Box sx={{ background: "white", padding: "20px", borderRadius: "5px" }}>
         <Box
           sx={{
@@ -67,25 +82,26 @@ const IotTable = () => {
             }}
           />
         </Box>
-        {/* <DataGrid
-          rows={iot?.map((data, id) => {
-            return { ...data, id };
-          })}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          initialState={{
-            pagination: { paginationModel: { pageSize: 5 } },
-          }}
-          pageSizeOptions={[5, 10, 25]}
-          autoHeight
-          checkboxSelection
-        /> */}
-      </Box>
-    );
-  }
 
-  return <div style={{ overflow: "auto" }}>{displayIoT()}</div>;
+        {iot?.data?.length > 0 && (
+          <DataGrid
+            rows={iot?.data?.map((data, id) => {
+              return { ...data, id };
+            })}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            initialState={{
+              pagination: { paginationModel: { pageSize: 5 } },
+            }}
+            pageSizeOptions={[5, 10, 25]}
+            autoHeight
+            checkboxSelection
+          />
+        )}
+      </Box>
+    </div>
+  );
 };
 
 // import React from "react";

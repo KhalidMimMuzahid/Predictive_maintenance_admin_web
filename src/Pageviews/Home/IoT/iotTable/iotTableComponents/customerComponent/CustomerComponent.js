@@ -3,51 +3,36 @@ import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 
 const CustomerComponent = ({ props }) => {
-  const [customer, setCustomer] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    let url = `https://api.showaapp.com/customer/profile/user/find-user-with-id/${props?.row?.uid}`;
-    fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log({ data });
-        setCustomer(data?.user);
-      });
-  }, [props?.row?.uid]);
+  const [component, setComponent] = useState(<span>loading</span>);
+  // console.log({ props });
+  // if (props?.row?.status === "in-stock") {
+  //   setComponent(<span>not sold yet</span>);
+  // }
 
-  function displayCustomer() {
-    if (customer == null) {
-      return (
-        <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
-          <h3>Please Wait</h3>
-        </div>
-      );
-    } else {
-      return (
-        <Box>
-          <Typography
-            sx={{
-              color: "#25213B",
-              fontWeight: "600",
-              textTransform: "uppercase",
-            }}
-          >
-            {customer?.firstNameAlphabet + " " + customer?.lastNameAlphabet}
-          </Typography>
-          <div sx={{ color: "#6E6893" }}>{customer?.phone}</div>
-        </Box>
-      );
-    }
-  }
+  // const [customer, setCustomer] = useState(null);
+  // if (isLoading) {
+  //   return (
 
-  return <div style={{ display: "flex" }}>{displayCustomer()}</div>;
+  //   );
+  // }
+  // useEffect(() => {
+  //   let url = `https://api.showaapp.com/customer/profile/user/find-user-with-id/${props?.row?.uid}`;
+  //   fetch(url, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       // console.log({ data });
+  //       setCustomer(data?.user);
+  //     });
+  // }, [props?.row?.uid]);
+
+  return;
 };
 
 export default CustomerComponent;
