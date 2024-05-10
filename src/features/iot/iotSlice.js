@@ -16,7 +16,7 @@ export const iotApi = createApi({
   tagTypes: ["add-sensor-module"],
   endpoints: (builder) => ({
     getAllIot: builder.query({
-      query: () => "/get-in-stock-sensor-module",
+      query: () => "/sensor-module/get-all-sensor-module?status=",
       providesTags: [],
     }),
     postIOT: builder.mutation({

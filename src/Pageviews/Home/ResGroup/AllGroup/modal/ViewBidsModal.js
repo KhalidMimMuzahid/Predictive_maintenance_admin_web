@@ -22,6 +22,11 @@ const ViewBidsModal = ({
   reservationRequestGroup,
   props,
 }) => {
+
+
+
+
+  console.log({ props });
   const [postBidId, { data, isError, error, isLoading, isSuccess }] =
     usePostBidsAssignMutation();
 
@@ -91,7 +96,7 @@ const ViewBidsModal = ({
               <Table>
                 <TableHead>
                   <TableCell sx={{ width: "20%" }}>ID</TableCell>
-                  <TableCell sx={{ width: "20%" }}>Bidding User</TableCell>
+                  <TableCell sx={{ width: "20%" }}>Bidder email</TableCell>
                   <TableCell sx={{ width: "20%" }}>
                     Service Provider Company
                   </TableCell>
@@ -109,10 +114,10 @@ const ViewBidsModal = ({
                         {bid?._id}
                       </TableCell>
                       <TableCell component="th" scope="row">
-                        {bid?.biddingUser}
+                        {bid?.biddingUser?.email}
                       </TableCell>
                       <TableCell component="th" scope="row">
-                        {bid?.serviceProviderCompany}
+                        {bid?.serviceProviderCompany.companyName}
                       </TableCell>
                       <TableCell
                         component="th"

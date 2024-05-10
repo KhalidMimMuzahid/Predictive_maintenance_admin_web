@@ -11,29 +11,29 @@ export const columns = [
     headerName: "PRODUCT",
     width: 270,
     renderCell: (props) => <ProductComponent props={props} />,
+    //  <h1>products</h1>,
+
+    // <ProductComponent props={props} />,
   },
-  {
-    field: "state",
-    headerName: "STATE",
-    width: 270,
-    renderCell: (props) => (
-      <Typography sx={{ color: "#6E6893", fontWeight: "500" }}>
-        Not Found
-      </Typography>
-    ),
-  },
-  {
-    field: "customer",
-    headerName: "CUSTOMER",
-    width: 270,
-    renderCell: (props) => <CustomerComponent props={props} />,
-  },
-  {
-    field: "status",
-    headerName: "STATUS",
-    width: 270,
-    renderCell: (props) => <StatusComponent props={props} />,
-  },
+
+  // {
+  //   field: "customer",
+  //   headerName: "CUSTOMER",
+  //   width: 270,
+  //   renderCell: (props) => <CustomerComponent props={props} />,
+
+  //   // <h1>customer</h1>,
+
+  //   // <CustomerComponent props={props} />,
+  // },
+  // {
+  //   field: "status",
+  //   headerName: "STATUS",
+  //   width: 270,
+  //   renderCell: (props) => <h1>status</h1>,
+
+  //   // <StatusComponent props={props} />,
+  // },
   {
     field: "price",
     headerName: "PRICE",
