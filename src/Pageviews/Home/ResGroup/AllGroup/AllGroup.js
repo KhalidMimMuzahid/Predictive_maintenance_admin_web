@@ -1,9 +1,8 @@
 import { Box, Tab, Tabs, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import GroupTable from "./GroupTable";
 
 const AllGroup = () => {
-  const [tabValue, setTabValue] = useState("group");
   return (
     <Box sx={{ padding: "40px" }}>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
