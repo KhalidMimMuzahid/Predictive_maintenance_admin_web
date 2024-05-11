@@ -6,8 +6,10 @@ const ProductComponent = ({ props }) => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <div className={classes.tabTitle}>{props?.row?.macId}</div>
-      <div className={classes.tabSubtitle}>{props?.row?.module}</div>
+      <div className={classes.tabTitle}>
+        {props?.row?.macAddress} {props?.row?.moduleType}
+      </div>
+      <div className={classes.tabSubtitle}>{props?.row?.name}</div>
     </div>
   );
 };
