@@ -59,10 +59,10 @@ const IotRawTable = ({ data }) => {
                   <ProductComponent bid={bid} />
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  <StateComponent bid={bid} />
+                  <StateComponent sensorModule={bid} />
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  <CustomerComponent bid={bid} />
+                  <CustomerComponent sensorModule={bid} />
                 </TableCell>
                 <TableCell component="th" scope="row">
                   <StatusComponent bid={bid} />
