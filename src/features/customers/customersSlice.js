@@ -21,7 +21,7 @@ export const customersApi = createApi({
       providesTags: [],
     }),
     getCustomerDetails: builder.query({
-      query: (uid) => `/customer/profile/user/find-user-with-id/${uid}`,
+      query: (user) => `/user/showa-user/get-showa-user-by-user?user=${user}`,
       providesTags: [],
     }),
     getCustomerWallet: builder.query({

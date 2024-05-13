@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useGetSensorModuleByMacAddressQuery } from "../../../../../../features/iot/iotSlice";
+import { useGetCustomerDetailsQuery } from "../../../../../../features/customers/customersSlice";
 
 const CustomerComponent = ({ sensorModule }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,31 +13,50 @@ const CustomerComponent = ({ sensorModule }) => {
     error,
     isSuccess,
   } = useGetSensorModuleByMacAddressQuery(sensorModule?.macAddress);
-
+  const {
+    data: customerDetailsData,
+    isLoading: isLoading3,
+    isError: isError2,
+    error: error2,
+    isSuccess: isSuccess2,
+  } = useGetCustomerDetailsQuery(iot?.data?.user);
   useEffect(() => {
     if (sensorModule.status === "in-stock") {
       setCustomer(<span>-</span>);
       setIsLoading(false);
     } else {
       // console.log(iot?.data?.user);
-      // if (iot?.data?.isAttached) {
-      //   setStatus("assigned");
-      //   setIsLoading(false);
-      // } else {
-      //   setStatus("un-assigned");
-      //   setIsLoading(false);
-      // }
+      if (customerDetailsData?.data?.name) {
+        setCustomer(
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <span>
+              {customerDetailsData?.data?.name?.firstName +
+                " " +
+                customerDetailsData?.data?.name?.lastName}
+            </span>
+            <span>{customerDetailsData?.data?.phone}</span>
+          </div>
+        );
+        setIsLoading(false);
+      } else {
+        setCustomer(<span>-</span>);
+        setIsLoading(false);
+      }
+      console.log({ customerDetailsData });
     }
-  }, [isSuccess]);
+  }, [isSuccess, isSuccess2]);
 
   if (isLoading) {
     return <span>loading</span>;
   } else {
-    return (
-      <div>
-        <span>status</span>
-      </div>
-    );
+    return customer;
   }
 };
 export default CustomerComponent;
