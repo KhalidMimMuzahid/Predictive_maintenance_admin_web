@@ -1,16 +1,14 @@
 import React from "react";
-import { useStyle } from "../../../styles/iotStyle";
+import { Box, Typography } from "@mui/material";
 
-const ProductComponent = ({ props }) => {
-  const classes = useStyle();
-
+const ProductComponent = ({ bid }) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <div className={classes.tabTitle}>
-        {props?.row?.macAddress} {props?.row?.moduleType}
-      </div>
-      <div className={classes.tabSubtitle}>{props?.row?.name}</div>
-    </div>
+    <Box>
+      <Typography sx={{ color: "#25213B", fontWeight: "600" }}>
+        {bid?.name}
+      </Typography>
+      <Typography sx={{ fontSize: "12px" }}>{bid?.macAddress}</Typography>
+    </Box>
   );
 };
 

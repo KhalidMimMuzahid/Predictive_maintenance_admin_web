@@ -162,15 +162,12 @@ const IotScreen = () => {
             </Button>
           </div>
         </div>
-
-        <div className={classes.spacerSmall}></div>
-        <div className={classes.spacerSmall}></div>
-
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             gap: "10px",
+            marginTop: "18px",
           }}
         >
           <IotData />

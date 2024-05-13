@@ -11,9 +11,12 @@ import {
 } from "@mui/material";
 import React from "react";
 import OptionsComponent from "./iotTableComponents/optionsComponent/OptionsComponent";
+import CustomerComponent from "./iotTableComponents/customerComponent/CustomerComponent";
+import StatusComponent from "./iotTableComponents/statusComponent/StatusComponent";
+import StateComponent from "./iotTableComponents/stateComponent/StateComponent";
+import ProductComponent from "./iotTableComponents/productComponent/ProductComponent";
 
 const IotRawTable = ({ data }) => {
-  console.table(data);
   return (
     <Box>
       <TableContainer component={Paper}>
@@ -53,47 +56,16 @@ const IotRawTable = ({ data }) => {
                 }}
               >
                 <TableCell component="th" scope="row">
-                  <Typography sx={{ color: "#25213B", fontWeight: "600" }}>
-                    {bid?.name}
-                  </Typography>
-                  <Typography sx={{ fontSize: "12px" }}>
-                    {bid?.macAddress}
-                  </Typography>
+                  <ProductComponent bid={bid} />
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {bid?.isDeleted?.value ? "TRUE" : "FALSE"}
+                  <StateComponent bid={bid} />
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {bid?.serviceProviderCompany?.companyName}
+                  <CustomerComponent bid={bid} />
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {bid?.status === "sold-out" && (
-                    <Typography
-                      sx={{
-                        background: "#FDCCD1",
-                        width: "100px",
-                        textAlign: "center",
-                        padding: "1px 4px",
-                        borderRadius: "20px",
-                      }}
-                    >
-                      🔴 {bid?.status}
-                    </Typography>
-                  )}
-                  {bid?.status === "in-stock" && (
-                    <Typography
-                      sx={{
-                        color: "#7FC008",
-                        background: "#F3FAE8",
-                        width: "100px",
-                        textAlign: "center",
-                        padding: "1px 4px",
-                        borderRadius: "20px",
-                      }}
-                    >
-                      🟢 {bid?.status}
-                    </Typography>
-                  )}
+                  <StatusComponent bid={bid} />
                 </TableCell>
                 <TableCell component="th" scope="row">
                   <OptionsComponent />

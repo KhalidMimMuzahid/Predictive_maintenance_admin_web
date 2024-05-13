@@ -1,6 +1,3 @@
-import { DataGrid } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
-import { columns } from "./constant";
 import { Box } from "@mui/system";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Cancel, Search } from "@mui/icons-material";
@@ -41,6 +38,7 @@ const IotTable = () => {
             justifyContent: "center",
             alignItems: "center",
             borderRadius: "8px",
+            cursor: "pointer",
           }}
         >
           <TuneIcon />

@@ -1,7 +1,7 @@
+import { Typography } from "@mui/material";
 import ActionComponent from "./components/ActionComponent";
 import BalanceComponent from "./components/BalanceComponent";
 import CustomerNameEmailComponent from "./components/CustomerNameEmailComponent";
-import DetailsComponent from "./components/DetailsComponent";
 import LocationComponent from "./components/LocationComponent";
 import MachineComponent from "./components/MachineComponent";
 import SubscriptionComponent from "./components/SubscriptionComponent";
@@ -9,49 +9,85 @@ import SubscriptionComponent from "./components/SubscriptionComponent";
 export const columns = [
   {
     field: "name",
-    headerName: "CUSTOMER NAME",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        CUSTOMER NAME
+      </Typography>
+    ),
     width: 250,
 
     renderCell: (props) => <CustomerNameEmailComponent props={props} />,
   },
   {
     field: "email",
-    headerName: "EMAIL",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        EMAIL
+      </Typography>
+    ),
     width: 250,
   },
   {
     field: "location",
-    headerName: "LOCATION",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        LOCATION
+      </Typography>
+    ),
     width: 250,
     renderCell: (props) => <LocationComponent props={props} />,
   },
   {
     field: "machine",
-    headerName: "Machine",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        MACHINE
+      </Typography>
+    ),
     width: 150,
     renderCell: (props) => <MachineComponent props={props} />,
   },
   {
     field: "balance",
-    headerName: "WALLET",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        WALLET
+      </Typography>
+    ),
     width: 250,
     renderCell: (props) => <BalanceComponent props={props} />,
   },
   {
     field: "subscription",
-    headerName: "SUBSCRIPTION",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        SUBSCRIPTION
+      </Typography>
+    ),
     width: 200,
     renderCell: (props) => <SubscriptionComponent props={props} />,
   },
-  // {
-  //   field: "details",
-  //   headerName: "DETAILS",
-  //   width: 200,
-  //   renderCell: (props) => <DetailsComponent props={props} />,
-  // },
   {
     field: "action",
-    headerName: "ACTION",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        ACTION
+      </Typography>
+    ),
     width: 200,
     renderCell: (props) => <ActionComponent props={props} />,
   },
