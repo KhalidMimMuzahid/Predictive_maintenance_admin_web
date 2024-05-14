@@ -11,21 +11,21 @@ const StateComponent = ({ sensorModule }) => {
     error,
     isSuccess,
   } = useGetSensorModuleByMacAddressQuery(sensorModule?.macAddress);
-
-  useEffect(() => {
-    if (sensorModule.status === "in-stock") {
-      setStatus("not-sold-yet");
+console.log({ iot });
+useEffect(() => {
+  if (sensorModule.status === "in-stock") {
+    setStatus("not-sold-yet");
+    setIsLoading(false);
+  } else {
+    if (iot?.data?.isAttached) {
+      setStatus("assigned");
       setIsLoading(false);
     } else {
-      if (iot?.data?.isAttached) {
-        setStatus("assigned");
-        setIsLoading(false);
-      } else {
-        setStatus("un-assigned");
-        setIsLoading(false);
-      }
+      setStatus("un-assigned");
+      setIsLoading(false);
     }
-  }, [isSuccess]);
+  }
+}, [isSuccess, iot]);
 
   if (isLoading) {
     return <span>loading</span>;

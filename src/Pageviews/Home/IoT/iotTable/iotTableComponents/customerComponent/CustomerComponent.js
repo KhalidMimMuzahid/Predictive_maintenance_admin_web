@@ -24,10 +24,15 @@ const CustomerComponent = ({ sensorModule }) => {
 
   useEffect(() => {
     if (sensorModule.status === "in-stock") {
+      console.log({ sensorModuleInStock: sensorModule.status });
       setCustomer(<span>-</span>);
       setIsLoading(false);
     } else {
+      // refetch(iot?.data?.user);
+      console.log({ sensorModuleOutStock: sensorModule.status });
       // console.log(iot?.data?.user);
+
+      // console.log({ customerDetailsData: customerDetailsData });
       if (customerDetailsData?.data?.name) {
         setCustomer(
           <div
@@ -50,7 +55,7 @@ const CustomerComponent = ({ sensorModule }) => {
         setIsLoading(false);
       }
     }
-  }, [isSuccess, isSuccess2]);
+  }, [isSuccess, isSuccess2, customerDetailsData?.data?.name]);
 
   if (isLoading) {
     return <span>loading</span>;

@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import { Close, Delete } from "@mui/icons-material";
+import {
+  useDeleteIOTMutation,
+  useGetAllIotQuery,
+} from "../../../../../../features/iot/iotSlice";
 
-const DeleteModal = ({ deleteOpen, setDeleteOpen }) => {
+const DeleteModal = ({ deleteOpen, setDeleteOpen, sensorModule }) => {
+  const [deleteIOT, { data, isError, error, isLoading, isSuccess }] =
+    useDeleteIOTMutation();
+
+  const { refetch } = useGetAllIotQuery();
+  const handleDeleteClick = () => {
+    deleteIOT(sensorModule?.macAddress);
+  };
+
+  useEffect(() => {
+    if (data?.success) {
+      alert(data?.message);
+      setDeleteOpen(false);
+      refetch();
+    }
+  }, [isSuccess]);
+
   return (
     <Modal
       sx={{
@@ -111,6 +131,7 @@ const DeleteModal = ({ deleteOpen, setDeleteOpen }) => {
             Cancel
           </Button>
           <Button
+            onClick={handleDeleteClick}
             sx={{
               width: "160px",
               height: "36px",
