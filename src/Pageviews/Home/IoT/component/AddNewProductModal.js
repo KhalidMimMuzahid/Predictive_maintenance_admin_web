@@ -9,10 +9,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CsvUploaderLogo from "../../../../Assets/Home/iot/csv_uploader_logo.svg";
 import { useForm } from "react-hook-form";
-import { usePostIOTMutation } from "../../../../features/iot/iotSlice";
+import {
+  useGetAllIotQuery,
+  usePostIOTMutation,
+} from "../../../../features/iot/iotSlice";
 
 const AddNewProductModal = ({
   addNewProductModalOpen,
@@ -20,8 +23,15 @@ const AddNewProductModal = ({
 }) => {
   const [postIOT, { data, isError, error, isLoading, isSuccess }] =
     usePostIOTMutation();
+  const { refetch } = useGetAllIotQuery();
   const [csvFile, setCsvFile] = useState(null);
   const inputRef = useRef();
+
+  useEffect(() => {
+    if (data?.success) {
+      refetch();
+    }
+  }, [isSuccess]);
 
   // React Hook Form
   const { register, handleSubmit } = useForm();
