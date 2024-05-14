@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useGetSensorModuleByMacAddressQuery } from "../../../../../../features/iot/iotSlice";
-import { useGetCustomerDetailsQuery } from "../../../../../../features/customers/customersSlice";
+import { useGetCustomerDetailsMiniQuery } from "../../../../../../features/customers/customersSlice";
 
 const CustomerComponent = ({ sensorModule }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,13 +13,16 @@ const CustomerComponent = ({ sensorModule }) => {
     error,
     isSuccess,
   } = useGetSensorModuleByMacAddressQuery(sensorModule?.macAddress);
+
   const {
     data: customerDetailsData,
     isLoading: isLoading3,
     isError: isError2,
     error: error2,
     isSuccess: isSuccess2,
-  } = useGetCustomerDetailsQuery(iot?.data?.user);
+  } = useGetCustomerDetailsMiniQuery(iot?.data?.user);
+  console.log(customerDetailsData);
+
   useEffect(() => {
     if (sensorModule.status === "in-stock") {
       setCustomer(<span>-</span>);
@@ -32,8 +35,6 @@ const CustomerComponent = ({ sensorModule }) => {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
             }}
           >
             <span>
@@ -49,7 +50,6 @@ const CustomerComponent = ({ sensorModule }) => {
         setCustomer(<span>-</span>);
         setIsLoading(false);
       }
-      console.log({ customerDetailsData });
     }
   }, [isSuccess, isSuccess2]);
 
