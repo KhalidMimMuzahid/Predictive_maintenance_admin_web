@@ -1,9 +1,9 @@
-import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, List, Typography } from "@mui/material";
 import React from "react";
 import balanceIcon from "../../../../../../Assets/Home/customer/customer_wallet__balance.png";
 import pointsIcon from "../../../../../../Assets/Home/customer/customer_wallet__points.png";
 
-const Wallet = ({ wallet }) => {
+const Wallet = ({ customerDetailsData }) => {
   return (
     <Box
       sx={{
@@ -49,7 +49,7 @@ const Wallet = ({ wallet }) => {
                   variant="p"
                   sx={{ color: "#24459C", fontSize: "16px", fontWeight: "600" }}
                 >
-                  ¥{wallet?.showa_cash}
+                  ¥{customerDetailsData?.wallet?.balance}
                 </Typography>
               </Box>
               <img
@@ -80,7 +80,7 @@ const Wallet = ({ wallet }) => {
                   variant="p"
                   sx={{ color: "#24459C", fontSize: "16px", fontWeight: "600" }}
                 >
-                  {wallet?.showa_point}
+                  {customerDetailsData?.wallet?.point}
                 </Typography>
               </Box>
               <img

@@ -7,7 +7,6 @@ export const customersApi = createApi({
     baseUrl: process.env.REACT_APP_BASE_URL,
     prepareHeaders: (headers) => {
       const accessToken = GetLocalStorageData("user-token");
-      console.log(accessToken);
       if (accessToken) {
         headers.set("authorization", `Bearer ${accessToken}`);
       }
@@ -21,7 +20,7 @@ export const customersApi = createApi({
       providesTags: [],
     }),
     getCustomerDetails: builder.query({
-      query: (uid) => `/customer/profile/user/find-user-with-id/${uid}`,
+      query: (_id) => `/user/get-user?_id=${_id}`,
       providesTags: [],
     }),
     getCustomerWallet: builder.query({

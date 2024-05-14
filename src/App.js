@@ -77,8 +77,7 @@ import Schedule from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/ri
 import Settings from "./Pageviews/Home/ServiceProvider/serviceProviderDetails/rightSection/body/settings/Settings";
 import { setUser, toggleLoading } from "./features/authentication/authSlice";
 
-
-// connected 
+// connected
 import AllReservation from "./Pageviews/Home/Reservation/Connected/AllReservation/AllReservation";
 import AllGroup from "./Pageviews/Home/ResGroup/AllGroup/AllGroup";
 import OnDemand from "./Pageviews/Home/Reservation/Connected/OnDemand/OnDemand";
@@ -100,12 +99,6 @@ import ScheduleTimeNonConnected from "./Pageviews/Home/Reservation/NonConnected/
 import OnGoingNonConnected from "./Pageviews/Home/Reservation/NonConnected/OnGoing/OnGoing";
 import ReScheduleNonConnected from "./Pageviews/Home/Reservation/NonConnected/ReShedule/ReSchedule";
 import CompletedNonConnected from "./Pageviews/Home/Reservation/NonConnected/Completed/Completed";
-
-
-
-
-
-
 
 const theme = createTheme();
 
@@ -255,40 +248,40 @@ function App() {
                   {/* customer screen start  */}
                   <Route path="/customer" element={<CustomerScreen />}>
                     <Route path="/customer" element={<Default />} />
-                    <Route path="/customer/:uid" element={<CustomerDetails />}>
+                    <Route path="/customer/:_id" element={<CustomerDetails />}>
                       {/* start  */}
                       <Route
-                        path="/customer/:uid/details"
+                        path="/customer/:_id/details"
                         element={<Details />}
                       >
                         <Route
-                          path="/customer/:uid/details"
+                          path="/customer/:_id/details"
                           element={<PersonalInfo />}
                         />
                         <Route
-                          path="/customer/:uid/details/personal-info"
+                          path="/customer/:_id/details/personal-info"
                           element={<PersonalInfo />}
                         />
                         <Route
-                          path="/customer/:uid/details/address"
+                          path="/customer/:_id/details/address"
                           element={<Address />}
                         />
                         <Route
-                          path="/customer/:uid/details/wallet"
+                          path="/customer/:_id/details/wallet"
                           element={<Wallet />}
                         />
                       </Route>
                       {/* end  */}
                       <Route
-                        path="/customer/:uid/machine-status"
+                        path="/customer/:_id/machine-status"
                         element={<MachineStatus />}
                       />
                       <Route
-                        path="/customer/:uid/invoice"
+                        path="/customer/:_id/invoice"
                         element={<Invoice />}
                       />
                       <Route
-                        path="/customer/:uid/request"
+                        path="/customer/:_id/request"
                         element={<Request />}
                       />
                     </Route>

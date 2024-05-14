@@ -3,8 +3,6 @@ import { Avatar, Box, Typography } from "@mui/material";
 const CustomerNameEmailComponent = ({ props }) => {
   const dummyPhoto = "https://i.ibb.co/85Nc6x7/handsome-boy.webp";
 
-  console.log(props?.row?.showaUser?.photoUrl);
-
   return (
     <Box
       sx={{

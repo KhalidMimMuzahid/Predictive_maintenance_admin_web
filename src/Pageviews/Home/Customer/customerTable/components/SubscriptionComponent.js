@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 const SubscriptionComponent = ({ props }) => {
+  console.log(props?.row)
   const [subscriptionPackage, setSubscriptionPackage] = useState(null);
   useEffect(() => {
     if (props?.value !== "") {

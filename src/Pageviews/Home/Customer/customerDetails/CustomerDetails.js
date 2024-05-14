@@ -10,81 +10,19 @@ import {
 } from "../../../../features/customers/customersSlice";
 
 const CustomerDetails = () => {
-  const { uid } = useParams();
-  const [user, setUser] = useState(null);
-  // const [wallet, setWallet] = useState(null);
-  const [allMachines, setAllMachines] = useState(null);
+  const { _id } = useParams();
 
   //   fetch those data
   // subscription
   // machiens
 
   // Coming From Redux
-  const { data: customerDetailsData } = useGetCustomerDetailsQuery(uid);
-  const { data: walletData } = useGetCustomerWalletQuery(uid);
-  const { data: subscriptionData } = useGetCustomerSubscriptionDataQuery(uid);
-  // console.log(customerDetailsData, walletData, subscriptionData);
-
-  useEffect(() => {
-    fetch(
-      `${process.env.REACT_APP_BASE_URL}/customer/profile/user/find-user-with-id/${uid}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data?.user);
-      });
-  }, [uid]);
-
-  useEffect(() => {
-    fetch(
-      `${process.env.REACT_APP_BASE_URL}/customer/wallet/get-user-wallet-info/${uid}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        // setUser(data?.user);
-        if (data?.message === "success") {
-          // setWallet(data?.user_wallet_info);
-        } else {
-          // throww error
-        }
-      });
-  }, [uid]);
-
-  useEffect(() => {
-    let url =
-      `${process.env.REACT_APP_BASE_URL}/customer/subscription/get-current-packages/` +
-      uid;
-    fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          // setSubscriptionPackage(data?.currentPackages);
-        } else {
-          // throw error
-        }
-      });
-  }, [uid]);
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/customer/all-machine/user/${uid}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.success) {
-          //   setWallet(data?.user_wallet_info);
-          setAllMachines(data?.data);
-        } else {
-          // throww error
-        }
-      });
-  }, [uid]);
+  const { data: customerDetailsData } = useGetCustomerDetailsQuery(_id);
+  const { data: walletData } = useGetCustomerWalletQuery(_id);
+  const { data: subscriptionData } = useGetCustomerSubscriptionDataQuery(_id);
 
   return (
-    <Box sx={{ display: "flex", gap: "20px" }}>
+    <Box sx={{ display: "flex", gap: "20px", marginTop: "24px" }}>
       {/* left sidebar  */}
       <Box
         sx={{
@@ -95,8 +33,7 @@ const CustomerDetails = () => {
         }}
       >
         <LeftSection
-          user={customerDetailsData?.user}
-          wallet={walletData?.wallet}
+          customerDetailsData={customerDetailsData?.data}
           subscriptionPackage={subscriptionData?.currentPackages}
         />
       </Box>
@@ -111,7 +48,7 @@ const CustomerDetails = () => {
           borderRadius: "5px",
         }}
       >
-        <RightSection user={user} wallet={walletData?.wallet} />
+        <RightSection />
       </Box>
     </Box>
   );
