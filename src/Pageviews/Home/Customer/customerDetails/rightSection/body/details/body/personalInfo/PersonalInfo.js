@@ -1,7 +1,8 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import editIcon from "../../../../../../../../../Assets/Home/customer/customer_edit.png";
+import { useGetCustomerDetailsQuery } from "../../../../../../../../../features/customers/customersSlice";
 
 const PersonalInfo = () => {
   const [user, setUser] = useState(null);
@@ -10,43 +11,34 @@ const PersonalInfo = () => {
     email: "",
     phone: "",
     dob: "",
-    gender: ""
+    gender: "",
   });
 
-  const { uid } = useParams();
-  useEffect(() => {
-    fetch(
-      `${process.env.REACT_APP_BASE_URL}/customer/profile/user/find-user-with-id/${uid}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data?.user);
-      });
-  }, [uid]);
+  const { _id } = useParams();
+  const { data: customerDetailsData } = useGetCustomerDetailsQuery(_id);
+  console.log(customerDetailsData?.data);
 
   const handleEdit = () => {
     setEditedValues({
       email: user?.email,
       phone: user?.phone,
       dob: user?.dob,
-      gender: user?.gender
+      gender: user?.gender,
     });
     setEditMode(true);
   };
 
   const handleChange = (field, value) => {
-    setEditedValues(prevState => ({
+    setEditedValues((prevState) => ({
       ...prevState,
-      [field]: value
+      [field]: value,
     }));
   };
 
   const handleSubmit = () => {
-
     console.log("Edited fields:", editedValues);
     setEditMode(false); // exit edit mode
   };
-
 
   return (
     <Box sx={{ paddingY: "12px" }}>
@@ -69,7 +61,6 @@ const PersonalInfo = () => {
             <img src={editIcon} alt="" />
           </Button>
         )}
-
       </Box>
       <Box>
         <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -93,12 +84,12 @@ const PersonalInfo = () => {
             Email:
           </Typography>
           {!editMode ? (
-               <Typography
-               variant="p"
-               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
-             >
-               {user?.email}
-             </Typography>
+            <Typography
+              variant="p"
+              sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
+            >
+              {customerDetailsData?.data?.email}
+            </Typography>
           ) : (
             <TextField
               defaultValue={user?.email}
@@ -107,7 +98,6 @@ const PersonalInfo = () => {
               fullWidth
             />
           )}
-         
         </Box>
         <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
         <Box
@@ -130,11 +120,11 @@ const PersonalInfo = () => {
             Phone:
           </Typography>
           {!editMode ? (
-              <Typography
+            <Typography
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {user?.phone}
+              {customerDetailsData?.data?.showaUser?.phone}
             </Typography>
           ) : (
             <TextField
@@ -144,7 +134,6 @@ const PersonalInfo = () => {
               fullWidth
             />
           )}
-        
         </Box>
         <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
         <Box
@@ -168,11 +157,11 @@ const PersonalInfo = () => {
           </Typography>
           {!editMode ? (
             <Typography
-            variant="p"
-            sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
-          >
-            {user?.dob}
-          </Typography>
+              variant="p"
+              sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
+            >
+              {customerDetailsData?.data?.showaUser?.dateOfBirth}
+            </Typography>
           ) : (
             <TextField
               defaultValue={user?.dob}
@@ -181,8 +170,6 @@ const PersonalInfo = () => {
               fullWidth
             />
           )}
-
-          
         </Box>
         <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
         <Box
@@ -209,7 +196,10 @@ const PersonalInfo = () => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {user?.gender}
+              {customerDetailsData?.data?.showaUser?.gender
+                .charAt(0)
+                .toUpperCase() +
+                customerDetailsData?.data?.showaUser?.gender.slice(1)}
             </Typography>
           ) : (
             <TextField
@@ -219,14 +209,14 @@ const PersonalInfo = () => {
               fullWidth
             />
           )}
-
-
         </Box>
         <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
       </Box>
 
       {editMode && (
-        <Box sx={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
+        <Box
+          sx={{ display: "flex", justifyContent: "center", marginTop: "16px" }}
+        >
           <Button onClick={handleSubmit} variant="contained" color="primary">
             Submit
           </Button>

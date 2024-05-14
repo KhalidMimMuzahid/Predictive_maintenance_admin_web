@@ -4,6 +4,7 @@ import authSlice from "../features/authentication/authSlice";
 import { iotApi } from "../features/iot/iotSlice";
 import { reservationApi } from "../features/reservation/reservationSlice";
 import { resGroupApi } from "../features/resGroup/resGroupSlice";
+import { machineApi } from "../features/machine/machineSlice";
 // Store of Redux Using Redux-Toolkit
 
 export const store = configureStore({
@@ -12,6 +13,7 @@ export const store = configureStore({
     [iotApi.reducerPath]: iotApi.reducer,
     [reservationApi.reducerPath]: reservationApi.reducer,
     [resGroupApi.reducerPath]: resGroupApi.reducer,
+    [machineApi.reducerPath]: machineApi.reducer,
     auth: authSlice,
   },
   middleware: (getDefaultMiddleware) =>
@@ -20,5 +22,6 @@ export const store = configureStore({
       iotApi.middleware,
       reservationApi.middleware,
       resGroupApi.middleware,
+      machineApi.middleware,
     ]),
 });

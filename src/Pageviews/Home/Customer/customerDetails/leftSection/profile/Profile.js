@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-const Profile = ({ user }) => {
+const Profile = ({ customerDetailsData }) => {
   return (
     <Box
       sx={{
@@ -25,20 +25,20 @@ const Profile = ({ user }) => {
           justifyContent: "center",
           alignItems: "center",
         }}
-        src={user?.photoAddress}
+        src={customerDetailsData?.showaUser?.photoUrl}
         alt=""
       />
       <Typography
         variant="h4"
         sx={{ fontSize: "18px", color: "#838383", textTransform: "uppercase" }}
       >
-        {user?.firstNameAlphabet}
+        {customerDetailsData?.firstNameAlphabet}
       </Typography>
       <Typography sx={{ fontSize: "12px", color: "#65748B" }}>
-        {user?.email}
+        {customerDetailsData?.email}
       </Typography>
       <Typography sx={{ fontSize: "14px", color: "#65748B" }}>
-        {user?.phone}
+        {customerDetailsData?.phone}
       </Typography>
     </Box>
   );

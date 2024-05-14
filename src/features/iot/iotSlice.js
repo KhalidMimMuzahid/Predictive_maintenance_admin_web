@@ -32,11 +32,19 @@ export const iotApi = createApi({
       }),
       invalidatesTags: ["add-sensor-module"],
     }),
+    deleteIOT: builder.mutation({
+      query: (macAddress) => ({
+        url: `/sensor-module/delete-sensor-module?macAddress=${macAddress}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["delete-sensor-module"],
+    }),
   }),
 });
 
 export const {
   useGetAllIotQuery,
   usePostIOTMutation,
+  useDeleteIOTMutation,
   useGetSensorModuleByMacAddressQuery,
 } = iotApi;

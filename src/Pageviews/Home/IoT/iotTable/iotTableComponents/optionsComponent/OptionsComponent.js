@@ -17,7 +17,7 @@ import ViewModal from "../modal/ViewModal";
 import EditModal from "../modal/EditModal";
 import DeleteModal from "../modal/DeleteModal";
 
-const OptionsComponent = ({ props }) => {
+const OptionsComponent = ({ sensorModule }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const openEl = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -29,75 +29,6 @@ const OptionsComponent = ({ props }) => {
   const [viewOpen, setViewOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
-  const [editIot, setEditIot] = useState({
-    iotProductId: "",
-    macId: "",
-    price: "",
-    module: "",
-  });
-
-  const handleEditSubmit = () => {
-    if (editIot.macId === "") {
-      alert("Please provide the sensor MAC ID to continue");
-      return;
-    }
-    if (editIot.price === "") {
-      alert("Please provide price of the sensor to continue");
-      return;
-    }
-    if (editIot.module === "") {
-      alert("Please select the model of the sensor to continue");
-      return;
-    }
-
-    let iotProductId = editIot.iotProductId;
-    let macId = editIot.macId;
-    let price = editIot.price;
-    let module = editIot.module;
-
-    fetch("https://api.showaapp.com/admin/iot/edit-iot-sensor", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        iotProductId,
-        macId,
-        price,
-        module,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setEditOpen(false);
-        alert("Successfully edited the IoT Sensor");
-      })
-      .catch((error) => {
-        alert("Error: " + error);
-      });
-  };
-
-  const handleDeleteSubmit = () => {
-    let iotProductId = props.value.iotProductId;
-
-    fetch("https://api.showaapp.com/admin/iot/delete-iot-sensor", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        iotProductId,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setEditOpen(false);
-        alert("Successfully deleted the IoT Sensor");
-      })
-      .catch((error) => {
-        alert("Error: " + error);
-      });
-  };
 
   const classes = useStyle();
 
@@ -107,18 +38,22 @@ const OptionsComponent = ({ props }) => {
         <ViewModal
           viewOpen={viewOpen}
           setViewOpen={setViewOpen}
-          props={props}
+          props={sensorModule}
         />
       )}
       {editOpen && (
         <EditModal
           editOpen={editOpen}
           setEditOpen={setEditOpen}
-          props={props}
+          props={sensorModule}
         />
       )}
       {deleteOpen && (
-        <DeleteModal deleteOpen={deleteOpen} setDeleteOpen={setDeleteOpen} />
+        <DeleteModal
+          deleteOpen={deleteOpen}
+          setDeleteOpen={setDeleteOpen}
+          sensorModule={sensorModule}
+        />
       )}
 
       <div>

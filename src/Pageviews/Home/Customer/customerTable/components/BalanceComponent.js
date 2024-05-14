@@ -1,47 +1,31 @@
-import { useEffect, useState } from "react";
-import { useStyle } from "../../styleComponents";
+import { Box, Typography } from "@mui/material";
+import React from "react";
+
 const BalanceComponent = ({ props }) => {
-  const [customerWalletInfo, setCustomerWalletInfo] = useState(null);
-
-  const classes = useStyle();
-  useEffect(() => {
-    if (props?.value !== "") {
-      let url =
-        `${process.env.REACT_APP_BASE_URL}/admin/wallet/get-customer-wallet-info/` +
-        props?.value;
-      fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setCustomerWalletInfo(data);
-        });
-    }
-  }, [props?.value]);
-
-  function displayBalance() {
-    if (customerWalletInfo == null)
-      return (
-        <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
-          <h3>Please Wait</h3>
-        </div>
-      );
-    return (
-      <div>
-        <div className={classes.balance}>
-          Showa Balance: {"\xA5 " + customerWalletInfo?.showa_cash || 5000}
-        </div>
-        <div className={classes.yenText}>Showa Points: 5000</div>
-      </div>
-    );
-  }
-
-  return <div style={{ display: "flex" }}>{displayBalance()}</div>;
+  return (
+    <Box>
+      <Box
+        sx={{ display: "flex", gap: "8px", justifyContent: "space-between" }}
+      >
+        <Typography sx={{ color: "#111827", fontWeight: "600" }}>
+          Showa Balance:
+        </Typography>
+        <Typography sx={{ color: "#6B7280", fontWeight: "400" }}>
+          {props?.row?.wallet?.balance}
+        </Typography>
+      </Box>
+      <Box
+        sx={{ display: "flex", gap: "8px", justifyContent: "space-between" }}
+      >
+        <Typography sx={{ color: "#111827", fontWeight: "600" }}>
+          Showa Points:
+        </Typography>
+        <Typography sx={{ color: "#6B7280", fontWeight: "400" }}>
+          {props?.row?.wallet?.point}
+        </Typography>
+      </Box>
+    </Box>
+  );
 };
 
 export default BalanceComponent;

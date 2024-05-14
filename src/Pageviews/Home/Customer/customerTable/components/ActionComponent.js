@@ -27,7 +27,7 @@ const ActionComponent = ({ props }) => {
       <StyledMenu anchorEl={anchorEl} open={openEl} onClose={handleClose}>
         <Box sx={{ background: "#F4F2FF" }}>
           <Link
-            to={`/customer/${props?.row?.uid}/details`}
+            to={`/customer/${props?.row?._id}/details`}
             style={{ textDecoration: "none" }}
           >
             <MenuItem sx={{ display: "flex", gap: "0 6px" }}>

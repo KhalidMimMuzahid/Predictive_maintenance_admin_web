@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useGetMachineDataQuery } from "../../../../../features/machine/machineSlice";
 
 const MachineComponent = ({ props }) => {
-  const [machineCount, setMachineCount] = useState(0);
-  useEffect(() => {
-    fetch(
-      `${process.env.REACT_APP_BASE_URL}/customer/all-machine/user/:${props?.row?.uid}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.success) {
-          setMachineCount(data?.data?.length);
-        } else {
-          setMachineCount(0);
-        }
-      });
-  }, []);
-  return <div>{machineCount}</div>;
+  const {
+    data: machineData,
+    isLoading,
+    isError,
+    error,
+  } = useGetMachineDataQuery(props?.row?._id);
+  return <div>{machineData?.data?.length}</div>;
 };
 
 export default MachineComponent;

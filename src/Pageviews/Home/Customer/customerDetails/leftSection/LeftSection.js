@@ -4,7 +4,7 @@ import { Subscription } from "./subscription/Subscription";
 import Profile from "./profile/Profile";
 import { Box } from "@mui/material";
 
-const LeftSection = ({ user, wallet, subscriptionPackage }) => {
+const LeftSection = ({ customerDetailsData, subscriptionPackage }) => {
   return (
     <Box
       sx={{
@@ -14,8 +14,8 @@ const LeftSection = ({ user, wallet, subscriptionPackage }) => {
         padding: "10px 16px 16px 16px",
       }}
     >
-      <Profile user={user} />
-      <Wallet wallet={wallet} />
+      <Profile customerDetailsData={customerDetailsData} />
+      <Wallet customerDetailsData={customerDetailsData} />
       <Subscription subscriptionPackage={subscriptionPackage} />
     </Box>
   );
