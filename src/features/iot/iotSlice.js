@@ -15,6 +15,11 @@ export const iotApi = createApi({
   }),
   tagTypes: ["add-sensor-module"],
   endpoints: (builder) => ({
+    getSensorModuleByMacAddress: builder.query({
+      query: (macAddress) =>
+        `/sensor-module-attached/get-sensor-module-attached-by-mac-address?macAddress=${macAddress}`,
+      providesTags: [],
+    }),
     getAllIot: builder.query({
       query: () => "/sensor-module/get-all-sensor-module?status=",
       providesTags: [],
@@ -30,4 +35,8 @@ export const iotApi = createApi({
   }),
 });
 
-export const { useGetAllIotQuery, usePostIOTMutation } = iotApi;
+export const {
+  useGetAllIotQuery,
+  usePostIOTMutation,
+  useGetSensorModuleByMacAddressQuery,
+} = iotApi;
