@@ -2,30 +2,12 @@ import {
   Add,
   Category,
   CategoryOutlined,
-  Close,
-  Dehaze,
-  Delete,
   Download,
-  Edit,
   MoreVert,
-  Person,
-  Upload,
 } from "@mui/icons-material";
-import {
-  Box,
-  Button,
-  Container,
-  FormControl,
-  IconButton,
-  MenuItem,
-  Modal,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, IconButton, MenuItem } from "@mui/material";
 
 import { useState } from "react";
-import { useRef } from "react";
-import axios from "axios";
 import IotData from "./iotData/IotData";
 import { useStyle } from "./styles/iotStyle";
 import IotTable from "./iotTable/IotTable";
@@ -35,15 +17,6 @@ import AddNewProductModal from "./component/AddNewProductModal";
 const IotScreen = () => {
   const [addNewProductModalOpen, setAddNewProductModalOpen] = useState(false);
   const classes = useStyle();
-  const [isRootIOTPage, setIsRootIOTPage] = useState(true);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const openEl = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   // const [newIot, setNewIot] = useState({
   //   iotProductId: "",
@@ -145,135 +118,6 @@ const IotScreen = () => {
 
   return (
     <>
-      {/* <Modal
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-        open={open}
-      >
-        <Container
-          sx={{
-            width: "35%",
-            background: "white",
-            borderRadius: "20px",
-            padding: "24px",
-          }}
-        >
-          <Box sx={{ position: "relative" }}>
-            <Typography
-              sx={{
-                fontSize: "24px",
-                fontWeight: "700",
-                color: "#24459C",
-                textAlign: "center",
-              }}
-            >
-              Add IoT Sensor
-            </Typography>
-            <Button
-              sx={{
-                color: "#D1D5DB",
-                cursor: "pointer",
-                position: "absolute",
-                top: "0",
-                right: "0",
-              }}
-              onClick={() => {
-                setOpen(false);
-                setCsvFile(null);
-              }}
-            >
-              <Close />
-            </Button>
-          </Box>
-
-          <div style={{ marginTop: "16px" }}>
-            <FormControl fullWidth>
-              <TextField
-                select
-                id="demo-simple-select"
-                value={newIot.module}
-                label="Module"
-                size="small"
-                onChange={(e) => {
-                  setNewIot({ ...newIot, module: e.target.value });
-                }}
-              >
-                <MenuItem value="Module 1">Module 1</MenuItem>
-                <MenuItem value="Module 2">Module 2</MenuItem>
-                <MenuItem value="Module 3">Module 3</MenuItem>
-                <MenuItem value="Module 4">Module 4</MenuItem>
-              </TextField>
-            </FormControl>
-            <div className={classes.spacerSmall} />
-
-            <FormControl fullWidth>
-              <TextField
-                className={classes.input}
-                size="small"
-                placeholder="MAC ID"
-                label="MAC ID"
-                onChange={(e) => {
-                  setNewIot({ ...newIot, macId: e.target.value });
-                }}
-              />
-            </FormControl>
-            <div className={classes.spacerSmall} />
-
-            <FormControl fullWidth>
-              <TextField
-                className={classes.input}
-                size="small"
-                label="Price (Yen)"
-                placeholder="Price (Yen)"
-                onChange={(e) => {
-                  setNewIot({ ...newIot, price: e.target.value });
-                }}
-              />
-            </FormControl>
-            <div className={classes.spacerSmall} />
-          </div>
-
-          <div className={classes.spacerSmall} />
-          <div className={classes.spacerSmall} />
-
-          <div className={classes.spacerSmall} />
-          <div className={classes.spacerSmall} />
-
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "end",
-            }}
-          >
-            <div
-              className={classes.cancelButton}
-              onClick={(e) => {
-                setOpen(false);
-                setCsvFile(null);
-              }}
-            >
-              Cancel
-            </div>
-            <div className={classes.spacerSmall} />
-            <div
-              className={classes.saveButton}
-              onClick={(e) => {
-                handleSubmit();
-                setCsvFile(null);
-              }}
-            >
-              Save
-            </div>
-          </div>
-        </Container>
-      </Modal> */}
-
       {addNewProductModalOpen && (
         <AddNewProductModal
           addNewProductModalOpen={addNewProductModalOpen}
@@ -313,77 +157,23 @@ const IotScreen = () => {
                 setAddNewProductModalOpen(!addNewProductModalOpen);
               }}
             >
+              <Add />
               Add Product
             </Button>
           </div>
-
-          <div className={classes.smallMenuHolder}>
-            <IconButton onClick={handleClick}>
-              <MoreVert />
-            </IconButton>
-
-            <StyledMenu
-              id="demo-customized-menu"
-              MenuListProps={{
-                "aria-labelledby": "demo-customized-button",
-              }}
-              anchorEl={anchorEl}
-              open={openEl}
-              onClose={handleClose}
-            >
-              <MenuItem
-                onClick={() => {
-                  handleClose();
-                }}
-              >
-                <Download style={{ color: "#313E6A" }} />
-                <div className={classes.spacerSmall} />
-                Import
-              </MenuItem>
-
-              <MenuItem
-                onClick={() => {
-                  handleClose();
-                }}
-              >
-                <Category style={{ color: "#313E6A" }} />
-                <div className={classes.spacerSmall} />
-                Category
-              </MenuItem>
-
-              <MenuItem
-                onClick={() => {
-                  // setOpen(true);
-                  handleClose();
-                }}
-              >
-                <Add style={{ color: "#313E6A" }} />
-                <div className={classes.spacerSmall} />
-                Add Product
-              </MenuItem>
-            </StyledMenu>
-          </div>
         </div>
-
-        <div className={classes.spacerSmall}></div>
-        <div className={classes.spacerSmall}></div>
-
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             gap: "10px",
+            marginTop: "18px",
           }}
         >
-          {isRootIOTPage && (
-            <Box sx={{}}>
-              <IotData />
-            </Box>
-          )}
-
-          <div className={classes.tableHolder}>
+          <IotData />
+          <Box>
             <IotTable />
-          </div>
+          </Box>
         </Box>
       </div>
     </>

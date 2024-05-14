@@ -1,12 +1,10 @@
-import { DataGrid } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
-import { columns } from "./constant";
 import { Box } from "@mui/system";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Cancel, Search } from "@mui/icons-material";
 import TuneIcon from "@mui/icons-material/Tune";
 import { useGetAllIotQuery } from "../../../../features/iot/iotSlice";
 import Loader from "../../../../Utils/Loader";
+import IotRawTable from "./IotRawTable";
 
 const IotTable = () => {
   const {
@@ -17,73 +15,63 @@ const IotTable = () => {
     isSuccess,
   } = useGetAllIotQuery();
 
-  useEffect(() => {
-    if (isSuccess & !isLoading) {
-      console.log({ iot });
-    }
-    if (isError & !isLoading) {
-      alert(error?.data?.message);
-    }
-  }, [isLoading]);
-
-  // if (isLoading || isError) {
-  //   return <Loader />;
-  // }
-
+  if (isLoading || isError) {
+    return <Loader />;
+  }
+  console.table(iot?.data);
   return (
-    <div style={{ overflow: "auto" }}>
-      {" "}
-      <Box sx={{ background: "white", padding: "20px", borderRadius: "5px" }}>
+    <Box sx={{ background: "white", padding: "20px", borderRadius: "4px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          marginBottom: "20px",
+          gap: "10px",
+        }}
+      >
         <Box
           sx={{
+            width: "44px",
+            height: "44px",
+            background: "#CED4DA",
             display: "flex",
+            justifyContent: "center",
             alignItems: "center",
-            marginBottom: "20px",
-            gap: "10px",
+            borderRadius: "8px",
+            cursor: "pointer",
           }}
         >
-          <Box
-            sx={{
-              width: "44px",
-              height: "44px",
-              background: "#CED4DA",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: "8px",
-            }}
-          >
-            <TuneIcon />
-          </Box>
-          <TextField
-            sx={{ width: "100%" }}
-            size="small"
-            placeholder="Search..."
-            // value={searchText}
-            // onChange={(e) => setSearchText(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                  // onClick={() => {
-                  //   setSearchText("");
-                  //   setSmallSearchOpen(false);
-                  // }}
-                  >
-                    <Cancel />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
+          <TuneIcon />
         </Box>
+        <TextField
+          sx={{ width: "100%" }}
+          size="small"
+          placeholder="Search..."
+          // value={searchText}
+          // onChange={(e) => setSearchText(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search />
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                // onClick={() => {
+                //   setSearchText("");
+                //   setSmallSearchOpen(false);
+                // }}
+                >
+                  <Cancel />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Box>
 
-        {iot?.data?.length > 0 && (
+      {/* {iot?.data?.length > 0 && (
           <DataGrid
             rows={iot?.data?.map((data, id) => {
               return { ...data, id };
@@ -98,9 +86,9 @@ const IotTable = () => {
             autoHeight
             checkboxSelection
           />
-        )}
-      </Box>
-    </div>
+        )} */}
+      <IotRawTable data={iot?.data} />
+    </Box>
   );
 };
 

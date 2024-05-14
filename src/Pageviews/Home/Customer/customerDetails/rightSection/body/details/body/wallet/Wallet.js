@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import editIcon from "../../../../../../../../../Assets/Home/customer/customer_edit.png";
 
 const Wallet = () => {
-  const [wallet, setWallet] = useState(null);
+  const [wallet, setWallet] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [editedValue, setEditedValue] = useState("");
   const { uid } = useParams();
@@ -15,24 +15,24 @@ const Wallet = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        // setUser(data?.user);
         if (data?.message === "success") {
           setWallet(data?.user_wallet_info);
         } else {
-          // throww error
+          // throw error
         }
       });
   }, [uid]);
 
+  console.log(wallet);
+
   const handleEdit = () => {
-    setEditedValue(wallet?.uid); // set input value to current value
+    setEditedValue(wallet?.uid);
     setEditMode(true);
   };
 
-   // Perform submit action and update value
   const handleSubmit = () => {
     console.log("Submitted value:", editedValue);
-    setEditMode(false); 
+    setEditMode(false);
   };
 
   return (
@@ -77,7 +77,7 @@ const Wallet = () => {
           Account No.
         </Typography>
         {editMode ? (
-          //  input field that show when edit button is clicked 
+          //  input field that show when edit button is clicked
           <TextField
             value={editedValue}
             onChange={(e) => setEditedValue(e.target.value)}
@@ -96,7 +96,9 @@ const Wallet = () => {
 
       {/* submit button  */}
       {editMode && (
-        <Box sx={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
+        <Box
+          sx={{ display: "flex", justifyContent: "center", marginTop: "16px" }}
+        >
           <Button onClick={handleSubmit} variant="contained" color="primary">
             Submit
           </Button>

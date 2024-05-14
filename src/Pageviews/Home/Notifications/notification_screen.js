@@ -1,7 +1,5 @@
 const NotificationScreen = () => {
-    return (
-        <h1>Notification</h1>
-    );
-}
+  return <h1>Notification is coming...</h1>;
+};
 
 export default NotificationScreen;

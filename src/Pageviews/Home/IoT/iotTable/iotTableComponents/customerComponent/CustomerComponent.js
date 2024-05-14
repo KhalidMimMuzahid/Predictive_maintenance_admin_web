@@ -1,38 +1,62 @@
+import { Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
+import { useGetSensorModuleByMacAddressQuery } from "../../../../../../features/iot/iotSlice";
+import { useGetCustomerDetailsQuery } from "../../../../../../features/customers/customersSlice";
 
-const CustomerComponent = ({ props }) => {
+const CustomerComponent = ({ sensorModule }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [customer, setCustomer] = useState();
+  const {
+    data: iot,
+    isLoading: isLoading2,
+    isError,
+    error,
+    isSuccess,
+  } = useGetSensorModuleByMacAddressQuery(sensorModule?.macAddress);
+  const {
+    data: customerDetailsData,
+    isLoading: isLoading3,
+    isError: isError2,
+    error: error2,
+    isSuccess: isSuccess2,
+  } = useGetCustomerDetailsQuery(iot?.data?.user);
+  useEffect(() => {
+    if (sensorModule.status === "in-stock") {
+      setCustomer(<span>-</span>);
+      setIsLoading(false);
+    } else {
+      // console.log(iot?.data?.user);
+      if (customerDetailsData?.data?.name) {
+        setCustomer(
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <span>
+              {customerDetailsData?.data?.name?.firstName +
+                " " +
+                customerDetailsData?.data?.name?.lastName}
+            </span>
+            <span>{customerDetailsData?.data?.phone}</span>
+          </div>
+        );
+        setIsLoading(false);
+      } else {
+        setCustomer(<span>-</span>);
+        setIsLoading(false);
+      }
+      console.log({ customerDetailsData });
+    }
+  }, [isSuccess, isSuccess2]);
 
-  const [component, setComponent] = useState(<span>loading</span>);
-  // console.log({ props });
-  // if (props?.row?.status === "in-stock") {
-  //   setComponent(<span>not sold yet</span>);
-  // }
-
-  // const [customer, setCustomer] = useState(null);
-  // if (isLoading) {
-  //   return (
-
-  //   );
-  // }
-  // useEffect(() => {
-  //   let url = `https://api.showaapp.com/customer/profile/user/find-user-with-id/${props?.row?.uid}`;
-  //   fetch(url, {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       // console.log({ data });
-  //       setCustomer(data?.user);
-  //     });
-  // }, [props?.row?.uid]);
-
-  return;
+  if (isLoading) {
+    return <span>loading</span>;
+  } else {
+    return customer;
+  }
 };
-
 export default CustomerComponent;

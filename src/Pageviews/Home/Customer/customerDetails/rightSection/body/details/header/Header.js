@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   const navLinkStyle = ({ isActive }) => {
     return {
-      color: isActive ? "black" : "",
+      color: isActive ? "black" : "#5A5C73",
       background: "none",
       fontWeight: "600",
       fontSize: "16px",
@@ -14,7 +14,6 @@ const Header = () => {
       width: "150px",
       padding: "4px 16px 16px 16px",
       textAlign: "center",
-      color: "#5A5C73",
     };
   };
   return (

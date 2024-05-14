@@ -1,7 +1,7 @@
-import { Add, Download, MoreVert, Upload } from "@mui/icons-material";
+import { AddOutlined, Download, MoreVert, Upload } from "@mui/icons-material";
 import { useContext, useState } from "react";
-import { Button, IconButton, MenuItem } from "@mui/material";
-import { useStyle, StyledMenu } from "./styleComponents";
+import { Button, IconButton } from "@mui/material";
+import { useStyle } from "./styleComponents";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "../../../contextApi/appProvider";
 import { downloadTableData } from "../../../Utils/downloadTableData";
@@ -42,7 +42,7 @@ const CustomerScreen = () => {
         <div className={classes.buttonHolder}>
           <Button
             style={{ backgroundColor: "white", color: "black" }}
-            startIcon={<Upload />}
+            startIcon={<Download />}
           >
             Import
           </Button>
@@ -50,12 +50,15 @@ const CustomerScreen = () => {
           <Button
             onClick={() => downloadTableData(downloadData, setDownloadData)}
             style={{ backgroundColor: "white", color: "black" }}
-            startIcon={<Download />}
+            startIcon={<Upload />}
           >
             Export
           </Button>
           <div className={classes.spacerSmall} />
-          <Button style={{ backgroundColor: "#24459c", color: "white" }}>
+          <Button
+            style={{ backgroundColor: "#24459c", color: "white" }}
+            startIcon={<AddOutlined />}
+          >
             Add Customer
           </Button>
         </div>
@@ -64,51 +67,8 @@ const CustomerScreen = () => {
           <IconButton onClick={handleClick}>
             <MoreVert />
           </IconButton>
-
-          <StyledMenu
-            id="demo-customized-menu"
-            MenuListProps={{
-              "aria-labelledby": "demo-customized-button",
-            }}
-            anchorEl={anchorEl}
-            open={openEl}
-            onClose={handleClose}
-          >
-            <MenuItem
-              onClick={() => {
-                handleClose();
-              }}
-            >
-              <Upload style={{ color: "#313E6A" }} />
-              <div className={classes.spacerSmall} />
-              Import
-            </MenuItem>
-
-            <MenuItem
-              onClick={() => {
-                handleClose();
-              }}
-            >
-              <Download style={{ color: "#313E6A" }} />
-              <div className={classes.spacerSmall} />
-              Export
-            </MenuItem>
-
-            <MenuItem
-              onClick={() => {
-                handleClose();
-              }}
-            >
-              <Add style={{ color: "#313E6A" }} />
-              <div className={classes.spacerSmall} />
-              Add Customer
-            </MenuItem>
-          </StyledMenu>
         </div>
       </div>
-      <div className={classes.spacerSmall}></div>
-      <div className={classes.spacerSmall}></div>
-
       <div>
         <Outlet />
       </div>

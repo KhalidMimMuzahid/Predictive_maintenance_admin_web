@@ -9,35 +9,25 @@ export const columns = [
   {
     field: "product",
     headerName: "PRODUCT",
-    width: 270,
+    width: 310,
     renderCell: (props) => <ProductComponent props={props} />,
-    //  <h1>products</h1>,
-
-    // <ProductComponent props={props} />,
   },
-
-  // {
-  //   field: "customer",
-  //   headerName: "CUSTOMER",
-  //   width: 270,
-  //   renderCell: (props) => <CustomerComponent props={props} />,
-
-  //   // <h1>customer</h1>,
-
-  //   // <CustomerComponent props={props} />,
-  // },
-  // {
-  //   field: "status",
-  //   headerName: "STATUS",
-  //   width: 270,
-  //   renderCell: (props) => <h1>status</h1>,
-
-  //   // <StatusComponent props={props} />,
-  // },
   {
-    field: "price",
-    headerName: "PRICE",
-    width: 270,
+    field: "state",
+    headerName: "STATE",
+    width: 310,
+    renderCell: (props) => <ProductComponent props={props} />,
+  },
+  {
+    field: "customer",
+    headerName: "CUSTOMER",
+    width: 310,
+    renderCell: (props) => <PriceComponent props={props} />,
+  },
+  {
+    field: "status",
+    headerName: "STATUS",
+    width: 310,
     renderCell: (props) => <PriceComponent props={props} />,
   },
   {
