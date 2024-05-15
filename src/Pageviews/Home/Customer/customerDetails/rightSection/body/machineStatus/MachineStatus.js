@@ -16,6 +16,8 @@ const MachineStatus = () => {
     isError,
     error,
   } = useGetMachineDataQuery(_id);
+
+  console.log({ machineData });
   return (
     <Box
       sx={{

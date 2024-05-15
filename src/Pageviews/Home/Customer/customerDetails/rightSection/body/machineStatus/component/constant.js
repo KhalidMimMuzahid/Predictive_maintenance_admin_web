@@ -46,13 +46,27 @@ export const columns = [
   },
   {
     field: "address",
-    headerName: "MAC ADDRESS",
+    headerName: "Model",
     width: 300,
     renderCell: (props) => (
       <Typography
         sx={{ color: "#25213B", fontSize: "14px", fontWeight: "400" }}
       >
-        {props?.row?.address}
+        {props?.row?.model}
+      </Typography>
+    ),
+  },
+  {
+    field: "isConnected",
+    headerName: "sensor status",
+    width: 300,
+    renderCell: (props) => (
+      <Typography
+        sx={{ color: "#25213B", fontSize: "14px", fontWeight: "400" }}
+      >
+        {props?.row?.sensorModulesAttached?.length
+          ? "connected"
+          : "non-connected"}
       </Typography>
     ),
   },
@@ -72,7 +86,7 @@ export const columns = [
           fontSize: "11px",
         }}
       >
-        {params?.row?.status}
+        {params?.row?.packageStatus}
       </Typography>
     ),
   },
@@ -92,7 +106,7 @@ export const columns = [
           fontSize: "11px",
         }}
       >
-        {params?.row?.environment}
+        {params?.row?.status}
       </Typography>
     ),
   },
