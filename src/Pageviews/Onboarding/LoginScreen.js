@@ -167,7 +167,7 @@ const LoginScreen = () => {
         console.log(result);
         if (result?.payload?.uid) {
           fetch(
-            `http://localhost:5000/api/v2/user/sign-in?uid=${result?.payload?.uid}`,
+            `${process.env.REACT_APP_BASE_URL}/user/sign-in?uid=${result?.payload?.uid}`,
             {
               method: "GET",
               headers: {
