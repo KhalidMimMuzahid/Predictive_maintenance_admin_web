@@ -1,20 +1,11 @@
 import { Close } from "@mui/icons-material";
 import logo from "../../../../../../../../../src/Assets/Component/logo_small.svg";
-import invoiceLogo from "../../../../../../../../../src/Assets/Component/invoiceLogo.png"
+import invoiceLogo from "../../../../../../../../../src/Assets/Component/invoiceLogo.png";
 // import userimg from "../../../../../../../../../src/Assets/Component/invoiceUser.png"
-import {
-  Box,
-  Button,
-  Container,
-
-  Modal,
-
-
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import React, { useState } from "react";
 
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid } from "@mui/x-data-grid";
 import { useGetCustomerDetailsQuery } from "../../../../../../../../features/customers/customersSlice";
 import ItemName from "./ViewModalComponent/ItemName";
 import QuantityComponent from "./ViewModalComponent/QuantityComponent";
@@ -89,7 +80,7 @@ const columns1 = [
 // ];
 
 const ViewModal = ({ viewOpen, setViewOpen, props: invoice }) => {
-  const toWords = new ToWords();
+  // const toWords = new ToWords();
   // let total = toWords.convert(123);
   const rows1 = [
     ...invoice?.additionalProducts?.products?.map((each, id) => {
@@ -483,7 +474,7 @@ const ViewModal = ({ viewOpen, setViewOpen, props: invoice }) => {
               marginRight: "24px",
             }}
           >
-            {/* <DataGrid rows={rows1} columns={columns1} />  */}
+            <DataGrid rows={rows1} columns={columns1} />
           </div>
         </Box>
       </Container>
