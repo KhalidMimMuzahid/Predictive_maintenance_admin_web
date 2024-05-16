@@ -1,7 +1,7 @@
 import { Close } from "@mui/icons-material";
 import logo from "../../../../../../../../../src/Assets/Component/logo_small.svg";
 import invoiceLogo from "../../../../../../../../../src/Assets/Component/invoiceLogo.png"
-import userimg from "../../../../../../../../../src/Assets/Component/invoiceUser.png"
+// import userimg from "../../../../../../../../../src/Assets/Component/invoiceUser.png"
 import {
   Box,
   Button,
@@ -9,72 +9,166 @@ import {
 
   Modal,
 
-  TextField,
 
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 
 import { DataGrid } from '@mui/x-data-grid';
+import { useGetCustomerDetailsQuery } from "../../../../../../../../features/customers/customersSlice";
+import ItemName from "./ViewModalComponent/ItemName";
+import QuantityComponent from "./ViewModalComponent/QuantityComponent";
+import Rate from "./ViewModalComponent/Rate";
+import Tax from "./ViewModalComponent/Tax";
+import SubTotal from "./SubTotal";
+// import { ToWords } from 'to-words';
+// addedBy: Types.ObjectId; // ServiceProviderEngineer model
+// productName: string;
+// // quantity: number;
+// // promo:number // percentage of promo ; by default 0%   // is it the same of discount offer? what is actually a promo?
 
+// cost: {
+//   price: number;
+//   quantity: number;
+//   tax?: number; // percentage of tax ; by default 0%
+//   totalAmount: number;
+//   // currency: string;
+// };
 
 const columns = [
-  { field: 'item', headerName: 'ITEM', width: 450 },
-  { field: 'hrsQty', headerName: 'HRS/QTY', width: 160 },
-  { field: 'rate', headerName: 'RATE', width: 160 },
-  { field: 'tax', headerName: 'TAX', width: 160 },
-  { field: 'subtotal', headerName: 'SUBTOTAL', width: 160 },
-];
+  {
+    field: "item", // productName
+    headerName: "ITEM",
+    width: 450,
+    renderCell: (props) => <ItemName props={props?.row?.productName} />,
+  },
+  {
+    field: "hrsQty",
+    headerName: "HRS/QTY",
+    width: 160,
 
-const initialRows  = [
-  { id: 1, item: 'Washing machine making noise when draining or not draining at all', hrsQty: 1, rate: 7500, tax: 120, subtotal: 7620 },
-  { id: 2, item: 'Washing machine making noise when draining or not draining at all', hrsQty: 1, rate: 7500, tax: 120, subtotal: 7620 },
-  { id: 3, item: 'Washing machine making noise when draining or not draining at all', hrsQty: 1, rate: 7500, tax: 120, subtotal: 7620 },
-  { id: 4, item: 'Washing machine making noise when draining or not draining at all', hrsQty: 1, rate: 7500, tax: 120, subtotal: 7620 }
+    renderCell: (props) => (
+      <QuantityComponent props={props?.row?.cost?.quantity} />
+    ),
+  }, //
+  {
+    field: "rate",
+    headerName: "RATE",
+    width: 160,
+
+    renderCell: (props) => <Rate props={props?.row?.cost?.price} />,
+  }, //
+  {
+    field: "tax",
+    headerName: "TAX",
+    width: 160,
+    renderCell: (props) => <Tax props={props?.row?.cost?.tax} />,
+  }, //
+  {
+    field: "subtotal",
+    headerName: "SUBTOTAL",
+    width: 160,
+    renderCell: (props) => <SubTotal props={props?.row?.cost?.totalAmount} />,
+  }, // cost?.totalAmount
 ];
 
 const columns1 = [
-  { field: 'header', headerName: 'Invoice Summary', width: 400, headerAlign: 'center' }, // Width of the combined header
-  { field: 'cell2', headerName: '', width: 150 },
+  {
+    field: "header",
+    headerName: "Invoice Summary",
+    width: 400,
+    headerAlign: "center",
+  }, // Width of the combined header
+  { field: "cell2", headerName: "", width: 150 },
 ];
 
-const rows1 = [
-  { id: 1, header: 'Subtotal', cell2: '30,480' },
-  { id: 2, header: 'Subtotal', cell2: '1900' },
-  { id: 3, header: 'Total (Yen)', cell2: '32,380' },
-];
+// [
+//   { id: 1, header: "Subtotal", cell2: "30,480" },
+//   { id: 2, header: "Subtotal", cell2: "1900" },
+//   { id: 3, header: "Total (Yen)", cell2: "32,380" },
+// ];
 
+const ViewModal = ({ viewOpen, setViewOpen, props: invoice }) => {
+  const toWords = new ToWords();
+  // let total = toWords.convert(123);
+  const rows1 = [
+    ...invoice?.additionalProducts?.products?.map((each, id) => {
+      return { id, header: "Subtotal", cell2: each?.cost?.totalAmount };
+    }),
+    {
+      id: 3,
+      header: "Total",
+      cell2: invoice?.additionalProducts?.products?.reduce(
+        (accumulator, currentValue) =>
+          accumulator + currentValue?.cost?.totalAmount,
+        0
+      ),
+    },
+  ];
 
+  let dateInfo = "";
 
+  try {
+    if (invoice?.reservationRequest?.schedule?.schedules?.length) {
+      let date, month, year;
+      date = new Date(
+        invoice.reservationRequest.schedule.schedules[0]
+      ).getDate();
+      month =
+        new Date(invoice.reservationRequest.schedule.schedules[0]).getMonth() +
+        1;
 
-const ViewModal = ({ viewOpen, setViewOpen, props }) => {
+      year = new Date(
+        invoice.reservationRequest.schedule.schedules[0]
+      ).getFullYear();
 
-  const [editing, setEditing] = useState(false);
-  const [inputFields, setInputFields] = useState({
-    item: "",
-    hrsQty: "",
-    rate: "",
-    tax: "",
-    subtotal: "",
-  });
-  const [gridRows, setGridRows] = useState(initialRows);
+      if (date && month && year) {
+        dateInfo = `${date} ${month} ${year}`;
+      } else {
+        throw new Error("Invalid date");
+      }
+    } else {
+      dateInfo = `no-scheduled`;
+    }
+  } catch (error) {
+    dateInfo = `invalid`;
+  }
 
-  const handleInputChange = (field, value) => {
-    setInputFields((prev) => ({ ...prev, [field]: value }));
-  };
+  const {
+    data: customerDetailsData,
+    isLoading: isLoading3,
+    isError: isError2,
+    error: error2,
+    isSuccess: isSuccess2,
+  } = useGetCustomerDetailsQuery(invoice?.user);
+  console.log({ invoice });
 
-  const handleAddRow = () => {
-    const newRow = { ...inputFields, id: gridRows.length + 1 };
-    setGridRows((prevRows) => [...prevRows, newRow]);
-    setInputFields({
-      item: "",
-      hrsQty: "",
-      rate: "",
-      tax: "",
-      subtotal: "",
-    });
-    setEditing(false);
-  };
+  // const [editing, setEditing] = useState(false);
+  // const [inputFields, setInputFields] = useState({
+  //   item: "",
+  //   hrsQty: "",
+  //   rate: "",
+  //   tax: "",
+  //   subtotal: "",
+  // });
+  // const [gridRows, setGridRows] = useState(initialRows);
+
+  // const handleInputChange = (field, value) => {
+  //   setInputFields((prev) => ({ ...prev, [field]: value }));
+  // };
+
+  // const handleAddRow = () => {
+  //   const newRow = { ...inputFields, id: gridRows.length + 1 };
+  //   setGridRows((prevRows) => [...prevRows, newRow]);
+  //   setInputFields({
+  //     item: "",
+  //     hrsQty: "",
+  //     rate: "",
+  //     tax: "",
+  //     subtotal: "",
+  //   });
+  //   setEditing(false);
+  // };
 
   return (
     <Modal
@@ -83,7 +177,7 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        paddingBottom: "24px"
+        paddingBottom: "24px",
       }}
       open={viewOpen}
     >
@@ -92,7 +186,7 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
           width: "65%",
           background: "white",
           borderRadius: "20px",
-          padding: "24px"
+          padding: "24px",
         }}
       >
         <Box sx={{ position: "relative" }}>
@@ -112,13 +206,14 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
           </Button>
         </Box>
 
-
-        <Box sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "30px",
-          marginLeft: "24px"
-        }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginTop: "30px",
+            marginLeft: "24px",
+          }}
+        >
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <img style={{ height: "40px" }} src={invoiceLogo} alt="webscript" />
             <Typography
@@ -127,7 +222,6 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
                 fontWeight: "400",
                 color: "#000000",
                 textAlign: "center",
-
               }}
             >
               www.showa.com
@@ -140,28 +234,6 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
               gap: "24px",
             }}
           >
-             {!editing && (
-            <Button
-            onClick={() => {
-              setEditing(true);
-            }}
-              variant="outlined"
-              sx={{
-                width: "160px",
-                height: "36px",
-                textTransform: "capitalize",
-                borderRadius: "20px",
-                padding: "8px 10px",
-                background: "white",
-                fontSize: "14px",
-                fontWeight: "700",
-                color: "#24459C",
-                borderColor: "#24459C",
-              }}
-            >
-              Edit
-            </Button>
-            )}
             <Button
               sx={{
                 width: "160px",
@@ -181,12 +253,16 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
               Download
             </Button>
           </Box>
-
         </Box>
 
-
-        <Box sx={{ display: "flex", justifyContent: "space-between", marginLeft: "24px", marginRight: "24px" }}>
-
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginLeft: "24px",
+            marginRight: "24px",
+          }}
+        >
           <Box>
             <Typography
               sx={{
@@ -194,7 +270,7 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
                 fontWeight: "400",
                 color: "#5A6872",
                 textAlign: "start",
-                marginBlock: "8px"
+                marginBlock: "8px",
               }}
             >
               FROM
@@ -227,11 +303,8 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
                   accounts@devias.io | (+40) 652 3456 23
                 </Typography>
               </Box>
-
             </Box>
-
           </Box>
-
 
           <Box>
             <Typography
@@ -240,14 +313,17 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
                 fontWeight: "400",
                 color: "#5A6872",
                 textAlign: "start",
-                marginBlock: "8px"
+                marginBlock: "8px",
               }}
             >
               To
             </Typography>
 
             <Box sx={{ display: "flex", gap: "20px", alignItems: "start" }}>
-              <img src={userimg} alt="webscript" />
+              <img
+                src={customerDetailsData?.data?.showaUser?.photoUrl}
+                alt="webscript"
+              />
               <Box>
                 <Typography
                   sx={{
@@ -257,7 +333,8 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
                     // textAlign: "start",
                   }}
                 >
-                  Leslie Alexander
+                  {customerDetailsData?.data?.showaUser?.name?.firstName} {` `}
+                  {customerDetailsData?.data?.showaUser?.name?.lastName}
                 </Typography>
 
                 <Typography
@@ -268,29 +345,61 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
                     // textAlign: "start",
                   }}
                 >
-                  235-1241, Shinkiba, Koto-ku, Tokyo, Japan <br />
-                  alma.lawson@example.com | +8121-800-7169
-
+                  {
+                    customerDetailsData?.data?.showaUser?.addresses[0]?.address
+                      ?.street
+                  }
+                  {`, `}
+                  {
+                    customerDetailsData?.data?.showaUser?.addresses[0]?.address
+                      ?.city
+                  }
+                  {`, `}
+                  {
+                    customerDetailsData?.data?.showaUser?.addresses[0]?.address
+                      ?.postalCode
+                  }
+                  {`, `}
+                  {
+                    customerDetailsData?.data?.showaUser?.addresses[0]?.address
+                      ?.details
+                  }
+                  {`, `}
+                  {
+                    customerDetailsData?.data?.showaUser?.addresses[0]?.address
+                      ?.country
+                  }
+                  {`, `}
+                  {
+                    customerDetailsData?.data?.showaUser?.addresses[0]?.address
+                      ?.city
+                  }
+                  {`, `}
+                  {customerDetailsData?.data?.email} {`, `}
+                  {customerDetailsData?.data?.showaUser?.phone}
                 </Typography>
               </Box>
-
             </Box>
-
-
           </Box>
-
         </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "space-between", marginLeft: "24px", marginRight: "24px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginLeft: "24px",
+            marginRight: "24px",
+          }}
+        >
           <Typography
             sx={{
               fontSize: "16px",
               fontWeight: "700",
               color: "#5A6872",
-              marginBlock: "8px"
+              marginBlock: "8px",
             }}
           >
-            Invoice No. 098784
+            Invoice No. {invoice?.invoiceNo}
           </Typography>
 
           <Typography
@@ -298,10 +407,10 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
               fontSize: "16px",
               fontWeight: "700",
               color: "#5A6872",
-              marginBlock: "8px"
+              marginBlock: "8px",
             }}
           >
-            Due: Mar 19th, 2022
+            Due: {dateInfo}
           </Typography>
         </Box>
 
@@ -311,69 +420,36 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
             fontWeight: "700",
             color: "#5A6872",
             marginBlock: "8px",
-            marginLeft: "24px"
+            marginLeft: "24px",
           }}
         >
-          Invoice  Date: Mar 19th, 2022
+          Invoice Date: Mar 19th, 2022
         </Typography>
 
-
-        {/* main table  */}
-        <div style={{ height: 'auto', width: 'auto', marginLeft: "24px", marginRight: "24px" }}>
-        {editing ? (
-          <div>
-          <div style={{ display: "flex", marginBottom: "8px" }}>
-            {columns.map((column) => (
-              <div key={column.field} style={{ width: column.width }}>
-                <Typography
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: "bold",
-                    color: "#000000",
-                    textAlign: "start",
-                  }}
-                >
-                  {column.headerName}
-                </Typography>
-                <TextField
-                  label={`Input for ${column.headerName}`}
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                  value={inputFields[column.field]}
-                  onChange={(e) => handleInputChange(column.field, e.target.value)}
-                />
-              </div>
-            ))}
-          </div>
-              <Button
-                variant="outlined"
-                color="primary"
-                onClick={handleAddRow}
-                sx={{ marginTop: "16px",
-                width: "100%",
-                fontSize: "16px",
-                fontWeight: "700",
-                color: "#8B8B8B",
-                borderColor: "#8B8B8B",
-              borderStyle: "dashed" }}
-              >
-                Add new invoice Item
-              </Button>
-            </div>
-          ) : (
-            <DataGrid
-            rows={gridRows}
+        <div
+          style={{
+            height: "auto",
+            width: "auto",
+            marginLeft: "24px",
+            marginRight: "24px",
+          }}
+        >
+          <DataGrid
+            rows={invoice?.additionalProducts?.products?.map((data, id) => {
+              return { ...data, id };
+            })}
             columns={columns}
           />
-          )}
         </div>
-         
 
-      
-
-
-        <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: "10px", marginRight: "24px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginTop: "10px",
+            marginRight: "24px",
+          }}
+        >
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <Typography
               sx={{
@@ -381,7 +457,7 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
                 fontWeight: "500",
                 color: "#5A6872",
                 marginBlock: "8px",
-                marginLeft: "24px"
+                marginLeft: "24px",
               }}
             >
               In word
@@ -392,20 +468,24 @@ const ViewModal = ({ viewOpen, setViewOpen, props }) => {
                 fontWeight: "500",
                 color: "#5A6872",
                 marginBlock: "8px",
-                marginLeft: "24px"
+                marginLeft: "24px",
               }}
             >
               Thirty Two thousand Three Hundred Eighty Yen only
             </Typography>
           </Box>
 
-          <div style={{ height: 'auto', width: 'auto', marginLeft: '24px', marginRight: '24px' }}>
-            <DataGrid rows={rows1} columns={columns1} />
-
+          <div
+            style={{
+              height: "auto",
+              width: "auto",
+              marginLeft: "24px",
+              marginRight: "24px",
+            }}
+          >
+            {/* <DataGrid rows={rows1} columns={columns1} />  */}
           </div>
-
         </Box>
-
       </Container>
     </Modal>
   );
