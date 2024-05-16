@@ -207,7 +207,19 @@ const CustomerTable = ({ isRootCustomerPage, setIsRootCustomerPage }) => {
               },
               padding: "0 20px",
               borderRadius: "0",
-              outline: "none",
+              "& .MuiDataGrid-columnHeaders": {
+                fontWeight: 400,
+                borderRadius: "var(--none, 0px)",
+                borderBottom: "1px solid var(--divider, rgba(0, 0, 0, 0.12))",
+                borderLeft:
+                  "var(--none, 0px) solid var(--divider, rgba(0, 0, 0, 0.12))",
+                borderRight:
+                  "var(--none, 0px) solid var(--divider, rgba(0, 0, 0, 0.12))",
+                borderTop:
+                  "var(--none, 0px) solid var(--divider, rgba(0, 0, 0, 0.12))",
+                background: "#F4F2FF",
+                alignItems: "space-between !important",
+              },
             }}
             rows={customers?.data?.map((data, id) => {
               return { ...data, id };

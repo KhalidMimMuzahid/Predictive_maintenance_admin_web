@@ -44,9 +44,11 @@ const CustomerScreen = () => {
             onClick={() => downloadTableData(downloadData, setDownloadData)}
             sx={{
               backgroundColor: "white",
-              color: "black",
+              color: "#24459C",
+              textTransform: "none",
               borderRadius: "8px",
-              padding: "0 12px",
+              padding: "6px 32px",
+              fontWeight: "600",
             }}
             startIcon={<Upload />}
           >
@@ -57,12 +59,14 @@ const CustomerScreen = () => {
             sx={{
               backgroundColor: "#24459c",
               color: "white",
+              textTransform: "none",
               borderRadius: "8px",
+              padding: "6px 32px",
+              fontWeight: "500",
               "&:hover": {
                 background: "#24459C",
               },
             }}
-            startIcon={<AddOutlined />}
           >
             Add Customer
           </Button>

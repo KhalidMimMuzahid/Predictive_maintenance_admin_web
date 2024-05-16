@@ -1,5 +1,18 @@
-import { CategoryOutlined, Download } from "@mui/icons-material";
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Cancel,
+  CategoryOutlined,
+  Download,
+  Search,
+  Tune,
+} from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import IotData from "./iotData/IotData";
 import { useStyle } from "./styles/iotStyle";
@@ -7,6 +20,7 @@ import IotTable from "./iotTable/IotTable";
 import AddNewProductModal from "./component/AddNewProductModal";
 
 const IotScreen = () => {
+  const [isIOTRootPage, setIsIOTRootPage] = useState(true);
   const [addNewProductModalOpen, setAddNewProductModalOpen] = useState(false);
   const classes = useStyle();
 
@@ -39,8 +53,11 @@ const IotScreen = () => {
             <Button
               sx={{
                 backgroundColor: "white",
-                color: "black",
+                color: "#24459C",
+                textTransform: "none",
                 borderRadius: "8px",
+                padding: "6px 32px",
+                fontWeight: "600",
               }}
             >
               <Download />
@@ -50,18 +67,23 @@ const IotScreen = () => {
             <Button
               sx={{
                 backgroundColor: "white",
-                borderRadius: "8px",
                 color: "#24459C",
+                textTransform: "none",
+                borderRadius: "8px",
+                padding: "6px 32px",
+                fontWeight: "600",
               }}
             >
-              <CategoryOutlined /> Category
+              Category
             </Button>
             <div className={classes.spacerSmall} />
             <Button
               sx={{
                 backgroundColor: "#24459c",
+                textTransform: "none",
                 color: "white",
                 borderRadius: "8px",
+                padding: "6px 32px",
                 "&:hover": {
                   background: "#24459C",
                 },
@@ -82,22 +104,74 @@ const IotScreen = () => {
             marginTop: "18px",
           }}
         >
-          <IotData />
+          {isIOTRootPage && <IotData />}
           <Box
             sx={{ background: "white", padding: "20px", borderRadius: "4px" }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Typography sx={{ color: "#5A6872", fontWeight: "600" }}>
-                Recent Products
-              </Typography>
-              <Button sx={{ color: "#24459C" }}>See All</Button>
-            </Box>
+            {isIOTRootPage ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Typography sx={{ color: "#5A6872", fontWeight: "600" }}>
+                  Recent Products
+                </Typography>
+                <Button
+                  sx={{ color: "#24459C" }}
+                  onClick={() => setIsIOTRootPage(false)}
+                >
+                  See All
+                </Button>
+              </Box>
+            ) : (
+              <Box
+                sx={{
+                  marginBottom: "24px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <Tune
+                  sx={{
+                    background: "#CED4DA",
+                    padding: "8px",
+                    borderRadius: "6px",
+                    cursor: "pointer",
+                  }}
+                />
+                <TextField
+                  sx={{ width: "100%" }}
+                  size="small"
+                  placeholder="Start typing to search for IOT"
+                  // value={searchText}
+                  // onChange={(e) => setSearchText(e.target.value)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Search />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                        // onClick={() => {
+                        //   setSearchText("");
+                        //   setSmallSearchOpen(false);
+                        // }}
+                        >
+                          <Cancel />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Box>
+            )}
             <IotTable />
           </Box>
         </Box>
