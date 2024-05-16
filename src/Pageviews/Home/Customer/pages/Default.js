@@ -7,13 +7,11 @@ const Default = () => {
   const [isRootCustomerPage, setIsRootCustomerPage] = useState(true);
   return (
     <Box>
-      {isRootCustomerPage && (
-        <Box>
-          <RequestVsTimeGRaph />
-        </Box>
-      )}
-
-      <CustomerTable />
+      {isRootCustomerPage && <RequestVsTimeGRaph />}
+      <CustomerTable
+        isRootCustomerPage={isRootCustomerPage}
+        setIsRootCustomerPage={setIsRootCustomerPage}
+      />
     </Box>
   );
 };

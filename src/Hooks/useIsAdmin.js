@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 const useIsAdmin = (uid) => {
-  const { user } = useSelector((state) => state.auth);
   const [isAdmin, setIsAdmin] = useState(false);
   const [adminData, setAdminData] = useState({});
   useEffect(() => {

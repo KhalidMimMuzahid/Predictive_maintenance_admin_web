@@ -56,7 +56,7 @@ export const columns = [
         MACHINE
       </Typography>
     ),
-    width: 150,
+    width: 135,
     renderCell: (props) => <MachineComponent props={props} />,
   },
   {
@@ -69,7 +69,7 @@ export const columns = [
         WALLET
       </Typography>
     ),
-    width: 250,
+    width: 230,
     renderCell: (props) => <BalanceComponent props={props} />,
   },
   {
@@ -95,7 +95,7 @@ export const columns = [
         ACTION
       </Typography>
     ),
-    width: 230,
+    width: 180,
     renderCell: (props) => <ActionComponent props={props} />,
   },
 ];

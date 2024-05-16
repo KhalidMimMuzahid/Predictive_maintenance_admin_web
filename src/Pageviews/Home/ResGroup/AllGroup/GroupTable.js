@@ -17,6 +17,13 @@ const GroupTable = () => {
       {(isLoading || isError) && <Loader />}
       {groupsData?.data.length > 0 && (
         <DataGrid
+          sx={{
+            "& .table-header": {
+              backgroundColor: "#F4F2FF",
+            },
+            padding: "0 20px",
+            borderRadius: "0",
+          }}
           rows={groupsData?.data?.map((data, id) => {
             return { data, id };
           })}

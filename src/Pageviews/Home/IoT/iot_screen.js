@@ -1,120 +1,14 @@
-import {
-  Add,
-  Category,
-  CategoryOutlined,
-  Download,
-  MoreVert,
-} from "@mui/icons-material";
-import { Box, Button, IconButton, MenuItem } from "@mui/material";
-
+import { CategoryOutlined, Download } from "@mui/icons-material";
+import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
 import IotData from "./iotData/IotData";
 import { useStyle } from "./styles/iotStyle";
 import IotTable from "./iotTable/IotTable";
-import { StyledMenu } from "./styles/styleMenu";
 import AddNewProductModal from "./component/AddNewProductModal";
 
 const IotScreen = () => {
   const [addNewProductModalOpen, setAddNewProductModalOpen] = useState(false);
   const classes = useStyle();
-
-  // const [newIot, setNewIot] = useState({
-  //   iotProductId: "",
-  //   macId: "",
-  //   price: "",
-  //   module: "",
-  // });
-
-  // const [csvFile, setCsvFile] = useState(null);
-  // const inputRef = useRef();
-
-  // function makeid(length) {
-  //   let result = "";
-  //   const characters =
-  //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  //   const charactersLength = characters.length;
-  //   let counter = 0;
-  //   while (counter < length) {
-  //     result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  //     counter += 1;
-  //   }
-  //   return result;
-  // }
-
-  // const uploadSingleIotData = () => {
-  //   if (newIot.macId === "") {
-  //     alert("Please provide the sensor MAC ID to continue");
-  //     return;
-  //   }
-  //   if (newIot.price === "") {
-  //     alert("Please provide price of the sensor to continue");
-  //     return;
-  //   }
-  //   if (newIot.module === "") {
-  //     alert("Please select the module of the sensor to continue");
-  //     return;
-  //   }
-
-  //   let iotProductId = makeid(36);
-  //   let macId = newIot.macId.toLowerCase();
-  //   let price = newIot.price;
-  //   let module = newIot.module;
-
-  //   fetch("https://api.showaapp.com/admin/iot/add-sensor", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       iotProductId,
-  //       macId,
-  //       price,
-  //       module,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setOpen(false);
-  //       alert("Successfully added new IoT Sensor");
-  //     })
-  //     .catch((error) => {
-  //       alert("Error: " + error);
-  //     });
-  // };
-
-  // const uploadCsvFile = () => {
-  //   const formData = new FormData();
-  //   formData.append("IotCsvFile", csvFile);
-
-  //   axios
-  //     .post("https://api.showaapp.com/admin/iot/add-iot-from-csv", formData)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setOpen(false);
-  //       alert("IoT data uploaded successfully");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert("Error : " + err);
-  //     });
-  // };
-
-  // const handleSubmit = () => {
-  //   if (csvFile) {
-  //     uploadCsvFile();
-  //   } else {
-  //     uploadSingleIotData();
-  //   }
-  // };
-
-  // const handleDragOver = (event) => {
-  //   event.preventDefault();
-  // };
-
-  // const handleDrop = (event) => {
-  //   event.preventDefault();
-  //   setCsvFile(event.dataTransfer.files);
-  // };
 
   return (
     <>
@@ -128,7 +22,7 @@ const IotScreen = () => {
       <div className={classes.holder}>
         <div className={classes.topHolder}>
           <div>
-            <div className={classes.title}>IoT</div>
+            <div className={classes.title}>IOT</div>
             <div className={classes.spacerSmall}></div>
             <div style={{ display: "flex" }}>
               <div style={{ color: "black" }} className={classes.subtitle}>
@@ -142,22 +36,40 @@ const IotScreen = () => {
           </div>
 
           <div className={classes.buttonHolder}>
-            <Button style={{ backgroundColor: "white", color: "black" }}>
+            <Button
+              sx={{
+                backgroundColor: "white",
+                color: "black",
+                borderRadius: "8px",
+              }}
+            >
               <Download />
               Import
             </Button>
             <div className={classes.spacerSmall} />
-            <Button style={{ backgroundColor: "white", color: "black" }}>
+            <Button
+              sx={{
+                backgroundColor: "white",
+                borderRadius: "8px",
+                color: "#24459C",
+              }}
+            >
               <CategoryOutlined /> Category
             </Button>
             <div className={classes.spacerSmall} />
             <Button
-              style={{ backgroundColor: "#24459c", color: "white" }}
+              sx={{
+                backgroundColor: "#24459c",
+                color: "white",
+                borderRadius: "8px",
+                "&:hover": {
+                  background: "#24459C",
+                },
+              }}
               onClick={() => {
                 setAddNewProductModalOpen(!addNewProductModalOpen);
               }}
             >
-              <Add />
               Add Product
             </Button>
           </div>
@@ -171,7 +83,21 @@ const IotScreen = () => {
           }}
         >
           <IotData />
-          <Box>
+          <Box
+            sx={{ background: "white", padding: "20px", borderRadius: "4px" }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Typography sx={{ color: "#5A6872", fontWeight: "600" }}>
+                Recent Products
+              </Typography>
+              <Button sx={{ color: "#24459C" }}>See All</Button>
+            </Box>
             <IotTable />
           </Box>
         </Box>
