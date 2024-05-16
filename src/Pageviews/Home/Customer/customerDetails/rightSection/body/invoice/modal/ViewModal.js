@@ -89,7 +89,7 @@ const columns1 = [
 // ];
 
 const ViewModal = ({ viewOpen, setViewOpen, props: invoice }) => {
-  const toWords = new ToWords();
+  // const toWords = new ToWords();
   // let total = toWords.convert(123);
   const rows1 = [
     ...invoice?.additionalProducts?.products?.map((each, id) => {
@@ -483,7 +483,7 @@ const ViewModal = ({ viewOpen, setViewOpen, props: invoice }) => {
               marginRight: "24px",
             }}
           >
-            {/* <DataGrid rows={rows1} columns={columns1} />  */}
+            <DataGrid rows={rows1} columns={columns1} />
           </div>
         </Box>
       </Container>
