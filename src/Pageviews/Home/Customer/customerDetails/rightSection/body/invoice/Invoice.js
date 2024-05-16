@@ -75,7 +75,7 @@ const Invoice = () => {
       field: "action",
       headerName: "ACTION",
       width: 100,
-      renderCell: (props) => <InvoiceAction props={props} />,
+      renderCell: (props) => <InvoiceAction props={props?.row} />,
     },
   ];
 
