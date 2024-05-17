@@ -98,11 +98,7 @@ const ViewModal = ({ viewOpen, setViewOpen, props: invoice }) => {
     {
       id: 3,
       header: "Total",
-      cell2: invoice?.additionalProducts?.products?.reduce(
-        (accumulator, currentValue) =>
-          accumulator + currentValue?.cost?.totalAmount,
-        0
-      ),
+      cell2: invoice?.additionalProducts?.totalAmount || 0,
     },
   ];
 
@@ -141,7 +137,7 @@ const ViewModal = ({ viewOpen, setViewOpen, props: invoice }) => {
     error: error2,
     isSuccess: isSuccess2,
   } = useGetCustomerDetailsQuery(invoice?.user);
-  console.log({ invoice });
+  // console.log({ invoice });
 
   // const [editing, setEditing] = useState(false);
   // const [inputFields, setInputFields] = useState({
