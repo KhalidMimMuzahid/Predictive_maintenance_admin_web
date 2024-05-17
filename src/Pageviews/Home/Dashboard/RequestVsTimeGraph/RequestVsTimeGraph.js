@@ -3,14 +3,11 @@ import React from "react";
 import FirstGraph from "./component/FirstGraph";
 import SecondGraph from "./component/SecondGraph";
 
-
 const RequestVsTimeGraph = () => {
-
   return (
-    <Box >
+    <Box>
       <FirstGraph />
       <SecondGraph />
-
     </Box>
   );
 };

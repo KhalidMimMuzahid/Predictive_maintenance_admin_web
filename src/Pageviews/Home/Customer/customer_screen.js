@@ -5,6 +5,7 @@ import { useStyle } from "./styleComponents";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "../../../contextApi/appProvider";
 import { downloadTableData } from "../../../Utils/downloadTableData";
+import Footer from "../../../Utils/Footer";
 const CustomerScreen = () => {
   const { downloadData, setDownloadData } = useContext(AppContext);
   const classes = useStyle();
@@ -71,16 +72,11 @@ const CustomerScreen = () => {
             Add Customer
           </Button>
         </Box>
-
-        {/* <div className={classes.smallMenuHolder}>
-          <IconButton onClick={handleClick}>
-            <MoreVert />
-          </IconButton>
-        </div> */}
       </div>
       <div>
         <Outlet />
       </div>
+      <Footer />
     </div>
   );
 };

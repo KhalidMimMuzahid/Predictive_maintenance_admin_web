@@ -1,8 +1,29 @@
+import React from "react";
 import rectangle from "../../../../../Assets/Home/customer/Rectangle.png";
 import { Box, Typography } from "@mui/material";
 import { LineChart } from "@mui/x-charts";
-import { color } from "framer-motion";
-import React from "react";
+
+// demo linechart data
+const uData = [
+  4000, 3000, 2000, 2780, 1890, 2390, 3490, 1500, 2600, 1500, 2600, 3700,
+];
+const pData = [
+  2400, 1398, 9800, 3908, 4800, 3800, 4300, 3200, 1800, 3200, 1800, 5000,
+];
+const xLabels = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "July",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dc",
+];
 
 const LeftSide = ({ graphObjectData }) => {
   return (
@@ -59,27 +80,24 @@ const LeftSide = ({ graphObjectData }) => {
       </Box>
       <hr style={{ bgColor: "#E6EFF5", opacity: "25%" }} />
       <Box sx={{ padding: "24px 34px" }}>
-        {/* <LineChart
-          // xAxis={[{ data: Object.keys(graphObjectData) }]}
-          xAxis={[
-            {
-              scaleType: "point",
-              data: Object?.keys(graphObjectData),
-              domain: [0, "auto"],
-            },
-          ]}
-          series={[
-            {
-              // data: Object.values(graphObjectData),
-              data: Object.values(graphObjectData),
-              label: "Active",
-              color: "green",
-            },
-          ]}
-          height={300}
-          margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
-          grid={{ vertical: true, horizontal: true }}
-        /> */}
+        <Typography>Request</Typography>
+        <Box>
+          <LineChart
+            xAxis={[
+              {
+                scaleType: "point",
+                data: xLabels,
+              },
+            ]}
+            series={[
+              { data: pData, color: "#F33931" },
+              { data: uData, color: "#3CAA49" },
+            ]}
+            height={300}
+            margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
+            grid={{ vertical: true, horizontal: true }}
+          />
+        </Box>
       </Box>
     </Box>
   );
