@@ -142,8 +142,8 @@ const TeamScreen = () => {
               </Select>
             </FormControl>
           </Box>
+          <TeamTable />
         </Box>
-        <TeamTable />
       </Box>
     </Box>
   );

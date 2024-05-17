@@ -114,6 +114,7 @@ const IotScreen = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  padding: "10px 20px",
                 }}
               >
                 <Typography sx={{ color: "#5A6872", fontWeight: "600" }}>

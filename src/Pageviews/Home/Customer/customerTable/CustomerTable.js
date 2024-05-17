@@ -202,23 +202,13 @@ const CustomerTable = ({ isRootCustomerPage, setIsRootCustomerPage }) => {
         <Box sx={{ marginTop: "10px" }}>
           <DataGrid
             sx={{
-              "& .table-header": {
-                backgroundColor: "#F4F2FF",
-              },
-              padding: "0 20px",
-              borderRadius: "0",
+              borderRadius: "0px",
+              border: "none",
               "& .MuiDataGrid-columnHeaders": {
-                fontWeight: 400,
-                borderRadius: "var(--none, 0px)",
-                borderBottom: "1px solid var(--divider, rgba(0, 0, 0, 0.12))",
-                borderLeft:
-                  "var(--none, 0px) solid var(--divider, rgba(0, 0, 0, 0.12))",
-                borderRight:
-                  "var(--none, 0px) solid var(--divider, rgba(0, 0, 0, 0.12))",
-                borderTop:
-                  "var(--none, 0px) solid var(--divider, rgba(0, 0, 0, 0.12))",
+                fontWeight: 1000,
+                borderRadius: "0",
+                borderTop: "1px solid #D9D9D9",
                 background: "#F4F2FF",
-                alignItems: "space-between !important",
               },
             }}
             rows={customers?.data?.map((data, id) => {

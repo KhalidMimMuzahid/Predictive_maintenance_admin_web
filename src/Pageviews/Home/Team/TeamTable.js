@@ -216,8 +216,18 @@ const TeamTable = () => {
   ];
 
   return (
-    <Box sx={{ background: "white", borderRadius: "4px", marginTop: "8px" }}>
+    <Box sx={{ borderRadius: "4px", marginTop: "10px" }}>
       <DataGrid
+        sx={{
+          borderRadius: "0px",
+          border: "none",
+          "& .MuiDataGrid-columnHeaders": {
+            fontWeight: 1000,
+            borderRadius: "0",
+            borderTop: "1px solid #D9D9D9",
+            background: "#F4F2FF",
+          },
+        }}
         rows={teamRow?.map((data, id) => {
           return { ...data, id };
         })}

@@ -9,7 +9,6 @@ import SubscriptionComponent from "./components/SubscriptionComponent";
 export const columns = [
   {
     field: "name",
-    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -23,7 +22,6 @@ export const columns = [
   },
   {
     field: "email",
-    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -35,7 +33,6 @@ export const columns = [
   },
   {
     field: "location",
-    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -48,7 +45,6 @@ export const columns = [
   },
   {
     field: "machine",
-    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -56,12 +52,11 @@ export const columns = [
         MACHINE
       </Typography>
     ),
-    width: 135,
+    width: 130,
     renderCell: (props) => <MachineComponent props={props} />,
   },
   {
     field: "balance",
-    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -74,7 +69,6 @@ export const columns = [
   },
   {
     field: "subscription",
-    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -87,7 +81,6 @@ export const columns = [
   },
   {
     field: "action",
-    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}

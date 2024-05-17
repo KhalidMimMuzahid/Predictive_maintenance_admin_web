@@ -20,11 +20,6 @@ const AllGroup = () => {
         </Box>
       </Box>
       <Box>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs aria-label="basic tabs example">
-            <Tab label="Groups" sx={{ color: "#24459C", fontWeight: "400" }} />
-          </Tabs>
-        </Box>
         <GroupTable />
       </Box>
     </Box>

@@ -1,15 +1,26 @@
 import { Close } from "@mui/icons-material";
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import React from "react";
+import { useGetReservationGroupByIDQuery } from "../../../../../features/resGroup/resGroupSlice";
 
 const ViewDetailsModal = ({
   viewDetailsModalOpen,
   setViewDetailsModalOpen,
   props,
 }) => {
-  console.log(props);
+  const {
+    data: reservationGroupData,
+    isLoading,
+    isError,
+    error,
+  } = useGetReservationGroupByIDQuery(props?._id);
+
   // Group Name
   // Group ID
+  // Problems as a Modal
+  // Schedule [First Object Property]
+
+  console.log(reservationGroupData?.data);
   return (
     <Modal
       sx={{
