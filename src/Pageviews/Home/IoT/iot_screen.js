@@ -38,14 +38,31 @@ const IotScreen = () => {
           <div>
             <div className={classes.title}>IOT</div>
             <div className={classes.spacerSmall}></div>
-            <div style={{ display: "flex" }}>
+            <div style={{ display: "flex", gap: "4px" }}>
               <div style={{ color: "black" }} className={classes.subtitle}>
                 Dashboard /{" "}
               </div>
-              <div style={{ color: "#24459c" }} className={classes.subtitle}>
-                {" "}
+              <div
+                style={{
+                  color: isIOTRootPage ? "#24459c" : "black",
+                }}
+                className={classes.subtitle}
+              >
                 IOT
               </div>
+              {isIOTRootPage === false && (
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  <div style={{ color: "black" }} className={classes.subtitle}>
+                    /
+                  </div>
+                  <div
+                    style={{ color: "#24459c", marginLeft: "2px" }}
+                    className={classes.subtitle}
+                  >
+                    All IOT
+                  </div>
+                </Box>
+              )}
             </div>
           </div>
 

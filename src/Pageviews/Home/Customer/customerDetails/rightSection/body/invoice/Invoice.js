@@ -78,31 +78,29 @@ const Invoice = () => {
       ),
       width: 200,
       renderCell: (params) => (
-        <Box>
-          <Box
-            sx={{
-              border: `1px solid ${
-                params?.row?.taskStatus === "canceled"
-                  ? "#FF4858"
-                  : params?.row?.taskStatus === "completed"
-                  ? "#2FD573"
-                  : "#FFA503"
-              }`,
-              color:
-                params?.row?.taskStatus === "canceled"
-                  ? "#FF4858"
-                  : params?.row?.taskStatus === "completed"
-                  ? "#2FD573"
-                  : "#FFA503",
-              width: "96px",
-              padding: "4px 8px",
-              textAlign: "center",
-              borderRadius: "20px",
-              fontSize: "11px",
-            }}
-          >
-            <Typography variant="p">{params?.row?.taskStatus}</Typography>
-          </Box>
+        <Box
+          sx={{
+            border: `1px solid ${
+              params?.row?.taskStatus === "canceled"
+                ? "#FF4858"
+                : params?.row?.taskStatus === "completed"
+                ? "#2FD573"
+                : "#FFA503"
+            }`,
+            color:
+              params?.row?.taskStatus === "canceled"
+                ? "#FF4858"
+                : params?.row?.taskStatus === "completed"
+                ? "#2FD573"
+                : "#FFA503",
+            width: "96px",
+            padding: "4px 8px",
+            textAlign: "center",
+            borderRadius: "20px",
+            fontSize: "11px",
+          }}
+        >
+          <Typography variant="p">{params?.row?.taskStatus}</Typography>
         </Box>
       ),
     },
@@ -148,11 +146,11 @@ const Invoice = () => {
           initialState={{
             pagination: {
               paginationModel: {
-                pageSize: 5,
+                pageSize: 10,
               },
             },
           }}
-          pageSizeOptions={[5]}
+          pageSizeOptions={[10]}
           checkboxSelection
           disableRowSelectionOnClick
         />

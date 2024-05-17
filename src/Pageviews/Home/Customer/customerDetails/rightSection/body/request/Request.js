@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RequestId from "./components/RequestAction";
 import RequestAction from "./components/RequestAction";
+import { useGetReservationRequestByIDQuery } from "../../../../../../../features/reservation/reservationSlice";
+import { columns } from "./components/constant";
+import Loader from "../../../../../../../Utils/Loader";
 
 const Request = () => {
   // /customer/reservation/common/get-my-reservations/:uid
@@ -11,161 +14,13 @@ const Request = () => {
   const [requests, setRequests] = useState([]);
   const [isShowActionOption, SetIsShowActionOption] = useState(false);
 
-  const params = useParams();
-  useEffect(() => {
-    fetch(
-      `${process.env.REACT_APP_BASE_URL}/customer/reservation/common/get-my-reservations/${params?.uid}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.connectedReservations) {
-          const connectedReservations = data?.connectedReservations?.map(
-            (each) => {
-              return { ...each, type: "connected" };
-            }
-          );
-          setRequests((prev) => [...prev, ...connectedReservations]);
-        }
-        if (data?.notconnectedReservations) {
-          const notconnectedReservations = data?.notconnectedReservations?.map(
-            (each) => {
-              return { ...each, type: "not connected" };
-            }
-          );
-          setRequests((prev) => [...prev, ...notconnectedReservations]);
-        }
-
-        // if (data?.success) {
-        //   setRequests(data?.data);
-        // } else {
-        //   setRequests([]);
-        // }
-      });
-  }, [params?.uid]);
-
-  console.log(requests);
-
-  const columns = [
-    {
-      field: "washingMachineId",
-      headerName: "REQUEST ID",
-      width: 350,
-      renderCell: (props) => (
-        <Box style={{ display: "flex", flexDirection: "column" }}>
-          <Typography variant="p" sx={{ fontSize: "12px", color: "#25213B" }}>
-            #{props.row.washingMachineId}
-          </Typography>
-        </Box>
-      ),
-    },
-    {
-      field: "createdAt",
-      headerName: "WHEN",
-      width: 300,
-      renderCell: (props) => (
-        <Box
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            textAlign: "center",
-            gap: "2px",
-          }}
-        >
-          <Typography
-            variant="p"
-            sx={{ fontSize: "12px", color: "#111827", fontWeight: "600" }}
-          >
-            {props?.row?.createdAt.split("T")[0]}
-          </Typography>
-          <Typography variant="p" sx={{ fontSize: "12px", color: "#6B7280" }}>
-            {props?.row?.createdAt.split("T")[1]}
-          </Typography>
-        </Box>
-      ),
-    },
-    {
-      field: "problems",
-      headerName: "MACHINE MODEL",
-      width: 150,
-      renderCell: (params) => (
-        <Typography variant="p" sx={{ color: "#25213B", fontSize: "12px" }}>
-          {params?.row?.problems[0]}
-        </Typography>
-      ),
-    },
-    {
-      field: "assignedVendorId",
-      headerName: "VENDOR NAME",
-      width: 150,
-      renderCell: (params) => (
-        <Typography variant="p" sx={{ color: "#25213B", fontSize: "12px" }}>
-          {params?.row?.assignedVendorId.length > 1
-            ? params?.row?.assignedVendorId
-            : "Not Yet"}
-        </Typography>
-      ),
-    },
-    {
-      field: "status",
-      headerName: "STATUS",
-      width: 150,
-      renderCell: (params) => (
-        <Box>
-          {params?.row?.status === "Pending" && (
-            <Typography
-              variant="p"
-              sx={{
-                border: "1px solid #FFA503",
-                color: "#FFA503",
-                px: "16px",
-                py: "4px",
-                borderRadius: "20px",
-                fontSize: "11px",
-              }}
-            >
-              {params?.row?.status}
-            </Typography>
-          )}
-          {params?.row?.status === "Canceled" && (
-            <Typography
-              variant="p"
-              sx={{
-                border: "1px solid #FF4858",
-                color: "#FF4858",
-                px: "16px",
-                py: "4px",
-                borderRadius: "20px",
-                fontSize: "11px",
-              }}
-            >
-              {params?.row?.status}
-            </Typography>
-          )}
-          {params?.row?.status === "Completed" && (
-            <Typography
-              variant="p"
-              sx={{
-                border: "1px solid #2FD573",
-                color: "#FFFFFF",
-                px: "16px",
-                py: "4px",
-                borderRadius: "20px",
-                fontSize: "11px",
-              }}
-            >
-              {params?.row?.status}
-            </Typography>
-          )}
-        </Box>
-      ),
-    },
-    {
-      field: "action",
-      headerName: "ACTION",
-      width: 100,
-      renderCell: (props) => <RequestAction props={props} />,
-    },
-  ];
+  const {
+    data: requestsData,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetReservationRequestByIDQuery(_id);
 
   return (
     <div>
@@ -175,22 +30,36 @@ const Request = () => {
           padding: "0 20px",
         }}
       >
-        <DataGrid
-          rows={requests?.map((data, id) => {
-            return { ...data, id };
-          })}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 10,
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <DataGrid
+            sx={{
+              borderRadius: "0px",
+              border: "none",
+              "& .MuiDataGrid-columnHeaders": {
+                fontWeight: 1000,
+                borderRadius: "0",
+                borderTop: "1px solid #D9D9D9",
+                background: "#F4F2FF",
               },
-            },
-          }}
-          pageSizeOptions={[10]}
-          checkboxSelection
-          disableRowSelectionOnClick
-        />
+            }}
+            rows={requestsData?.data?.map((data, id) => {
+              return { ...data, id };
+            })}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 10,
+                },
+              },
+            }}
+            pageSizeOptions={[10]}
+            checkboxSelection
+            disableRowSelectionOnClick
+          />
+        )}
       </Box>
     </div>
   );

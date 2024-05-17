@@ -34,6 +34,9 @@ export const reservationApi = createApi({
       }),
       invalidatesTags: ["make-reservation-request-group"],
     }),
+    getReservationRequestByID: builder.query({
+      query: (_id) => `/reservation/all-reservation-by-user?user=${_id}`,
+    }),
   }),
 });
 
@@ -41,4 +44,5 @@ export const {
   useGetAllReservationQuery,
   useGetShowaUserInfoQuery,
   usePostReservationGroupMutation,
+  useGetReservationRequestByIDQuery,
 } = reservationApi;

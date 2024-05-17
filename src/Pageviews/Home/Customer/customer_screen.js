@@ -26,7 +26,7 @@ const CustomerScreen = () => {
         <div>
           <div className={classes.title}>Customer</div>
           <div className={classes.spacerSmall}></div>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", gap: "4px" }}>
             <div style={{ color: "black" }} className={classes.subtitle}>
               Dashboard /{" "}
             </div>
@@ -41,7 +41,10 @@ const CustomerScreen = () => {
                 <div style={{ color: "black" }} className={classes.subtitle}>
                   /
                 </div>
-                <div style={{ color: "#24459c" }} className={classes.subtitle}>
+                <div
+                  style={{ color: "#24459c", marginLeft: "2px" }}
+                  className={classes.subtitle}
+                >
                   All Customers
                 </div>
               </Box>
