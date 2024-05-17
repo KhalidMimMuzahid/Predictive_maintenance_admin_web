@@ -22,7 +22,13 @@ const CustomerDetails = () => {
   const { data: subscriptionData } = useGetCustomerSubscriptionDataQuery(_id);
 
   return (
-    <Box sx={{ display: "flex", gap: "20px", marginTop: "24px" }}>
+    <Box
+      sx={{
+        display: "flex",
+        gap: "20px",
+        marginTop: "24px",
+      }}
+    >
       {/* left sidebar  */}
       <Box
         sx={{

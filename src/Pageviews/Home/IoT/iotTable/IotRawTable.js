@@ -21,7 +21,13 @@ const IotRawTable = ({ data }) => {
     <Box>
       <TableContainer component={Paper}>
         <Table>
-          <TableHead sx={{ background: "#F4F2FF" }}>
+          <TableHead
+            sx={{
+              background: "#F4F2FF",
+              borderRadius: "0px",
+              borderTop: "1px solid #D9D9D9",
+            }}
+          >
             <TableCell
               sx={{ width: "20%", color: "#6E6893", fontWeight: "600" }}
             >

@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -11,10 +11,8 @@ li {
 }
 body {
   background-color: #e5e5e5;
-  font-family: 'Global User Interface', sans-serif;
+  font-family: "Global User Interface", sans-serif;
 }
-
-
 
 /* Collapsible sidebar */
 
@@ -26,12 +24,11 @@ body {
   padding: 0px;
 } */
 
-
 /* Sidebar */
 .sidebar {
-  background: #242A38;
+  background: #242a38;
   color: white;
-  height: 100vh;
+  /* height: 100vh; */
   overflow-y: auto;
 }
 

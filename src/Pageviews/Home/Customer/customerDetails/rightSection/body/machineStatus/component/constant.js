@@ -5,8 +5,14 @@ import machineIcon from "../../../../../../../../Assets/Home/customer/machine.pn
 export const columns = [
   {
     field: "name",
-    headerName: "MACHINE",
-    width: 350,
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        MACHINE
+      </Typography>
+    ),
+    width: 300,
     renderCell: (params) => (
       <Box
         sx={{
@@ -46,8 +52,14 @@ export const columns = [
   },
   {
     field: "address",
-    headerName: "Model",
-    width: 300,
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        MODEL
+      </Typography>
+    ),
+    width: 200,
     renderCell: (props) => (
       <Typography
         sx={{ color: "#25213B", fontSize: "14px", fontWeight: "400" }}
@@ -58,8 +70,14 @@ export const columns = [
   },
   {
     field: "isConnected",
-    headerName: "sensor status",
-    width: 300,
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        SENSOR STATUS
+      </Typography>
+    ),
+    width: 250,
     renderCell: (props) => (
       <Typography
         sx={{ color: "#25213B", fontSize: "14px", fontWeight: "400" }}
@@ -72,7 +90,13 @@ export const columns = [
   },
   {
     field: "status",
-    headerName: "STATUS",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        STATUS
+      </Typography>
+    ),
     width: 150,
     renderCell: (params) => (
       <Typography
@@ -92,8 +116,14 @@ export const columns = [
   },
   {
     field: "environment",
-    headerName: "MACHINE STATUS",
-    width: 150,
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        MACHINE STATUS
+      </Typography>
+    ),
+    width: 200,
     renderCell: (params) => (
       <Typography
         variant="p"
@@ -112,7 +142,13 @@ export const columns = [
   },
   {
     field: "action",
-    headerName: "ACTION",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        ACTION
+      </Typography>
+    ),
     width: 100,
     renderCell: (props) => <MachineStatusAction props={props} />,
   },

@@ -13,16 +13,26 @@ const GroupTable = () => {
     error,
   } = useGetAllResGroupsQuery();
   return (
-    <Box sx={{ background: "white", borderRadius: "4px", marginTop: "8px" }}>
+    <Box
+      sx={{
+        background: "white",
+        borderRadius: "4px",
+        marginTop: "8px",
+        padding: "20px",
+      }}
+    >
       {(isLoading || isError) && <Loader />}
       {groupsData?.data.length > 0 && (
         <DataGrid
           sx={{
-            "& .table-header": {
-              backgroundColor: "#F4F2FF",
+            borderRadius: "0px",
+            border: "none",
+            "& .MuiDataGrid-columnHeaders": {
+              fontWeight: 1000,
+              borderRadius: "0",
+              borderTop: "1px solid #D9D9D9",
+              background: "#F4F2FF",
             },
-            padding: "0 20px",
-            borderRadius: "0",
           }}
           rows={groupsData?.data?.map((data, id) => {
             return { data, id };

@@ -253,8 +253,13 @@ const ServiceProviderTable = () => {
           </Box>
           <DataGrid
             sx={{
-              "& .table-header": {
-                backgroundColor: "#F4F2FF",
+              borderRadius: "0px",
+              border: "none",
+              "& .MuiDataGrid-columnHeaders": {
+                fontWeight: 1000,
+                borderRadius: "0",
+                borderTop: "1px solid #D9D9D9",
+                background: "#F4F2FF",
               },
             }}
             rows={serviceProviders?.map((data, id) => {

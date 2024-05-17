@@ -26,8 +26,15 @@ export const resGroupApi = createApi({
       }),
       providesTags: ["Test"],
     }),
+    getReservationGroupByID: builder.query({
+      query: (_id) =>
+        `/reservations-group/get-reservation-group-by-id?reservationRequestGroup=${_id}`,
+    }),
   }),
 });
 
-export const { useGetAllResGroupsQuery, usePostBidsAssignMutation } =
-  resGroupApi;
+export const {
+  useGetAllResGroupsQuery,
+  usePostBidsAssignMutation,
+  useGetReservationGroupByIDQuery,
+} = resGroupApi;
