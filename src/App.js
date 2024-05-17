@@ -99,6 +99,7 @@ import ScheduleTimeNonConnected from "./Pageviews/Home/Reservation/NonConnected/
 import OnGoingNonConnected from "./Pageviews/Home/Reservation/NonConnected/OnGoing/OnGoing";
 import ReScheduleNonConnected from "./Pageviews/Home/Reservation/NonConnected/ReShedule/ReSchedule";
 import CompletedNonConnected from "./Pageviews/Home/Reservation/NonConnected/Completed/Completed";
+import Footer from "./Utils/Footer";
 
 const theme = createTheme();
 
@@ -531,6 +532,7 @@ function App() {
                   <Route path="/settings" element={<SettingsScreen />} />
                 </Routes>
               </CollapsibleSidebar>
+              <Footer />
 
               {/* <div className={classes.leftbar}>
                     <Sidebar />

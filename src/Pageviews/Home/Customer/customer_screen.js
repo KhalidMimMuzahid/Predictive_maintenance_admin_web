@@ -5,7 +5,6 @@ import { useStyle } from "./styleComponents";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "../../../contextApi/appProvider";
 import { downloadTableData } from "../../../Utils/downloadTableData";
-import Footer from "../../../Utils/Footer";
 const CustomerScreen = () => {
   const [isRootCustomerPage, setIsRootCustomerPage] = useState(true);
   const { downloadData, setDownloadData } = useContext(AppContext);
@@ -88,7 +87,6 @@ const CustomerScreen = () => {
       <div>
         <Outlet context={[isRootCustomerPage, setIsRootCustomerPage]} />
       </div>
-      <Footer />
     </div>
   );
 };

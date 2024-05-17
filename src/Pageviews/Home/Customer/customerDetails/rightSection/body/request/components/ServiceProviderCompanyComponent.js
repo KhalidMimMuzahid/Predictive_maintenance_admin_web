@@ -7,10 +7,8 @@ const ServiceProviderCompanyComponent = ({ props }) => {
       variant="p"
       sx={{ fontSize: "14px", color: "#25213B", fontWeight: "600" }}
     >
-      {
-        props?.reservationRequestGroup?.postBiddingProcess
-          ?.serviceProviderCompany?.companyName
-      }
+      {props?.reservationRequestGroup?.postBiddingProcess
+        ?.serviceProviderCompany?.companyName || "No Data Found"}
     </Typography>
   );
 };
