@@ -27,6 +27,16 @@ const MachineStatus = () => {
     >
       {machineData?.data?.length > 0 && (
         <DataGrid
+          sx={{
+            borderRadius: "0px",
+            border: "none",
+            "& .MuiDataGrid-columnHeaders": {
+              fontWeight: 1000,
+              borderRadius: "0",
+              borderTop: "1px solid #D9D9D9",
+              background: "#F4F2FF",
+            },
+          }}
           rows={machineData?.data?.map((data, id) => {
             return { ...data, id };
           })}

@@ -20,8 +20,14 @@ const Invoice = () => {
   const columns = [
     {
       field: "invoiceNumber",
-      headerName: "ORDER NUMBER",
-      width: 350,
+      headerName: (
+        <Typography
+          sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+        >
+          ORDER NUMBER
+        </Typography>
+      ),
+      width: 250,
       renderCell: (params) => (
         <Typography
           sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
@@ -32,7 +38,13 @@ const Invoice = () => {
     },
     {
       field: "order_date",
-      headerName: "ORDER DATE",
+      headerName: (
+        <Typography
+          sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+        >
+          ORDER DATE
+        </Typography>
+      ),
       width: 300,
       renderCell: (props) => (
         <OrderDate dateString={props?.row?.reservationRequest?.createdAt} />
@@ -40,7 +52,13 @@ const Invoice = () => {
     },
     {
       field: "invoiceAmount",
-      headerName: "Invoiced Amount",
+      headerName: (
+        <Typography
+          sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+        >
+          INVOICE AMOUNT
+        </Typography>
+      ),
       width: 300,
       renderCell: (props) => (
         <InvoicedAmount
@@ -51,7 +69,13 @@ const Invoice = () => {
 
     {
       field: "status",
-      headerName: "STATUS",
+      headerName: (
+        <Typography
+          sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+        >
+          STATUS
+        </Typography>
+      ),
       width: 200,
       renderCell: (params) => (
         <Box>
@@ -84,7 +108,13 @@ const Invoice = () => {
     },
     {
       field: "action",
-      headerName: "ACTION",
+      headerName: (
+        <Typography
+          sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+        >
+          ACTION
+        </Typography>
+      ),
       width: 100,
       renderCell: (props) => <InvoiceAction props={props?.row} />,
     },
@@ -101,6 +131,16 @@ const Invoice = () => {
         <div>Loading</div>
       ) : (
         <DataGrid
+          sx={{
+            borderRadius: "0px",
+            border: "none",
+            "& .MuiDataGrid-columnHeaders": {
+              fontWeight: 1000,
+              borderRadius: "0",
+              borderTop: "1px solid #D9D9D9",
+              background: "#F4F2FF",
+            },
+          }}
           rows={invoiceData?.data?.map((data, id) => {
             return { ...data, id };
           })}

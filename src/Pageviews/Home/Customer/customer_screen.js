@@ -1,12 +1,13 @@
 import { AddOutlined, Download, MoreVert, Upload } from "@mui/icons-material";
 import { useContext, useState } from "react";
-import { Box, Button, IconButton } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import { useStyle } from "./styleComponents";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "../../../contextApi/appProvider";
 import { downloadTableData } from "../../../Utils/downloadTableData";
 import Footer from "../../../Utils/Footer";
 const CustomerScreen = () => {
+  const [isRootCustomerPage, setIsRootCustomerPage] = useState(true);
   const { downloadData, setDownloadData } = useContext(AppContext);
   const classes = useStyle();
 
@@ -29,14 +30,22 @@ const CustomerScreen = () => {
             <div style={{ color: "black" }} className={classes.subtitle}>
               Dashboard /{" "}
             </div>
-            <div style={{ color: "black" }} className={classes.subtitle}>
-              {" "}
-              Customers /
+            <div
+              style={{ color: isRootCustomerPage ? "#24459c" : "black" }}
+              className={classes.subtitle}
+            >
+              Customers
             </div>
-            <div style={{ color: "#24459c" }} className={classes.subtitle}>
-              {" "}
-              All Customers
-            </div>
+            {isRootCustomerPage === false && (
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ color: "black" }} className={classes.subtitle}>
+                  /
+                </div>
+                <div style={{ color: "#24459c" }} className={classes.subtitle}>
+                  All Customers
+                </div>
+              </Box>
+            )}
           </div>
         </div>
 
@@ -74,7 +83,7 @@ const CustomerScreen = () => {
         </Box>
       </div>
       <div>
-        <Outlet />
+        <Outlet context={[isRootCustomerPage, setIsRootCustomerPage]} />
       </div>
       <Footer />
     </div>
