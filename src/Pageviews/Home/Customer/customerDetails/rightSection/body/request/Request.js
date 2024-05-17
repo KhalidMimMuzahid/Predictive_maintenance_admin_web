@@ -7,7 +7,7 @@ import RequestAction from "./components/RequestAction";
 
 const Request = () => {
   // /customer/reservation/common/get-my-reservations/:uid
-
+  const { _id } = useParams();
   const [requests, setRequests] = useState([]);
   const [isShowActionOption, SetIsShowActionOption] = useState(false);
 
