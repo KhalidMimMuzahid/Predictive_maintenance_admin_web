@@ -25,7 +25,7 @@ const TotalGeneralDevice = () => {
         <Typography
           sx={{ color: "#243972", fontSize: "24px", fontWeight: "600" }}
         >
-          Total IOT Device
+          Total General Device
         </Typography>
         <Typography
           sx={{ color: "#243972", fontSize: "24px", fontWeight: "600" }}

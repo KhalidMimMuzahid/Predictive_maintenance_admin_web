@@ -3,12 +3,13 @@ import { Box, IconButton, MenuItem, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { StyledMenu } from "../../../Customer/styleComponents";
 import ViewBidsModal from "../modal/ViewBidsModal";
+import ViewDetailsModal from "../modal/ViewDetailsModal";
 
 const AllGroupActionComponent = ({ props }) => {
   const [viewBidsModal, setViewBidsModal] = useState(false);
+  const [viewDetailsModalOpen, setViewDetailsModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openEl = Boolean(anchorEl);
-  console.log(props);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -24,6 +25,13 @@ const AllGroupActionComponent = ({ props }) => {
           viewBidsModal={viewBidsModal}
           setViewBidsModal={setViewBidsModal}
           reservationRequestGroup={props?._id}
+          props={props}
+        />
+      )}
+      {viewDetailsModalOpen && (
+        <ViewDetailsModal
+          viewDetailsModalOpen={viewDetailsModalOpen}
+          setViewDetailsModalOpen={setViewDetailsModalOpen}
           props={props}
         />
       )}
@@ -44,7 +52,7 @@ const AllGroupActionComponent = ({ props }) => {
               </Typography>
             </MenuItem>
             <MenuItem
-              // onClick={() => setIsEditInvoiceModalOpen(!isEditInvoiceModalOpen)}
+              onClick={() => setViewDetailsModalOpen(!viewDetailsModalOpen)}
               sx={{ display: "flex", gap: "0 6px" }}
             >
               <Details />

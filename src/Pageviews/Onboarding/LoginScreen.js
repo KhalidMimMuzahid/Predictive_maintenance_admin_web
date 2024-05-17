@@ -152,22 +152,12 @@ const LoginScreen = () => {
       return;
     }
 
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     console.log(userCredential);
-    //     alert("Successfully logged in");
-    //   })
-    //   .catch((error) => {
-    //     alert(error);
-    //     return;
-    //   });
-
     dispatch(loginUser({ email, password }))
       .then((result) => {
         console.log(result);
         if (result?.payload?.uid) {
           fetch(
-            `http://localhost:5000/api/v2/user/sign-in?uid=${result?.payload?.uid}`,
+            `${process.env.REACT_APP_BASE_URL}/user/sign-in?uid=${result?.payload?.uid}`,
             {
               method: "GET",
               headers: {
@@ -221,7 +211,7 @@ const LoginScreen = () => {
       <Grid item xs={12} sm={5} md={5} lg={4}>
         <Container className={classes.sliderContainer}>
           <div className={classes.logoContainer}>
-            <img src={ShowaFullBlackLogo} className={classes.logo} />
+            <img src={ShowaFullBlackLogo} className={classes.logo} alt=""/>
           </div>
           <div className={classes.spacer}></div>
           <div className={classes.spacer}></div>
@@ -240,7 +230,7 @@ const LoginScreen = () => {
                 }}
               >
                 <div className="image-container">
-                  <img src={fadeImage.url} style={{ width: "90%" }} />
+                  <img src={fadeImage.url} style={{ width: "90%" }} alt=""/>
                 </div>
                 <div className={classes.spacer}></div>
                 <div className={classes.spacer}></div>

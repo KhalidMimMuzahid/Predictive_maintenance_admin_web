@@ -25,7 +25,7 @@ const IotRawTable = ({ data }) => {
             <TableCell
               sx={{ width: "20%", color: "#6E6893", fontWeight: "600" }}
             >
-              Product
+              PRODUCT
             </TableCell>
             <TableCell
               sx={{ width: "20%", color: "#6E6893", fontWeight: "600" }}
@@ -45,7 +45,7 @@ const IotRawTable = ({ data }) => {
             <TableCell
               sx={{ width: "15%", color: "#6E6893", fontWeight: "600" }}
             >
-              Action
+              ACTION
             </TableCell>
           </TableHead>
           <TableBody>

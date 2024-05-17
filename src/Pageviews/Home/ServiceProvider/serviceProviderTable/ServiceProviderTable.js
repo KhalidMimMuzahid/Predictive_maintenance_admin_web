@@ -252,6 +252,11 @@ const ServiceProviderTable = () => {
             </FormControl>
           </Box>
           <DataGrid
+            sx={{
+              "& .table-header": {
+                backgroundColor: "#F4F2FF",
+              },
+            }}
             rows={serviceProviders?.map((data, id) => {
               return { ...data, id };
             })}

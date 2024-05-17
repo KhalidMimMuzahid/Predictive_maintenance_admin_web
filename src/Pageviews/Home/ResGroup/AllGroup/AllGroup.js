@@ -8,7 +8,7 @@ const AllGroup = () => {
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box>
           <Typography sx={{ fontSize: "24px", fontWeight: "700" }}>
-            Invoice
+            Reservation Group
           </Typography>
           <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <Typography>Dashboard / </Typography>

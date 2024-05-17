@@ -9,6 +9,7 @@ import SubscriptionComponent from "./components/SubscriptionComponent";
 export const columns = [
   {
     field: "name",
+    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -22,6 +23,7 @@ export const columns = [
   },
   {
     field: "email",
+    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -33,6 +35,7 @@ export const columns = [
   },
   {
     field: "location",
+    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -45,6 +48,7 @@ export const columns = [
   },
   {
     field: "machine",
+    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -52,11 +56,12 @@ export const columns = [
         MACHINE
       </Typography>
     ),
-    width: 150,
+    width: 135,
     renderCell: (props) => <MachineComponent props={props} />,
   },
   {
     field: "balance",
+    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -64,11 +69,12 @@ export const columns = [
         WALLET
       </Typography>
     ),
-    width: 250,
+    width: 230,
     renderCell: (props) => <BalanceComponent props={props} />,
   },
   {
     field: "subscription",
+    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -81,6 +87,7 @@ export const columns = [
   },
   {
     field: "action",
+    headerClassName: "table-header",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -88,7 +95,7 @@ export const columns = [
         ACTION
       </Typography>
     ),
-    width: 200,
+    width: 180,
     renderCell: (props) => <ActionComponent props={props} />,
   },
 ];

@@ -1,6 +1,6 @@
 import { AddOutlined, Download, MoreVert, Upload } from "@mui/icons-material";
 import { useContext, useState } from "react";
-import { Button, IconButton } from "@mui/material";
+import { Box, Button, IconButton } from "@mui/material";
 import { useStyle } from "./styleComponents";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "../../../contextApi/appProvider";
@@ -39,35 +39,44 @@ const CustomerScreen = () => {
           </div>
         </div>
 
-        <div className={classes.buttonHolder}>
-          <Button
-            style={{ backgroundColor: "white", color: "black" }}
-            startIcon={<Download />}
-          >
-            Import
-          </Button>
-          <div className={classes.spacerSmall} />
+        <Box sx={{ display: "flex" }}>
           <Button
             onClick={() => downloadTableData(downloadData, setDownloadData)}
-            style={{ backgroundColor: "white", color: "black" }}
+            sx={{
+              backgroundColor: "white",
+              color: "#24459C",
+              textTransform: "none",
+              borderRadius: "8px",
+              padding: "6px 32px",
+              fontWeight: "600",
+            }}
             startIcon={<Upload />}
           >
             Export
           </Button>
           <div className={classes.spacerSmall} />
           <Button
-            style={{ backgroundColor: "#24459c", color: "white" }}
-            startIcon={<AddOutlined />}
+            sx={{
+              backgroundColor: "#24459c",
+              color: "white",
+              textTransform: "none",
+              borderRadius: "8px",
+              padding: "6px 32px",
+              fontWeight: "500",
+              "&:hover": {
+                background: "#24459C",
+              },
+            }}
           >
             Add Customer
           </Button>
-        </div>
+        </Box>
 
-        <div className={classes.smallMenuHolder}>
+        {/* <div className={classes.smallMenuHolder}>
           <IconButton onClick={handleClick}>
             <MoreVert />
           </IconButton>
-        </div>
+        </div> */}
       </div>
       <div>
         <Outlet />

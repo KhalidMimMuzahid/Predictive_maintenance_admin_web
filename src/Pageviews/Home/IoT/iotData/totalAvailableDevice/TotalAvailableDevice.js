@@ -25,12 +25,12 @@ const TotalAvailableDevice = () => {
         <Typography
           sx={{ color: "#243972", fontSize: "24px", fontWeight: "600" }}
         >
-          Total IOT Device
+          Total Available Device
         </Typography>
         <Typography
           sx={{ color: "#243972", fontSize: "24px", fontWeight: "600" }}
         >
-          (Active)
+          (Available MAC ID)
         </Typography>
       </Box>
     </Box>

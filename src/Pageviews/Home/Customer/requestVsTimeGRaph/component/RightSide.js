@@ -61,12 +61,19 @@ class RightSide extends Component {
               id=""
               style={{
                 border: "none",
-                fontSize: "12px",
-                fontWeight: "400",
+                fontSize: "14px",
+                fontWeight: "600",
                 color: "#66737E",
               }}
             >
-              <option value="">Select As</option>
+              <option
+                value="export-as"
+                sx={{
+                  color: "#66737E",
+                }}
+              >
+                Export As
+              </option>
             </select>
           </Box>
         </Box>

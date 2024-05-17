@@ -1,6 +1,7 @@
 import rectangle from "../../../../../Assets/Home/customer/Rectangle.png";
 import { Box, Typography } from "@mui/material";
 import { LineChart } from "@mui/x-charts";
+import { color } from "framer-motion";
 import React from "react";
 
 const LeftSide = ({ graphObjectData }) => {
@@ -40,12 +41,19 @@ const LeftSide = ({ graphObjectData }) => {
             id=""
             style={{
               border: "none",
-              fontSize: "12px",
-              fontWeight: "400",
+              fontSize: "14px",
+              fontWeight: "600",
               color: "#66737E",
             }}
           >
-            <option value="">Select As</option>
+            <option
+              value="export-as"
+              sx={{
+                color: "#66737E",
+              }}
+            >
+              Export As
+            </option>
           </select>
         </Box>
       </Box>

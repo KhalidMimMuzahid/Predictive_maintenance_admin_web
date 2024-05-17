@@ -4,8 +4,15 @@ import ServiceProviderTableAction from "./ServiceProviderTableAction";
 
 export const columns = [
   {
+    headerClassName: "table-header",
     field: "companyName",
-    headerName: "Service Provider Name",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        SERVICE PROVIDER NAME
+      </Typography>
+    ),
     width: 250,
     renderCell: (props) => (
       <Box
@@ -47,8 +54,15 @@ export const columns = [
     ),
   },
   {
+    headerClassName: "table-header",
     field: "address",
-    headerName: "LOCATION",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        LOCATION
+      </Typography>
+    ),
     width: 250,
     renderCell: (props) => (
       <Box>
@@ -89,8 +103,15 @@ export const columns = [
     ),
   },
   {
+    headerClassName: "table-header",
     field: "email",
-    headerName: "EMAIL",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        LOCATION
+      </Typography>
+    ),
     width: 230,
     renderCell: (params) => (
       <Typography
@@ -102,8 +123,15 @@ export const columns = [
     ),
   },
   {
+    headerClassName: "table-header",
     field: "total_orders",
-    headerName: "TOTAL ORDERS",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        TOTAL ORDERS
+      </Typography>
+    ),
     width: 200,
     renderCell: (params) => (
       <Box sx={{ width: "100%" }}>
@@ -120,8 +148,15 @@ export const columns = [
     ),
   },
   {
+    headerClassName: "table-header",
     field: "manager",
-    headerName: "MANAGER",
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        MANAGER
+      </Typography>
+    ),
     width: 280,
     renderCell: (props) => (
       <Box sx={{ display: "flex", alignItems: "center", gap: "0 8px" }}>
@@ -167,9 +202,16 @@ export const columns = [
     ),
   },
   {
+    headerClassName: "table-header",
     field: "status",
-    headerName: "STATUS",
-    width: 150,
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        STATUS
+      </Typography>
+    ),
+    width: 155,
     renderCell: (props) => (
       <Box>
         {props?.row?.status === "Pending" && (
@@ -221,9 +263,16 @@ export const columns = [
     ),
   },
   {
+    headerClassName: "table-header",
     field: "action",
-    headerName: "ACTION",
-    width: 100,
+    headerName: (
+      <Typography
+        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+      >
+        ACTION
+      </Typography>
+    ),
+    width: 140,
     renderCell: (props) => <ServiceProviderTableAction props={props} />,
   },
 ];

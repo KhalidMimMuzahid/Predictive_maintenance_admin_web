@@ -82,6 +82,7 @@ const DashboardScreen = () => {
   const [isAdmin, setIsAdmin, adminData, setAdminData] = useIsAdmin(
     currentUser?.uid
   );
+  console.log(adminData);
 
   const handleChange = (event) => {
     setProvider(event.target.value);
@@ -112,102 +113,6 @@ const DashboardScreen = () => {
         <div>
           <div className={classes.title}>Dashboard</div>
           <div className={classes.spacerSmall}></div>
-          {/* <div style={{ display: "flex", gap: "720px", alignItems: "center" }}>
-            <div style={{ display: "flex" }}>
-              <div style={{ color: "black" }} className={classes.subtitle}>
-                Good Afternoon, /{" "}
-              </div>
-              <div style={{ color: "#24459c" }} className={classes.subtitle}>
-                {" "}
-                User Name
-              </div>
-            </div>
-
-            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-              <div>
-                <FormControl
-                  sx={{
-                    m: 1,
-                    minWidth: 220,
-                    backgroundColor: "white",
-                    borderRadius: "10px",
-                  }}
-                  size="small"
-                >
-                  <InputLabel id="demo-select-small-label">
-                    All Providers
-                  </InputLabel>
-                  <Select
-                    labelId="demo-select-small-label"
-                    id="demo-select-small"
-                    value={provider}
-                    label="All Providers"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={10}>Ongoing</MenuItem>
-                    <MenuItem value={20}>Online</MenuItem>
-                    <MenuItem value={30}>Offline</MenuItem>
-                  </Select>
-                </FormControl>
-              </div>
-
-              <div>
-                <FormControl
-                  sx={{
-                    m: 1,
-                    minWidth: 220,
-                    backgroundColor: "white",
-                    borderRadius: "10px",
-                  }}
-                  size="small"
-                >
-                  <InputLabel id="demo-select-small-label">
-                    All Departments
-                  </InputLabel>
-                  <Select
-                    labelId="demo-select-small-label"
-                    id="demo-select-small"
-                    value={departments}
-                    label="All Providers"
-                    onChange={handleSelectDepartment}
-                  >
-                    <MenuItem value={10}>All Departments</MenuItem>
-                    <MenuItem value={20}>Maintenance</MenuItem>
-                    <MenuItem value={30}>Revenue</MenuItem>
-                    <MenuItem value={30}>Total Numbers</MenuItem>
-                  </Select>
-                </FormControl>
-              </div>
-              <div>
-                <FormControl
-                  sx={{
-                    m: 1,
-                    minWidth: 220,
-                    backgroundColor: "white",
-                    borderRadius: "10px",
-                  }}
-                  size="small"
-                >
-                  <InputLabel id="demo-select-small-label">
-                    Jan - Dec
-                  </InputLabel>
-                  <Select
-                    labelId="demo-select-small-label"
-                    id="demo-select-small"
-                    value={months}
-                    label="All Providers"
-                    onChange={handleChandleSelectMonths}
-                  >
-                    <MenuItem value={10}>Last One Week</MenuItem>
-                    <MenuItem value={20}>Last Two Week</MenuItem>
-                    <MenuItem value={30}>Last One Month</MenuItem>
-                    <MenuItem value={30}>Last One Year</MenuItem>
-                    <MenuItem value={30}>Select Date</MenuItem>
-                  </Select>
-                </FormControl>
-              </div>
-            </div>
-          </div> */}
           <Box sx={{ display: "flex", gap: "8px", marginY: "4px" }}>
             <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>
               Good Afternoon,
@@ -222,10 +127,6 @@ const DashboardScreen = () => {
           </Box>
         </div>
       </div>
-
-      {/* <div className={classes.spacerSmall}></div>
-            <div className={classes.spacerSmall}></div> */}
-
       <Box
         sx={{
           backgroundColor: "white",

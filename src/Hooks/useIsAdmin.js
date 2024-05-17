@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 const useIsAdmin = (uid) => {
-  const { user } = useSelector((state) => state.auth);
   const [isAdmin, setIsAdmin] = useState(false);
   const [adminData, setAdminData] = useState({});
   useEffect(() => {
     if (uid) {
-      fetch(`http://localhost:5000/api/v2/user/showa-user/sign-in?uid=${uid}`)
+      fetch(
+        `${process.env.REACT_APP_BASE_URL}/user/showa-user/sign-in?uid=${uid}`
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data?.data?.token) {

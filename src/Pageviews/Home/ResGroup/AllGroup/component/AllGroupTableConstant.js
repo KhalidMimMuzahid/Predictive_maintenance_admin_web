@@ -8,9 +8,12 @@ import AllGroupActionComponent from "./AllGroupActionComponent";
 export const columns = [
   {
     field: "group_name",
+    headerClassName: "table-header",
     headerName: (
-      <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
-        Group Name
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        GROUP NAME
       </Typography>
     ),
     renderCell: (props) => <GroupNameComponent props={props?.row?.data} />,
@@ -18,8 +21,11 @@ export const columns = [
   },
   {
     field: "group_id",
+    headerClassName: "table-header",
     headerName: (
-      <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
         GROUP ID
       </Typography>
     ),
@@ -28,8 +34,11 @@ export const columns = [
   },
   {
     field: "closed_status",
+    headerClassName: "table-header",
     headerName: (
-      <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
         CLOSED STATUS
       </Typography>
     ),
@@ -38,16 +47,24 @@ export const columns = [
   },
   {
     field: "bids",
+    headerClassName: "table-header",
     headerName: (
-      <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>BIDS</Typography>
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        BIDS
+      </Typography>
     ),
     renderCell: (props) => <BidsComponent props={props?.row?.data} />,
     width: 300,
   },
   {
     field: "action",
+    headerClassName: "table-header",
     headerName: (
-      <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
         ACTION
       </Typography>
     ),
