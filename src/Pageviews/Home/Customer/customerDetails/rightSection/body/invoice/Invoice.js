@@ -5,6 +5,7 @@ import InvoiceAction from "./component/InvoiceAction";
 import { useGetAllInvoiceByUserQuery } from "../../../../../../../features/invoice/invoiceSlice";
 import { useParams } from "react-router-dom";
 import OrderDate from "./component/orderDate";
+import InvoicedAmount from "./component/InvoicedAmount";
 
 const Invoice = () => {
   const { _id } = useParams();
@@ -35,6 +36,16 @@ const Invoice = () => {
       width: 300,
       renderCell: (props) => (
         <OrderDate dateString={props?.row?.reservationRequest?.createdAt} />
+      ),
+    },
+    {
+      field: "invoiceAmount",
+      headerName: "Invoiced Amount",
+      width: 300,
+      renderCell: (props) => (
+        <InvoicedAmount
+          totalAmount={props?.row?.additionalProducts?.totalAmount}
+        />
       ),
     },
 
