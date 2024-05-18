@@ -6,6 +6,7 @@ import { reservationApi } from "../features/reservation/reservationSlice";
 import { resGroupApi } from "../features/resGroup/resGroupSlice";
 import { machineApi } from "../features/machine/machineSlice";
 import { invoiceApi } from "../features/invoice/invoiceSlice";
+import { serviceProviderApi } from "../features/serviceProvider/serviceProviderSlice";
 // Store of Redux Using Redux-Toolkit
 
 export const store = configureStore({
@@ -15,8 +16,8 @@ export const store = configureStore({
     [reservationApi.reducerPath]: reservationApi.reducer,
     [resGroupApi.reducerPath]: resGroupApi.reducer,
     [machineApi.reducerPath]: machineApi.reducer,
-
     [invoiceApi.reducerPath]: invoiceApi.reducer,
+    [serviceProviderApi.reducerPath]: serviceProviderApi.reducer,
     auth: authSlice,
   },
   middleware: (getDefaultMiddleware) =>
@@ -27,5 +28,6 @@ export const store = configureStore({
       resGroupApi.middleware,
       machineApi.middleware,
       invoiceApi.middleware,
+      serviceProviderApi.middleware,
     ]),
 });

@@ -65,7 +65,7 @@ const generalRoutes = [
   },
   {
     name: "Reservation",
-    path: "/reservation/connected/all",
+    path: "/reservation",
     icon: <img src={reservation_icon} />,
     children: [
       {

@@ -20,6 +20,16 @@ const AllReservationTable = ({ setSelectedReservations }) => {
     <Box>
       {allReservationRows?.data?.length > 0 && (
         <DataGrid
+          sx={{
+            borderRadius: "0px",
+            border: "none",
+            "& .MuiDataGrid-columnHeaders": {
+              fontWeight: 1000,
+              borderRadius: "0",
+              borderTop: "1px solid #D9D9D9",
+              background: "#F4F2FF",
+            },
+          }}
           rows={allReservationRows?.data?.map((data, id) => {
             return { ...data, id };
           })}

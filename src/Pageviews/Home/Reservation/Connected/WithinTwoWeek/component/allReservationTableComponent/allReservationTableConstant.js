@@ -28,7 +28,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <RequestIdComponent props={props} />,
-    width: 150,
+    width: 120,
   },
   {
     field: "status",
@@ -41,6 +41,16 @@ export const columns = [
     width: 120,
   },
   {
+    field: "machine_status",
+    headerName: (
+      <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
+        MACHINE STATUS
+      </Typography>
+    ),
+    renderCell: (props) => <Typography>No Data</Typography>,
+    width: 150,
+  },
+  {
     field: "schedule",
     headerName: (
       <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
@@ -48,7 +58,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <ScheduleComponent props={props} />,
-    width: 175,
+    width: 120,
   },
   {
     field: "machineType",
@@ -78,7 +88,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <InvoiceComponent props={props} />,
-    width: 210,
+    width: 150,
   },
   {
     field: "problems",
@@ -88,7 +98,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <IssuesComponent props={props} />,
-    width: 200,
+    width: 180,
   },
   // {
   //   field: "bidStatus",

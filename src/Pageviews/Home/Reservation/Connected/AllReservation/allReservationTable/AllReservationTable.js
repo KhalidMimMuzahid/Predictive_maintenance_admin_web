@@ -15,11 +15,21 @@ const AllReservationTable = ({ setSelectedReservations }) => {
     reservationType: "all",
   });
 
-  // console.log({ allReservationRows });
   return (
     <Box>
       {allReservationRows?.data?.length > 0 && (
         <DataGrid
+          sx={{
+            background: "white",
+            borderRadius: "0px",
+            border: "none",
+            "& .MuiDataGrid-columnHeaders": {
+              fontWeight: 1000,
+              borderRadius: "0",
+              borderTop: "1px solid #D9D9D9",
+              background: "#F4F2FF",
+            },
+          }}
           rows={allReservationRows?.data?.map((data, id) => {
             return { ...data, id };
           })}

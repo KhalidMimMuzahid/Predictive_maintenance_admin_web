@@ -12,10 +12,14 @@ const CustomerNamePhoneComponent = ({ props }) => {
 
   return (
     <Box>
-      <Typography>
+      <Typography
+        sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
+      >
         {userData?.data?.name?.firstName + " " + userData?.data?.name?.lastName}
       </Typography>
-      <Typography>{userData?.data?.phone}</Typography>
+      <Typography sx={{ color: "#6E6893", fontSize: "12px" }}>
+        {userData?.data?.phone}
+      </Typography>
     </Box>
   );
 };

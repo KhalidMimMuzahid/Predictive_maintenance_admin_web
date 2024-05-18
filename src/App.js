@@ -100,6 +100,7 @@ import OnGoingNonConnected from "./Pageviews/Home/Reservation/NonConnected/OnGoi
 import ReScheduleNonConnected from "./Pageviews/Home/Reservation/NonConnected/ReShedule/ReSchedule";
 import CompletedNonConnected from "./Pageviews/Home/Reservation/NonConnected/Completed/Completed";
 import Footer from "./Utils/Footer";
+import ReservationScreen from "./Pageviews/Home/Reservation/ReservationScreen";
 
 const theme = createTheme();
 
@@ -295,6 +296,7 @@ function App() {
                   <Route path="/chat" element={<ChatScreen />} />
                   <Route path="/feed" element={<FeedScreen />} />
 
+                  <Route path="/reservation" element={<ReservationScreen />} />
                   <Route
                     path="/reservation/connected/all"
                     element={<AllReservation />}
@@ -532,7 +534,7 @@ function App() {
                   <Route path="/settings" element={<SettingsScreen />} />
                 </Routes>
               </CollapsibleSidebar>
-              <Footer />
+              {/* <Footer /> */}
 
               {/* <div className={classes.leftbar}>
                     <Sidebar />

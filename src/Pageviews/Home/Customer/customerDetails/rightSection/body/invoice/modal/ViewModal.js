@@ -274,7 +274,7 @@ const ViewModal = ({ viewOpen, setViewOpen, props: invoice }) => {
                     // textAlign: "start",
                   }}
                 >
-                  Showa Company Ltd
+                  Showa Co. Ltd
                 </Typography>
 
                 <Typography

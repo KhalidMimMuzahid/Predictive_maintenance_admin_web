@@ -16,7 +16,8 @@ export const serviceProviderApi = createApi({
   tagTypes: [],
   endpoints: (builder) => ({
     getServiceProviders: builder.query({
-      query: () => "",
+      query: () =>
+        "/service-provider-company/get-all-service-provider-companies",
       providesTags: [],
     }),
   }),

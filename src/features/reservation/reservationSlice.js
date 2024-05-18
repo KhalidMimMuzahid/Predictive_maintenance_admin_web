@@ -37,6 +37,10 @@ export const reservationApi = createApi({
     getReservationRequestByID: builder.query({
       query: (_id) => `/reservation/all-reservation-by-user?user=${_id}`,
     }),
+    getReservationOverview: builder.query({
+      query: (machineType) =>
+        `/reservation/all-reservation-count?machineType=${machineType}`,
+    }),
   }),
 });
 
@@ -45,4 +49,5 @@ export const {
   useGetShowaUserInfoQuery,
   usePostReservationGroupMutation,
   useGetReservationRequestByIDQuery,
+  useGetReservationOverviewQuery,
 } = reservationApi;

@@ -22,61 +22,6 @@ const ActionComponent = ({ props }) => {
     setAnchorEl(null);
   };
 
-  function deleteReservation() {
-    fetch(
-      "https://api.showaapp.com/admin/reservation/delete-reservation/" +
-        props.value._id,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        alert("Reservation deleted successfully");
-        window.location.href = "/reservation/connected/all";
-      });
-  }
-
-  function sendForBidding() {
-    fetch(
-      "https://api.showaapp.com/admin/reservation/send-for-bidding/" +
-        props.value._id,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        alert("Sent for bidding successfully");
-        window.location.href = "/reservation/connected/all";
-      });
-  }
-
-  function closeBidding() {
-    fetch(
-      "https://api.showaapp.com/admin/reservation/close-bidding/" +
-        props.value._id,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        alert("Bidding closed successfully");
-        window.location.href = "/reservation/connected/all";
-      });
-  }
   return (
     <div>
       <IconButton onClick={handleClick}>
