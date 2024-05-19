@@ -4,8 +4,10 @@ import React from "react";
 const InvoiceComponent = ({ props }) => {
   return (
     <div>
-      <Typography sx={{ fontSize: "12px" }}>
-        {props?.row?.invoice ? props?.row?.invoice : "No Invoice"}
+      <Typography
+        sx={{ fontSize: "12px", color: "#F15F5F", fontWeight: "600" }}
+      >
+        Paid
       </Typography>
     </div>
   );

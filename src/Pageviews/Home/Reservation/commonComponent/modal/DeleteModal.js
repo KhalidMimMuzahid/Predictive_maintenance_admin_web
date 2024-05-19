@@ -1,9 +1,8 @@
 import React from "react";
 import { Close, Delete } from "@mui/icons-material";
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
-import SendSharpIcon from '@mui/icons-material/SendSharp';
 
-const SendModal = ({ sendOpen, setSendOpen, props }) => {
+const DeleteModal = ({ deleteOpen, setDeleteOpen, props }) => {
   return (
     <Modal
       sx={{
@@ -12,7 +11,7 @@ const SendModal = ({ sendOpen, setSendOpen, props }) => {
         alignItems: "center",
         justifyContent: "center",
       }}
-      open={sendOpen}
+      open={deleteOpen}
     >
       <Container
         sx={{
@@ -35,7 +34,7 @@ const SendModal = ({ sendOpen, setSendOpen, props }) => {
               cursor: "pointer",
             }}
             onClick={() => {
-                setSendOpen(!sendOpen);
+              setDeleteOpen(!deleteOpen);
             }}
           >
             <Close />
@@ -53,7 +52,7 @@ const SendModal = ({ sendOpen, setSendOpen, props }) => {
         >
           <Box
             sx={{
-              border: "2px solid #14B8A6",
+              border: "2px solid #F15F5F",
               width: "60px",
               height: "60px",
               display: "flex",
@@ -62,7 +61,7 @@ const SendModal = ({ sendOpen, setSendOpen, props }) => {
               borderRadius: "100%",
             }}
           >
-            <SendSharpIcon sx={{ color: "#14B8A6", fontSize: "36px", transform: "rotate(-45deg)" }}></SendSharpIcon>
+            <Delete sx={{ color: "#F15F5F", fontSize: "36px" }}></Delete>
           </Box>
           <Box
             sx={{
@@ -82,7 +81,8 @@ const SendModal = ({ sendOpen, setSendOpen, props }) => {
             <Typography
               sx={{ fontSize: "14px", color: "#9BA1AD", fontWeight: "400" }}
             >
-              Do you really want to send invoice?
+              Do you really want to delete these reservation? This process{" "}
+              <br /> can’t be undone!{" "}
             </Typography>
           </Box>
         </Box>
@@ -96,7 +96,7 @@ const SendModal = ({ sendOpen, setSendOpen, props }) => {
         >
           <Button
             onClick={() => {
-                setSendOpen(!sendOpen);
+              setDeleteOpen(!deleteOpen);
             }}
             sx={{
               width: "160px",
@@ -116,16 +116,16 @@ const SendModal = ({ sendOpen, setSendOpen, props }) => {
               height: "36px",
               borderRadius: "20px",
               padding: "8px 10px",
-              background: "#14B8A6",
+              background: "#F15F5F",
               fontSize: "14px",
               fontWeight: "600",
               color: "#FFFFFF",
               "&:hover": {
-                background: "#14B8A6",
+                background: "#F15F5F",
               },
             }}
           >
-            Send
+            Delete
           </Button>
         </Box>
       </Container>
@@ -133,4 +133,4 @@ const SendModal = ({ sendOpen, setSendOpen, props }) => {
   );
 };
 
-export default SendModal;
+export default DeleteModal;

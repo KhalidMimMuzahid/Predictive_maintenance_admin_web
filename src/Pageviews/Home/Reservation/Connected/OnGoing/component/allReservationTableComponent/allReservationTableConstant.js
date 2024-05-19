@@ -28,7 +28,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <RequestIdComponent props={props} />,
-    width: 150,
+    width: 140,
   },
   {
     field: "status",
@@ -38,7 +38,23 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <StatusComponent props={props} />,
-    width: 120,
+    width: 150,
+  },
+  {
+    field: "machine_status",
+    headerName: (
+      <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
+        MACHINE STATUS
+      </Typography>
+    ),
+    renderCell: (props) => (
+      <Typography
+        sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
+      >
+        No Data Found
+      </Typography>
+    ),
+    width: 160,
   },
   {
     field: "schedule",
@@ -48,7 +64,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <ScheduleComponent props={props} />,
-    width: 175,
+    width: 130,
   },
   {
     field: "machineType",
@@ -58,7 +74,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <MachineTypeComponent props={props} />,
-    width: 175,
+    width: 150,
   },
   {
     field: "location",
@@ -78,7 +94,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <InvoiceComponent props={props} />,
-    width: 210,
+    width: 120,
   },
   {
     field: "problems",
@@ -88,28 +104,8 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <IssuesComponent props={props} />,
-    width: 200,
+    width: 150,
   },
-  // {
-  //   field: "bidStatus",
-  //   headerName: (
-  //     <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
-  //       BID STATUS
-  //     </Typography>
-  //   ),
-  //   renderCell: (props) => <BidStatusComponent props={props} />,
-  //   width: 150,
-  // },
-  // {
-  //   field: "assign",
-  //   headerName: (
-  //     <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
-  //       ASSIGN
-  //     </Typography>
-  //   ),
-  //   renderCell: (props) => <AssignVendorComponent props={props} />,
-  //   width: 200,
-  // },
   {
     field: "action",
     headerName: (

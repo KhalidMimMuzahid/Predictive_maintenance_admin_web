@@ -11,7 +11,6 @@ const Details = ({ customerDetailsData }) => {
     gender: "",
   });
 
-
   const handleEdit = () => {
     setEditedValues({
       email: user?.email,
@@ -75,7 +74,7 @@ const Details = ({ customerDetailsData }) => {
               width: "15%",
             }}
           >
-            Email:
+            Email
           </Typography>
           {!editMode ? (
             <Typography
@@ -111,7 +110,7 @@ const Details = ({ customerDetailsData }) => {
               width: "15%",
             }}
           >
-            Phone:
+            Phone
           </Typography>
           {!editMode ? (
             <Typography

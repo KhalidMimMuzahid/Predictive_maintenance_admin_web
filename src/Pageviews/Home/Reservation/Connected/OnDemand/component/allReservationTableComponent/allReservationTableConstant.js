@@ -5,7 +5,6 @@ import IssuesComponent from "./IssuesComponent";
 import LocationComponent from "./LocationComponent";
 import StatusComponent from "./StatusComponent";
 import RequestIdComponent from "./RequestIdComponent";
-import ScheduleComponent from "./ScheduleComponent";
 import MachineTypeComponent from "./MachineTypeComponent";
 import InvoiceComponent from "./InvoiceComponent";
 import AssignServiceProviderComponent from "../../../../commonComponent/AssignServiceProviderComponent";
@@ -48,7 +47,13 @@ export const columns = [
         MACHINE STATUS
       </Typography>
     ),
-    renderCell: (props) => <Typography>No Data</Typography>,
+    renderCell: (props) => (
+      <Typography
+        sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
+      >
+        No Data
+      </Typography>
+    ),
     width: 160,
   },
   {

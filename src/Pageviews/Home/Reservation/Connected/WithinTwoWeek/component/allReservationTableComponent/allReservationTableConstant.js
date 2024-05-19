@@ -48,7 +48,13 @@ export const columns = [
         MACHINE STATUS
       </Typography>
     ),
-    renderCell: (props) => <Typography>No Data</Typography>,
+    renderCell: (props) => (
+      <Typography
+        sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
+      >
+        No Data Found
+      </Typography>
+    ),
     width: 150,
   },
   {

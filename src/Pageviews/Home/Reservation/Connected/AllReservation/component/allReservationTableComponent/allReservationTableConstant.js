@@ -19,7 +19,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <CustomerNamePhoneComponent props={props} />,
-    width: 180,
+    width: 170,
   },
   {
     field: "reservation_id",
@@ -48,7 +48,13 @@ export const columns = [
         MACHINE STATUS
       </Typography>
     ),
-    renderCell: (props) => <Typography>No Data</Typography>,
+    renderCell: (props) => (
+      <Typography
+        sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
+      >
+        No Data Found
+      </Typography>
+    ),
     width: 160,
   },
   {
@@ -69,7 +75,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <MachineTypeComponent props={props} />,
-    width: 140,
+    width: 130,
   },
   {
     field: "location",
@@ -79,7 +85,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <LocationComponent props={props} />,
-    width: 100,
+    width: 120,
   },
   {
     field: "invoice",

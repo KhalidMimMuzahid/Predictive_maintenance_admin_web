@@ -3,11 +3,11 @@ import ActionComponent from "./ActionComponent";
 import CustomerNamePhoneComponent from "./CustomerNamePhoneComponent";
 import IssuesComponent from "./IssuesComponent";
 import LocationComponent from "./LocationComponent";
-import StatusComponent from "./StatusComponent";
 import RequestIdComponent from "./RequestIdComponent";
 import ScheduleComponent from "./ScheduleComponent";
 import MachineTypeComponent from "./MachineTypeComponent";
 import InvoiceComponent from "./InvoiceComponent";
+import AssignServiceProviderComponent from "../../../../commonComponent/AssignServiceProviderComponent";
 
 export const columns = [
   {
@@ -31,24 +31,20 @@ export const columns = [
     width: 120,
   },
   {
-    field: "status",
-    headerName: (
-      <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
-        STATUS
-      </Typography>
-    ),
-    renderCell: (props) => <StatusComponent props={props} />,
-    width: 120,
-  },
-  {
     field: "machine_status",
     headerName: (
       <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
         MACHINE STATUS
       </Typography>
     ),
-    renderCell: (props) => <Typography>No Data</Typography>,
-    width: 150,
+    renderCell: (props) => (
+      <Typography
+        sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
+      >
+        No Data Found
+      </Typography>
+    ),
+    width: 160,
   },
   {
     field: "schedule",
@@ -58,7 +54,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <ScheduleComponent props={props} />,
-    width: 120,
+    width: 140,
   },
   {
     field: "machineType",
@@ -68,7 +64,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <MachineTypeComponent props={props} />,
-    width: 175,
+    width: 160,
   },
   {
     field: "location",
@@ -78,7 +74,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <LocationComponent props={props} />,
-    width: 150,
+    width: 130,
   },
   {
     field: "invoice",
@@ -88,7 +84,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <InvoiceComponent props={props} />,
-    width: 150,
+    width: 120,
   },
   {
     field: "problems",
@@ -100,26 +96,16 @@ export const columns = [
     renderCell: (props) => <IssuesComponent props={props} />,
     width: 180,
   },
-  // {
-  //   field: "bidStatus",
-  //   headerName: (
-  //     <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
-  //       BID STATUS
-  //     </Typography>
-  //   ),
-  //   renderCell: (props) => <BidStatusComponent props={props} />,
-  //   width: 150,
-  // },
-  // {
-  //   field: "assign",
-  //   headerName: (
-  //     <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
-  //       ASSIGN
-  //     </Typography>
-  //   ),
-  //   renderCell: (props) => <AssignVendorComponent props={props} />,
-  //   width: 200,
-  // },
+  {
+    field: "assign",
+    headerName: (
+      <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
+        ASSIGN
+      </Typography>
+    ),
+    renderCell: (props) => <AssignServiceProviderComponent props={props} />,
+    width: 150,
+  },
   {
     field: "action",
     headerName: (

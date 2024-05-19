@@ -12,9 +12,11 @@ import { Box, IconButton, MenuItem, Typography } from "@mui/material";
 import React, { useState } from "react";
 import CustomerDetails from "../../../../commonComponent/modal/viewCustomerModal/CustomerDetails";
 import { StyledMenu } from "../../../../../Customer/styleComponents";
+import DeleteModal from "../../../../commonComponent/modal/DeleteModal";
 
 const ActionComponent = ({ props }) => {
   const [viewCustomerOpen, setViewCustomerOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openEl = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -31,6 +33,13 @@ const ActionComponent = ({ props }) => {
           props={props}
           viewCustomerOpen={viewCustomerOpen}
           setViewCustomerOpen={setViewCustomerOpen}
+        />
+      )}
+      {deleteOpen && (
+        <DeleteModal
+          props={props}
+          deleteOpen={deleteOpen}
+          setDeleteOpen={setDeleteOpen}
         />
       )}
       <IconButton onClick={handleClick}>
@@ -70,7 +79,7 @@ const ActionComponent = ({ props }) => {
           </MenuItem>
           <MenuItem
             onClick={() => {
-              // setIsDeleteModalOpen(!isDeleteModalOpen);
+              setDeleteOpen(!deleteOpen);
             }}
             sx={{ display: "flex", gap: "0 6px" }}
           >

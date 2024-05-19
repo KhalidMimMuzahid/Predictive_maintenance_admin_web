@@ -1,7 +1,8 @@
-import { Box } from "@mui/material";
 import React from "react";
 import Details from "./details/Details";
 import MachineStatus from "./machineStatus/MachineStatus";
+import Reservation from "./reservation/Reservation";
+import Status from "./status/Status";
 
 const Body = ({ headerName, setHeaderName, customerDetailsData, props }) => {
   return (
@@ -14,6 +15,12 @@ const Body = ({ headerName, setHeaderName, customerDetailsData, props }) => {
           customerDetailsData={customerDetailsData}
           props={props}
         />
+      )}
+      {headerName === "reservation" && (
+        <Reservation customerDetailsData={customerDetailsData} props={props} />
+      )}
+      {headerName === "status" && (
+        <Status customerDetailsData={customerDetailsData} props={props} />
       )}
     </>
   );

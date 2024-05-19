@@ -15,10 +15,14 @@ const CustomerNamePhoneComponent = ({ props }) => {
       <Typography
         sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
       >
-        {userData?.data?.name?.firstName + " " + userData?.data?.name?.lastName}
+        {userData?.data?.name
+          ? userData?.data?.name?.firstName +
+            " " +
+            userData?.data?.name?.lastName
+          : "No Data Found"}
       </Typography>
       <Typography sx={{ color: "#6E6893", fontSize: "12px" }}>
-        {userData?.data?.phone}
+        {userData?.data?.phone || "No Data Found"}
       </Typography>
     </Box>
   );

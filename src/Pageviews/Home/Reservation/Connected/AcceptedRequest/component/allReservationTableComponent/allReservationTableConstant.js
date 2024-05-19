@@ -47,7 +47,13 @@ export const columns = [
         MACHINE STATUS
       </Typography>
     ),
-    renderCell: (props) => <Typography>No Data</Typography>,
+    renderCell: (props) => (
+      <Typography
+        sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
+      >
+        No Data Found
+      </Typography>
+    ),
     width: 150,
   },
   {
@@ -100,26 +106,6 @@ export const columns = [
     renderCell: (props) => <IssuesComponent props={props} />,
     width: 180,
   },
-  // {
-  //   field: "bidStatus",
-  //   headerName: (
-  //     <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
-  //       BID STATUS
-  //     </Typography>
-  //   ),
-  //   renderCell: (props) => <BidStatusComponent props={props} />,
-  //   width: 150,
-  // },
-  // {
-  //   field: "assign",
-  //   headerName: (
-  //     <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
-  //       ASSIGN
-  //     </Typography>
-  //   ),
-  //   renderCell: (props) => <AssignVendorComponent props={props} />,
-  //   width: 200,
-  // },
   {
     field: "action",
     headerName: (
