@@ -188,11 +188,9 @@ const OnDemand = () => {
             </Button>
           </Box>
         )}
-        <Box sx={{ width: "100%" }}>
-          <AllReservationTable
-            setSelectedReservations={setSelectedReservations}
-          />
-        </Box>
+        <AllReservationTable
+          setSelectedReservations={setSelectedReservations}
+        />
       </Box>
     </Box>
   );

@@ -20,6 +20,7 @@ const CustomerDetails = () => {
   const { data: customerDetailsData } = useGetCustomerDetailsQuery(_id);
   const { data: walletData } = useGetCustomerWalletQuery(_id);
   const { data: subscriptionData } = useGetCustomerSubscriptionDataQuery(_id);
+  console.log(walletData);
 
   return (
     <Box

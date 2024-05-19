@@ -8,6 +8,7 @@ import RequestIdComponent from "./RequestIdComponent";
 import ScheduleComponent from "./ScheduleComponent";
 import MachineTypeComponent from "./MachineTypeComponent";
 import InvoiceComponent from "./InvoiceComponent";
+import AssignServiceProviderComponent from "../../../../commonComponent/AssignServiceProviderComponent";
 
 export const columns = [
   {
@@ -18,7 +19,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <CustomerNamePhoneComponent props={props} />,
-    width: 200,
+    width: 180,
   },
   {
     field: "reservation_id",
@@ -28,7 +29,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <RequestIdComponent props={props} />,
-    width: 120,
+    width: 110,
   },
   {
     field: "status",
@@ -68,7 +69,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <MachineTypeComponent props={props} />,
-    width: 175,
+    width: 140,
   },
   {
     field: "location",
@@ -78,7 +79,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <LocationComponent props={props} />,
-    width: 150,
+    width: 120,
   },
   {
     field: "invoice",
@@ -88,7 +89,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <InvoiceComponent props={props} />,
-    width: 150,
+    width: 120,
   },
   {
     field: "problems",
@@ -98,28 +99,18 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <IssuesComponent props={props} />,
+    width: 150,
+  },
+  {
+    field: "assign",
+    headerName: (
+      <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
+        ASSIGN
+      </Typography>
+    ),
+    renderCell: (props) => <AssignServiceProviderComponent props={props} />,
     width: 180,
   },
-  // {
-  //   field: "bidStatus",
-  //   headerName: (
-  //     <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
-  //       BID STATUS
-  //     </Typography>
-  //   ),
-  //   renderCell: (props) => <BidStatusComponent props={props} />,
-  //   width: 150,
-  // },
-  // {
-  //   field: "assign",
-  //   headerName: (
-  //     <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
-  //       ASSIGN
-  //     </Typography>
-  //   ),
-  //   renderCell: (props) => <AssignVendorComponent props={props} />,
-  //   width: 200,
-  // },
   {
     field: "action",
     headerName: (

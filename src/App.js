@@ -8,6 +8,7 @@ import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
 
 import Topbar from "./Components/Topbar";
 
@@ -101,6 +102,7 @@ import ReScheduleNonConnected from "./Pageviews/Home/Reservation/NonConnected/Re
 import CompletedNonConnected from "./Pageviews/Home/Reservation/NonConnected/Completed/Completed";
 import Footer from "./Utils/Footer";
 import ReservationScreen from "./Pageviews/Home/Reservation/ReservationScreen";
+import { ToastContainer } from "react-toastify";
 
 const theme = createTheme();
 
@@ -572,6 +574,7 @@ function App() {
           )}
         </BrowserRouter>
       </div>
+      <ToastContainer position="top-center" autoClose={2000} />
     </ThemeProvider>
   );
 }

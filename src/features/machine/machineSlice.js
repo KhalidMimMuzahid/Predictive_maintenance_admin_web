@@ -19,7 +19,11 @@ export const machineApi = createApi({
       query: (_id) => `/machine/getAllMachineBy_id?user_id=${_id}`,
       providesTags: [],
     }),
+    getMachineDataById: builder.query({
+      query: (machine) => `/machine/getMachineBy_id?machine=${machine}`,
+    }),
   }),
 });
 
-export const { useGetMachineDataQuery } = machineApi;
+export const { useGetMachineDataQuery, useGetMachineDataByIdQuery } =
+  machineApi;

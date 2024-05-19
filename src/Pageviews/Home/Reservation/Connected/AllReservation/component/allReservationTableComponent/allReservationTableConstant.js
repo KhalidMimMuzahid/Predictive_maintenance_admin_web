@@ -39,7 +39,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <StatusComponent props={props} />,
-    width: 120,
+    width: 150,
   },
   {
     field: "machine_status",
@@ -49,7 +49,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <Typography>No Data</Typography>,
-    width: 150,
+    width: 160,
   },
   {
     field: "schedule",
@@ -59,7 +59,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <ScheduleComponent props={props} />,
-    width: 120,
+    width: 140,
   },
   {
     field: "machineType",
@@ -79,7 +79,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <LocationComponent props={props} />,
-    width: 120,
+    width: 100,
   },
   {
     field: "invoice",
@@ -89,7 +89,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <InvoiceComponent props={props} />,
-    width: 120,
+    width: 100,
   },
   {
     field: "problems",
@@ -109,7 +109,7 @@ export const columns = [
       </Typography>
     ),
     renderCell: (props) => <AssignServiceProviderComponent props={props} />,
-    width: 180,
+    width: 150,
   },
   {
     field: "action",
@@ -118,7 +118,7 @@ export const columns = [
         ACTION
       </Typography>
     ),
-    renderCell: (props) => <ActionComponent props={props} />,
+    renderCell: (props) => <ActionComponent props={props?.row} />,
     width: 100,
   },
 ];

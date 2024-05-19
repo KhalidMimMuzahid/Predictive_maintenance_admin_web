@@ -11,8 +11,10 @@ import {
 import { Box, IconButton, MenuItem, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { StyledMenu } from "../../../../../Customer/styleComponents";
+import CustomerDetails from "../../../../commonComponent/modal/viewCustomerModal/CustomerDetails";
 
 const ActionComponent = ({ props }) => {
+  const [viewCustomerOpen, setViewCustomerOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openEl = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -23,14 +25,24 @@ const ActionComponent = ({ props }) => {
   };
 
   return (
-    <div>
+    <>
+      {viewCustomerOpen && (
+        <CustomerDetails
+          props={props}
+          viewCustomerOpen={viewCustomerOpen}
+          setViewCustomerOpen={setViewCustomerOpen}
+        />
+      )}
       <IconButton onClick={handleClick}>
         <MoreVert />
       </IconButton>
 
       <StyledMenu anchorEl={anchorEl} open={openEl} onClose={handleClose}>
         <Box sx={{ background: "#F4F2FF" }}>
-          <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
+          <MenuItem
+            onClick={() => setViewCustomerOpen(!viewCustomerOpen)}
+            sx={{ display: "flex", gap: "0 6px" }}
+          >
             <VisibilityOutlined />
             <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
               View
@@ -69,7 +81,7 @@ const ActionComponent = ({ props }) => {
           </MenuItem>
         </Box>
       </StyledMenu>
-    </div>
+    </>
   );
 };
 

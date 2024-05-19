@@ -16,6 +16,7 @@ import {
   useGetAllIotQuery,
   usePostIOTMutation,
 } from "../../../../features/iot/iotSlice";
+import { toast } from "react-toastify";
 
 const AddNewProductModal = ({
   addNewProductModalOpen,
@@ -28,10 +29,14 @@ const AddNewProductModal = ({
   const inputRef = useRef();
 
   useEffect(() => {
-    if (data?.success) {
+    if (isSuccess) {
+      toast.success(data?.message);
       refetch();
+      setAddNewProductModalOpen(false);
+    } else if (isError) {
+      toast.error(error?.data?.message);
     }
-  }, [isSuccess]);
+  }, [isSuccess, isError]);
 
   // React Hook Form
   const { register, handleSubmit } = useForm();
@@ -40,9 +45,6 @@ const AddNewProductModal = ({
     postIOT(formData);
   };
 
-  if (data !== undefined) {
-    alert(data?.message);
-  }
   const handleDragOver = (event) => {
     event.preventDefault();
   };
@@ -264,6 +266,7 @@ const AddNewProductModal = ({
             </Button>
             <button
               type="submit"
+              disabled={isLoading}
               style={{
                 width: "160px",
                 height: "36px",
@@ -280,7 +283,7 @@ const AddNewProductModal = ({
                 },
               }}
             >
-              Save
+              {isLoading ? "Saving..." : "Save"}
             </button>
           </Box>
         </form>

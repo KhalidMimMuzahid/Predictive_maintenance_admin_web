@@ -5,6 +5,7 @@ import {
   useDeleteIOTMutation,
   useGetAllIotQuery,
 } from "../../../../../../features/iot/iotSlice";
+import { toast } from "react-toastify";
 
 const DeleteModal = ({ deleteOpen, setDeleteOpen, sensorModule }) => {
   const [deleteIOT, { data, isError, error, isLoading, isSuccess }] =
@@ -16,12 +17,14 @@ const DeleteModal = ({ deleteOpen, setDeleteOpen, sensorModule }) => {
   };
 
   useEffect(() => {
-    if (data?.success) {
-      alert(data?.message);
-      setDeleteOpen(false);
+    if (isSuccess) {
+      toast.success(data?.message);
       refetch();
+      setDeleteOpen(false);
+    } else if (isError) {
+      toast.error(error?.data?.message);
     }
-  }, [isSuccess]);
+  }, [isSuccess, isError]);
 
   return (
     <Modal
@@ -132,6 +135,7 @@ const DeleteModal = ({ deleteOpen, setDeleteOpen, sensorModule }) => {
           </Button>
           <Button
             onClick={handleDeleteClick}
+            disabled={isLoading}
             sx={{
               width: "160px",
               height: "36px",
@@ -146,7 +150,7 @@ const DeleteModal = ({ deleteOpen, setDeleteOpen, sensorModule }) => {
               },
             }}
           >
-            Delete
+            {isLoading ? "Deleting..." : "Delete"}
           </Button>
         </Box>
       </Container>
