@@ -4,14 +4,17 @@ import React from "react";
 const RequestIdComponent = ({ props }) => {
   // console.log(props?.row?.reservationRequestGroup);
   return (
-    <div>
-      <Badge
-        badgeContent={props?.row?.reservationRequestGroup ? "G" : null}
-        color="success"
+    <Badge
+      badgeContent={props?.row?.reservationRequestGroup ? "G" : null}
+      color="success"
+    >
+      <Typography
+        color="action"
+        sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
       >
-        <Typography color="action">{props?.row?.requestId}</Typography>
-      </Badge>
-    </div>
+        {props?.row?.requestId}
+      </Typography>
+    </Badge>
   );
 };
 

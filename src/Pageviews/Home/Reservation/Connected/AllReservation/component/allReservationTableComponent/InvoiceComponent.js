@@ -16,7 +16,7 @@ const InvoiceComponent = ({ props }) => {
       )}
       <Box sx={{ fontSize: "12px" }}>
         {props?.row?.invoice ? (
-          <Typography>props?.row?.invoice</Typography>
+          <Typography>{props?.row?.invoice}</Typography>
         ) : (
           <Box>
             <Button

@@ -1,20 +1,39 @@
-import { Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
-import ViewInvoiceModal from "../../../../commonComponent/modal/ViewInvoiceModal";
+import CreateInvoiceModal from "../../../../../Invoice/modal/CreateInvoiceModal";
 
 const InvoiceComponent = ({ props }) => {
-  const [viewOpen, setViewOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   return (
-    <div>
-      <ViewInvoiceModal
-        viewOpen={viewOpen}
-        setViewOpen={setViewOpen}
-        invoice={props?.row?.invoice}
-      />
-      <Typography sx={{ fontSize: "12px" }}>
-        {props?.row?.invoice ? "view invoice" : "No Invoice"}
-      </Typography>
-    </div>
+    <>
+      {isCreateModalOpen && (
+        <CreateInvoiceModal
+          isCreateModalOpen={isCreateModalOpen}
+          setIsCreateModalOpen={setIsCreateModalOpen}
+        />
+      )}
+      <Box sx={{ fontSize: "12px" }}>
+        {props?.row?.invoice ? (
+          <Typography sx={{ fontSize: "12px" }}>
+            {props?.row?.invoice}
+          </Typography>
+        ) : (
+          <Box>
+            <Button
+              onClick={() => setIsCreateModalOpen(!isCreateModalOpen)}
+              sx={{
+                textTransform: "none",
+                fontSize: "14px",
+                fontWeight: "600",
+                color: "#2196F3",
+              }}
+            >
+              Create
+            </Button>
+          </Box>
+        )}
+      </Box>
+    </>
   );
 };
 

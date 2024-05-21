@@ -14,7 +14,6 @@ const AllReservationTable = ({ setSelectedReservations }) => {
     machineType: "connected",
     reservationType: "all",
   });
-  console.log(allReservationRows);
   return (
     <Box>
       {allReservationRows?.data?.length > 0 && (

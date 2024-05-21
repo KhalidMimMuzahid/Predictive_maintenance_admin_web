@@ -9,7 +9,12 @@ const RequestIdComponent = ({ props }) => {
         badgeContent={props?.row?.reservationRequestGroup ? "G" : null}
         color="success"
       >
-        <Typography color="action">{props?.row?.requestId}</Typography>
+        <Typography
+          color="action"
+          sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
+        >
+          {props?.row?.requestId}
+        </Typography>
       </Badge>
     </div>
   );

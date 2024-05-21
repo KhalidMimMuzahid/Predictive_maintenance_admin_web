@@ -20,6 +20,17 @@ const AllReservationTable = ({ setSelectedReservations }) => {
     <Box>
       {allReservationRows?.data?.length > 0 && (
         <DataGrid
+          sx={{
+            background: "white",
+            borderRadius: "0px",
+            border: "none",
+            "& .MuiDataGrid-columnHeaders": {
+              fontWeight: 1000,
+              borderRadius: "0",
+              borderTop: "1px solid #D9D9D9",
+              background: "#F4F2FF",
+            },
+          }}
           rows={allReservationRows?.data?.map((data, id) => {
             return { ...data, id };
           })}
@@ -40,6 +51,21 @@ const AllReservationTable = ({ setSelectedReservations }) => {
             setSelectedReservations(selectedRowData);
           }}
         />
+      )}
+      {allReservationRows?.data?.length <= 0 && (
+        <Box
+          sx={{
+            height: "100vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "24px",
+            fontWeight: "600",
+            color: "#FF4858",
+          }}
+        >
+          No Reservation Are Here.
+        </Box>
       )}
     </Box>
   );

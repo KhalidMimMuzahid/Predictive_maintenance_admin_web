@@ -43,7 +43,7 @@ const AssignServiceProviderComponent = ({ props }) => {
             color: "#FF4858",
             padding: "2px 16px",
             fontWeight: "600",
-            fontSize: "14px",
+            fontSize: "12px",
           }}
         >
           Can't Assign

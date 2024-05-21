@@ -1,8 +1,22 @@
-import { Delete, Equalizer, MoreVert, Stop } from "@mui/icons-material";
-import { Box, IconButton, MenuItem } from "@mui/material";
+import {
+  Close,
+  CreateOutlined,
+  Delete,
+  DeleteOutlineOutlined,
+  Equalizer,
+  MoreVert,
+  Stop,
+  VisibilityOutlined,
+} from "@mui/icons-material";
+import { Box, IconButton, MenuItem, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { StyledMenu } from "../../../../../Customer/styleComponents";
+import CustomerDetails from "../../../../commonComponent/modal/viewCustomerModal/CustomerDetails";
+import DeleteModal from "../../../../commonComponent/modal/DeleteModal";
 
 const ActionComponent = ({ props }) => {
+  const [viewCustomerOpen, setViewCustomerOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openEl = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -12,111 +26,72 @@ const ActionComponent = ({ props }) => {
     setAnchorEl(null);
   };
 
-  function deleteReservation() {
-    fetch(
-      "https://api.showaapp.com/admin/reservation/delete-reservation/" +
-        props.value._id,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        alert("Reservation deleted successfully");
-        window.location.href = "/reservation/connected/all";
-      });
-  }
-
-  function sendForBidding() {
-    fetch(
-      "https://api.showaapp.com/admin/reservation/send-for-bidding/" +
-        props.value._id,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        alert("Sent for bidding successfully");
-        window.location.href = "/reservation/connected/all";
-      });
-  }
-
-  function closeBidding() {
-    fetch(
-      "https://api.showaapp.com/admin/reservation/close-bidding/" +
-        props.value._id,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        alert("Bidding closed successfully");
-        window.location.href = "/reservation/connected/all";
-      });
-  }
   return (
-    <div>
+    <>
+      {viewCustomerOpen && (
+        <CustomerDetails
+          props={props}
+          viewCustomerOpen={viewCustomerOpen}
+          setViewCustomerOpen={setViewCustomerOpen}
+        />
+      )}
+      {deleteOpen && (
+        <DeleteModal
+          props={props}
+          deleteOpen={deleteOpen}
+          setDeleteOpen={setDeleteOpen}
+        />
+      )}
+
       <IconButton onClick={handleClick}>
         <MoreVert />
       </IconButton>
 
-      {/* <Box
-        id="demo-customized-menu"
-        MenuListProps={{
-          "aria-labelledby": "demo-customized-button",
-        }}
-        anchorEl={anchorEl}
-        open={openEl}
-        onClose={handleClose}
-      >
-        <MenuItem
-          onClick={() => {
-            deleteReservation();
-            handleClose();
-          }}
-        >
-          <Delete style={{ color: "red" }} />
-          Delete Reservation
-        </MenuItem>
-
-        {props?.value?.bidStatus === "" && (
+      <StyledMenu anchorEl={anchorEl} open={openEl} onClose={handleClose}>
+        <Box sx={{ background: "#F4F2FF" }}>
+          <MenuItem
+            onClick={() => setViewCustomerOpen(!viewCustomerOpen)}
+            sx={{ display: "flex", gap: "0 6px" }}
+          >
+            <VisibilityOutlined />
+            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+              View
+            </Typography>
+          </MenuItem>
+          <MenuItem
+            // onClick={() => setIsEditInvoiceModalOpen(!isEditInvoiceModalOpen)}
+            sx={{ display: "flex", gap: "0 6px" }}
+          >
+            <CreateOutlined />
+            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+              Edit
+            </Typography>
+          </MenuItem>
           <MenuItem
             onClick={() => {
-              sendForBidding();
-              handleClose();
+              // setIsSendModalOpen(!isSendModalOpen);
             }}
+            sx={{ display: "flex", gap: "0 6px" }}
           >
-            <Equalizer style={{ color: "pink" }} />
-            Send for Bidding
+            <Close />
+            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+              Close
+            </Typography>
           </MenuItem>
-        )}
-
-        {props?.value?.bidStatus === "Ongoing" && (
           <MenuItem
             onClick={() => {
-              closeBidding();
-              handleClose();
+              setDeleteOpen(!deleteOpen);
             }}
+            sx={{ display: "flex", gap: "0 6px" }}
           >
-            <Stop style={{ color: "purple" }} />
-            Close Bidding
+            <DeleteOutlineOutlined />
+            <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
+              Delete
+            </Typography>
           </MenuItem>
-        )}
-      </Box> */}
-    </div>
+        </Box>
+      </StyledMenu>
+    </>
   );
 };
 

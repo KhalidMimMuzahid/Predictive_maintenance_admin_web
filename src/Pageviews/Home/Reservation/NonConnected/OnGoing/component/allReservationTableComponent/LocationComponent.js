@@ -3,59 +3,13 @@ import { Container, IconButton, Modal, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const LocationComponent = ({ props }) => {
-  const [washingMachine, setWashingMachine] = useState(null);
   const [showLocationModal, setShowLocationModal] = useState(false);
 
-  const [mapAdds, setMapAdds] = useState("");
-
-  //   useEffect(() => {
-  //     getWashingMachine(props?.value);
-  //   }, []);
-
-  //   function getLatLong(address) {
-  //     geocodeByAddress(address)
-  //       .then((results) => getLatLng(results[0]))
-  //       .then((latLng) => {
-  //         console.log("Success", latLng);
-  //         setMapAdds(
-  //           "https://maps.google.com/maps?q=" +
-  //             latLng.lat +
-  //             "," +
-  //             latLng.lng +
-  //             "&h1=es;&output=embed"
-  //         );
-  //         setShowLocationModal(true);
-  //       })
-  //       .catch((error) => console.error("Error", error));
-  //   }
-
-  //   function getWashingMachine(wid) {
-  //     if (wid != "") {
-  //       let url =
-  //         "https://api.showaapp.com/admin/reservation/get-washing-machine/" + wid;
-  //       fetch(url, {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       })
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           setWashingMachine(data);
-  //         });
-  //     }
-  //   }
+  const [mapAdds, setMapAdds] = useState(
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.0782002738088!2d90.4224907760236!3d23.780229487629235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7e0a1bcc1a9%3A0x7017272f157c7e1!2sANTT%20Robotics%20R%26D%20office!5e0!3m2!1sen!2sbd!4v1716126460894!5m2!1sen!2sbd"
+  );
 
   function displayLocation() {
-    if (washingMachine == null)
-      return (
-        <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
-          <h3 style={{ fontSize: "12px" }}>Please Wait</h3>
-        </div>
-      );
-
     return (
       <div
         style={{
@@ -67,8 +21,7 @@ const LocationComponent = ({ props }) => {
           fontSize: "10px",
         }}
         onClick={(e) => {
-          //   console.log(washingMachine.address);
-          //   getLatLong(washingMachine.address);
+          setShowLocationModal(!showLocationModal);
         }}
       >
         View Location
@@ -78,8 +31,23 @@ const LocationComponent = ({ props }) => {
 
   return (
     <div>
-      <Modal open={showLocationModal}>
-        <Container>
+      <Modal
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        open={showLocationModal}
+      >
+        <Container
+          sx={{
+            width: "50%",
+            background: "white",
+            borderRadius: "20px",
+            padding: "24px",
+          }}
+        >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Typography
               style={{ color: "#24459c", fontSize: "24px", fontWeight: "700" }}
@@ -95,11 +63,14 @@ const LocationComponent = ({ props }) => {
             </IconButton>
           </div>
 
-          <div style={{ position: "relative", height: "90%", zIndex: 2 }}>
+          <div style={{ marginTop: "12px" }}>
             <iframe
-              src={mapAdds}
-              style={{ height: "100%", width: "100%" }}
-              title="T"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.0782002738088!2d90.4224907760236!3d23.780229487629235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7e0a1bcc1a9%3A0x7017272f157c7e1!2sANTT%20Robotics%20R%26D%20office!5e0!3m2!1sen!2sbd!4v1716126460894!5m2!1sen!2sbd"
+              width="100%"
+              height="450"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="ANTT Robotics Ltd."
             ></iframe>
           </div>
         </Container>

@@ -1,5 +1,19 @@
-import { GroupOutlined } from "@mui/icons-material";
-import { Box, Button, Tab, Tabs, Typography } from "@mui/material";
+import {
+  CheckBoxOutlineBlank,
+  GroupOutlined,
+  MoreHoriz,
+} from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Tab,
+  Tabs,
+  Typography,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import AllReservationTable from "./allReservationTable/AllReservationTable";
 
@@ -35,22 +49,97 @@ const ScheduleTimeNonConnected = () => {
           </Box>
         </Box>
       </Box>
-      <div>
-        <Box sx={{ width: "100%" }}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs
-              value={tabValue}
-              onChange={handleChange}
-              aria-label="basic tabs example"
+      <Box
+        sx={{
+          background: "white",
+          borderRadius: "4px",
+          padding: "0 20px",
+          marginTop: "8px",
+        }}
+      >
+        <Box
+          sx={{
+            padding: "12px 48px",
+            display: "flex",
+            justifyContent: "end",
+            alignItems: "center",
+            gap: "0px 12px",
+          }}
+        >
+          <FormControl
+            sx={{
+              width: "12%",
+              boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
+            }}
+            size="small"
+          >
+            <InputLabel id="demo-simple-select-label">All Providers</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              // value={age}
+              label="Age"
+              // onChange={handleChange}
             >
-              <Tab sx={{ fontWeight: "600" }} label="Reservations" />
-            </Tabs>
-          </Box>
-          <AllReservationTable
-            setSelectedReservations={setSelectedReservations}
-          />
+              <MenuItem value={"0-250 meters"}>Ongoing</MenuItem>
+              <MenuItem value={"250-500 meters"}>Online</MenuItem>
+              <MenuItem value={"1 kilometer"}>Offline</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl
+            sx={{
+              width: "15%",
+              boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
+            }}
+            size="small"
+          >
+            <InputLabel id="demo-simple-select-label">All Services</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              // value={age}
+              label="Age"
+              // onChange={handleChange}
+            >
+              <MenuItem value={"Ongoing Jobs"}>Dish Washing Machine</MenuItem>
+              <MenuItem value={"Online"}>Pallet Washing Machine</MenuItem>
+              <MenuItem value={"Offline"}>Container Washing Machine</MenuItem>
+              <MenuItem value={"Suspended"}>General Device</MenuItem>
+              <MenuItem value={"Suspended"}>All Service</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl
+            sx={{
+              width: "15%",
+              boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
+            }}
+            size="small"
+          >
+            <InputLabel id="demo-simple-select-label">
+              Jan 01 - Jan 31
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              // value={age}
+              label="Age"
+              // onChange={handleChange}
+            >
+              <MenuItem value={"Newest"}>Last One Week</MenuItem>
+              <MenuItem value={"Newest to Oldest"}>Last Two Week</MenuItem>
+              <MenuItem value={"Oldest to Newest"}>Last One Month</MenuItem>
+              <MenuItem value={"Oldest"}>Last One Year</MenuItem>
+              <MenuItem value={"Select Date"}>Select Date</MenuItem>
+            </Select>
+          </FormControl>
+          <Button>
+            <MoreHoriz />
+          </Button>
         </Box>
-      </div>
+        <AllReservationTable
+          setSelectedReservations={setSelectedReservations}
+        />
+      </Box>
     </Box>
   );
 };
