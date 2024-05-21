@@ -13,7 +13,7 @@ export const columns = [
         SERVICE PROVIDER NAME
       </Typography>
     ),
-    width: 250,
+    width: 200,
     renderCell: (props) => (
       <Box
         sx={{

@@ -20,7 +20,7 @@ const CustomerScreen = () => {
   };
 
   return (
-    <div className={classes.holder}>
+    <Box sx={{ padding: "40px" }}>
       <div className={classes.topHolder}>
         <div>
           <div className={classes.title}>Customer</div>
@@ -51,7 +51,7 @@ const CustomerScreen = () => {
           </div>
         </div>
 
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", gap: "16px" }}>
           <Button
             onClick={() => downloadTableData(downloadData, setDownloadData)}
             sx={{
@@ -66,7 +66,6 @@ const CustomerScreen = () => {
           >
             Export
           </Button>
-          <div className={classes.spacerSmall} />
           <Button
             sx={{
               backgroundColor: "#24459c",
@@ -87,7 +86,7 @@ const CustomerScreen = () => {
       <div>
         <Outlet context={[isRootCustomerPage, setIsRootCustomerPage]} />
       </div>
-    </div>
+    </Box>
   );
 };
 

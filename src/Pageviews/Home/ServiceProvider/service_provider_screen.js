@@ -1,111 +1,80 @@
-import { Add, Download, MoreVert, Upload } from "@mui/icons-material";
-import { Button, IconButton, Menu, MenuItem } from "@mui/material";
-import { makeStyles, styled } from "@mui/styles";
-import { Component, useContext } from "react";
-import { useState } from "react";
-import ServiceProviderTable from "./serviceProviderTable/ServiceProviderTable";
+import {
+  Box,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 import { Outlet } from "react-router-dom";
+import { useContext, useState } from "react";
 import { AppContext } from "../../../contextApi/appProvider";
 import { downloadTableData } from "../../../Utils/downloadTableData";
-
-const useStyle = makeStyles((theme) => ({
-  holder: {
-    padding: theme.spacing(2),
-  },
-  title: {
-    color: "black",
-    fontWeight: "700",
-    fontSize: 24,
-  },
-  subtitle: {
-    fontWeight: "600",
-    fontSize: 14,
-  },
-  spacerSmall: {
-    width: "10px",
-    height: "10px",
-  },
-  topHolder: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  tableHolder: {
-    width: "100%",
-    backgroundColor: "white",
-  },
-  buttonHolder: {
-    display: "flex",
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-    },
-  },
-  smallMenuHolder: {
-    display: "none",
-    [theme.breakpoints.down("sm")]: {
-      display: "flex",
-    },
-  },
-}));
+import { Download } from "@mui/icons-material";
 
 const ServiceProviderScreen = () => {
+  const [isRootCustomerPage, setIsRootCustomerPage] = useState(true);
   const { downloadData, setDownloadData } = useContext(AppContext);
-  const classes = useStyle();
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const openEl = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   return (
-    <div className={classes.holder}>
-      <div className={classes.topHolder}></div>
-      <div className={classes.spacerSmall}></div>
-      <div className={classes.spacerSmall}></div>
+    <Box sx={{ padding: "40px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Box>
+          <Typography sx={{ fontSize: "24px", fontWeight: "700" }}>
+            Service Provider
+          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            <Typography>Dashboard / </Typography>
+            <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
+              Service Provider
+            </Typography>
+          </Box>
+        </Box>
 
-      <div>
+        <Box sx={{ display: "flex", gap: "16px" }}>
+          <Button
+            onClick={() => downloadTableData(downloadData, setDownloadData)}
+            sx={{
+              backgroundColor: "white",
+              color: "#24459C",
+              textTransform: "none",
+              borderRadius: "8px",
+              padding: "6px 32px",
+              fontWeight: "600",
+            }}
+            startIcon={<Download />}
+          >
+            Export
+          </Button>
+          <Button
+            sx={{
+              backgroundColor: "#24459c",
+              color: "white",
+              textTransform: "none",
+              borderRadius: "8px",
+              padding: "6px 32px",
+              fontWeight: "500",
+              "&:hover": {
+                background: "#24459C",
+              },
+            }}
+          >
+            Add Service Provider
+          </Button>
+        </Box>
+      </Box>
+
+      <Box>
         <Outlet />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
 export default ServiceProviderScreen;
-
-const StyledMenu = styled((props) => (
-  <Menu
-    elevation={0}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "right",
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "right",
-    }}
-    {...props}
-  />
-))(({ theme }) => ({
-  "& .MuiPaper-root": {
-    borderRadius: 6,
-    marginTop: theme.spacing(1),
-    minWidth: 180,
-    color: theme.palette.mode === "light" ? "rgb(55, 65, 81)" : theme.palette,
-    boxShadow:
-      "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
-    "& .MuiMenu-list": {
-      padding: "4px 0",
-    },
-    "& .MuiMenuItem-root": {
-      "& .MuiSvgIcon-root": {
-        fontSize: 18,
-        color: theme.palette.text.secondary,
-        marginRight: theme.spacing(1.5),
-      },
-    },
-  },
-}));
