@@ -7,17 +7,27 @@ import {
   Typography,
 } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../contextApi/appProvider";
 import { downloadTableData } from "../../../Utils/downloadTableData";
-import { Download } from "@mui/icons-material";
+import { Download, Upload } from "@mui/icons-material";
+import AddServiceProviderModal from "./component/AddServiceProviderModal";
 
 const ServiceProviderScreen = () => {
-  const [isRootCustomerPage, setIsRootCustomerPage] = useState(true);
+  const [isRootServiceProviderPage, setIsRootServiceProviderPage] =
+    useState(true);
+  const [addServiceProviderModalOpen, setAddServiceProviderModalOpen] =
+    useState(false);
   const { downloadData, setDownloadData } = useContext(AppContext);
 
   return (
     <Box sx={{ padding: "40px" }}>
+      {addServiceProviderModalOpen && (
+        <AddServiceProviderModal
+          addServiceProviderModalOpen={addServiceProviderModalOpen}
+          setAddServiceProviderModalOpen={setAddServiceProviderModalOpen}
+        />
+      )}
       <Box
         sx={{
           display: "flex",
@@ -48,11 +58,14 @@ const ServiceProviderScreen = () => {
               padding: "6px 32px",
               fontWeight: "600",
             }}
-            startIcon={<Download />}
+            startIcon={<Upload />}
           >
             Export
           </Button>
           <Button
+            onClick={() =>
+              setAddServiceProviderModalOpen(!addServiceProviderModalOpen)
+            }
             sx={{
               backgroundColor: "#24459c",
               color: "white",
@@ -69,9 +82,10 @@ const ServiceProviderScreen = () => {
           </Button>
         </Box>
       </Box>
-
       <Box>
-        <Outlet />
+        <Outlet
+          context={[isRootServiceProviderPage, setIsRootServiceProviderPage]}
+        />
       </Box>
     </Box>
   );

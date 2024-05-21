@@ -54,3 +54,12 @@ code {
     background-size: 100% 4px, 4px 100%, 100% 4px, 4px 50%, 100% 4px;
   }
 }
+
+.no-outline-on-input-focus {
+  outline: none;
+  border: none;
+}
+.no-outline-on-input-focus:focus {
+  outline: none;
+  border: none;
+}

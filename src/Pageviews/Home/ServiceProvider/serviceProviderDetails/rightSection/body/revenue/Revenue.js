@@ -40,6 +40,16 @@ const Revenue = () => {
       }}
     >
       <DataGrid
+        sx={{
+          borderRadius: "0px",
+          border: "none",
+          "& .MuiDataGrid-columnHeaders": {
+            fontWeight: 1000,
+            borderRadius: "0",
+            borderTop: "1px solid #D9D9D9",
+            background: "#F4F2FF",
+          },
+        }}
         rows={rowsRevenue}
         columns={columns}
         initialState={{

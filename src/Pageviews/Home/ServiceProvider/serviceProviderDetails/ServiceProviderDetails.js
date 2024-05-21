@@ -1,7 +1,7 @@
 import { Box, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import RightSection from "./rightSection/RightSection";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import LeftSection from "./leftSection/LeftSection";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
@@ -10,30 +10,17 @@ import MessageModal from "./modal/MessageModal";
 import CallModal from "./modal/CallModal";
 
 const ServiceProviderDetails = () => {
+  const [isRootServiceProviderPage, setIsRootServiceProviderPage] =
+    useOutletContext();
+  console.log(isRootServiceProviderPage);
   const [serviceProviderDetails, setServiceProviderDetails] = useState({});
   const [messageModalOpen, setMessageModalOpen] = useState(false);
   const [callModalOpen, setCallModalOpen] = useState(false);
   const { uid } = useParams();
 
   useEffect(() => {
-    fetch(
-      `${process.env.REACT_APP_BASE_URL}/admin/service-provider/get-service-provider-with-id/${uid}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          setServiceProviderDetails(data);
-        } else {
-        }
-      })
-      .catch((err) => {});
-  }, [uid]);
+    setIsRootServiceProviderPage(false);
+  }, [isRootServiceProviderPage, setIsRootServiceProviderPage]);
 
   return (
     <>
@@ -49,7 +36,7 @@ const ServiceProviderDetails = () => {
           setCallModalOpen={setCallModalOpen}
         />
       )}
-      <Box sx={{ display: "flex", flexDirection: "column", paddingX: "10px" }}>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Box
           sx={{
             display: "flex",
@@ -60,14 +47,16 @@ const ServiceProviderDetails = () => {
         >
           <Box sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
             <Box sx={{ fontSize: "24px", fontWeight: "700", color: "#000000" }}>
-              {serviceProviderDetails?.companyBasicInfo?.companyName}
+              {serviceProviderDetails?.companyBasicInfo?.companyName ||
+                "No Company Name Found"}
             </Box>
             <Box sx={{ display: "flex", gap: "4px" }}>
               <Box>Dashboard / </Box>
-              <Box> Customers /</Box>
+              <Box> Service Provider /</Box>
               <Box sx={{ fontWeight: "600", color: "#24459C" }}>
                 {" "}
-                {serviceProviderDetails?.companyBasicInfo?.companyName}
+                {serviceProviderDetails?.companyBasicInfo?.companyName ||
+                  "No Company Name Found"}
               </Box>
             </Box>
           </Box>
