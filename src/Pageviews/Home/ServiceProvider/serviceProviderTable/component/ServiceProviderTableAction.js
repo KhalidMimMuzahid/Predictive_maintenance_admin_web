@@ -26,7 +26,7 @@ const ServiceProviderTableAction = ({ props }) => {
       <StyledMenu anchorEl={anchorEl} open={openEl} onClose={handleClose}>
         <Box sx={{ background: "#F4F2FF" }}>
           <Link
-            to={`/service-provider/${props?.row?.uid}`}
+            to={`/service-provider/${props?._id}`}
             style={{ textDecoration: "none" }}
           >
             <MenuItem sx={{ display: "flex", gap: "0 6px" }}>

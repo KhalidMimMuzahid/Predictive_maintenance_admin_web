@@ -21,7 +21,7 @@ const RightSection = ({ serviceProviderDetails }) => {
     ) {
       navigate("request");
     }
-  }, []);
+  }, [location?.pathname, navigate]);
 
   return (
     <Box

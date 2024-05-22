@@ -5,7 +5,13 @@ import TeamAction from "./TeamAction";
 export const columns = [
   {
     field: "name",
-    headerName: "TEAM MEMBER NAME",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        TEAM MEMBER NAME
+      </Typography>
+    ),
     width: 200,
     renderCell: (params) => (
       <Box
@@ -39,7 +45,13 @@ export const columns = [
   },
   {
     field: "position",
-    headerName: "POSITION",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        POSITION
+      </Typography>
+    ),
     width: 200,
     renderCell: (props) => (
       <Typography
@@ -51,7 +63,13 @@ export const columns = [
   },
   {
     field: "phone",
-    headerName: "PHONE",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        PHONE
+      </Typography>
+    ),
     width: 200,
     renderCell: (params) => (
       <Typography
@@ -67,7 +85,13 @@ export const columns = [
   },
   {
     field: "serviced",
-    headerName: "SERVICED",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        SERVICED
+      </Typography>
+    ),
     width: 200,
     renderCell: (params) => (
       <Typography
@@ -83,7 +107,13 @@ export const columns = [
   },
   {
     field: "joined",
-    headerName: "JOINED",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        JOINED
+      </Typography>
+    ),
     width: 200,
     renderCell: (params) => (
       <Typography
@@ -99,7 +129,13 @@ export const columns = [
   },
   {
     field: "action",
-    headerName: "ACTION",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        ACTION
+      </Typography>
+    ),
     width: 100,
     renderCell: (props) => <TeamAction props={props} />,
   },

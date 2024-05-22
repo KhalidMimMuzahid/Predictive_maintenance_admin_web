@@ -41,6 +41,10 @@ export const reservationApi = createApi({
       query: (machineType) =>
         `/reservation/all-reservation-count?machineType=${machineType}`,
     }),
+    getReservationCountByServiceProviderCompany: builder.query({
+      query: (serviceProviderCompany) =>
+        `/reservation/get-reservation-count-by-service-provider-company?serviceProviderCompany=${serviceProviderCompany}`,
+    }),
   }),
 });
 
@@ -50,4 +54,5 @@ export const {
   usePostReservationGroupMutation,
   useGetReservationRequestByIDQuery,
   useGetReservationOverviewQuery,
+  useGetReservationCountByServiceProviderCompanyQuery,
 } = reservationApi;

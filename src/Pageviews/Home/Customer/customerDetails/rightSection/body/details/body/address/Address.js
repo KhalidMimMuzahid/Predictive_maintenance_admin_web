@@ -16,9 +16,6 @@ const Address = () => {
   });
   const { _id } = useParams();
   const { data: customerDetailsData } = useGetCustomerDetailsQuery(_id);
-  console.log(
-    customerDetailsData?.data?.showaUser?.addresses[0].address?.postalCode
-  );
 
   const handleEdit = () => {
     setEditedValues({

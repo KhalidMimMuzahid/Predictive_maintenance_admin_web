@@ -1,138 +1,109 @@
 import { Box, Typography } from "@mui/material";
 import ServiceProviderRequestAction from "./ServiceProviderRequestAction";
 import ServiceProviderLocationAction from "./ServiceProviderLocationAction";
-import ServiceProviderRequestIssuesAction from "./ServiceProviderRequestIssuesAction";
+import CustomerNameComponent from "./CustomerNameComponent";
+import RequestIdComponent from "./RequestIdComponent";
+import StatusComponent from "./StatusComponent";
+import ServiceProviderRequestIssuesComponent from "./ServiceProviderRequestIssuesAction";
+import ScheduleComponent from "./ScheduleComponent";
+import InvoiceComponent from "./InvoiceComponent";
 
 export const columns = [
   {
     field: "customerDetails",
-    headerName: "CUSTOMER NAME",
-    width: 180,
-    renderCell: (params) => (
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "0 16px",
-        }}
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
       >
-        <Box style={{ display: "flex", flexDirection: "column" }}>
-          <Typography
-            sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
-          >
-            {params.row.customerDetails?.name}
-          </Typography>
-          <Typography variant="p" sx={{ fontSize: "12px", color: "#6E6893" }}>
-            {params.row.customerDetails?.phone}
-          </Typography>
-        </Box>
-      </Box>
+        CUSTOMER NAME
+      </Typography>
     ),
+    width: 180,
+    renderCell: (props) => <CustomerNameComponent props={props?.row} />,
   },
   {
     field: "requestID",
-    headerName: "REQUEST ID",
-    width: 150,
-    renderCell: (props) => (
+    headerName: (
       <Typography
-        sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
       >
-        {props?.row?.requestID}
+        REQUEST ID
       </Typography>
     ),
+    width: 150,
+    renderCell: (props) => <RequestIdComponent props={props?.row} />,
   },
   {
     field: "status",
-    headerName: "STATUS",
-    width: 150,
-    renderCell: (params) => (
+    headerName: (
       <Typography
-        variant="p"
-        sx={{
-          color: "#FFA503",
-          px: "16px",
-          py: "4px",
-          borderRadius: "20px",
-          fontSize: "11px",
-          border: "1px solid #FFA503",
-        }}
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
       >
-        {params?.row?.status}
+        STATUS
       </Typography>
     ),
+    width: 150,
+    renderCell: (props) => <StatusComponent props={props?.row} />,
   },
   {
     field: "schedule",
-    headerName: "SCHEDULE",
-    width: 150,
-    renderCell: (params) => (
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Typography
-          variant="p"
-          sx={{
-            px: "16px",
-            py: "4px",
-            borderRadius: "20px",
-            fontSize: "12px",
-          }}
-        >
-          {params?.row?.schedule?.time}
-        </Typography>
-        <Typography
-          variant="p"
-          sx={{
-            px: "16px",
-            py: "4px",
-            borderRadius: "20px",
-            fontSize: "12px",
-          }}
-        >
-          {params?.row?.schedule?.date}
-        </Typography>
-      </Box>
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        SCHEDULE
+      </Typography>
     ),
+    width: 140,
+    renderCell: (props) => <ScheduleComponent props={props} />,
   },
   {
     field: "location",
-    headerName: "LOCATION",
-    width: 200,
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        LOCATION
+      </Typography>
+    ),
+    width: 150,
     renderCell: (props) => <ServiceProviderLocationAction props={props} />,
   },
   {
     field: "invoice",
-    headerName: "INVOICE",
-    width: 110,
-    renderCell: (props) => (
-      <Box>
-        {props?.row?.invoice === "Create" && (
-          <Typography sx={{ color: "#2196F3" }}>
-            {props?.row?.invoice}
-          </Typography>
-        )}
-        {props?.row?.invoice === "Send" && (
-          <Typography sx={{ color: "#14B8A6" }}>
-            {props?.row?.invoice}
-          </Typography>
-        )}
-        {props?.row?.invoice === "Ongoing" && (
-          <Typography sx={{ color: "#7FC008" }}>
-            {props?.row?.invoice}
-          </Typography>
-        )}
-      </Box>
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        INVOICE
+      </Typography>
     ),
+    width: 110,
+    renderCell: (props) => <InvoiceComponent props={props} />,
   },
   {
     field: "issues",
-    headerName: "ISSUES",
-    width: 140,
-    renderCell: (props) => <ServiceProviderRequestIssuesAction props={props} />,
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        ISSUES
+      </Typography>
+    ),
+    width: 150,
+    renderCell: (props) => (
+      <ServiceProviderRequestIssuesComponent props={props} />
+    ),
   },
   {
     field: "action",
-    headerName: "ACTION",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        ACTION
+      </Typography>
+    ),
     width: 100,
     renderCell: (props) => <ServiceProviderRequestAction props={props} />,
   },

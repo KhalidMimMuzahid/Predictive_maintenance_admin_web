@@ -1,4 +1,4 @@
-import { Delete, Equalizer, MoreVert, Stop } from "@mui/icons-material";
+import { MoreVert } from "@mui/icons-material";
 import { Box, IconButton, MenuItem, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { StyledMenu } from "../../../../../../Customer/styleComponents";
@@ -30,12 +30,14 @@ const RevenueAction = ({ props }) => {
           <MoreVert />
         </IconButton>
 
-        {/* <StyledMenu anchorEl={anchorEl} open={openEl} onClose={handleClose}>
+        <StyledMenu anchorEl={anchorEl} open={openEl} onClose={handleClose}>
           <Box sx={{ background: "#F4F2FF" }}>
             <MenuItem
-              //   onClick={() => {
-              //     setViewOpen(!viewOpen);
-              //   }}
+              // onClick={() => {
+              //   setViewReservationDetailsMainModalOpen(
+              //     !viewReservationDetailsMainModalOpen
+              //   );
+              // }}
               sx={{ display: "flex", gap: "0 6px" }}
             >
               <VisibilityOutlinedIcon />
@@ -45,9 +47,9 @@ const RevenueAction = ({ props }) => {
             </MenuItem>
 
             <MenuItem
-              //   onClick={() => {
-              //     setEditOpen(!editOpen);
-              //   }}
+              onClick={() => {
+                setEditOpen(!editOpen);
+              }}
               sx={{ display: "flex", gap: "0 6px" }}
             >
               <EditOutlinedIcon />
@@ -62,9 +64,9 @@ const RevenueAction = ({ props }) => {
               </Typography>
             </MenuItem>
             <MenuItem
-              //   onClick={() => {
-              //     setDeleteOpen(!deleteOpen);
-              //   }}
+              onClick={() => {
+                setDeleteOpen(!deleteOpen);
+              }}
               sx={{ display: "flex", gap: "0 6px" }}
             >
               <DeleteOutlineOutlinedIcon />
@@ -73,7 +75,7 @@ const RevenueAction = ({ props }) => {
               </Typography>
             </MenuItem>
           </Box>
-        </StyledMenu> */}
+        </StyledMenu>
       </Box>
     </>
   );

@@ -7,7 +7,13 @@ import InvoiceAction from "./InvoiceAction";
 export const columns = [
   {
     field: "customerDetails",
-    headerName: "CUSTOMER NAME",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        CUSTOMER NAME
+      </Typography>
+    ),
     width: 180,
     renderCell: (params) => (
       <Box
@@ -34,7 +40,13 @@ export const columns = [
   },
   {
     field: "requestID",
-    headerName: "REQUEST ID",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        REQUEST ID
+      </Typography>
+    ),
     width: 150,
     renderCell: (props) => (
       <Typography
@@ -46,7 +58,13 @@ export const columns = [
   },
   {
     field: "status",
-    headerName: "STATUS",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        STATUS
+      </Typography>
+    ),
     width: 150,
     renderCell: (params) => (
       <Typography
@@ -66,8 +84,14 @@ export const columns = [
   },
   {
     field: "schedule",
-    headerName: "SCHEDULE",
-    width: 150,
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        SCHEDULE
+      </Typography>
+    ),
+    width: 140,
     renderCell: (params) => (
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Typography
@@ -97,25 +121,49 @@ export const columns = [
   },
   {
     field: "location",
-    headerName: "LOCATION",
-    width: 200,
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        LOCATION
+      </Typography>
+    ),
+    width: 150,
     renderCell: (props) => <ServiceProviderLocationAction props={props} />,
   },
   {
     field: "invoice",
-    headerName: "INVOICE",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        INVOICE
+      </Typography>
+    ),
     width: 110,
     renderCell: (props) => <InvoiceAction props={props} />,
   },
   {
     field: "issues",
-    headerName: "ISSUES",
-    width: 140,
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        ISSUES
+      </Typography>
+    ),
+    width: 150,
     renderCell: (props) => <ServiceProviderRequestIssuesAction props={props} />,
   },
   {
     field: "action",
-    headerName: "ACTION",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        ACTION
+      </Typography>
+    ),
     width: 100,
     renderCell: (props) => <ServiceProviderRequestAction props={props} />,
   },

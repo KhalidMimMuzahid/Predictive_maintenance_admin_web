@@ -1,4 +1,4 @@
-import { Delete, Equalizer, MoreVert, Stop } from "@mui/icons-material";
+import { MoreVert } from "@mui/icons-material";
 import { Box, IconButton, MenuItem, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { StyledMenu } from "../../../../../../Customer/styleComponents";

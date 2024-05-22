@@ -1,7 +1,12 @@
-import { Box, Button } from "@mui/material";
-import React from "react";
+import { TabContext, TabList, TabPanel } from "@material-ui/lab";
+import { Box, Button, Tab } from "@mui/material";
+import React, { useState } from "react";
 
 const Header = ({ addMemberOpen, setAddMemberOpen }) => {
+  const [value, setValue] = useState("support_engineer");
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
     <Box>
       <Box
@@ -11,47 +16,28 @@ const Header = ({ addMemberOpen, setAddMemberOpen }) => {
           alignItems: "center",
         }}
       >
-        <Box>
-          <Button
-            sx={{
-              //   borderBottom: "4px solid #24459C",
-              color: "#24459C",
-              fontSize: "18px",
-              fontWeight: "500",
-              paddingBottom: "20px",
-            }}
-          >
-            All
-          </Button>
-          <Button
-            sx={{
-              borderBottom: "4px solid #24459C",
-              color: "#24459C",
-              fontSize: "18px",
-              fontWeight: "500",
-              paddingBottom: "20px",
-            }}
-          >
-            Support Engineers
-          </Button>
-          <Button
-            sx={{
-              //   borderBottom: "4px solid #24459C",
-              color: "#24459C",
-              fontSize: "18px",
-              fontWeight: "500",
-              paddingBottom: "20px",
-            }}
-          >
-            Others
-          </Button>
-        </Box>
+        <TabContext value={value}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+              textColor="primary"
+              indicatorColor="primary"
+            >
+              <Tab label="All" value="all" />
+              <Tab label="Support Engineer" value="support_engineer" />
+              <Tab label="Others" value="others" />
+            </TabList>
+          </Box>
+        </TabContext>
         <Button
           sx={{
-            background: "#24459C",
-            color: "#E6E8EB",
-            fontSize: "14px",
-            fontWeight: "600",
+            backgroundColor: "#24459c",
+            color: "white",
+            textTransform: "none",
+            borderRadius: "8px",
+            padding: "6px 32px",
+            fontWeight: "500",
             "&:hover": {
               background: "#24459C",
             },

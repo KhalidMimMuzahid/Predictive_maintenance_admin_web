@@ -12,11 +12,9 @@ import CallModal from "./modal/CallModal";
 const ServiceProviderDetails = () => {
   const [isRootServiceProviderPage, setIsRootServiceProviderPage] =
     useOutletContext();
-  console.log(isRootServiceProviderPage);
   const [serviceProviderDetails, setServiceProviderDetails] = useState({});
   const [messageModalOpen, setMessageModalOpen] = useState(false);
   const [callModalOpen, setCallModalOpen] = useState(false);
-  const { uid } = useParams();
 
   useEffect(() => {
     setIsRootServiceProviderPage(false);
@@ -124,11 +122,7 @@ const ServiceProviderDetails = () => {
               borderRadius: "5px",
             }}
           >
-            <LeftSection
-              serviceProviderDetails={serviceProviderDetails}
-              // wallet={wallet}
-              // subscriptionPackage={subscriptionPackage}
-            />
+            <LeftSection serviceProviderDetails={serviceProviderDetails} />
           </Box>
           {/* right sidebar  */}
           <Box

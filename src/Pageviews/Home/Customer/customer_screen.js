@@ -1,4 +1,4 @@
-import { AddOutlined, Download, MoreVert, Upload } from "@mui/icons-material";
+import { Upload } from "@mui/icons-material";
 import { useContext, useState } from "react";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { useStyle } from "./styleComponents";

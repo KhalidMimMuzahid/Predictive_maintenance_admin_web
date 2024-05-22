@@ -1,64 +1,56 @@
 import { Box, Typography } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import RevenueAction from "./RevenueAction";
+import MonthComponent from "./MonthComponent";
+import TotalServiceComponent from "./TotalServiceComponent";
+import TotalAmountComponent from "./TotalAmountComponent";
 
 export const columns = [
   {
     field: "month",
-    headerName: "MONTH",
-    width: 350,
-    renderCell: (params) => (
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "0 16px",
-        }}
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
       >
-        <Box style={{ display: "flex", flexDirection: "column" }}>
-          <Typography
-            sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
-          >
-            {params.row?.month}
-          </Typography>
-        </Box>
-      </Box>
+        MONTH
+      </Typography>
     ),
+    width: 350,
+    renderCell: (props) => <MonthComponent props={props?.row} />,
   },
   {
     field: "total_service",
-    headerName: "TOTAL SERVICE",
-    width: 350,
-    renderCell: (props) => (
+    headerName: (
       <Typography
-        sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
       >
-        {props?.row?.total_service}
+        TOTAL SERVICE
       </Typography>
     ),
+    width: 350,
+    renderCell: (props) => <TotalServiceComponent props={props?.row} />,
   },
   {
     field: "total_amount",
-    headerName: "TOTAL AMOUNT",
-    width: 300,
-    renderCell: (params) => (
+    headerName: (
       <Typography
-        variant="p"
-        sx={{
-          fontSize: "14px",
-          fontWeight: "600",
-        }}
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
       >
-        ¥{params?.row?.total_amount}
+        TOTAL AMOUNT
       </Typography>
     ),
+    width: 300,
+    renderCell: (props) => <TotalAmountComponent props={props?.row} />,
   },
   {
     field: "action",
-    headerName: "ACTION",
+    headerName: (
+      <Typography
+        sx={{ fontWeight: "600", fontSize: "14px", color: "#6E6893" }}
+      >
+        ACTION
+      </Typography>
+    ),
     width: 100,
-    renderCell: (props) => <RevenueAction props={props} />,
+    renderCell: (props) => <RevenueAction props={props?.row} />,
   },
 ];

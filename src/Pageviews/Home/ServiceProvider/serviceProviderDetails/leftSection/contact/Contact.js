@@ -4,7 +4,6 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import DnsOutlinedIcon from "@mui/icons-material/DnsOutlined";
 import { Box, Typography } from "@mui/material";
 const Contact = ({ serviceProviderDetails }) => {
-  console.log(serviceProviderDetails);
   return (
     <Box sx={{ border: "solid 1px #F2F2F2", borderRadius: "4px" }}>
       <Box sx={{ color: "#000000", fontWeight: "500", padding: "12px" }}>

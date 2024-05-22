@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import LocationModal from "../modal/LocationModal";
 import IssuesModal from "../modal/IssuesModal";
 
-const ServiceProviderRequestIssuesAction = ({ props }) => {
+const ServiceProviderRequestIssuesComponent = ({ props }) => {
   const [issuesOpen, setIssuesOpen] = useState(false);
   return (
     <Box>
@@ -32,4 +32,4 @@ const ServiceProviderRequestIssuesAction = ({ props }) => {
   );
 };
 
-export default ServiceProviderRequestIssuesAction;
+export default ServiceProviderRequestIssuesComponent;

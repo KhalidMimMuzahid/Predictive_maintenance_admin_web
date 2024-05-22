@@ -4,8 +4,18 @@ import orderRecieved from "../../../../../../Assets/Home/service_provider/OrderR
 import orderComplete from "../../../../../../Assets/Home/service_provider/CompleteOrders.png";
 import cancellation from "../../../../../../Assets/Home/service_provider/Cancellation.png";
 import revenue from "../../../../../../Assets/Home/service_provider/Revenue.png";
+import { useGetReservationCountByServiceProviderCompanyQuery } from "../../../../../../features/reservation/reservationSlice";
+
+import { useParams } from "react-router-dom";
 
 const Orders = () => {
+  const { _id } = useParams();
+
+  const {
+    data: reservationCountData,
+    isLoading,
+    isError,
+  } = useGetReservationCountByServiceProviderCompanyQuery(_id);
   return (
     <Box
       sx={{
@@ -33,7 +43,7 @@ const Orders = () => {
           <Typography
             sx={{ fontSize: "18px", fontWeight: "700", color: "#243972" }}
           >
-            7,890
+            {reservationCountData?.data?.orderReceivedReservationsCount || 0}
           </Typography>
         </Box>
         <img
@@ -61,7 +71,7 @@ const Orders = () => {
           <Typography
             sx={{ fontSize: "18px", fontWeight: "700", color: "#243972" }}
           >
-            7,890
+            {reservationCountData?.data?.orderCompletedReservationsCount || 0}
           </Typography>
         </Box>
         <img
@@ -89,7 +99,7 @@ const Orders = () => {
           <Typography
             sx={{ fontSize: "18px", fontWeight: "700", color: "#243972" }}
           >
-            7,890
+            {reservationCountData?.data?.orderCanceledReservationsCount || 0}
           </Typography>
         </Box>
         <img
@@ -117,7 +127,7 @@ const Orders = () => {
           <Typography
             sx={{ fontSize: "18px", fontWeight: "700", color: "#243972" }}
           >
-            7,890
+            ...
           </Typography>
         </Box>
         <img src={revenue} style={{ width: "32px", height: "32px" }} alt="" />

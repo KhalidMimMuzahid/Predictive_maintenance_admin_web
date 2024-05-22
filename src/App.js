@@ -196,7 +196,7 @@ function App() {
                   <Route path="/" element={<DashboardScreen />} />
                   <Route path="/dashboard" element={<DashboardScreen />} />
 
-                  {/* service provider startssss */}
+                  {/* service provider start */}
 
                   <Route
                     path="/service-provider"
@@ -207,46 +207,46 @@ function App() {
                       element={<ServiceProviderPageDefault />}
                     />
                     <Route
-                      path="/service-provider/:uid"
+                      path="/service-provider/:_id"
                       element={<ServiceProviderDetails />}
                     >
                       {/* start  */}
                       <Route
-                        path="/service-provider/:uid"
+                        path="/service-provider/:_id"
                         // element={<ServiceProviderRequest />}
                       >
                         <Route
-                          path="/service-provider/:uid/request"
+                          path="/service-provider/:_id/request"
                           element={<ServiceProviderRequest />}
                         />
                         <Route
-                          path="/service-provider/:uid/revenue"
+                          path="/service-provider/:_id/revenue"
                           element={<Revenue />}
                         />
                         <Route
-                          path="/service-provider/:uid/team"
+                          path="/service-provider/:_id/team"
                           element={<Team />}
                         />
                         <Route
-                          path="/service-provider/:uid/schedule"
+                          path="/service-provider/:_id/schedule"
                           element={<Schedule />}
                         />
                         <Route
-                          path="/service-provider/:uid/setting"
+                          path="/service-provider/:_id/setting"
                           element={<Settings />}
                         />
                       </Route>
                       {/* end  */}
                       <Route
-                        path="/service-provider/:uid/machine-status"
+                        path="/service-provider/:_id/machine-status"
                         element={<MachineStatus />}
                       />
                       <Route
-                        path="/service-provider/:uid/invoice"
+                        path="/service-provider/:_id/invoice"
                         element={<Invoice />}
                       />
                       <Route
-                        path="/service-provider/:uid/request"
+                        path="/service-provider/:_id/request"
                         element={<Request />}
                       />
                     </Route>
