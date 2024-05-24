@@ -20,7 +20,19 @@ export const serviceProviderApi = createApi({
         "/service-provider-company/get-all-service-provider-companies",
       providesTags: [],
     }),
+    getServiceProviderInfoById: builder.query({
+      query: (_id) =>
+        `/service-provider-company/service-provider-company-by_id?serviceProviderCompany=${_id}`,
+    }),
+    getServiceProviderAllMembersById: builder.query({
+      query: (_id) =>
+        `/service-provider-company//get-all-members-for-service-provider-company?serviceProviderCompany=${_id}`,
+    }),
   }),
 });
 
-export const { useGetServiceProvidersQuery } = serviceProviderApi;
+export const {
+  useGetServiceProvidersQuery,
+  useGetServiceProviderInfoByIdQuery,
+  useGetServiceProviderAllMembersByIdQuery,
+} = serviceProviderApi;

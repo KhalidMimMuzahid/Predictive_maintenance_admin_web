@@ -4,6 +4,7 @@ import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 
 const TeamViewModal = ({ teamViewOpen, setTeamViewOpen, props }) => {
+  console.log(props);
   return (
     <Modal
       sx={{
@@ -101,7 +102,7 @@ const TeamViewModal = ({ teamViewOpen, setTeamViewOpen, props }) => {
                 <Typography
                   sx={{ color: "#6B7280", fontSize: "14px", fontWeight: "600" }}
                 >
-                  {props?.row?.name}
+                  {props?.name?.firstName + " " + props?.name?.lastName}
                 </Typography>
               </Box>
               <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
@@ -126,7 +127,7 @@ const TeamViewModal = ({ teamViewOpen, setTeamViewOpen, props }) => {
                 <Typography
                   sx={{ color: "#6B7280", fontSize: "14px", fontWeight: "600" }}
                 >
-                  {props?.row?.position}
+                  {props?.currentState?.designation}
                 </Typography>
               </Box>
               <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
@@ -151,7 +152,7 @@ const TeamViewModal = ({ teamViewOpen, setTeamViewOpen, props }) => {
                 <Typography
                   sx={{ color: "#6B7280", fontSize: "14px", fontWeight: "600" }}
                 >
-                  {props?.row?.phone}
+                  {props?.user?.phone || "No Data Found"}
                 </Typography>
               </Box>
               <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
@@ -201,7 +202,7 @@ const TeamViewModal = ({ teamViewOpen, setTeamViewOpen, props }) => {
                 <Typography
                   sx={{ color: "#2196F3", fontSize: "14px", fontWeight: "600" }}
                 >
-                  {props?.row?.joined}
+                  {/* {props?.row?.joined} */}
                 </Typography>
               </Box>
               <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />

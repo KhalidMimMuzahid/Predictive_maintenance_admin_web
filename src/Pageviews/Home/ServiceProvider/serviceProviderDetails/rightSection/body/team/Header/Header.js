@@ -2,8 +2,7 @@ import { TabContext, TabList, TabPanel } from "@material-ui/lab";
 import { Box, Button, Tab } from "@mui/material";
 import React, { useState } from "react";
 
-const Header = ({ addMemberOpen, setAddMemberOpen }) => {
-  const [value, setValue] = useState("support_engineer");
+const Header = ({ addMemberOpen, setAddMemberOpen, value, setValue }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -20,13 +19,15 @@ const Header = ({ addMemberOpen, setAddMemberOpen }) => {
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList
               onChange={handleChange}
-              aria-label="lab API tabs example"
+              aria-label="Service Provider Members"
               textColor="primary"
               indicatorColor="primary"
             >
               <Tab label="All" value="all" />
-              <Tab label="Support Engineer" value="support_engineer" />
-              <Tab label="Others" value="others" />
+              <Tab label="Admin" value="admin" />
+              <Tab label="Sub-Admin" value="sub_admin" />
+              <Tab label="Branch Manager" value="branch_manager" />
+              <Tab label="Engineers" value="engineers" />
             </TabList>
           </Box>
         </TabContext>

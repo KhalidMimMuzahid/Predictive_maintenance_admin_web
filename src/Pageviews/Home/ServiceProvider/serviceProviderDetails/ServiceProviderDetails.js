@@ -8,18 +8,21 @@ import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import MessageModal from "./modal/MessageModal";
 import CallModal from "./modal/CallModal";
+import { useGetServiceProviderInfoByIdQuery } from "../../../../features/serviceProvider/serviceProviderSlice";
 
 const ServiceProviderDetails = () => {
-  const [isRootServiceProviderPage, setIsRootServiceProviderPage] =
-    useOutletContext();
-  const [serviceProviderDetails, setServiceProviderDetails] = useState({});
+  const [
+    isRootServiceProviderPage,
+    setIsRootServiceProviderPage,
+    isDetailsScreens,
+  ] = useOutletContext();
   const [messageModalOpen, setMessageModalOpen] = useState(false);
   const [callModalOpen, setCallModalOpen] = useState(false);
-
+  const { _id } = useParams();
+  const { data: serviceProviderData } = useGetServiceProviderInfoByIdQuery(_id);
   useEffect(() => {
     setIsRootServiceProviderPage(false);
   }, [isRootServiceProviderPage, setIsRootServiceProviderPage]);
-
   return (
     <>
       {messageModalOpen && (
@@ -35,83 +38,86 @@ const ServiceProviderDetails = () => {
         />
       )}
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "0px 0 32px 0",
-          }}
-        >
-          <Box sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-            <Box sx={{ fontSize: "24px", fontWeight: "700", color: "#000000" }}>
-              {serviceProviderDetails?.companyBasicInfo?.companyName ||
-                "No Company Name Found"}
-            </Box>
-            <Box sx={{ display: "flex", gap: "4px" }}>
-              <Box>Dashboard / </Box>
-              <Box> Service Provider /</Box>
-              <Box sx={{ fontWeight: "600", color: "#24459C" }}>
-                {" "}
-                {serviceProviderDetails?.companyBasicInfo?.companyName ||
+        {isDetailsScreens && (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "0px 0 32px 0",
+            }}
+          >
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <Box
+                sx={{ fontSize: "24px", fontWeight: "700", color: "#000000" }}
+              >
+                {serviceProviderData?.data?.companyName ||
                   "No Company Name Found"}
               </Box>
+              <Box sx={{ display: "flex", gap: "4px" }}>
+                <Box>Dashboard / </Box>
+                <Box> Service Provider /</Box>
+                <Box sx={{ fontWeight: "600", color: "#24459C" }}>
+                  {serviceProviderData?.data?.companyName ||
+                    "No Company Name Found"}
+                </Box>
+              </Box>
+            </Box>
+            <Box sx={{ display: "flex", gap: "12px" }}>
+              <Button
+                onClick={() => {
+                  setMessageModalOpen(!messageModalOpen);
+                }}
+                sx={{
+                  height: "48px",
+                  width: "48px",
+                  background: "#DEE5F7",
+                  borderRadius: "6px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "#565B95",
+                }}
+              >
+                <EmailOutlinedIcon />
+              </Button>
+              <Button
+                onClick={() => {
+                  setCallModalOpen(!callModalOpen);
+                }}
+                sx={{
+                  height: "48px",
+                  width: "48px",
+                  background: "#DEE5F7",
+                  borderRadius: "6px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "#565B95",
+                }}
+              >
+                <PhoneOutlinedIcon />
+              </Button>
+              <Button
+                sx={{
+                  height: "48px",
+                  width: "48px",
+                  background: "#24459C",
+                  borderRadius: "6px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "white",
+                  "&:hover": {
+                    background: "#24459C",
+                  },
+                }}
+              >
+                <InfoOutlinedIcon />
+              </Button>
             </Box>
           </Box>
-          <Box sx={{ display: "flex", gap: "12px" }}>
-            <Button
-              onClick={() => {
-                setMessageModalOpen(!messageModalOpen);
-              }}
-              sx={{
-                height: "48px",
-                width: "48px",
-                background: "#DEE5F7",
-                borderRadius: "6px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#565B95",
-              }}
-            >
-              <EmailOutlinedIcon />
-            </Button>
-            <Button
-              onClick={() => {
-                setCallModalOpen(!callModalOpen);
-              }}
-              sx={{
-                height: "48px",
-                width: "48px",
-                background: "#DEE5F7",
-                borderRadius: "6px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#565B95",
-              }}
-            >
-              <PhoneOutlinedIcon />
-            </Button>
-            <Button
-              sx={{
-                height: "48px",
-                width: "48px",
-                background: "#24459C",
-                borderRadius: "6px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "white",
-                "&:hover": {
-                  background: "#24459C",
-                },
-              }}
-            >
-              <InfoOutlinedIcon />
-            </Button>
-          </Box>
-        </Box>
+        )}
         <Box sx={{ display: "flex", flexDirection: "row", gap: "20px" }}>
           {/* left sidebar  */}
           <Box
@@ -122,7 +128,7 @@ const ServiceProviderDetails = () => {
               borderRadius: "5px",
             }}
           >
-            <LeftSection serviceProviderDetails={serviceProviderDetails} />
+            <LeftSection serviceProviderDetails={serviceProviderData?.data} />
           </Box>
           {/* right sidebar  */}
           <Box
@@ -135,7 +141,7 @@ const ServiceProviderDetails = () => {
               borderRadius: "5px",
             }}
           >
-            <RightSection serviceProviderDetails={serviceProviderDetails} />
+            <RightSection serviceProviderDetails={serviceProviderData?.data} />
           </Box>
         </Box>
       </Box>

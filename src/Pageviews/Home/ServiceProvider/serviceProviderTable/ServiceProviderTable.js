@@ -45,12 +45,12 @@ const ServiceProviderTable = ({
           }}
         >
           <Typography sx={{ color: "#5A6872", fontWeight: "600" }}>
-            Recent Customers
+            Recent Service Providers
           </Typography>
           <Button
             sx={{
-              color: "#24459C",
               textTransform: "none",
+              color: "#24459C",
               fontWeight: "500",
             }}
             onClick={() => setIsRootServiceProviderPage(false)}

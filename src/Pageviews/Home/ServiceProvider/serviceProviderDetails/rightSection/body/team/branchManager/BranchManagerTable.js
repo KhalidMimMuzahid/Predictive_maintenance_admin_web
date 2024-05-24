@@ -1,31 +1,16 @@
-import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useContext } from "react";
-import { AppContext } from "../../../../../../../contextApi/appProvider";
-import { columns } from "./componant/constant";
-import { useParams } from "react-router-dom";
-import { useGetAllScheduledReservationRequestByCompanyIdQuery } from "../../../../../../../features/reservation/reservationSlice";
-import Loader from "../../../../../../../Utils/Loader";
+import { Box, Typography } from "@mui/material";
+import { AppContext } from "../../../../../../../../contextApi/appProvider";
+import { columns } from "../allMembers/componant/constant";
 
-const Schedule = () => {
+const BranchManagerTable = ({ branchManager }) => {
   const { setDownloadData } = useContext(AppContext);
-  const { _id } = useParams();
-  const {
-    data: scheduleData,
-    isLoading,
-    isError,
-  } = useGetAllScheduledReservationRequestByCompanyIdQuery(_id);
-  console.log("Schedule", scheduleData?.data);
+  console.log(branchManager?.length);
 
   return (
-    <Box
-      sx={{
-        margin: "auto",
-        padding: "0 20px",
-      }}
-    >
-      {isLoading && <Loader />}
-      {scheduleData?.data?.length > 0 && (
+    <Box>
+      {branchManager?.length > 0 && (
         <DataGrid
           sx={{
             borderRadius: "0px",
@@ -37,7 +22,7 @@ const Schedule = () => {
               background: "#F4F2FF",
             },
           }}
-          rows={scheduleData?.data?.map((data, id) => {
+          rows={branchManager?.map((data, id) => {
             return { ...data, id };
           })}
           columns={columns}
@@ -59,13 +44,26 @@ const Schedule = () => {
             });
             setDownloadData({
               selectedRowData,
-              fileName: "Service Provider Customer Request",
+              fileName: "Service Provider Teams",
             });
           }}
         />
+      )}
+      {branchManager?.length <= 0 && (
+        <Typography
+          sx={{
+            marginTop: "28px",
+            textAlign: "center",
+            fontSize: "24px",
+            fontWeight: "600",
+            color: "red",
+          }}
+        >
+          No Sub Admin
+        </Typography>
       )}
     </Box>
   );
 };
 
-export default Schedule;
+export default BranchManagerTable;

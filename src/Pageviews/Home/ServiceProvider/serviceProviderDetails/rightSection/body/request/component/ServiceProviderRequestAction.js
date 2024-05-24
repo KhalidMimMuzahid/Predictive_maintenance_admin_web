@@ -45,13 +45,6 @@ const ServiceProviderRequestAction = ({ props }) => {
           props={props}
         />
       )}
-      {/* {editOpen && (
-        <EditModal
-          editOpen={editOpen}
-          setEditOpen={setEditOpen}
-          props={props}
-        />
-      )} */}
       {deleteOpen && (
         <DeleteModal
           deleteOpen={deleteOpen}

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import editIcon from "../../../../../../../../../../../Assets/Home/service_provider/editIcon.png";
 
-const CustomerDetails = () => {
+const CustomerDetails = ({ customerDetails }) => {
   return (
     <Box sx={{ paddingY: "12px", paddingX: "24px" }}>
       <Box
@@ -49,7 +49,7 @@ const CustomerDetails = () => {
             fontSize: "14px",
           }}
         >
-          alma.lawson@example.com
+          {customerDetails?.email}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -79,7 +79,7 @@ const CustomerDetails = () => {
             fontSize: "14px",
           }}
         >
-          (209) 555-0104
+          {customerDetails?.showaUser?.phone}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -109,7 +109,7 @@ const CustomerDetails = () => {
             fontSize: "14px",
           }}
         >
-          Japan
+          {customerDetails?.showaUser?.addresses[0].address?.country}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -139,7 +139,7 @@ const CustomerDetails = () => {
             fontSize: "14px",
           }}
         >
-          Tokyo
+          {customerDetails?.showaUser?.addresses[0].address?.state}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -169,7 +169,7 @@ const CustomerDetails = () => {
             fontSize: "14px",
           }}
         >
-          6391 Elgin St. Celina, Delaware 10299
+          {customerDetails?.showaUser?.addresses[0].address?.street}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -198,7 +198,9 @@ const CustomerDetails = () => {
             fontSize: "14px",
           }}
         >
-          2715 Ash Dr. San Jose, South Dakota 83475
+          {customerDetails?.showaUser?.addresses[0].address?.details +
+            " " +
+            customerDetails?.showaUser?.addresses[0].address?.roomNumber}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />

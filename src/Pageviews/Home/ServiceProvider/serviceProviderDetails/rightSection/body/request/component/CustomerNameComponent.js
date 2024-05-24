@@ -1,7 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import { useGetCustomerDetailsQuery } from "../../../../../../../../features/customers/customersSlice";
 
 const CustomerNameComponent = ({ props }) => {
+  const { data: customerDetails } = useGetCustomerDetailsQuery(props?.user);
+
   return (
     <Box
       sx={{
@@ -16,10 +19,12 @@ const CustomerNameComponent = ({ props }) => {
         <Typography
           sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
         >
-          {props?.customerDetails?.name}
+          {customerDetails?.data?.showaUser?.name?.firstName +
+            " " +
+            customerDetails?.data?.showaUser?.name?.lastName}
         </Typography>
         <Typography variant="p" sx={{ fontSize: "12px", color: "#6E6893" }}>
-          {props?.customerDetails?.phone}
+          {customerDetails?.data?.showaUser?.phone}
         </Typography>
       </Box>
     </Box>

@@ -30,7 +30,7 @@ export const columns = [
         REQUEST ID
       </Typography>
     ),
-    width: 150,
+    width: 130,
     renderCell: (props) => <RequestIdComponent props={props?.row} />,
   },
   {
@@ -42,7 +42,7 @@ export const columns = [
         STATUS
       </Typography>
     ),
-    width: 150,
+    width: 130,
     renderCell: (props) => <StatusComponent props={props?.row} />,
   },
   {
@@ -55,7 +55,7 @@ export const columns = [
       </Typography>
     ),
     width: 140,
-    renderCell: (props) => <ScheduleComponent props={props} />,
+    renderCell: (props) => <ScheduleComponent props={props?.row} />,
   },
   {
     field: "location",
@@ -66,8 +66,8 @@ export const columns = [
         LOCATION
       </Typography>
     ),
-    width: 150,
-    renderCell: (props) => <ServiceProviderLocationAction props={props} />,
+    width: 130,
+    renderCell: (props) => <ServiceProviderLocationAction props={props?.row} />,
   },
   {
     field: "invoice",
@@ -79,7 +79,7 @@ export const columns = [
       </Typography>
     ),
     width: 110,
-    renderCell: (props) => <InvoiceComponent props={props} />,
+    renderCell: (props) => <InvoiceComponent props={props?.row} />,
   },
   {
     field: "issues",
@@ -92,7 +92,7 @@ export const columns = [
     ),
     width: 150,
     renderCell: (props) => (
-      <ServiceProviderRequestIssuesComponent props={props} />
+      <ServiceProviderRequestIssuesComponent props={props?.row} />
     ),
   },
   {
@@ -105,6 +105,6 @@ export const columns = [
       </Typography>
     ),
     width: 100,
-    renderCell: (props) => <ServiceProviderRequestAction props={props} />,
+    renderCell: (props) => <ServiceProviderRequestAction props={props?.row} />,
   },
 ];

@@ -30,7 +30,7 @@ export const columns = [
         WHEN
       </Typography>
     ),
-    width: 200,
+    width: 190,
     renderCell: (props) => <WhenComponent props={props?.row} />,
   },
   {

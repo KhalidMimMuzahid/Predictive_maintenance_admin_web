@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import LeftSection from "./leftSection/LeftSection";
 import RightSection from "./rightSection/RightSection";
 import {
@@ -20,7 +20,30 @@ const CustomerDetails = () => {
   const { data: customerDetailsData } = useGetCustomerDetailsQuery(_id);
   const { data: walletData } = useGetCustomerWalletQuery(_id);
   const { data: subscriptionData } = useGetCustomerSubscriptionDataQuery(_id);
-  console.log(walletData);
+
+  // const [
+  //   isRootCustomerPage,
+  //   setIsRootCustomerPage,
+  //   viewCustomer,
+  //   setViewCustomer,
+  // ] = useOutletContext();
+  // console.log(
+  //   isRootCustomerPage,
+  //   setIsRootCustomerPage,
+  //   viewCustomer,
+  //   setViewCustomer
+  // );
+  // useEffect(() => {
+  //   setViewCustomer(
+  //     customerDetailsData?.data?.showaUser?.name?.firstName +
+  //       " " +
+  //       customerDetailsData?.data?.showaUser?.name?.lastName
+  //   );
+  // }, [
+  //   customerDetailsData?.data?.showaUser?.name?.firstName,
+  //   customerDetailsData?.data?.showaUser?.name?.lastName,
+  //   setViewCustomer,
+  // ]);
 
   return (
     <Box

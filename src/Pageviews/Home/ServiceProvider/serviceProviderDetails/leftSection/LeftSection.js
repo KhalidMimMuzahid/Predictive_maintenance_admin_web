@@ -3,7 +3,6 @@ import { Box } from "@mui/material";
 import Contact from "./contact/Contact";
 import Orders from "./orders/Orders";
 import Profile from "./profile/Profile";
-import { useParams } from "react-router-dom";
 
 const LeftSection = ({ serviceProviderDetails }) => {
   return (

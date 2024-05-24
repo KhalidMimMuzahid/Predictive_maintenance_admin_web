@@ -17,21 +17,14 @@ const InvoiceAction = ({ props }) => {
         />
       )}
       <Box>
-        <Box>
-          {props?.row?.invoice === "Create" && (
-            <Button
-              onClick={() => {
-                setViewCreateInvoice(!viewCreateInvoice);
-              }}
-              sx={{ color: "#2196F3" }}
-            >
-              {props?.row?.invoice}
-            </Button>
-          )}
-          {props?.row?.invoice === "Send" && (
-            <Button sx={{ color: "#14B8A6" }}>{props?.row?.invoice}</Button>
-          )}
-        </Box>
+        <Button
+          sx={{ color: "#2196F3", textTransform: "none", fontWeight: "600" }}
+          onClick={() => {
+            setViewCreateInvoice(!viewCreateInvoice);
+          }}
+        >
+          Create
+        </Button>
       </Box>
     </>
   );

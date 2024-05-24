@@ -1,8 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 
-const Profile = ({ user }) => {
+const Profile = ({ customerDetails }) => {
   return (
     <Box
       sx={{
@@ -16,8 +15,22 @@ const Profile = ({ user }) => {
         gap: "10px",
       }}
     >
-      {/* <img style={{}} src={user?.photoAddress} alt="" /> */}
-      <PermIdentityIcon
+      <img
+        style={{
+          width: "75px",
+          height: "75px",
+          borderRadius: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "4px",
+          background: "#F3F3F3",
+        }}
+        src={customerDetails?.showaUser?.photoUrl}
+        alt=""
+      />
+      {/* <PermIdentityIcon
         sx={{
           width: "75px",
           height: "75px",
@@ -29,18 +42,20 @@ const Profile = ({ user }) => {
           padding: "4px",
           background: "#F3F3F3",
         }}
-      />
+      /> */}
       <Typography
         variant="h4"
         sx={{ fontSize: "18px", color: "#838383", textTransform: "uppercase" }}
       >
-        Miyashiro Toshiaki
+        {customerDetails?.showaUser?.name?.firstName +
+          " " +
+          customerDetails?.showaUser?.name?.lastName}
       </Typography>
       <Typography sx={{ fontSize: "12px", color: "#65748B" }}>
-        miyashirotoshiaki@example.com
+        {customerDetails?.email}
       </Typography>
       <Typography sx={{ fontSize: "14px", color: "#65748B" }}>
-        +8192-522-1055
+        {customerDetails?.showaUser?.phone}
       </Typography>
     </Box>
   );

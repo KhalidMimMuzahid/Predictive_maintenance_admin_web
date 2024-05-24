@@ -23,6 +23,7 @@ const RightSide = () => {
         ],
       },
     ],
+    width: 400,
   };
   return (
     <Box
@@ -76,7 +77,9 @@ const RightSide = () => {
           </select>
         </Box>
       </Box>
-      <Box>
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
         <CanvasJSChart options={options} />
       </Box>
     </Box>

@@ -16,7 +16,6 @@ const PersonalInfo = () => {
 
   const { _id } = useParams();
   const { data: customerDetailsData } = useGetCustomerDetailsQuery(_id);
-  console.log(customerDetailsData?.data);
 
   const handleEdit = () => {
     setEditedValues({
@@ -81,7 +80,45 @@ const PersonalInfo = () => {
               width: "15%",
             }}
           >
-            Email:
+            Name
+          </Typography>
+          {!editMode ? (
+            <Typography
+              variant="p"
+              sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
+            >
+              {customerDetailsData?.data?.showaUser?.name?.firstName +
+                " " +
+                customerDetailsData?.data?.showaUser?.name?.lastName}
+            </Typography>
+          ) : (
+            <TextField
+              defaultValue={user?.email}
+              onChange={(e) => handleChange("email", e.target.value)}
+              variant="outlined"
+              fullWidth
+            />
+          )}
+        </Box>
+        <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "16px",
+            padding: "16px 24px",
+          }}
+        >
+          <Typography
+            variant="p"
+            sx={{
+              fontWeight: "700",
+              color: "#111827",
+              fontSize: "14px",
+              width: "15%",
+            }}
+          >
+            Email
           </Typography>
           {!editMode ? (
             <Typography
@@ -117,7 +154,7 @@ const PersonalInfo = () => {
               width: "15%",
             }}
           >
-            Phone:
+            Phone
           </Typography>
           {!editMode ? (
             <Typography
@@ -153,7 +190,7 @@ const PersonalInfo = () => {
               width: "15%",
             }}
           >
-            Date Of Birth:
+            Date Of Birth
           </Typography>
           {!editMode ? (
             <Typography
@@ -189,7 +226,7 @@ const PersonalInfo = () => {
               width: "15%",
             }}
           >
-            Gender:
+            Gender
           </Typography>
           {!editMode ? (
             <Typography

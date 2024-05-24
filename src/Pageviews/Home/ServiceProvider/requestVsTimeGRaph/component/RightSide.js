@@ -23,7 +23,7 @@ const RightSide = () => {
         ],
       },
     ],
-    width: 300,
+    width: 350,
   };
   return (
     <Box

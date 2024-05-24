@@ -2,6 +2,18 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const ScheduleComponent = ({ props }) => {
+  // Create a Date object from the date string
+  let dateObj = new Date(props?.reservationRequest?.schedule?.schedules[0]);
+
+  // Format the date to show only the date part
+  let options = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
+  let formattedDate = dateObj.toLocaleDateString("en-US", options);
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Typography
@@ -13,7 +25,7 @@ const ScheduleComponent = ({ props }) => {
           fontSize: "12px",
         }}
       >
-        {props?.schedule?.time}
+        {formattedDate}
       </Typography>
       <Typography
         variant="p"
@@ -24,7 +36,7 @@ const ScheduleComponent = ({ props }) => {
           fontSize: "12px",
         }}
       >
-        {props?.schedule?.date}
+        {/* {props?.schedule?.date} */}
       </Typography>
     </Box>
   );

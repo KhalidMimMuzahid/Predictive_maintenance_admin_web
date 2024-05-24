@@ -12,8 +12,8 @@ export const columns = [
         TEAM MEMBER NAME
       </Typography>
     ),
-    width: 200,
-    renderCell: (params) => (
+    width: 250,
+    renderCell: (props) => (
       <Box
         sx={{
           display: "flex",
@@ -37,7 +37,7 @@ export const columns = [
           <Typography
             sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
           >
-            {params.row?.name}
+            {props?.row?.name?.firstName + " " + props?.row?.name?.lastName}
           </Typography>
         </Box>
       </Box>
@@ -57,7 +57,7 @@ export const columns = [
       <Typography
         sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
       >
-        {props?.row?.position}
+        {props?.row?.currentState?.designation}
       </Typography>
     ),
   },
@@ -71,7 +71,7 @@ export const columns = [
       </Typography>
     ),
     width: 200,
-    renderCell: (params) => (
+    renderCell: (props) => (
       <Typography
         variant="p"
         sx={{
@@ -79,7 +79,7 @@ export const columns = [
           fontWeight: "600",
         }}
       >
-        {params?.row?.phone}
+        {props?.row?.user?.phone || "No Data Found"}
       </Typography>
     ),
   },
@@ -92,7 +92,7 @@ export const columns = [
         SERVICED
       </Typography>
     ),
-    width: 200,
+    width: 180,
     renderCell: (params) => (
       <Typography
         variant="p"
@@ -101,7 +101,7 @@ export const columns = [
           fontWeight: "600",
         }}
       >
-        {params?.row?.serviced}
+        Not Created Yet
       </Typography>
     ),
   },
@@ -114,7 +114,7 @@ export const columns = [
         JOINED
       </Typography>
     ),
-    width: 200,
+    width: 130,
     renderCell: (params) => (
       <Typography
         variant="p"
@@ -123,7 +123,7 @@ export const columns = [
           fontWeight: "600",
         }}
       >
-        {params?.row?.joined}
+        Not Yet
       </Typography>
     ),
   },
@@ -137,6 +137,6 @@ export const columns = [
       </Typography>
     ),
     width: 100,
-    renderCell: (props) => <TeamAction props={props} />,
+    renderCell: (props) => <TeamAction props={props?.row} />,
   },
 ];

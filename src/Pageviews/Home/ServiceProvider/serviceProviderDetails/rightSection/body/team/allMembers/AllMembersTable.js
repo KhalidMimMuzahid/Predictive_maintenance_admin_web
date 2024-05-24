@@ -1,31 +1,15 @@
-import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useContext } from "react";
-import { AppContext } from "../../../../../../../contextApi/appProvider";
+import { AppContext } from "../../../../../../../../contextApi/appProvider";
 import { columns } from "./componant/constant";
-import { useParams } from "react-router-dom";
-import { useGetAllScheduledReservationRequestByCompanyIdQuery } from "../../../../../../../features/reservation/reservationSlice";
-import Loader from "../../../../../../../Utils/Loader";
+import { Box } from "@mui/material";
 
-const Schedule = () => {
+const AllMembersTable = ({ allMembers }) => {
   const { setDownloadData } = useContext(AppContext);
-  const { _id } = useParams();
-  const {
-    data: scheduleData,
-    isLoading,
-    isError,
-  } = useGetAllScheduledReservationRequestByCompanyIdQuery(_id);
-  console.log("Schedule", scheduleData?.data);
 
   return (
-    <Box
-      sx={{
-        margin: "auto",
-        padding: "0 20px",
-      }}
-    >
-      {isLoading && <Loader />}
-      {scheduleData?.data?.length > 0 && (
+    <Box>
+      {allMembers?.length > 0 && (
         <DataGrid
           sx={{
             borderRadius: "0px",
@@ -37,7 +21,7 @@ const Schedule = () => {
               background: "#F4F2FF",
             },
           }}
-          rows={scheduleData?.data?.map((data, id) => {
+          rows={allMembers?.map((data, id) => {
             return { ...data, id };
           })}
           columns={columns}
@@ -59,7 +43,7 @@ const Schedule = () => {
             });
             setDownloadData({
               selectedRowData,
-              fileName: "Service Provider Customer Request",
+              fileName: "Service Provider Teams",
             });
           }}
         />
@@ -68,4 +52,4 @@ const Schedule = () => {
   );
 };
 
-export default Schedule;
+export default AllMembersTable;

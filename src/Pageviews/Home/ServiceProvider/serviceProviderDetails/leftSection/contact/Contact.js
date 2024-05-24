@@ -47,7 +47,8 @@ const Contact = ({ serviceProviderDetails }) => {
             <Typography
               sx={{ fontSize: "13px", fontWeight: "700", color: "#424E79" }}
             >
-              01832302170
+              {serviceProviderDetails?.serviceProviderAdmin?.phone ||
+                "No Data Found"}
             </Typography>
           </Box>
         </Box>
@@ -78,7 +79,7 @@ const Contact = ({ serviceProviderDetails }) => {
             <Typography
               sx={{ fontSize: "13px", fontWeight: "700", color: "#424E79" }}
             >
-              antt@.dev.gmail.com
+              {serviceProviderDetails?.serviceProviderAdmin?.email}
             </Typography>
           </Box>
         </Box>
@@ -109,7 +110,11 @@ const Contact = ({ serviceProviderDetails }) => {
             <Typography
               sx={{ fontSize: "13px", fontWeight: "700", color: "#424E79" }}
             >
-              {serviceProviderDetails?.companyBasicInfo?.address?.cityAddress}
+              {serviceProviderDetails?.address?.street +
+                ", " +
+                serviceProviderDetails?.address?.city +
+                ", " +
+                serviceProviderDetails?.address?.country}
             </Typography>
           </Box>
         </Box>

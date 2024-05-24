@@ -3,13 +3,17 @@ import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import React from "react";
 import LeftSection from "./leftSection/LeftSection";
 import RightSection from "./rightSection/RightSection";
+import { useGetCustomerDetailsQuery } from "../../../../../../../../features/customers/customersSlice";
 
 const ViewReservationDetailsMainModal = ({
   viewReservationDetailsMainModalOpen,
   setViewReservationDetailsMainModalOpen,
   props,
 }) => {
-  console.log(props);
+  const { data: customerDetails, isLoading } = useGetCustomerDetailsQuery(
+    props?.user
+  );
+  // console.log(customerDetails);
   return (
     <Modal
       sx={{
@@ -60,10 +64,13 @@ const ViewReservationDetailsMainModal = ({
         {/* Reservation Details */}
         <Box sx={{ display: "flex" }}>
           <Box>
-            <LeftSection props={props} />
+            <LeftSection customerDetails={customerDetails?.data} />
           </Box>
           <Box>
-            <RightSection />
+            <RightSection
+              customerDetails={customerDetails?.data}
+              props={props}
+            />
           </Box>
         </Box>
       </Container>

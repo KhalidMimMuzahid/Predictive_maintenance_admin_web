@@ -125,7 +125,7 @@ const CreateInvoiceModal = ({
                 <Typography
                   sx={{ fontSize: "16px", fontWeight: "600", color: "#5A6872" }}
                 >
-                  Showa Company Ltd
+                  Showa Co Ltd.
                 </Typography>
                 <Typography
                   sx={{ fontSize: "14px", fontWeight: "400", color: "#5A6872" }}

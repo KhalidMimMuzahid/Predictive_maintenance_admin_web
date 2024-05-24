@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const StatusComponent = ({ props }) => {
-  console.log(props);
   return (
     <Box>
       {props?.status === "pending" && (

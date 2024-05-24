@@ -2,8 +2,11 @@ import { Box, Button, FormControl, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useContext, useEffect, useState } from "react";
 import editIcon from "../../../../../../../../../../../Assets/Home/service_provider/editIcon.png";
+import { useGetMachineDataByIdQuery } from "../../../../../../../../../../../features/machine/machineSlice";
 
-const Machine = () => {
+const Machine = ({ machine }) => {
+  const { data: machineData } = useGetMachineDataByIdQuery(machine);
+  console.log(machineData?.data);
   return (
     <Box sx={{ paddingY: "12px", paddingX: "24px" }}>
       <Box
@@ -50,7 +53,7 @@ const Machine = () => {
             fontSize: "14px",
           }}
         >
-          Mitsubishi Corp LLC
+          {machineData?.data?.usedFor?.name}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -80,7 +83,11 @@ const Machine = () => {
             fontSize: "14px",
           }}
         >
-          291-1215, Miyoshicho, Fuchu-shi, Tokyo, Japan
+          {machineData?.data?.usedFor?.address?.street +
+            "," +
+            machineData?.data?.usedFor?.address?.city +
+            "," +
+            machineData?.data?.usedFor?.address?.country}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -110,7 +117,7 @@ const Machine = () => {
             fontSize: "14px",
           }}
         >
-          Laundry Shop
+          {machineData?.data?.usedFor?.type}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -140,7 +147,7 @@ const Machine = () => {
             fontSize: "14px",
           }}
         >
-          Container Washing Machine
+          {machineData?.data?.category}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -170,7 +177,7 @@ const Machine = () => {
             fontSize: "14px",
           }}
         >
-          Showa
+          {machineData?.data?.brand}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -199,7 +206,7 @@ const Machine = () => {
             fontSize: "14px",
           }}
         >
-          SHEM63W55N
+          {machineData?.data?.model}
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -228,7 +235,7 @@ const Machine = () => {
             fontSize: "14px",
           }}
         >
-          Level1, Machine 2
+          No Data
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -257,7 +264,7 @@ const Machine = () => {
             fontSize: "14px",
           }}
         >
-          Left Purpose
+          No Data
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -286,7 +293,7 @@ const Machine = () => {
             fontSize: "14px",
           }}
         >
-          787jkjsdujsksdj
+          No Data
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />

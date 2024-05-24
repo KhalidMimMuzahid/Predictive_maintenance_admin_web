@@ -14,7 +14,7 @@ export const columns = [
         MONTH
       </Typography>
     ),
-    width: 350,
+    width: 320,
     renderCell: (props) => <MonthComponent props={props?.row} />,
   },
   {

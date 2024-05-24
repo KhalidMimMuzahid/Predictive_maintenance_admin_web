@@ -4,7 +4,7 @@ import Profile from "./profile/Profile";
 import { Box } from "@mui/material";
 import Wallet from "./wallet/Wallet";
 
-const LeftSection = ({ props }) => {
+const LeftSection = ({ customerDetails }) => {
   return (
     <Box
       sx={{
@@ -14,9 +14,9 @@ const LeftSection = ({ props }) => {
         padding: "10px 16px 16px 16px",
       }}
     >
-      <Profile />
+      <Profile customerDetails={customerDetails} />
       <Wallet />
-      <Subscription />
+      <Subscription customerDetails={customerDetails} />
     </Box>
   );
 };

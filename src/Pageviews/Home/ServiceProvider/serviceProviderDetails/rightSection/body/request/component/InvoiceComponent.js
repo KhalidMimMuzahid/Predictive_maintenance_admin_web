@@ -1,19 +1,46 @@
-import { Box, Typography } from "@mui/material";
-import React from "react";
+import { Box, Button, Typography } from "@mui/material";
+import React, { useState } from "react";
+import CreateInvoiceModal from "../../schedule/modal/CreateInvoiceModal";
 
 const InvoiceComponent = ({ props }) => {
+  const [viewCreateInvoice, setViewCreateInvoice] = useState(false);
   return (
-    <Box>
-      {props?.invoice === "Create" && (
-        <Typography sx={{ color: "#2196F3" }}>{props?.invoice}</Typography>
+    <>
+      {viewCreateInvoice && (
+        <CreateInvoiceModal
+          viewCreateInvoice={viewCreateInvoice}
+          setViewCreateInvoice={setViewCreateInvoice}
+          props={props}
+        />
       )}
-      {props?.invoice === "Send" && (
-        <Typography sx={{ color: "#14B8A6" }}>{props?.invoice}</Typography>
+      <Box>
+        {/* {props?.invoiceNo === "Create" && (
+        <Typography sx={{ color: "#2196F3" }}>{props?.invoiceNo}</Typography>
       )}
-      {props?.invoice === "Ongoing" && (
-        <Typography sx={{ color: "#7FC008" }}>{props?.invoice}</Typography>
+      {props?.invoiceNo === "Send" && (
+        <Typography sx={{ color: "#14B8A6" }}>{props?.invoiceNo}</Typography>
       )}
-    </Box>
+      {props?.invoiceNo === "Ongoing" && (
+        <Typography sx={{ color: "#7FC008" }}>{props?.invoiceNo}</Typography>
+      )} */}
+        {props?.reservationRequest?.invoice ? (
+          <Button
+            sx={{ color: "#14B8A6", textTransform: "none", fontWeight: "600" }}
+          >
+            Send
+          </Button>
+        ) : (
+          <Button
+            onClick={() => {
+              setViewCreateInvoice(!viewCreateInvoice);
+            }}
+            sx={{ color: "#2196F3", textTransform: "none", fontWeight: "600" }}
+          >
+            Create
+          </Button>
+        )}
+      </Box>
+    </>
   );
 };
 

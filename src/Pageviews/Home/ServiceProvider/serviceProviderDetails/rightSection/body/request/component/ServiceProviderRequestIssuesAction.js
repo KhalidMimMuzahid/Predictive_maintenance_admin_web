@@ -1,15 +1,19 @@
 import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
-import LocationModal from "../modal/LocationModal";
 import IssuesModal from "../modal/IssuesModal";
 
 const ServiceProviderRequestIssuesComponent = ({ props }) => {
   const [issuesOpen, setIssuesOpen] = useState(false);
+
   return (
     <Box>
       <>
         {issuesOpen && (
-          <IssuesModal issuesOpen={issuesOpen} setIssuesOpen={setIssuesOpen} />
+          <IssuesModal
+            issuesOpen={issuesOpen}
+            setIssuesOpen={setIssuesOpen}
+            props={props?.reservationRequest?.problem}
+          />
         )}
       </>
       <Box>
@@ -18,6 +22,7 @@ const ServiceProviderRequestIssuesComponent = ({ props }) => {
             setIssuesOpen(!issuesOpen);
           }}
           sx={{
+            textTransform: "none",
             fontSize: "11px",
             background: "#F3FAE7",
             padding: "3px 8px",
@@ -25,7 +30,7 @@ const ServiceProviderRequestIssuesComponent = ({ props }) => {
             color: "#7FC008",
           }}
         >
-          {props?.row?.issues}
+          View Issue List
         </Button>
       </Box>
     </Box>

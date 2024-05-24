@@ -11,12 +11,28 @@ import {
 import React, { useState } from "react";
 import Header from "./Header/Header";
 import { Cancel, Search } from "@mui/icons-material";
-import TeamTable from "./teamTable/TeamTable";
-import AddTeamMemberModal from "./teamTable/modal/AddTeamMemberModal";
+import { useParams } from "react-router-dom";
+import { useGetServiceProviderAllMembersByIdQuery } from "../../../../../../../features/serviceProvider/serviceProviderSlice";
+import AddTeamMemberModal from "./allMembers/modal/AddTeamMemberModal";
+import AllMembersTable from "./allMembers/AllMembersTable";
+import AdminTable from "./admin/AdminTable";
+import SubAdminTable from "./SubAdmin/SubAdminTable";
+import BranchManagerTable from "./branchManager/BranchManagerTable";
+import EngineersTable from "./engineers/EngineersTable";
+import Loader from "../../../../../../../Utils/Loader";
 
 const Team = () => {
+  const [value, setValue] = useState("all");
   const [addMemberOpen, setAddMemberOpen] = useState(false);
   const handleChange = (e) => {};
+  const { _id } = useParams();
+
+  const {
+    data: teamData,
+    isLoading,
+    isError,
+    error,
+  } = useGetServiceProviderAllMembersByIdQuery(_id);
   return (
     <>
       {addMemberOpen && (
@@ -34,6 +50,8 @@ const Team = () => {
         <Header
           addMemberOpen={addMemberOpen}
           setAddMemberOpen={setAddMemberOpen}
+          value={value}
+          setValue={setValue}
         />
         <Box sx={{ padding: "28px 0px" }}>
           <Box
@@ -85,8 +103,26 @@ const Team = () => {
               </Select>
             </FormControl>
           </Box>
-          {/* Team Table */}
-          <TeamTable />
+          {isLoading && <Loader />}
+          {value === "all" && (
+            <AllMembersTable allMembers={teamData?.data?.allMembers} />
+          )}
+          {value === "admin" && <AdminTable admin={teamData?.data?.admin} />}
+          {value === "sub_admin" && (
+            <SubAdminTable
+              subAdmin={teamData?.data?.serviceProviderSubAdmins}
+            />
+          )}
+          {value === "branch_manager" && (
+            <BranchManagerTable
+              branchManager={teamData?.data?.serviceProviderBranchManagers}
+            />
+          )}
+          {value === "engineers" && (
+            <EngineersTable
+              engineers={teamData?.data?.serviceProviderEngineers}
+            />
+          )}
         </Box>
       </Box>
     </>

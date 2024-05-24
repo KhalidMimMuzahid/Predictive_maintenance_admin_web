@@ -12,7 +12,7 @@ export const columns = [
         MACHINE
       </Typography>
     ),
-    width: 300,
+    width: 280,
     renderCell: (params) => (
       <Box
         sx={{
@@ -59,7 +59,7 @@ export const columns = [
         MODEL
       </Typography>
     ),
-    width: 200,
+    width: 175,
     renderCell: (props) => (
       <Typography
         sx={{ color: "#25213B", fontSize: "14px", fontWeight: "400" }}
@@ -77,7 +77,7 @@ export const columns = [
         SENSOR STATUS
       </Typography>
     ),
-    width: 250,
+    width: 225,
     renderCell: (props) => (
       <Typography
         sx={{ color: "#25213B", fontSize: "14px", fontWeight: "400" }}

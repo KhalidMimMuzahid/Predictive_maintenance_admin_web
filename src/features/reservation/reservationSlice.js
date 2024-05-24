@@ -45,6 +45,15 @@ export const reservationApi = createApi({
       query: (serviceProviderCompany) =>
         `/reservation/get-reservation-count-by-service-provider-company?serviceProviderCompany=${serviceProviderCompany}`,
     }),
+    getReservationRequestByCompanyId: builder.query({
+      query: (_id) =>
+        `/reservation/all-reservation-by-service-provider-company?serviceProviderCompany=${_id}`,
+    }),
+
+    getAllScheduledReservationRequestByCompanyId: builder.query({
+      query: (_id) =>
+        `/reservation/all-scheduled-reservation-by-service-provider-company?serviceProviderCompany=662ccd0371f671e149afb41d`,
+    }),
   }),
 });
 
@@ -55,4 +64,6 @@ export const {
   useGetReservationRequestByIDQuery,
   useGetReservationOverviewQuery,
   useGetReservationCountByServiceProviderCompanyQuery,
+  useGetReservationRequestByCompanyIdQuery,
+  useGetAllScheduledReservationRequestByCompanyIdQuery,
 } = reservationApi;

@@ -1,8 +1,10 @@
-import { Box, Button, Typography } from "@mui/material";
 import ServiceProviderLocationAction from "../../request/component/ServiceProviderLocationAction";
 import ServiceProviderRequestIssuesAction from "../../request/component/ServiceProviderRequestIssuesAction";
 import ServiceProviderRequestAction from "../../request/component/ServiceProviderRequestAction";
 import InvoiceAction from "./InvoiceAction";
+import CustomerNameComponent from "../../request/component/CustomerNameComponent";
+import ScheduleComponent from "../../request/component/ScheduleComponent";
+import { Typography } from "@mui/material";
 
 export const columns = [
   {
@@ -15,28 +17,7 @@ export const columns = [
       </Typography>
     ),
     width: 180,
-    renderCell: (params) => (
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "0 16px",
-        }}
-      >
-        <Box style={{ display: "flex", flexDirection: "column" }}>
-          <Typography
-            sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
-          >
-            {params.row.customerDetails?.name}
-          </Typography>
-          <Typography variant="p" sx={{ fontSize: "12px", color: "#6E6893" }}>
-            {params.row.customerDetails?.phone}
-          </Typography>
-        </Box>
-      </Box>
-    ),
+    renderCell: (props) => <CustomerNameComponent props={props?.row} />,
   },
   {
     field: "requestID",
@@ -52,7 +33,7 @@ export const columns = [
       <Typography
         sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
       >
-        {props?.row?.requestID}
+        {props?.row?.reservationRequest?.requestId}
       </Typography>
     ),
   },
@@ -65,8 +46,8 @@ export const columns = [
         STATUS
       </Typography>
     ),
-    width: 150,
-    renderCell: (params) => (
+    width: 120,
+    renderCell: (props) => (
       <Typography
         variant="p"
         sx={{
@@ -78,7 +59,9 @@ export const columns = [
           border: "1px solid #FFA503",
         }}
       >
-        {params?.row?.status}
+        {props?.row?.reservationRequest?.status.charAt(0).toUpperCase() +
+          props?.row?.reservationRequest?.status.slice(1)}
+        {props?.row?.status}
       </Typography>
     ),
   },
@@ -92,32 +75,7 @@ export const columns = [
       </Typography>
     ),
     width: 140,
-    renderCell: (params) => (
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Typography
-          variant="p"
-          sx={{
-            px: "16px",
-            py: "4px",
-            borderRadius: "20px",
-            fontSize: "12px",
-          }}
-        >
-          {params?.row?.schedule?.time}
-        </Typography>
-        <Typography
-          variant="p"
-          sx={{
-            px: "16px",
-            py: "4px",
-            borderRadius: "20px",
-            fontSize: "12px",
-          }}
-        >
-          {params?.row?.schedule?.date}
-        </Typography>
-      </Box>
-    ),
+    renderCell: (props) => <ScheduleComponent props={props?.row} />,
   },
   {
     field: "location",
@@ -128,7 +86,7 @@ export const columns = [
         LOCATION
       </Typography>
     ),
-    width: 150,
+    width: 130,
     renderCell: (props) => <ServiceProviderLocationAction props={props} />,
   },
   {
@@ -141,7 +99,7 @@ export const columns = [
       </Typography>
     ),
     width: 110,
-    renderCell: (props) => <InvoiceAction props={props} />,
+    renderCell: (props) => <InvoiceAction props={props?.row} />,
   },
   {
     field: "issues",
@@ -153,7 +111,9 @@ export const columns = [
       </Typography>
     ),
     width: 150,
-    renderCell: (props) => <ServiceProviderRequestIssuesAction props={props} />,
+    renderCell: (props) => (
+      <ServiceProviderRequestIssuesAction props={props?.row} />
+    ),
   },
   {
     field: "action",
@@ -165,6 +125,6 @@ export const columns = [
       </Typography>
     ),
     width: 100,
-    renderCell: (props) => <ServiceProviderRequestAction props={props} />,
+    renderCell: (props) => <ServiceProviderRequestAction props={props?.row} />,
   },
 ];

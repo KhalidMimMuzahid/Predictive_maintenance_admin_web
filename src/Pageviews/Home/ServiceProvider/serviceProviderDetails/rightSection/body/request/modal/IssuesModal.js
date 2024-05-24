@@ -1,7 +1,6 @@
 import React from "react";
 import { Close } from "@mui/icons-material";
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
-import washingmachine from "../../../../../../../../Assets/Home/service_provider/washing_machine_with_girl.png";
 
 const EditModal = ({ issuesOpen, setIssuesOpen, props }) => {
   return (
@@ -57,45 +56,24 @@ const EditModal = ({ issuesOpen, setIssuesOpen, props }) => {
               ISSUES
             </Typography>
           </Box>
-          <hr style={{ background: "#E6E8F0", opacity: "40%" }} />
-          <Box sx={{ padding: "14px 12px", display: "flex", gap: "18px" }}>
-            <Typography
-              sx={{ fontSize: "14px", fontWeight: "600", color: "#6E6893" }}
-            >
-              01
-            </Typography>
-            <Typography
-              sx={{ fontSize: "14px", fontWeight: "400", color: "#5A6872" }}
-            >
-              Washing machine not starting
-            </Typography>
-          </Box>
-          <hr style={{ background: "#E6E8F0", opacity: "40%" }} />
-          <Box sx={{ padding: "14px 12px", display: "flex", gap: "18px" }}>
-            <Typography
-              sx={{ fontSize: "14px", fontWeight: "600", color: "#6E6893" }}
-            >
-              02
-            </Typography>
-            <Typography
-              sx={{ fontSize: "14px", fontWeight: "400", color: "#5A6872" }}
-            >
-              Washing machine not starting
-            </Typography>
-          </Box>
-          <hr style={{ background: "#E6E8F0", opacity: "40%" }} />
-          <Box sx={{ padding: "14px 12px", display: "flex", gap: "18px" }}>
-            <Typography
-              sx={{ fontSize: "14px", fontWeight: "600", color: "#6E6893" }}
-            >
-              03
-            </Typography>
-            <Typography
-              sx={{ fontSize: "14px", fontWeight: "400", color: "#5A6872" }}
-            >
-              Washing machine not starting
-            </Typography>
-          </Box>
+          {props?.issues?.map((issue, i) => (
+            <>
+              {" "}
+              <hr style={{ background: "#E6E8F0", opacity: "40%" }} />
+              <Box sx={{ padding: "14px 12px", display: "flex", gap: "18px" }}>
+                <Typography
+                  sx={{ fontSize: "14px", fontWeight: "600", color: "#6E6893" }}
+                >
+                  {i + 1}
+                </Typography>
+                <Typography
+                  sx={{ fontSize: "14px", fontWeight: "400", color: "#5A6872" }}
+                >
+                  {issue}
+                </Typography>
+              </Box>
+            </>
+          ))}
           <hr style={{ background: "#E6E8F0", opacity: "40%" }} />
         </Box>
         <Box sx={{ padding: "8px 16px" }}>
@@ -108,7 +86,7 @@ const EditModal = ({ issuesOpen, setIssuesOpen, props }) => {
           >
             <Typography sx={{ color: "#C7CCD8" }}>Comment</Typography>
             <Typography sx={{ color: "#5A6872" }}>
-              Washing machine making noise when draining or not draining at all
+              {props?.problemDescription}
             </Typography>
           </Box>
         </Box>
@@ -122,22 +100,13 @@ const EditModal = ({ issuesOpen, setIssuesOpen, props }) => {
           >
             <Typography sx={{ color: "#C7CCD8" }}>Attachments</Typography>
             <Box>
-              <Box sx={{ display: "flex" }}>
-                <Box sx={{ padding: "2px", background: "#FFF" }}>
-                  <img src={washingmachine} alt="" />
+              {props?.image?.map((img, i) => (
+                <Box sx={{ display: "flex" }}>
+                  <Box sx={{ padding: "2px", background: "#FFF" }}>
+                    <img src={img?.image} alt="" />
+                  </Box>
                 </Box>
-                <Box sx={{ padding: "2px", background: "#FFF" }}>
-                  <img src={washingmachine} alt="" />
-                </Box>
-              </Box>
-              <Box sx={{ display: "flex" }}>
-                <Box sx={{ padding: "2px", background: "#FFF" }}>
-                  <img src={washingmachine} alt="" />
-                </Box>
-                <Box sx={{ padding: "2px", background: "#FFF" }}>
-                  <img src={washingmachine} alt="" />
-                </Box>
-              </Box>
+              ))}
             </Box>
           </Box>
         </Box>
