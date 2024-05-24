@@ -32,19 +32,17 @@ const CustomerScreen = () => {
       )}
       <Box sx={{ padding: "40px" }}>
         <div className={classes.topHolder}>
-          <div>
-            <div className={classes.title}>Customer</div>
-            <div className={classes.spacerSmall}></div>
+          <Box>
+            <Typography sx={{ fontSize: "24px", fontWeight: "700" }}>
+              Customer
+            </Typography>
             <div style={{ display: "flex", gap: "4px" }}>
-              <div style={{ color: "black" }} className={classes.subtitle}>
-                Dashboard /{" "}
-              </div>
-              <div
-                style={{ color: isRootCustomerPage ? "#24459c" : "black" }}
-                className={classes.subtitle}
-              >
-                Customers
-              </div>
+              <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                <Typography>Dashboard / </Typography>
+                <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
+                  Customers
+                </Typography>
+              </Box>
               {isRootCustomerPage === false && (
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <div style={{ color: "black" }} className={classes.subtitle}>
@@ -59,7 +57,7 @@ const CustomerScreen = () => {
                 </Box>
               )}
             </div>
-          </div>
+          </Box>
 
           <Box sx={{ display: "flex", gap: "16px" }}>
             <Button
