@@ -23,6 +23,7 @@ import {
 } from "firebase/auth";
 import { loginUser, setUser } from "../../features/authentication/authSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const usesStyles = makeStyles((theme) => ({
   sliderContainer: {
@@ -154,7 +155,6 @@ const LoginScreen = () => {
 
     dispatch(loginUser({ email, password }))
       .then((result) => {
-        console.log(result);
         if (result?.payload?.uid) {
           fetch(
             `${process.env.REACT_APP_BASE_URL}/user/sign-in?uid=${result?.payload?.uid}`,
@@ -173,9 +173,9 @@ const LoginScreen = () => {
                   "user-token",
                   JSON.stringify(data?.data?.token)
                 );
-                alert(data?.message);
+                toast.success(data?.message);
               } else {
-                alert("Login Unsuccessful");
+                toast.error("Login Unsuccessful..");
                 return;
               }
             });
@@ -211,7 +211,7 @@ const LoginScreen = () => {
       <Grid item xs={12} sm={5} md={5} lg={4}>
         <Container className={classes.sliderContainer}>
           <div className={classes.logoContainer}>
-            <img src={ShowaFullBlackLogo} className={classes.logo} alt=""/>
+            <img src={ShowaFullBlackLogo} className={classes.logo} alt="" />
           </div>
           <div className={classes.spacer}></div>
           <div className={classes.spacer}></div>
@@ -230,7 +230,7 @@ const LoginScreen = () => {
                 }}
               >
                 <div className="image-container">
-                  <img src={fadeImage.url} style={{ width: "90%" }} alt=""/>
+                  <img src={fadeImage.url} style={{ width: "90%" }} alt="" />
                 </div>
                 <div className={classes.spacer}></div>
                 <div className={classes.spacer}></div>

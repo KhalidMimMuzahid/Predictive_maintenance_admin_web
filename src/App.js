@@ -103,6 +103,7 @@ import CompletedNonConnected from "./Pageviews/Home/Reservation/NonConnected/Com
 import Footer from "./Utils/Footer";
 import ReservationScreen from "./Pageviews/Home/Reservation/ReservationScreen";
 import { ToastContainer } from "react-toastify";
+import DeleteAccountScreen from "./Pageviews/DeleteAccount/DeleteAccountScreen";
 
 const theme = createTheme();
 
@@ -570,6 +571,7 @@ function App() {
           ) : (
             <Routes>
               <Route path="/" element={<LoginScreen />} />
+              <Route path="/deleteAccount" element={<DeleteAccountScreen />} />
             </Routes>
           )}
         </BrowserRouter>

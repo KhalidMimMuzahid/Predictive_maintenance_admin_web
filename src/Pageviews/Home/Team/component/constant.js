@@ -1,6 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 import AnchorIcon from "@mui/icons-material/Anchor";
 import { MoreVert } from "@mui/icons-material";
+import CompanyNameComponent from "./CompanyNameComponent";
+import LocationComponent from "./LocationComponent";
+import TotalTeamMember from "./TotalTeamMember";
+import ManagerComponent from "./ManagerComponent";
+import TeamActionComponent from "./TeamActionComponent";
 
 export const columns = [
   {
@@ -13,44 +18,7 @@ export const columns = [
       </Typography>
     ),
     width: 300,
-    renderCell: (props) => (
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "0 16px",
-        }}
-      >
-        <Box
-          sx={{
-            width: "36px",
-            height: "36px",
-            borderRadius: "100%",
-            boxShadow: "2px 2px 2px 2px rgba(0, 0, 0, 0.1)",
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <AnchorIcon sx={{ color: "#F15F5F" }} />
-        </Box>
-        <Box style={{ display: "flex", flexDirection: "column" }}>
-          <Typography
-            sx={{
-              color: "#25213B",
-              fontWeight: "600",
-              fontSize: "12px",
-              textTransform: "uppercase",
-            }}
-          >
-            {props?.row?.companyName}
-          </Typography>
-        </Box>
-      </Box>
-    ),
+    renderCell: (props) => <CompanyNameComponent props={props} />,
   },
   {
     field: "location",
@@ -62,35 +30,7 @@ export const columns = [
       </Typography>
     ),
     width: 250,
-    renderCell: (props) => (
-      <Box
-        sx={{
-          color: "#25213B",
-          fontSize: "12px",
-          fontWeight: "600",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          textAlign: "center",
-        }}
-      >
-        <Typography
-          sx={{
-            color: "#25213B",
-            fontWeight: "600",
-            fontSize: "14px",
-            textTransform: "uppercase",
-          }}
-        >
-          {props?.row?.location?.street}{" "}
-        </Typography>
-        <Box sx={{ display: "flex" }}>
-          <Typography>{props?.row?.location?.city} </Typography>
-          <span style={{ marginLeft: "5px" }}></span>
-          <Typography>{props?.row?.location?.country}</Typography>
-        </Box>
-      </Box>
-    ),
+    renderCell: (props) => <LocationComponent props={props?.row} />,
   },
   {
     field: "email",
@@ -107,7 +47,7 @@ export const columns = [
         variant="p"
         sx={{ color: "#6B7280", fontSize: "14px", fontWeight: "400" }}
       >
-        {params?.row?.email}
+        {params?.row?.serviceProviderAdmin?.email}
       </Typography>
     ),
   },
@@ -121,24 +61,7 @@ export const columns = [
       </Typography>
     ),
     width: 250,
-    renderCell: (params) => (
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-        }}
-      >
-        <Typography
-          variant="p"
-          sx={{
-            fontSize: "12px",
-            color: "#25213B",
-          }}
-        >
-          {params?.row?.totalMember?.length}
-        </Typography>
-      </Box>
-    ),
+    renderCell: (props) => <TotalTeamMember props={props?.row} />,
   },
   {
     field: "manager",
@@ -150,48 +73,7 @@ export const columns = [
       </Typography>
     ),
     width: 280,
-    renderCell: (props) => (
-      <Box sx={{ display: "flex", alignItems: "center", gap: "0 8px" }}>
-        <img
-          src={
-            props?.row?.companyBasicInfo?.shopInfo
-              ?.companyRegDocumentPhotoAddress
-          }
-          style={{
-            width: "36px",
-            height: "36px",
-            borderRadius: "100%",
-            border: "1px solid yellow",
-          }}
-          alt="Manager"
-        />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            variant="p"
-            sx={{
-              fontSize: "12px",
-              fontWeight: "600",
-            }}
-          >
-            {props?.row?.manager?.name}
-          </Typography>
-          <Typography
-            variant="p"
-            sx={{
-              fontSize: "12px",
-            }}
-          >
-            {props?.row?.manager?.phone}
-          </Typography>
-        </Box>
-      </Box>
-    ),
+    renderCell: (props) => <ManagerComponent props={props?.row} />,
   },
   {
     field: "action",
@@ -203,10 +85,6 @@ export const columns = [
       </Typography>
     ),
     width: 100,
-    renderCell: (props) => (
-      <Button>
-        <MoreVert />
-      </Button>
-    ),
+    renderCell: (props) => <TeamActionComponent props={props?.row} />,
   },
 ];

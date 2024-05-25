@@ -52,6 +52,7 @@ import { auth } from "../firebase";
 import { useEffect } from "react";
 import { setCurrentUser } from "../Redux/actions";
 import useIsAdmin from "../Hooks/useIsAdmin";
+import { toast } from "react-toastify";
 
 const useStyle = makeStyles((theme) => ({
   toolbar: {
@@ -561,13 +562,13 @@ const AdminInfoHolder = () => {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        alert("Signed out successfully");
+        toast.success("Signed out successfully");
         setIsAdmin(false);
         setAdminData({});
         navigate("/");
       })
       .catch((error) => {
-        alert("Error: " + error);
+        toast.error("Error: " + error);
       });
   };
 

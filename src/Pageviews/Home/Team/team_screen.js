@@ -16,7 +16,13 @@ import TeamTable from "./TeamTable";
 const TeamScreen = () => {
   return (
     <Box sx={{ padding: "40px" }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <Box>
           <Typography sx={{ fontSize: "24px", fontWeight: "700" }}>
             Team
@@ -28,12 +34,21 @@ const TeamScreen = () => {
             </Typography>
           </Box>
         </Box>
-        <Box sx={{}}>
-          <Button sx={{ background: "white", color: "black" }}>
-            <Upload sx={{ marginRight: "6px" }} />
-            Export
-          </Button>
-        </Box>
+        <Button
+          // onClick={() => downloadTableData(downloadData, setDownloadData)}
+          sx={{
+            backgroundColor: "white",
+            color: "#24459C",
+            textTransform: "none",
+            borderRadius: "8px",
+            padding: "0px 32px",
+            height: "34px",
+            fontWeight: "600",
+          }}
+          startIcon={<Upload />}
+        >
+          Export
+        </Button>
       </Box>
       <Box
         sx={{
@@ -79,6 +94,7 @@ const TeamScreen = () => {
             }}
           >
             <FormControl
+              size="small"
               sx={{
                 width: "12%",
                 background: "#FFFFFF",
@@ -100,6 +116,7 @@ const TeamScreen = () => {
               </Select>
             </FormControl>
             <FormControl
+              size="small"
               sx={{
                 width: "12%",
                 background: "#FFFFFF",
@@ -121,6 +138,7 @@ const TeamScreen = () => {
               </Select>
             </FormControl>
             <FormControl
+              size="small"
               sx={{
                 width: "12%",
                 background: "#FFFFFF",
