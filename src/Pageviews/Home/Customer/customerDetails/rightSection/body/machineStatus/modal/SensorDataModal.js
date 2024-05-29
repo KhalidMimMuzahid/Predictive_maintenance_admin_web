@@ -13,9 +13,10 @@ import Select from "@mui/material/Select";
 import React, { useEffect, useState } from "react";
 import SensorDataDetails from "./sensorDataDetails/SensorDataDetails";
 import { useGetSensorModuleByMachineQuery } from "../../../../../../../../features/sensorModuleAttached/sensorModuleAttachedSlice";
+import { toast } from "react-toastify";
 
 const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
-  const { data, isError, isLoading, isSuccess } =
+  const { data, isError, isLoading, isSuccess, error } =
     useGetSensorModuleByMachineQuery(props?.row?._id);
   const [sensorList, setSensorList] = useState([]);
   const [selectedSensorID, setSelectedSensorID] = useState(
@@ -24,16 +25,13 @@ const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
 
   useEffect(() => {
     if (isSuccess) {
-      // reset();
-      // toast.success(data?.message);
       setSensorList(data?.data);
 
-      setSelectedSensorID(data?.data[0]?._id || null);
+      setSelectedSensorID(data?.data[0]?.macAddress || null);
     } else if (isError) {
-      // toast.error(error?.data?.message);
+      toast.error(error?.data?.message);
     }
   }, [isSuccess, isError]);
-  console.log(data);
 
   // useEffect(() => {
   //   fetch(
@@ -122,7 +120,7 @@ const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
               onChange={handleChange}
             >
               {sensorList?.map((sensorData, i) => (
-                <MenuItem key={i} value={sensorData?._id}>
+                <MenuItem key={i} value={sensorData?.macAddress}>
                   Sensor {i + 1}
                 </MenuItem>
               ))}

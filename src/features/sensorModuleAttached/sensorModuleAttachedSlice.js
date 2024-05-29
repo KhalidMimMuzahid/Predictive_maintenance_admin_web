@@ -21,8 +21,8 @@ export const sensorModuleAttachedApi = createApi({
       providesTags: [],
     }),
     getSensorDataByMacAddress: builder.query({
-      query: ({ macAddress, page }) =>
-        `/sensor-module-attached/get-sensor-data?macAddress=${macAddress}&page=${page}&limit=10`,
+      query: ({ macAddress, page, limit }) =>
+        `/sensor-module-attached/get-sensor-data?macAddress=${macAddress}&page=${page}&limit=${limit}`,
     }),
   }),
 });

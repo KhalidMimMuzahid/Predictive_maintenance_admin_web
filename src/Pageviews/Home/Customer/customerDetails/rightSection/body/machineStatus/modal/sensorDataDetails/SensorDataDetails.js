@@ -12,6 +12,8 @@ import TemperatureChart from "./TemperatureChart";
 import VibrationChart from "./VibrationChart";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import { useGetSensorDataByMacAddressQuery } from "../../../../../../../../../features/sensorModuleAttached/sensorModuleAttachedSlice";
+import { toast } from "react-toastify";
 const SensorDataDetails = ({ selectedSensorID }) => {
   const [sensorDataAll, setSensorDataAll] = useState([]);
   const [selectedPeriod, setSelectPeriod] = useState(1);
@@ -20,34 +22,52 @@ const SensorDataDetails = ({ selectedSensorID }) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
-
-
   console.log({ selectedSensorID });
   const [shouldRefreshPeriodData, setShouldRefreshPeriodData] = useState(true);
+
+  const { data, isError, isLoading, isSuccess, error, refetch } =
+    useGetSensorDataByMacAddressQuery({
+      macAddress: selectedSensorID,
+      page,
+      limit,
+    });
+
   useEffect(() => {
-    fetch(
-      `${process.env.REACT_APP_BASE_URL}/customer/iot/get-sensor-data-paginate/${selectedSensorID}?page=${page}&limit=${limit}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          setSensorDataAll(data);
-          setShouldRefreshPeriodData((prev) => !prev);
-          setSelectPeriod(1);
-        }
-      });
-  }, [selectedSensorID, page, limit]);
+    refetch();
+  }, [page, limit, selectedSensorID]);
+  useEffect(() => {
+    if (isSuccess) {
+      setSensorDataAll(data?.data);
+      setShouldRefreshPeriodData((prev) => !prev);
+      setSelectPeriod(1);
+    } else if (isError) {
+      toast.error(error?.data?.message);
+    }
+  }, [isSuccess, isError]);
+  // useEffect(() => {
+  //   fetch(
+  //     `${process.env.REACT_APP_BASE_URL}/customer/iot/get-sensor-data-paginate/${selectedSensorID}?page=${page}&limit=${limit}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data) {
+  //         setSensorDataAll(data);
+  //         setShouldRefreshPeriodData((prev) => !prev);
+  //         setSelectPeriod(1);
+  //       }
+  //     });
+  // }, [selectedSensorID, page, limit]);
 
   const handleChange = (event) => {
     setSelectPeriod(event?.target?.value);
   };
   useEffect(() => {
     const periodTempArray = sensorDataAll?.sensorData?.map(
-      (sensor) => sensor[`temperature${selectedPeriod}`]
+      (sensor) => sensor?.temperature[selectedPeriod]
     );
     setTempArray(periodTempArray);
     const periodVibrationArray = sensorDataAll?.sensorData?.map(
-      (sensor) => sensor[`vibration${selectedPeriod}`]
+      (sensor) => sensor?.vibration[selectedPeriod]
     );
     setVibrationArray(periodVibrationArray);
   }, [selectedPeriod, shouldRefreshPeriodData]);
