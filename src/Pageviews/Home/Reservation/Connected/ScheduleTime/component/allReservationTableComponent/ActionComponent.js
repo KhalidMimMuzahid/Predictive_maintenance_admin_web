@@ -30,7 +30,7 @@ const ActionComponent = ({ props }) => {
     <>
       {viewCustomerOpen && (
         <CustomerDetails
-          props={props}
+          props={props?.row}
           viewCustomerOpen={viewCustomerOpen}
           setViewCustomerOpen={setViewCustomerOpen}
         />

@@ -101,10 +101,31 @@ const Reservation = ({ customerDetailsData, props }) => {
             </Typography>
             {!editMode ? (
               <Typography
-                variant="p"
-                sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
+                sx={{
+                  textTransform: "none",
+                  fontSize: "12px",
+                  fontWeight: "600",
+                  textAlign: "center",
+                  background: props?.status === "completed" && "#2FD573",
+                  color:
+                    (props?.status === "completed" && "White") ||
+                    (props?.status === "accepted" && "#24459C") ||
+                    (props?.status === "pending" && "#FFA503") ||
+                    (props?.status === "ongoing" && "purple") ||
+                    (props?.status === "canceled" && "#FF4858"),
+                  border:
+                    (props?.status === "completed" && "1px solid White") ||
+                    (props?.status === "accepted" && "1px solid #24459C") ||
+                    (props?.status === "pending" && "1px solid #FFA503") ||
+                    (props?.status === "ongoing" && "1px solid purple") ||
+                    (props?.status === "canceled" && "1px solid #FF4858"),
+                  padding: "2px 6px",
+                  width: "96px",
+                  borderRadius: "20px",
+                  cursor: "pointer",
+                }}
               >
-                {customerDetailsData?.data?.email}
+                {props?.status.charAt(0).toUpperCase() + props?.status.slice(1)}
               </Typography>
             ) : (
               <TextField
@@ -140,7 +161,13 @@ const Reservation = ({ customerDetailsData, props }) => {
                 variant="p"
                 sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
               >
-                {customerDetailsData?.data?.showaUser?.phone}
+                {props?.schedule?.schedules[0].split(" ")[0] +
+                  " " +
+                  props?.schedule?.schedules[0].split(" ")[1] +
+                  " " +
+                  props?.schedule?.schedules[0].split(" ")[2] +
+                  " " +
+                  props?.schedule?.schedules[0].split(" ")[3]}
               </Typography>
             ) : (
               <TextField
