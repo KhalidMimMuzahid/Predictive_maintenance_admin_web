@@ -20,7 +20,14 @@ export const sensorModuleAttachedApi = createApi({
         `/sensor-module-attached/get-all-sensors-by-machine?machine_id=${machine}`,
       providesTags: [],
     }),
+    getSensorDataByMacAddress: builder.query({
+      query: ({ macAddress, page }) =>
+        `/sensor-module-attached/get-sensor-data?macAddress=${macAddress}&page=${page}&limit=10`,
+    }),
   }),
 });
 
-export const { useGetSensorModuleByMachineQuery } = sensorModuleAttachedApi;
+export const {
+  useGetSensorModuleByMachineQuery,
+  useGetSensorDataByMacAddressQuery,
+} = sensorModuleAttachedApi;
