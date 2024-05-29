@@ -1,6 +1,5 @@
 import { Download } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
-import Main from "./LeftSide/LeftSideMain";
 import LeftSideMain from "./LeftSide/LeftSideMain";
 import RightSideMain from "./RightSide/RightSideMain";
 

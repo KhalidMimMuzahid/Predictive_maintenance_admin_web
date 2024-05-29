@@ -16,6 +16,7 @@ const MachineStatus = ({ customerDetailsData, props }) => {
   const handleEdit = () => {
     setEditMode(true);
   };
+  console.log(machineData?.data?.usedFor);
 
   const handleChange = (field, value) => {
     setEditedValues((prevState) => ({
@@ -77,7 +78,7 @@ const MachineStatus = ({ customerDetailsData, props }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.email}
+              {machineData?.data?.usedFor?.name}
             </Typography>
           ) : (
             <TextField
