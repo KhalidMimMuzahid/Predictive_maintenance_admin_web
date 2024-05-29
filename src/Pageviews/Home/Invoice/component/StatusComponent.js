@@ -4,51 +4,29 @@ import React from "react";
 const StatusComponent = ({ props }) => {
   return (
     <Box>
-      {props?.status === "Pending" && (
-        <Typography
-          sx={{
-            fontWeight: "400",
-            width: "120px",
-            color: "#FFA503",
-            border: "1px solid #FFA503",
-            borderRadius: "20px",
-            textAlign: "center",
-            padding: "4px",
-          }}
-        >
-          {props?.status}
-        </Typography>
-      )}
-      {props?.status === "Paid" && (
-        <Typography
-          sx={{
-            fontWeight: "400",
-            width: "120px",
-            color: "#2FD573",
-            border: "1px solid #2FD573",
-            borderRadius: "20px",
-            textAlign: "center",
-            padding: "4px",
-          }}
-        >
-          {props?.status}
-        </Typography>
-      )}
-      {props?.status === "Requested" && (
-        <Typography
-          sx={{
-            fontWeight: "400",
-            width: "120px",
-            color: "#26C1C9",
-            border: "1px solid #26C1C9",
-            borderRadius: "20px",
-            textAlign: "center",
-            padding: "4px",
-          }}
-        >
-          {props?.status}
-        </Typography>
-      )}
+      <Typography
+        sx={{
+          textTransform: "none",
+          fontSize: "12px",
+          fontWeight: "600",
+          textAlign: "center",
+          background: props?.taskStatus === "completed" && "#2FD573",
+          color:
+            (props?.taskStatus === "completed" && "White") ||
+            (props?.taskStatus === "ongoing" && "#FFA503") ||
+            (props?.taskStatus === "canceled" && "#FF4858"),
+          border:
+            (props?.taskStatus === "completed" && "1px solid White") ||
+            (props?.taskStatus === "ongoing" && "1px solid #FFA503") ||
+            (props?.taskStatus === "canceled" && "1px solid #FF4858"),
+          padding: "2px 6px",
+          width: "96px",
+          borderRadius: "20px",
+          cursor: "pointer",
+        }}
+      >
+        {props?.taskStatus.charAt(0).toUpperCase() + props?.taskStatus.slice(1)}
+      </Typography>
     </Box>
   );
 };

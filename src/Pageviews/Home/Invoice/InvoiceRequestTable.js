@@ -16,13 +16,13 @@ import { columns } from "./component/constant";
 import { AppContext } from "../../../contextApi/appProvider";
 import { Cancel, Search } from "@mui/icons-material";
 import { useGetAllInvoiceQuery } from "../../../features/invoice/invoiceSlice";
+import Loader from "../../../Utils/Loader";
 
 const InvoiceRequestTable = ({
   isRootInvoiceScreen,
   setIsRootInvoiceScreen,
 }) => {
   const { setDownloadData } = useContext(AppContext);
-
   const { data: allInvoiceData, isLoading, isError } = useGetAllInvoiceQuery();
   console.log(allInvoiceData);
 
@@ -177,9 +177,20 @@ const InvoiceRequestTable = ({
         </Box>
       )}
 
+      {isLoading && <Loader />}
       {/* Table */}
       {allInvoiceData?.data?.length > 0 && (
         <DataGrid
+          sx={{
+            borderRadius: "0px",
+            border: "none",
+            "& .MuiDataGrid-columnHeaders": {
+              fontWeight: 1000,
+              borderRadius: "0",
+              borderTop: "1px solid #D9D9D9",
+              background: "#F4F2FF",
+            },
+          }}
           rows={allInvoiceData?.data?.map((data, id) => {
             return { ...data, id };
           })}
