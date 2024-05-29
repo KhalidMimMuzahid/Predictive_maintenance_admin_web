@@ -12,33 +12,49 @@ import {
 import Select from "@mui/material/Select";
 import React, { useEffect, useState } from "react";
 import SensorDataDetails from "./sensorDataDetails/SensorDataDetails";
+import { useGetSensorModuleByMachineQuery } from "../../../../../../../../features/sensorModuleAttached/sensorModuleAttachedSlice";
 
 const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
+  const { data, isError, isLoading, isSuccess } =
+    useGetSensorModuleByMachineQuery(props?.row?._id);
   const [sensorList, setSensorList] = useState([]);
   const [selectedSensorID, setSelectedSensorID] = useState(
     sensorList[0]?._id || null
   );
+
   useEffect(() => {
-    fetch(
-      `${
-        process.env.REACT_APP_BASE_URL
-      }/customer/iot/get-sensor-list-with-washing-machine-id/${"66012496388cbec918c26a1f"}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          setSensorList(data?.data);
+    if (isSuccess) {
+      // reset();
+      // toast.success(data?.message);
+      setSensorList(data?.data);
 
-          setSelectedSensorID(data?.data[0]?._id || null);
-        }
-      });
-  }, [props?.row?._id]);
-  // useEffect(()=>{
-  //   setSelectedSensorID(sensorList[0]?._id || null)
+      setSelectedSensorID(data?.data[0]?._id || null);
+    } else if (isError) {
+      // toast.error(error?.data?.message);
+    }
+  }, [isSuccess, isError]);
+  console.log(data);
 
-  // },[selectedSensorID])
+  // useEffect(() => {
+  //   fetch(
+  //     `${
+  //       process.env.REACT_APP_BASE_URL
+  //     }/customer/iot/get-sensor-list-with-washing-machine-id/${"66012496388cbec918c26a1f"}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data) {
+  //         setSensorList(data?.data);
+
+  //         setSelectedSensorID(data?.data[0]?._id || null);
+  //       }
+  //     });
+  // }, [props?.row?._id]);
+  // useEffect(() => {
+  //   setSelectedSensorID(sensorList[0]?._id || null);
+  // }, [selectedSensorID]);
   const handleChange = (event) => {
-    // console.log(event.target.value);
+    console.log(event.target.value);
     setSelectedSensorID(event.target.value);
   };
 
@@ -113,7 +129,6 @@ const SensorDataModal = ({ sensorDataOpen, setSensorDataOpen, props }) => {
             </Select>
           </FormControl>
         </Box>
-
 
         {selectedSensorID && (
           <SensorDataDetails selectedSensorID={selectedSensorID} />

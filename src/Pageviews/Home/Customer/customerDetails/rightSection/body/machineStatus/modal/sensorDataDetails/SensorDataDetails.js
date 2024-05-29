@@ -20,6 +20,9 @@ const SensorDataDetails = ({ selectedSensorID }) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
+
+
+  console.log({ selectedSensorID });
   const [shouldRefreshPeriodData, setShouldRefreshPeriodData] = useState(true);
   useEffect(() => {
     fetch(

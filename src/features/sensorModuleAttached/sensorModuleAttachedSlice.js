@@ -15,12 +15,12 @@ export const sensorModuleAttachedApi = createApi({
   }),
   tagTypes: ["add-sensor-module"],
   endpoints: (builder) => ({
-    getSensorModuleByMacAddress: builder.query({
-      query: (getSensorsByMachine) =>
-        `/sensor-module-attached/get-sensors-by-machine?machine_id=${getSensorsByMachine}`,
+    getSensorModuleByMachine: builder.query({
+      query: (machine) =>
+        `/sensor-module-attached/get-all-sensors-by-machine?machine_id=${machine}`,
       providesTags: [],
     }),
   }),
 });
 
-export const { useGetSensorModuleByMacAddressQuery } = sensorModuleAttachedApi;
+export const { useGetSensorModuleByMachineQuery } = sensorModuleAttachedApi;
