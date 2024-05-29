@@ -17,7 +17,6 @@ import LoginScreen from "./Pageviews/Onboarding/LoginScreen";
 import DashboardScreen from "./Pageviews/Home/Dashboard/dashboard_screen";
 import ServiceProviderScreen from "./Pageviews/Home/ServiceProvider/service_provider_screen";
 import CustomerScreen from "./Pageviews/Home/Customer/customer_screen";
-import ChatScreen from "./Pageviews/Home/Chat/chat_screen";
 import FeedScreen from "./Pageviews/Home/Feed/feed_screen";
 import IotScreen from "./Pageviews/Home/IoT/iot_screen";
 import WalletScreen from "./Pageviews/Home/Wallet/wallet_screen";
@@ -104,6 +103,7 @@ import Footer from "./Utils/Footer";
 import ReservationScreen from "./Pageviews/Home/Reservation/ReservationScreen";
 import { ToastContainer } from "react-toastify";
 import DeleteAccountScreen from "./Pageviews/DeleteAccount/DeleteAccountScreen";
+import ChatScreen from "./Pageviews/Home/Chat/ChatScreen";
 
 const theme = createTheme();
 

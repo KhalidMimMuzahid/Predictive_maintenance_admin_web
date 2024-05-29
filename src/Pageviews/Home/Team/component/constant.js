@@ -47,7 +47,7 @@ export const columns = [
         variant="p"
         sx={{ color: "#6B7280", fontSize: "14px", fontWeight: "400" }}
       >
-        {params?.row?.serviceProviderAdmin?.email}
+        {params?.row?.email}
       </Typography>
     ),
   },

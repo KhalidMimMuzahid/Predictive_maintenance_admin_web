@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const ManagerComponent = ({ props }) => {
+  console.log(props?.serviceProviderBranchManager?.phone);
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: "0 8px" }}>
       <img
@@ -30,7 +31,9 @@ const ManagerComponent = ({ props }) => {
             fontWeight: "600",
           }}
         >
-          {props?.row?.manager?.name || "Coming"}
+          {props?.serviceProviderBranchManager?.name?.firstName +
+            " " +
+            props?.serviceProviderBranchManager?.name?.lastName || "Coming"}
         </Typography>
         <Typography
           variant="p"
@@ -38,7 +41,7 @@ const ManagerComponent = ({ props }) => {
             fontSize: "12px",
           }}
         >
-          {props?.row?.manager?.phone}
+          {props?.serviceProviderBranchManager?.phone}
         </Typography>
       </Box>
     </Box>

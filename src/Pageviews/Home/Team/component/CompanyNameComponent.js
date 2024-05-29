@@ -32,7 +32,7 @@ const CompanyNameComponent = ({ props }) => {
           sx={{
             color: "#25213B",
             fontWeight: "600",
-            fontSize: "12px",
+            fontSize: "14px",
             textTransform: "uppercase",
           }}
         >

@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { GetLocalStorageData } from "../../Utils/getLocalStorageData";
 
-export const invoiceApi = createApi({
-  reducerPath: "invoiceApi",
+export const teamOfEngineersApi = createApi({
+  reducerPath: "teamOfEngineersApi",
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_BASE_URL,
     prepareHeaders: (headers) => {
@@ -15,16 +15,11 @@ export const invoiceApi = createApi({
   }),
   tagTypes: [],
   endpoints: (builder) => ({
-    getAllInvoice: builder.query({
-      query: () => `/invoice/get-all-invoices`,
-      providesTags: [],
-    }),
-    getAllInvoiceByUser: builder.query({
-      query: (user) => `/invoice/get-all-invoices-by-user?user=${user}`,
+    getTeamOfEngineers: builder.query({
+      query: (_id) => `team-of-engineers/get-teams-of-engineers`,
       providesTags: [],
     }),
   }),
 });
 
-export const { useGetAllInvoiceQuery, useGetAllInvoiceByUserQuery } =
-  invoiceApi;
+export const { useGetTeamOfEngineersQuery } = teamOfEngineersApi;

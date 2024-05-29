@@ -8,6 +8,7 @@ import CreateInvoiceModal from "./modal/CreateInvoiceModal";
 
 const InvoiceScreen = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isRootInvoiceScreen, setIsRootInvoiceScreen] = useState(true);
   return (
     <Box sx={{ padding: "40px" }}>
       {isCreateModalOpen && (
@@ -34,7 +35,7 @@ const InvoiceScreen = () => {
             Import
           </Button>
           <Button
-            onClick={() => setIsCreateModalOpen(!isCreateModalOpen)}
+            // onClick={() => setIsCreateModalOpen(!isCreateModalOpen)}
             sx={{
               background: "#24459C",
               "&:hover": {
@@ -58,9 +59,16 @@ const InvoiceScreen = () => {
           gap: "20px",
         }}
       >
-        <OverView />
-        <Comparison />
-        <InvoiceRequestTable />
+        {isRootInvoiceScreen && (
+          <>
+            <OverView />
+            <Comparison />
+          </>
+        )}
+        <InvoiceRequestTable
+          isRootInvoiceScreen={isRootInvoiceScreen}
+          setIsRootInvoiceScreen={setIsRootInvoiceScreen}
+        />
       </Box>
     </Box>
   );
