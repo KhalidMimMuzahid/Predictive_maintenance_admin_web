@@ -15,7 +15,8 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useGetSensorDataByMacAddressQuery } from "../../../../../../../../../features/sensorModuleAttached/sensorModuleAttachedSlice";
 import { toast } from "react-toastify";
 const SensorDataDetails = ({ selectedSensorID }) => {
-  const [selectedPeriod, setSelectPeriod] = useState(1);
+  const [selectedTempPeriod, setSelectedTempPeriod] = useState(1);
+  const [selectedVibPeriod, setSelectedVibPeriod] = useState(1);
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -26,7 +27,7 @@ const SensorDataDetails = ({ selectedSensorID }) => {
       page,
       limit,
     });
-
+  console.log("Sensor data::::: ", data?.data?.sensorData);
   useEffect(() => {
     console.log({
       macAddress: selectedSensorID,
@@ -41,10 +42,16 @@ const SensorDataDetails = ({ selectedSensorID }) => {
   }, [page, limit, selectedSensorID]);
   useEffect(() => {
     setPage(1);
+    setSelectedTempPeriod(1);
+    setSelectedVibPeriod(1);
   }, [selectedSensorID]);
 
-  const handleChange = (event) => {
-    setSelectPeriod(event?.target?.value);
+  const handleTempChange = (event) => {
+    setSelectedTempPeriod(event?.target?.value);
+  };
+
+  const handleVibChange = (event) => {
+    setSelectedVibPeriod(event?.target?.value);
   };
 
   return (
@@ -94,9 +101,9 @@ const SensorDataDetails = ({ selectedSensorID }) => {
             }}
           ></Typography>
           <Box
-          // sx={{
-          //   display: "flex",
-          // }}
+            sx={{
+              display: "flex",
+            }}
           >
             <FormControl
               variant="filled"
@@ -104,44 +111,42 @@ const SensorDataDetails = ({ selectedSensorID }) => {
               sx={{ m: 1, minWidth: 120 }}
             >
               <InputLabel id="demo-simple-select-filled-label">
-                Period
+                Temp Period
               </InputLabel>
               <Select
-                value={selectedPeriod}
+                value={selectedTempPeriod}
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"
-                onChange={handleChange}
+                onChange={handleTempChange}
               >
-                <MenuItem value={1}>Period 1</MenuItem>
-                <MenuItem value={2}>Period 2</MenuItem>
-                <MenuItem value={3}>Period 3</MenuItem>
-                <MenuItem value={4}>Period 4</MenuItem>
-                <MenuItem value={5}>Period 5</MenuItem>
-                <MenuItem value={6}>Period 6</MenuItem>
+                {[...Array(data?.data?.sensorData[0]?.temperature?.length)].map(
+                  (_, i) => (
+                    <MenuItem value={i + 1}>Period {i + 1}</MenuItem>
+                  )
+                )}
               </Select>
             </FormControl>
-            {/* <FormControl
+            <FormControl
               variant="filled"
               fullWidth
               sx={{ m: 1, minWidth: 120 }}
             >
               <InputLabel id="demo-simple-select-filled-label">
-                Period
+                Vib Period
               </InputLabel>
               <Select
-                value={selectedPeriod}
+                value={selectedVibPeriod}
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"
-                onChange={handleChange}
+                onChange={handleVibChange}
               >
-                <MenuItem value={1}>Period 1</MenuItem>
-                <MenuItem value={2}>Period 2</MenuItem>
-                <MenuItem value={3}>Period 3</MenuItem>
-                <MenuItem value={4}>Period 4</MenuItem>
-                <MenuItem value={5}>Period 5</MenuItem>
-                <MenuItem value={6}>Period 6</MenuItem>
+                {[...Array(data?.data?.sensorData[0]?.vibration?.length)].map(
+                  (_, i) => (
+                    <MenuItem value={i + 1}>Period {i + 1}</MenuItem>
+                  )
+                )}
               </Select>
-            </FormControl> */}
+            </FormControl>
           </Box>
         </Box>
         <Box>
@@ -220,21 +225,21 @@ const SensorDataDetails = ({ selectedSensorID }) => {
           </Box>
           <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
           {data?.data?.sensorData?.map(
-            (sensor) => sensor?.temperature[selectedPeriod]
+            (sensor) => sensor?.temperature[selectedTempPeriod - 1]
           )?.length > 0 && (
             <TemperatureChart
               tempArray={data?.data?.sensorData?.map(
-                (sensor) => sensor?.temperature[selectedPeriod]
+                (sensor) => sensor?.temperature[selectedTempPeriod - 1]
               )}
             />
           )}
           <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />
           {data?.data?.sensorData?.map(
-            (sensor) => sensor?.vibration[selectedPeriod]
+            (sensor) => sensor?.vibration[selectedVibPeriod - 1]
           )?.length > 0 && (
             <VibrationChart
               vibrationArray={data?.data?.sensorData?.map(
-                (sensor) => sensor?.vibration[selectedPeriod]
+                (sensor) => sensor?.vibration[selectedVibPeriod - 1]
               )}
             />
           )}
