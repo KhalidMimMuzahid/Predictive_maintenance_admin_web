@@ -4,54 +4,13 @@ import {
 } from "@mui/icons-material";
 import { Box, InputAdornment, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-
 import React from "react";
-import Message from "./Message";
 import ContactList from "./ContactList";
+import { useGetMyAllChatListQuery } from "../../../../features/chat/chatSlice";
+import ChatList from "./ChatList";
 
 const Sidebar = ({ chatOrContact, setChatOrContact }) => {
-  const users = [
-    {
-      name: "Alice Johnson",
-      image:
-        "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
-      message: "Hello there!",
-      active_time: new Date().toLocaleTimeString(),
-      gmail: "alma.lawson@example.com",
-    },
-    {
-      name: "Bob Smith",
-      image:
-        "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
-      message: "Good morning!",
-      active_time: new Date().toLocaleTimeString(),
-      gmail: "alma.lawson@example.com",
-    },
-    {
-      name: "Charlie Brown",
-      image:
-        "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
-      message: "How are you?",
-      active_time: new Date().toLocaleTimeString(),
-      gmail: "alma.lawson@example.com",
-    },
-    {
-      name: "Diana Prince",
-      image:
-        "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
-      message: "Great to see you!",
-      active_time: new Date().toLocaleTimeString(),
-      gmail: "alma.lawson@example.com",
-    },
-    {
-      name: "Evan Wright",
-      image:
-        "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
-      message: "Let's catch up soon.",
-      active_time: new Date().toLocaleTimeString(),
-      gmail: "alma.lawson@example.com",
-    },
-  ];
+  const { data: allChatListData, isLoading } = useGetMyAllChatListQuery();
   return (
     <Box sx={{ width: "25%" }}>
       <Box
@@ -117,8 +76,8 @@ const Sidebar = ({ chatOrContact, setChatOrContact }) => {
           </button>
         </Box>
       </Box>
-      {chatOrContact === "chat" && <Message users={users} />}
-      {chatOrContact === "contact" && <ContactList users={users} />}
+      {chatOrContact === "chat" && <ChatList chats={allChatListData?.data} />}
+      {chatOrContact === "contact" && <ContactList />}
     </Box>
   );
 };

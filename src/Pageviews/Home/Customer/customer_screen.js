@@ -45,13 +45,8 @@ const CustomerScreen = () => {
               </Box>
               {isRootCustomerPage === false && (
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
-                  <div style={{ color: "black" }} className={classes.subtitle}>
-                    /
-                  </div>
-                  <div
-                    style={{ color: "#24459c", marginLeft: "2px" }}
-                    className={classes.subtitle}
-                  >
+                  <div style={{ color: "black" }}>/</div>
+                  <div sx={{ color: "#24459C", fontWeight: "600" }}>
                     All Customer
                   </div>
                 </Box>

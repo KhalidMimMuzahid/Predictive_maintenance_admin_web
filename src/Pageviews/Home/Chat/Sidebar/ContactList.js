@@ -42,16 +42,24 @@ const ContactList = ({ users }) => {
         </Box>
       </Box>
       <Box>
+        <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
         {users?.map((user, i) => (
           <Box>
-            <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
             <Box
               sx={{
                 padding: "16px",
                 display: "flex",
               }}
             >
-              <Box sx={{ width: "20%" }}>
+              <Button
+                sx={{
+                  padding: "0px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "80%",
+                }}
+              >
                 <img
                   src={user?.image}
                   style={{
@@ -61,43 +69,37 @@ const ContactList = ({ users }) => {
                   }}
                   alt="User"
                 />
-              </Box>
-              <Box sx={{ width: "50%" }}>
-                <Typography
-                  sx={{
-                    color: "#56638D",
-                    fontSize: "20px",
-                    fontWeight: "600",
-                  }}
-                >
-                  {user?.name}
-                </Typography>
-                <Typography
-                  sx={{
-                    color: "#56638D",
-                    fontSize: "16px",
-                    fontWeight: "500",
-                  }}
-                >
-                  {user?.gmail}
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  width: "30%",
-                  display: "flex",
-                  justifyContent: "end",
-                }}
-              >
-                <Button>
-                  <MoreVert />
-                </Button>
-              </Box>
+                <Box sx={{ width: "70%" }}>
+                  <Typography
+                    sx={{
+                      color: "#56638D",
+                      fontSize: "18px",
+                      fontWeight: "600",
+                      textAlign: "start",
+                    }}
+                  >
+                    {user?.name}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: "#56638D",
+                      fontSize: "14px",
+                      fontWeight: "500",
+                      textAlign: "start",
+                    }}
+                  >
+                    {user?.message}
+                  </Typography>
+                </Box>
+              </Button>
+              <Button>
+                <MoreVert />
+              </Button>
             </Box>
+            <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
           </Box>
         ))}
       </Box>
-      <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
     </Box>
   );
 };

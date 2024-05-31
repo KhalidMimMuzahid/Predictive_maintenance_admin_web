@@ -24,10 +24,10 @@ const CustomerDetails = ({ props, viewCustomerOpen, setViewCustomerOpen }) => {
     <Modal
       sx={{
         width: "100%",
+        overflow: "scroll",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        overflow: "scroll",
       }}
       open={viewCustomerOpen}
     >

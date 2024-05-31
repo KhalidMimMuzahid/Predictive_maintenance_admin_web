@@ -6,11 +6,11 @@ import Messages from "./Messages";
 
 const MainScreen = () => {
   return (
-    <Box sx={{ width: "70%" }}>
+    <Box sx={{ width: "70%", position: "relative" }}>
       <Topbar />
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
       <Messages />
-      {/* <SendMessage /> */}
+      <SendMessage />
     </Box>
   );
 };

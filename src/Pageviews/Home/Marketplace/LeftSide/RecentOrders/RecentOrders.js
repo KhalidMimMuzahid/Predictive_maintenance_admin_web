@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import RecentOrdersTable from "./RecentOrdersTable";
 
 const RecentOrders = () => {
   return (
@@ -9,6 +10,7 @@ const RecentOrders = () => {
       >
         Recent Orders
       </Typography>
+      <RecentOrdersTable />
     </Box>
   );
 };
