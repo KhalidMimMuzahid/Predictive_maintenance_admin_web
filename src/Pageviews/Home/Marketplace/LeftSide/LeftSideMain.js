@@ -17,9 +17,7 @@ const LeftSideMain = () => {
         <SalesReports />
         <Earnings />
       </Box>
-      <Box>
-        <RecentOrders />
-      </Box>
+      <Box><RecentOrders /></Box>
     </Box>
   );
 };

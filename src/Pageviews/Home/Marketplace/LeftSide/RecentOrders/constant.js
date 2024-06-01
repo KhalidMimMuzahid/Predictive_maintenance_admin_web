@@ -57,7 +57,14 @@ export const columns = [
     ),
     width: 200,
     renderCell: (props) => {
-      <Typography>{props?.row?.payment}</Typography>;
+      <Typography
+        sx={{
+          background: props?.row?.payment === "paid" ? "#D7FCF9" : "#EBEEF3",
+          padding: "8px",
+        }}
+      >
+        {props?.row?.payment}
+      </Typography>;
     },
   },
   {

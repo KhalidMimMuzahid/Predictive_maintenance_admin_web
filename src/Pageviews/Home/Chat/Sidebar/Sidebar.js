@@ -5,9 +5,9 @@ import {
 import { Box, InputAdornment, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React from "react";
-import ContactList from "./ContactList";
+import ContactList from "./List/ContactList/ContactList";
 import { useGetMyAllChatListQuery } from "../../../../features/chat/chatSlice";
-import ChatList from "./ChatList";
+import ChatList from "./List/ChatList/ChatList";
 
 const Sidebar = ({ chatOrContact, setChatOrContact }) => {
   const { data: allChatListData, isLoading } = useGetMyAllChatListQuery();

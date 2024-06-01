@@ -1,7 +1,16 @@
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const TopSales = () => {
-  return <div>Top Sales</div>;
+  return (
+    <Box>
+      <Typography
+        sx={{ color: "#4D5983", fontSize: "20px", fontWeight: "700" }}
+      >
+        Top Sales
+      </Typography>
+    </Box>
+  );
 };
 
 export default TopSales;

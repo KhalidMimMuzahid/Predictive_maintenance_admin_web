@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-import UserOrGroup from "./UserOrGroup";
+import UserOrGroup from "./UserOrGroup/UserOrGroup";
 
 const ChatList = ({ chats }) => {
   return (
@@ -8,6 +8,8 @@ const ChatList = ({ chats }) => {
       sx={{
         marginTop: "24px",
         boxShadow: "10px 0px 10px rgba(0, 0, 0, 0.1)",
+        height: "630px",
+        overflow: "scroll",
       }}
     >
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />

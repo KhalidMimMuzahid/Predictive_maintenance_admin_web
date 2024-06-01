@@ -23,7 +23,6 @@ const SendMessage = () => {
       toast.error(error?.data?.message);
     }
   }, [isSuccess, isError]);
-  console.log(data);
   return (
     <Box
       sx={{ padding: "15px", position: "absolute", bottom: "0", width: "100%" }}
