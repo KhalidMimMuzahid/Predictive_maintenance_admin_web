@@ -2,7 +2,7 @@ import React from "react";
 import Topbar from "./Topbar";
 import { Box } from "@mui/material";
 import SendMessage from "./SendMessage";
-import Messages from "./Messages";
+import Messages from "./Messages/Messages";
 
 const MainScreen = () => {
   return (

@@ -1,8 +1,13 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useGetMessage } from "../../Group/NameAndMessage/Message/useGetMessage.";
 
-const Message = ({ lastMessage }) => {
-  console.log(lastMessage);
+const Message = ({ lastMessage, lastMessageIsSuccess, users }) => {
+  const { isLoading, message } = useGetMessage({
+    lastMessage,
+    lastMessageIsSuccess,
+  });
+
   return (
     <Box>
       <Typography
@@ -13,7 +18,7 @@ const Message = ({ lastMessage }) => {
           textAlign: "start",
         }}
       >
-        {lastMessage?.message}
+        {message}
       </Typography>
     </Box>
   );

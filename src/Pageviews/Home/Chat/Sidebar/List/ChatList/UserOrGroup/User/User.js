@@ -4,7 +4,13 @@ import Profile from "./Profile/Profile";
 import NameAndMessage from "./NameAndMessage/NameAndMessage";
 import LastMessageTime from "./LastMessageTime/LastMessageTime";
 
-const User = ({ chat, users, isSuccess, lastMessage }) => {
+const User = ({
+  chat,
+  users,
+  isSuccess,
+  lastMessage,
+  lastMessageIsSuccess,
+}) => {
   return (
     <Button
       sx={{
@@ -24,6 +30,7 @@ const User = ({ chat, users, isSuccess, lastMessage }) => {
         users={users}
         isSuccess={isSuccess}
         lastMessage={lastMessage}
+        lastMessageIsSuccess={lastMessageIsSuccess}
       />
       <LastMessageTime lastMessage={lastMessage} />
     </Button>

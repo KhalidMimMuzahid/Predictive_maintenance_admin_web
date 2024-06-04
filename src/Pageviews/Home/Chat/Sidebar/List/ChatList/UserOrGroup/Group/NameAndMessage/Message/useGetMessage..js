@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { useGetCustomerDetailsBySelectQueryQuery } from "../../../../../../../../../../features/customers/customersSlice";
+import { useSelector } from "react-redux";
 
 export const useGetMessage = ({ lastMessage, lastMessageIsSuccess }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState(lastMessage?.message || null);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (lastMessageIsSuccess) {
-      if (lastMessage?.type === "event") {
+      if (lastMessage?.type === "message") {
+        setMessage(lastMessage?.message);
+      } else if (lastMessage?.type === "event") {
         // console.log("For event");
         const event = lastMessage?.event;
         if (event?.type === "creatingGroup") {
@@ -32,7 +35,7 @@ export const useGetMessage = ({ lastMessage, lastMessageIsSuccess }) => {
               }
             );
             const responseForAddedUser = await fetch(
-              `${process.env.REACT_APP_BASE_URL}/user/get-user?_id=${addedByUser}`,
+              `${process.env.REACT_APP_BASE_URL}/user/get-user?_id=${addedUser}`,
               {
                 method: "GET",
                 headers: {
@@ -67,7 +70,11 @@ export const useGetMessage = ({ lastMessage, lastMessageIsSuccess }) => {
                   ? "showaUser"
                   : roleForAddedUser
               ].name?.firstName;
-            setMessage(`${addedByUserFirstName} added ${addedUserFirstName}`);
+            setMessage(
+              `${
+                addedByUser === user?._id ? "You" : addedByUserFirstName
+              } added ${addedUser === user?._id ? "You" : addedUserFirstName}`
+            );
             setIsLoading(false);
           })();
         } else if (event?.type === " removingMember") {

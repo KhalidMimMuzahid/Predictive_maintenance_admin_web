@@ -34,6 +34,7 @@ const UserOrGroup = ({ chat }) => {
           users={usersData?.data}
           isSuccess={isSuccess}
           lastMessage={lastMessageData?.data}
+          lastMessageIsSuccess={lastMessageIsSuccess}
         />
       )}
     </Box>

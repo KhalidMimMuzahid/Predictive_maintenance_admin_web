@@ -18,7 +18,7 @@ const Message = ({ lastMessage, lastMessageIsSuccess, users }) => {
           textAlign: "start",
         }}
       >
-        {message}
+        {message?.split(" ").slice(0, 5).join(" ") + " ..."}
       </Typography>
     </Box>
   );
