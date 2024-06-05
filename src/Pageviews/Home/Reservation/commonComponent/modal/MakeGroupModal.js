@@ -2,6 +2,7 @@ import { Close } from "@mui/icons-material";
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { usePostReservationGroupMutation } from "../../../../../features/reservation/reservationSlice";
+import { toast } from "react-toastify";
 
 const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
   const [startDateSection, setStartDateSection] = useState(false);
@@ -10,15 +11,13 @@ const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
     usePostReservationGroupMutation();
 
   useEffect(() => {
-    if (isSuccess & !isLoading) {
-      alert(data?.message);
+    if (isSuccess) {
+      toast.success(data?.message);
       setViewOpen(false);
-      // here we need to re fetch the data for all reservation group table
+    } else if (isError) {
+      toast.error(error?.data?.message);
     }
-    if (isError & !isLoading) {
-      alert(error?.data?.message);
-    }
-  }, [isLoading]);
+  }, [isSuccess, isError]);
 
   const handleMakeResGroup = (e) => {
     e.preventDefault();

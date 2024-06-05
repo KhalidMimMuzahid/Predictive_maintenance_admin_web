@@ -1,6 +1,7 @@
 import { Upload } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
+import AllGroupTable from "./AllGroupTable/AllGroupTable";
 
 const BidsConnectedAllGroup = () => {
   return (
@@ -57,6 +58,7 @@ const BidsConnectedAllGroup = () => {
           </Button>
         </Box>
       </Box>
+      <AllGroupTable />
     </Box>
   );
 };
