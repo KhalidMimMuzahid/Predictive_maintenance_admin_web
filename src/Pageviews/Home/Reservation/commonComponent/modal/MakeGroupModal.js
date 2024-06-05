@@ -1,9 +1,11 @@
 import { Close } from "@mui/icons-material";
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { usePostReservationGroupMutation } from "../../../../../features/reservation/reservationSlice";
 
 const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
+  const [startDateSection, setStartDateSection] = useState(false);
+  const [endDateSection, setEndDateSection] = useState(false);
   const [makeReservationGroup, { data, isError, error, isLoading, isSuccess }] =
     usePostReservationGroupMutation();
 
@@ -17,24 +19,29 @@ const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
       alert(error?.data?.message);
     }
   }, [isLoading]);
+
   const handleMakeResGroup = (e) => {
     e.preventDefault();
-    const groupName = e.target.groupName.value;
+    const groupName = e?.target?.groupName?.value;
+    const startDate = e?.target?.start_date?.value
+      ? e?.target?.start_date?.value + "T23:59:59.999+00:00"
+      : undefined;
 
-    console.log({ groupName });
-    //   biddingDate: {
-    //     startDate: "2024-07-04T16:55:54.081+00:00",
-    //     endDate: "2024-07-04T16:55:55.081+00:00"
-    // }
+    const endDate = e?.target?.end_date?.value
+      ? e?.target?.end_date?.value + "T23:59:59.999+00:00"
+      : undefined;
+
+    console.log({ groupName, startDate, endDate });
 
     makeReservationGroup({
       reservationRequests: selectedReservations,
       groupName,
       biddingDate: {
-        startDate: "2024-07-04T16:55:54.081+00:00",
-        endDate: "2024-07-04T16:55:55.081+00:00",
+        startDate,
+        endDate,
       },
     });
+    e.target.reset();
   };
 
   return (
@@ -86,10 +93,132 @@ const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
         <Box sx={{ padding: "8px 16px" }}>
           {/* make it  */}
 
-          <form action="" onSubmit={handleMakeResGroup}>
-            <label htmlFor="group-name">Group name</label>
-            <input id="group-name" type="text" required name="groupName" />
-            <button type="submit">Make Group</button>
+          <form
+            action=""
+            onSubmit={handleMakeResGroup}
+            style={{ display: "flex", flexDirection: "column", gap: "24px" }}
+          >
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+              <label htmlFor="group-name" style={{ fontWeight: "600" }}>
+                Group name
+              </label>
+              <input
+                style={{
+                  background: "#F6F6F6",
+                  padding: "16px",
+                  border: "none",
+                  borderRadius: "4px",
+                  color: "#65748B",
+                  fontSize: "16px",
+                  fontWeight: "700",
+                }}
+                id="group-name"
+                type="text"
+                required
+                name="groupName"
+              />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: "16px",
+                width: "100%",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                  width: "50%",
+                }}
+              >
+                <Button
+                  onClick={() => setStartDateSection(!startDateSection)}
+                  sx={{
+                    textTransform: "none",
+                    background: "#24459C",
+                    "&:hover": {
+                      background: "#24459C",
+                    },
+                    color: "white",
+                    width: "100%",
+                  }}
+                >
+                  Start Date
+                </Button>
+                {startDateSection && (
+                  <input
+                    type="date"
+                    name="start_date"
+                    id=""
+                    style={{
+                      background: "#F6F6F6",
+                      padding: "16px",
+                      border: "none",
+                      borderRadius: "4px",
+                      color: "#65748B",
+                      fontSize: "16px",
+                      fontWeight: "700",
+                    }}
+                  />
+                )}
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                  width: "50%",
+                }}
+              >
+                <Button
+                  onClick={() => setEndDateSection(!endDateSection)}
+                  sx={{
+                    textTransform: "none",
+                    background: "#24459C",
+                    "&:hover": {
+                      background: "#24459C",
+                    },
+                    color: "white",
+                    width: "100%",
+                  }}
+                >
+                  End Date
+                </Button>
+                {endDateSection && (
+                  <input
+                    type="date"
+                    name="end_date"
+                    id=""
+                    style={{
+                      background: "#F6F6F6",
+                      padding: "16px",
+                      border: "none",
+                      borderRadius: "4px",
+                      color: "#65748B",
+                      fontSize: "16px",
+                      fontWeight: "700",
+                    }}
+                  />
+                )}
+              </Box>
+            </Box>
+            <Button
+              type="submit"
+              sx={{
+                textTransform: "none",
+                background: "#24459C",
+                "&:hover": {
+                  background: "#24459C",
+                },
+                color: "white",
+                width: "100%",
+              }}
+            >
+              Make Group
+            </Button>
           </form>
         </Box>
       </Container>
