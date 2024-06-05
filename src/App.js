@@ -47,18 +47,6 @@ import ControlPanelShop from "./Pageviews/Home/ControlPanel/pageviews/control_pa
 import ControlPanelVendor from "./Pageviews/Home/ControlPanel/pageviews/control_panel_vendor_screen";
 import ControlPanelWallet from "./Pageviews/Home/ControlPanel/pageviews/control_panel_wallet_screen";
 import ReportScreen from "./Pageviews/Home/Reports/reports_screen";
-
-import ConnectedAllBids from "./Pageviews/Home/Bids/connected/connected_all_bids";
-import ConnectedOnDemandBids from "./Pageviews/Home/Bids/connected/connected_on_demand_bids";
-import ConnectedWithinOneWeekBids from "./Pageviews/Home/Bids/connected/connected_within_one_week_bids";
-import ConnectedWithinTwoWeekBids from "./Pageviews/Home/Bids/connected/connected_within_two_week_bids";
-import ConnectedScheduleTimeBids from "./Pageviews/Home/Bids/connected/connected_schedule_time_bids";
-
-import NonConnectedAllBids from "./Pageviews/Home/Bids/non_connected/non_connected_all_bids";
-import NonConnectedOnDemandBids from "./Pageviews/Home/Bids/non_connected/non_connected_on_demand_bids";
-import NonConnectedWithinOneWeekBids from "./Pageviews/Home/Bids/non_connected/non_connected_within_one_week_bids";
-import NonConnectedWithinTwoWeekBids from "./Pageviews/Home/Bids/non_connected/non_connected_within_two_week_bids";
-import NonConnectedScheduleTimeBids from "./Pageviews/Home/Bids/non_connected/non_connected_schedule_time_bids";
 import CustomerDetails from "./Pageviews/Home/Customer/customerDetails/CustomerDetails";
 import Default from "./Pageviews/Home/Customer/pages/Default";
 import Details from "./Pageviews/Home/Customer/customerDetails/rightSection/body/details/Details";
@@ -113,6 +101,12 @@ import AssignedToTeam from "./Pageviews/Home/ResGroup/AssignedToTeam/AssignedToT
 import AssignedToBranch from "./Pageviews/Home/ResGroup/AssignedToBranch/AssignedToBranch";
 import ResCompleted from "./Pageviews/Home/ResGroup/Completed/Completed";
 import Pending from "./Pageviews/Home/ResGroup/Pending/Pending";
+import BidsConnectedAllGroup from "./Pageviews/Home/Bids/Connected/AllGroup/BidsConnectedAllGroup";
+import BidsConnectedPending from "./Pageviews/Home/Bids/Connected/Pending/BidsConnectedPending";
+import BidsConnectedClosedGroup from "./Pageviews/Home/Bids/Connected/BidClosedGroup/BidsConnectedClosedGroup";
+import BidsConnectedAssignedToCompany from "./Pageviews/Home/Bids/Connected/AssignedToCompany/BidsConnectedAssignedToCompany";
+import BidsConnectedOngoing from "./Pageviews/Home/Bids/Connected/Ongoing/BidsConnectedOngoing";
+import BidsConnectedComplete from "./Pageviews/Home/Bids/Connected/Completed/BidsConnectedComplete";
 
 const theme = createTheme();
 
@@ -480,29 +474,39 @@ function App() {
                   <Route path="/marketplace" element={<MarketplaceScreen />} />
                   <Route path="/inventory" element={<InventoryScreen />} />
 
+                  {/* Bids Start */}
+
                   <Route path="/bids" element={<BidsScreen />} />
                   <Route
-                    path="/bids/connected/all"
-                    element={<ConnectedAllBids />}
+                    path="/bids/connected/all-group"
+                    element={<BidsConnectedAllGroup />}
                   />
                   <Route
-                    path="/bids/connected/on-demand"
-                    element={<ConnectedOnDemandBids />}
+                    path="/bids/connected/pending"
+                    element={<BidsConnectedPending />}
                   />
                   <Route
-                    path="/bids/connected/within-one-week"
-                    element={<ConnectedWithinOneWeekBids />}
+                    path="/bids/connected/bid-closed-group"
+                    element={<BidsConnectedClosedGroup />}
                   />
                   <Route
-                    path="/bids/connected/within-two-week"
-                    element={<ConnectedWithinTwoWeekBids />}
+                    path="/bids/connected/assigned-to-company"
+                    element={<BidsConnectedAssignedToCompany />}
                   />
                   <Route
-                    path="/bids/connected/schedule-time"
+                    path="/bids/connected/ongoing"
+                    element={<BidsConnectedOngoing />}
+                  />
+                  <Route
+                    path="/bids/connected/completed"
+                    element={<BidsConnectedComplete />}
+                  />
+                  {/* <Route
+                    path="/bids/connected/canceled"
                     element={<ConnectedScheduleTimeBids />}
-                  />
+                  /> */}
 
-                  <Route
+                  {/* <Route
                     path="/bids/non-connected/all"
                     element={<NonConnectedAllBids />}
                   />
@@ -521,7 +525,9 @@ function App() {
                   <Route
                     path="/bids/non-connected/schedule-time"
                     element={<NonConnectedScheduleTimeBids />}
-                  />
+                  /> */}
+
+                  {/* Bids End */}
 
                   <Route
                     path="/notifications"

@@ -22,10 +22,18 @@ const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
     const groupName = e.target.groupName.value;
 
     console.log({ groupName });
+    //   biddingDate: {
+    //     startDate: "2024-07-04T16:55:54.081+00:00",
+    //     endDate: "2024-07-04T16:55:55.081+00:00"
+    // }
 
     makeReservationGroup({
       reservationRequests: selectedReservations,
       groupName,
+      biddingDate: {
+        startDate: "2024-07-04T16:55:54.081+00:00",
+        endDate: "2024-07-04T16:55:55.081+00:00",
+      },
     });
   };
 
