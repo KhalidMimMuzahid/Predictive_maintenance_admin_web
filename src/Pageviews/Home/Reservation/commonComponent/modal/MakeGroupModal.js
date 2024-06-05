@@ -31,8 +31,6 @@ const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
       ? e?.target?.end_date?.value + "T23:59:59.999+00:00"
       : undefined;
 
-    console.log({ groupName, startDate, endDate });
-
     makeReservationGroup({
       reservationRequests: selectedReservations,
       groupName,
