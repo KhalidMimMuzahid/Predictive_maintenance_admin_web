@@ -107,6 +107,12 @@ import BidsConnectedClosedGroup from "./Pageviews/Home/Bids/Connected/BidClosedG
 import BidsConnectedAssignedToCompany from "./Pageviews/Home/Bids/Connected/AssignedToCompany/BidsConnectedAssignedToCompany";
 import BidsConnectedOngoing from "./Pageviews/Home/Bids/Connected/Ongoing/BidsConnectedOngoing";
 import BidsConnectedComplete from "./Pageviews/Home/Bids/Connected/Completed/BidsConnectedComplete";
+import BidsNonConnectedAllGroup from "./Pageviews/Home/Bids/NonConnected/AllGroup/BidsNonConnectedAllGroup";
+import BidsNonConnectedPending from "./Pageviews/Home/Bids/NonConnected/Pending/BidsNonConnectedPending";
+import BidsNonConnectedClosedGroup from "./Pageviews/Home/Bids/NonConnected/BidClosedGroup/BidsNonConnectedClosedGroup";
+import BidsNonConnectedAssignedToCompany from "./Pageviews/Home/Bids/NonConnected/AssignedToCompany/BidsNonConnectedAssignedToCompany";
+import BidsNonConnectedOngoing from "./Pageviews/Home/Bids/NonConnected/Ongoing/BidsNonConnectedOngoing";
+import BidsNonConnectedComplete from "./Pageviews/Home/Bids/NonConnected/Completed/BidsNonConnectedComplete";
 
 const theme = createTheme();
 
@@ -500,6 +506,32 @@ function App() {
                   <Route
                     path="/bids/connected/completed"
                     element={<BidsConnectedComplete />}
+                  />
+
+
+                  <Route
+                    path="/bids/non-connected/all-group"
+                    element={<BidsNonConnectedAllGroup />}
+                  />
+                  <Route
+                    path="/bids/non-connected/pending"
+                    element={<BidsNonConnectedPending />}
+                  />
+                  <Route
+                    path="/bids/non-connected/bid-closed-group"
+                    element={<BidsNonConnectedClosedGroup />}
+                  />
+                  <Route
+                    path="/bids/non-connected/assigned-to-company"
+                    element={<BidsNonConnectedAssignedToCompany />}
+                  />
+                  <Route
+                    path="/bids/non-connected/ongoing"
+                    element={<BidsNonConnectedOngoing />}
+                  />
+                  <Route
+                    path="/bids/non-connected/completed"
+                    element={<BidsNonConnectedComplete />}
                   />
                   {/* <Route
                     path="/bids/connected/canceled"

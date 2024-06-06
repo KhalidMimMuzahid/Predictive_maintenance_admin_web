@@ -58,7 +58,9 @@ const BidsConnectedAllGroup = () => {
           </Button>
         </Box>
       </Box>
-      <AllGroupTable />
+      <Box sx={{ paddingY: "28px" }}>
+        <AllGroupTable />
+      </Box>
     </Box>
   );
 };

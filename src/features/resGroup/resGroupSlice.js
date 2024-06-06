@@ -16,7 +16,8 @@ export const resGroupApi = createApi({
   tagTypes: [],
   endpoints: (builder) => ({
     getAllResGroups: builder.query({
-      query: () => "/reservations-group/all-reservations-group",
+      query: ({ groupForMachineType, reservationGroupType }) =>
+        `/reservations-group/all-reservations-group?groupForMachineType=${groupForMachineType}&reservationGroupType=${reservationGroupType}`,
       providesTags: [],
     }),
     postBidsAssign: builder.mutation({

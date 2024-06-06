@@ -11,7 +11,14 @@ import img7 from "../../../../../Assets/Component/earning.png";
 
 const Overview = () => {
   return (
-    <Box>
+    <Box
+      sx={{
+        background: "white",
+        marginTop: "24px",
+        padding: "20px",
+        borderRadius: "4px",
+      }}
+    >
       <Box>
         <Typography>Overview</Typography>
       </Box>
