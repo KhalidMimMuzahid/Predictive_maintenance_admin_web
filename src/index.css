@@ -104,3 +104,8 @@ code {
   border-right: 12px solid #eaeefa;
   border-bottom: 8px solid transparent;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}

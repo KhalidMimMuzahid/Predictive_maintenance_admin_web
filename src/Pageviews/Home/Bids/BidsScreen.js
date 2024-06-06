@@ -10,8 +10,11 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import Overview from "./LandingPage/Overview/Overview";
+import AllGroupTable from "./Connected/AllGroup/AllGroupTable/AllGroupTable";
+import RequestVsTimeGraph from "./LandingPage/RequestVsTimeGraph/RequestVsTimeGraph";
 
 const BidsScreen = () => {
+  const [isBidsRootScreen, setIsBidsRootScreen] = useState(true);
   const [provider, setProvider] = useState("");
   return (
     <Box sx={{ padding: "40px" }}>
@@ -119,15 +122,23 @@ const BidsScreen = () => {
           </div>
         </Box>
       </Box>
-      <Box
-        sx={{
-          background: "white",
-          marginTop: "24px",
-          padding: "20px",
-          borderRadius: "4px",
-        }}
-      >
-        <Overview />
+      {isBidsRootScreen && (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "26px",
+          }}
+        >
+          <Overview />
+          <RequestVsTimeGraph />
+        </Box>
+      )}
+      <Box sx={{ marginTop: "24px" }}>
+        <AllGroupTable
+          isBidsRootScreen={isBidsRootScreen}
+          setIsBidsRootScreen={setIsBidsRootScreen}
+        />
       </Box>
     </Box>
   );

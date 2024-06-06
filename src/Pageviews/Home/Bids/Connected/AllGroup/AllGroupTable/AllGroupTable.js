@@ -1,174 +1,298 @@
-import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
+import { React, useState } from "react";
+import { useGetAllResGroupsQuery } from "../../../../../../features/resGroup/resGroupSlice.js";
+import GroupTableData from "./GroupTableData/GroupTableData";
+import ReservationRequestTable from "./ReservationRequestTable/ReservationRequestTable.js";
+import Loader from "../../../../../../Utils/Loader.js";
 
-const AllGroupTable = () => {
-  const bidsGroupData = [
-    {
-      groupName: "Sensor Problem",
-      groupId: "0001",
-      reservationRequest: [
-        {
-          customer: {
-            name: "Khubaibul",
-            phone: "01354796545",
-          },
-          requestId: "001",
-          status: "pending",
-          schedule: "date time",
-          serviceType: "Container Washing Machine",
-        },
-        {
-          customer: {
-            name: "Khubaibul",
-            phone: "01354796545",
-          },
-          requestId: "002",
-          status: "acceoted",
-          schedule: "date time",
-          serviceType: "Container Washing Machine",
-        },
-      ],
-      status: "pending",
-      assign: "Send for bid",
-    },
-    {
-      groupName: "Leak Detection",
-      groupId: "0002",
-      reservationRequest: [
-        {
-          customer: {
-            name: "Ayesha",
-            phone: "01789456123",
-          },
-          requestId: "002",
-          status: "pending",
-          schedule: "date time",
-          serviceType: "Pipeline Leak Detection",
-        },
-        {
-          customer: {
-            name: "Rahim",
-            phone: "01956325478",
-          },
-          requestId: "003",
-          status: "pending",
-          schedule: "date time",
-          serviceType: "Tank Leak Detection",
-        },
-      ],
-      status: "ongoing",
-      assign: "Send for bid",
-    },
-    {
-      groupName: "Maintenance",
-      groupId: "0003",
-      reservationRequest: [
-        {
-          customer: {
-            name: "Fatima",
-            phone: "01678541236",
-          },
-          requestId: "004",
-          status: "pending",
-          schedule: "date time",
-          serviceType: "General Maintenance",
-        },
-        {
-          customer: {
-            name: "Khalid",
-            phone: "01678541236",
-          },
-          requestId: "004",
-          status: "pending",
-          schedule: "date time",
-          serviceType: "General Maintenance",
-        },
-        {
-          customer: {
-            name: "Uday",
-            phone: "01678541236",
-          },
-          requestId: "004",
-          status: "pending",
-          schedule: "date time",
-          serviceType: "General Maintenance",
-        },
-      ],
-      status: "pending",
-      assign: "Send for bid",
-    },
-    {
-      groupName: "Inspection",
-      groupId: "0004",
-      reservationRequest: [
-        {
-          customer: {
-            name: "Karim",
-            phone: "01865478952",
-          },
-          requestId: "005",
-          status: "pending",
-          schedule: "date time",
-          serviceType: "Safety Inspection",
-        },
-        {
-          customer: {
-            name: "Nurul",
-            phone: "01578945623",
-          },
-          requestId: "006",
-          status: "pending",
-          schedule: "date time",
-          serviceType: "Quality Inspection",
-        },
-      ],
-      status: "pending",
-      assign: "Send for bid",
-    },
-  ];
+const AllGroupTable = ({ isBidsRootScreen, setIsBidsRootScreen }) => {
+  const [groupExpanded, setGroupExpanded] = useState(null);
+  const { data: resGroupData, isLoading } = useGetAllResGroupsQuery({
+    groupForMachineType: "connected",
+    reservationGroupType: "all",
+  });
+  // console.table(resGroupData?.data);
 
   return (
-    <Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "12px",
-        }}
-      >
+    <Box sx={{ background: "white", padding: "20px", borderRadius: "4px" }}>
+      {isBidsRootScreen && (
         <Box
           sx={{
             display: "flex",
+            justifyContent: "space-between",
             alignItems: "center",
-            gap: "8px",
+            marginBottom: "12px",
           }}
         >
           <Box
             sx={{
-              background: "#26C1C9",
-              width: "18px",
-              height: "18px",
-              borderRadius: "2px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
             }}
-          />
-          <Typography
-            sx={{ color: "#5A6872", fontSize: "14px", fontWeight: "600" }}
           >
-            All Bidding
-          </Typography>
+            <Box
+              sx={{
+                background: "#26C1C9",
+                width: "18px",
+                height: "18px",
+                borderRadius: "2px",
+              }}
+            />
+            <Typography
+              sx={{ color: "#5A6872", fontSize: "14px", fontWeight: "600" }}
+            >
+              All Bidding
+            </Typography>
+          </Box>
+          <Button
+            onClick={() => setIsBidsRootScreen(false)}
+            sx={{
+              fontSize: "14px",
+              fontWeight: "600",
+              color: "#24459C",
+              textTransform: "none",
+            }}
+          >
+            See All
+          </Button>
         </Box>
-        <Button
-          //   onClick={() => setIsRootInvoiceScreen(false)}
+      )}
+      {!isBidsRootScreen && (
+        <Box
           sx={{
-            fontSize: "14px",
-            fontWeight: "600",
-            color: "#24459C",
-            textTransform: "none",
+            background: "#FAF8F8",
+            padding: "12px 48px",
           }}
         >
-          See All
-        </Button>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "0px 12px",
+            }}
+          >
+            <FormControl
+              size="small"
+              sx={{
+                width: "12%",
+                background: "#FFFFFF",
+                boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
+              }}
+            >
+              <InputLabel id="demo-simple-select-label">Area</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                // value={age}
+                label="Age"
+                // onChange={handleChange}
+              >
+                <MenuItem value={""}>0-250 meters</MenuItem>
+                <MenuItem value={""}>250-500 meters</MenuItem>
+                <MenuItem value={""}>1 kilometer</MenuItem>
+                <MenuItem value={""}>Select Area {">"}</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl
+              size="small"
+              sx={{
+                width: "12%",
+                background: "#FFFFFF",
+                boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
+              }}
+            >
+              <InputLabel id="demo-simple-select-label">Status</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                // value={age}
+                label="Age"
+                // onChange={handleChange}
+              >
+                <MenuItem value={""}>Ongoing Jobs</MenuItem>
+                <MenuItem value={""}>Online</MenuItem>
+                <MenuItem value={""}>Offline</MenuItem>
+                <MenuItem value={""}>Suspended</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl
+              size="small"
+              sx={{
+                width: "12%",
+                background: "#FFFFFF",
+                boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
+              }}
+            >
+              <InputLabel id="demo-simple-select-label">Newest</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                // value={age}
+                label="Age"
+                // onChange={handleChange}
+              >
+                <MenuItem value={""}>Newest</MenuItem>
+                <MenuItem value={""}>Newest to Oldest</MenuItem>
+                <MenuItem value={""}>Oldest to Newest</MenuItem>
+                <MenuItem value={""}>Oldest</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+        </Box>
+      )}
+      <Box>
+        {resGroupData?.data?.length > 0 ? (
+          <table style={{ width: "100%" }}>
+            <tr style={{ borderTop: "1px solid #D9D9D9" }}>
+              <th
+                style={{
+                  background: "#F4F2FF",
+                  color: "#6E6893",
+                  textAlign: "start",
+                  padding: "14px",
+                }}
+              >
+                CUSTOMER NAME
+              </th>
+              <th
+                style={{
+                  background: "#F4F2FF",
+                  color: "#6E6893",
+
+                  textAlign: "start",
+                  padding: "14px",
+                }}
+              >
+                REQUEST ID
+              </th>
+              <th
+                style={{
+                  background: "#F4F2FF",
+                  color: "#6E6893",
+
+                  textAlign: "start",
+                  padding: "14px",
+                }}
+              >
+                STATUS
+              </th>
+              <th
+                style={{
+                  background: "#F4F2FF",
+                  color: "#6E6893",
+
+                  textAlign: "start",
+                  padding: "14px",
+                }}
+              >
+                SCHEDULE
+              </th>
+              <th
+                style={{
+                  background: "#F4F2FF",
+                  color: "#6E6893",
+
+                  textAlign: "start",
+                  padding: "14px",
+                }}
+              >
+                MACHINE TYPE
+              </th>
+              <th
+                style={{
+                  background: "#F4F2FF",
+                  color: "#6E6893",
+
+                  textAlign: "start",
+                  padding: "14px",
+                }}
+              >
+                LOCATION
+              </th>
+              <th
+                style={{
+                  background: "#F4F2FF",
+                  color: "#6E6893",
+
+                  textAlign: "start",
+                  padding: "14px",
+                }}
+              >
+                INVOICE
+              </th>
+              <th
+                style={{
+                  background: "#F4F2FF",
+                  color: "#6E6893",
+
+                  textAlign: "start",
+                  padding: "14px",
+                }}
+              >
+                ISSUES
+              </th>
+              <th
+                style={{
+                  background: "#F4F2FF",
+                  color: "#6E6893",
+
+                  textAlign: "start",
+                  padding: "14px",
+                }}
+              >
+                ASSIGN
+              </th>
+              <th
+                style={{
+                  background: "#F4F2FF",
+                  color: "#6E6893",
+
+                  textAlign: "start",
+                  padding: "14px",
+                }}
+              >
+                Action
+              </th>
+            </tr>
+            {isLoading && <Loader />}
+            <tbody style={{ borderBottom: "1px solid #D9D9D9" }}>
+              {resGroupData?.data?.map((resGroup) => (
+                <>
+                  <GroupTableData
+                    resGroup={resGroup}
+                    groupExpanded={groupExpanded}
+                    setGroupExpanded={setGroupExpanded}
+                  />
+                  {resGroup?.groupId === groupExpanded && (
+                    <ReservationRequestTable
+                      reservationData={resGroup?.reservationRequests}
+                    />
+                  )}
+                </>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <Box
+            sx={{
+              width: "100%",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography>No Data Found</Typography>
+          </Box>
+        )}
       </Box>
     </Box>
   );

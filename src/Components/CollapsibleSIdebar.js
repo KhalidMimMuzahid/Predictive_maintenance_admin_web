@@ -325,7 +325,7 @@ const productRoutes = [
       },
       {
         name: "Sensor Non-Connected",
-        path: "/bids/non-connected/all",
+        path: "/bids/non-connected/all-group",
         icon: <img src={sensor_not_connected_icon} />,
         children: [
           {
@@ -339,7 +339,7 @@ const productRoutes = [
             icon: <img src={bids_sub_icon} />,
           },
           {
-            name: "Bid closed group",
+            name: "Bid Closed Group",
             path: "/bids/non-connected/bid-closed-group",
             icon: <img src={bids_sub_icon} />,
           },
