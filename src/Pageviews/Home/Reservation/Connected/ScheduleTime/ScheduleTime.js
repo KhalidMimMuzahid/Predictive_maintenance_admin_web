@@ -204,6 +204,7 @@ const ScheduleTime = () => {
         )}
         <AllReservationTable
           setSelectedReservations={setSelectedReservations}
+          allReservationRows={allReservationRows}
         />
       </Box>
     </Box>
