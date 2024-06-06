@@ -3,12 +3,22 @@ import { Box, Button, FormControl, InputLabel, MenuItem, Select, Tab, Tabs, Typo
 import { useEffect, useState } from "react";
 import AllReservationTable from "./allReservationTable/AllReservationTable";
 import MakeGroupModal from "../../commonComponent/modal/MakeGroupModal";
+import { useGetAllReservationQuery } from "../../../../../features/reservation/reservationSlice";
 
 const WithinTwoWeek = () => {
   const [tabValue, setTabValue] = useState(0);
   const [selectedReservations, setSelectedReservations] = useState([]);
   const [viewOpen, setViewOpen] = useState(false);
-
+  const {
+    data: allReservationRows,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useGetAllReservationQuery({
+    machineType: "connected",
+    reservationType: "within-two-week",
+  });
   const handleGroupReservation = () => {
     setViewOpen(true);
   };
@@ -24,6 +34,7 @@ const WithinTwoWeek = () => {
         viewOpen={viewOpen}
         setViewOpen={setViewOpen}
         selectedReservations={selectedReservations}
+        refetch={refetch}
       />
 
       <Box

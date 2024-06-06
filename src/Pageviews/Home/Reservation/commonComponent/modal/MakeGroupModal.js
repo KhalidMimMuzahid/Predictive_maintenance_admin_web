@@ -4,7 +4,12 @@ import React, { useEffect, useState } from "react";
 import { usePostReservationGroupMutation } from "../../../../../features/reservation/reservationSlice";
 import { toast } from "react-toastify";
 
-const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
+const MakeGroupModal = ({
+  viewOpen,
+  setViewOpen,
+  selectedReservations,
+  refetch,
+}) => {
   const [startDateSection, setStartDateSection] = useState(false);
   const [endDateSection, setEndDateSection] = useState(false);
   const [makeReservationGroup, { data, isError, error, isLoading, isSuccess }] =
@@ -13,6 +18,7 @@ const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
   useEffect(() => {
     if (isSuccess) {
       toast.success(data?.message);
+      refetch();
       setViewOpen(false);
     } else if (isError) {
       toast.error(error?.data?.message);
@@ -29,8 +35,6 @@ const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
     const endDate = e?.target?.end_date?.value
       ? e?.target?.end_date?.value + "T23:59:59.999+00:00"
       : undefined;
-
-    console.log({ groupName, startDate, endDate });
 
     makeReservationGroup({
       reservationRequests: selectedReservations,
