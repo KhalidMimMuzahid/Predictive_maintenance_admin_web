@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import AllReservationTable from "./allReservationTable/AllReservationTable";
-import MakeGroupModal from "../../commonComponent/modal/MakeGroupModal";
+// import MakeGroupModal from "../../commonComponent/modal/MakeGroupModal";
 
 const OnDemand = () => {
   const [tabValue, setTabValue] = useState(0);
@@ -35,11 +35,11 @@ const OnDemand = () => {
   return (
     // Header
     <Box sx={{ padding: "40px" }}>
-      <MakeGroupModal
+      {/* <MakeGroupModal
         viewOpen={viewOpen}
         setViewOpen={setViewOpen}
         selectedReservations={selectedReservations}
-      />
+      /> */}
       <Box
         sx={{
           display: "flex",

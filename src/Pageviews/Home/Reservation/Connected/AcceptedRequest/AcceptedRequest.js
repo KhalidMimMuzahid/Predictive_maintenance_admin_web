@@ -12,12 +12,23 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import AllReservationTable from "./allReservationTable/AllReservationTable";
-import { usePostReservationGroupMutation } from "../../../../../features/reservation/reservationSlice";
+import {
+  useGetAllReservationQuery,
+  usePostReservationGroupMutation,
+} from "../../../../../features/reservation/reservationSlice";
 
 const AcceptedRequest = () => {
   const [tabValue, setTabValue] = useState(0);
   const [selectedReservations, setSelectedReservations] = useState([]);
-
+  const {
+    data: allReservationRows,
+    isLoading,
+    isError,
+    error,
+  } = useGetAllReservationQuery({
+    machineType: "connected",
+    reservationType: "accepted",
+  });
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
   };
@@ -134,6 +145,7 @@ const AcceptedRequest = () => {
           </Button>
         </Box>
         <AllReservationTable
+          allReservationRows={allReservationRows}
           setSelectedReservations={setSelectedReservations}
         />
       </Box>
