@@ -9,6 +9,7 @@ const CustomerNamePhoneComponent = ({ props }) => {
     isError,
     error,
   } = useGetShowaUserInfoQuery(props?.row?.user?.showaUser);
+  console.log(userData);
 
   return (
     <Box>
