@@ -205,6 +205,7 @@ const WithinOneWeek = () => {
         <Box sx={{ width: "100%" }}>
           <AllReservationTable
             setSelectedReservations={setSelectedReservations}
+            allReservationRows={allReservationRows}
           />
         </Box>
       </Box>

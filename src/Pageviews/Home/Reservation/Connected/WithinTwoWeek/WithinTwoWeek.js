@@ -187,6 +187,7 @@ const WithinTwoWeek = () => {
         )}
         <AllReservationTable
           setSelectedReservations={setSelectedReservations}
+          allReservationRows={allReservationRows}
         />
       </Box>
     </Box>
