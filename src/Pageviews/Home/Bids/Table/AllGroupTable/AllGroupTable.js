@@ -8,17 +8,18 @@ import {
   Typography,
 } from "@mui/material";
 import { React, useState } from "react";
-import { useGetAllResGroupsQuery } from "../../../../../../features/resGroup/resGroupSlice.js";
 import GroupTableData from "./GroupTableData/GroupTableData";
 import ReservationRequestTable from "./ReservationRequestTable/ReservationRequestTable.js";
-import Loader from "../../../../../../Utils/Loader.js";
+import Loader from "../../../../../Utils/Loader.js";
 
-const AllGroupTable = ({ isBidsRootScreen, setIsBidsRootScreen }) => {
+const AllGroupTable = ({
+  isBidsRootScreen,
+  setIsBidsRootScreen,
+  resGroupData,
+  isLoading,
+}) => {
   const [groupExpanded, setGroupExpanded] = useState(null);
-  const { data: resGroupData, isLoading } = useGetAllResGroupsQuery({
-    groupForMachineType: "connected",
-    reservationGroupType: "bid-closed-group",
-  });
+
   // console.table(resGroupData?.data);
 
   return (
@@ -284,7 +285,7 @@ const AllGroupTable = ({ isBidsRootScreen, setIsBidsRootScreen }) => {
           <Box
             sx={{
               width: "100%",
-              height: "100vh",
+              height: "20vh",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
