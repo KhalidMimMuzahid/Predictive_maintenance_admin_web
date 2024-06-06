@@ -17,11 +17,22 @@ import {
 import { useEffect, useState } from "react";
 import AllReservationTable from "./allReservationTable/AllReservationTable";
 import MakeGroupModal from "../../commonComponent/modal/MakeGroupModal";
+import { useGetAllReservationQuery } from "../../../../../features/reservation/reservationSlice";
 
 const WithinTwoWeekNonConnected = () => {
   const [tabValue, setTabValue] = useState(0);
   const [selectedReservations, setSelectedReservations] = useState([]);
   const [viewOpen, setViewOpen] = useState(false);
+  const {
+    data: allReservationRows,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useGetAllReservationQuery({
+    machineType: "non-connected",
+    reservationType: "within-two-week",
+  });
   const handleGroupReservation = () => {
     setViewOpen(true);
   };
@@ -37,6 +48,7 @@ const WithinTwoWeekNonConnected = () => {
         viewOpen={viewOpen}
         setViewOpen={setViewOpen}
         selectedReservations={selectedReservations}
+        refetch={refetch}
       />
 
       <Box
@@ -189,6 +201,7 @@ const WithinTwoWeekNonConnected = () => {
         )}
         <AllReservationTable
           setSelectedReservations={setSelectedReservations}
+          allReservationRows={allReservationRows}
         />
       </Box>
     </Box>

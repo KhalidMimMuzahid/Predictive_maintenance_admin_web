@@ -1,20 +1,12 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { useGetAllReservationQuery } from "../../../../../../features/reservation/reservationSlice";
 import { columns } from "../component/allReservationTableComponent/allReservationTableConstant";
 
-const AllReservationTable = ({ setSelectedReservations }) => {
-  const {
-    data: allReservationRows,
-    isLoading,
-    isError,
-    error,
-  } = useGetAllReservationQuery({
-    machineType: "non-connected",
-    reservationType: "on-demand",
-  });
-
+const AllReservationTable = ({
+  setSelectedReservations,
+  allReservationRows,
+}) => {
   // console.log({ allReservationRows });
   return (
     <Box>
