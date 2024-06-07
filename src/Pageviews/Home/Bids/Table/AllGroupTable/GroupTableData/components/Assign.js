@@ -7,7 +7,9 @@ import CompanyName from "./assignComponents/CompanyName";
 import SendForBiding from "./assignComponents/SendForBiding";
 
 const Assign = ({ resGroup }) => {
-  const [assignComponent, setAssignComponent] = useState(<SendForBiding />);
+  const [assignComponent, setAssignComponent] = useState(
+    <div style={{ display: "flex", justifyContent: "center" }}>-</div>
+  );
   const bidStartingDate = new Date(resGroup?.biddingDate?.startDate) || null;
   const bidEndingDate = new Date(resGroup?.biddingDate?.endDate) || null;
   const currentDate = new Date();
@@ -29,6 +31,15 @@ const Assign = ({ resGroup }) => {
       // we need to set bidding start date : current time and optional to set end date
 
       setAssignComponent(<SendForBidding />);
+    } else if (currentDate < bidStartingDate) {
+      //Send for bidding
+      // we need to set bidding start date : current time and optional to set end date
+      console.log({ bidStartingDate: bidStartingDate?.toString() });
+      setAssignComponent(
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          bidding not started
+        </div>
+      );
     } else if (
       currentDate > bidStartingDate &&
       (currentDate < bidEndingDate || !bidEndingDate)

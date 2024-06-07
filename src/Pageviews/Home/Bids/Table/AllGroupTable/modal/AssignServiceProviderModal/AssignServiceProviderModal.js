@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React from "react";
-import { useGetServiceProvidersQuery } from "../../../../../../../features/serviceProvider/serviceProviderSlice";
 import { columns } from "./component/AssignServiceProviderModalConstant";
 
 const AssignServiceProviderModal = ({
@@ -23,12 +22,6 @@ const AssignServiceProviderModal = ({
   setAssignServiceProviderModalOpens,
   allBids,
 }) => {
-  const {
-    data: serviceProvidersData,
-    isLoading,
-    isError,
-  } = useGetServiceProvidersQuery();
-  console.log({ allBids });
   return (
     <Modal
       sx={{
@@ -181,7 +174,7 @@ const AssignServiceProviderModal = ({
                 </Select>
               </FormControl>
             </Box>
-            {serviceProvidersData?.data?.length > 0 && (
+            {allBids.length > 0 && (
               <DataGrid
                 sx={{
                   borderRadius: "0px",
@@ -193,7 +186,7 @@ const AssignServiceProviderModal = ({
                     background: "#F4F2FF",
                   },
                 }}
-                rows={serviceProvidersData?.data?.map((data, id) => {
+                rows={allBids?.map((data, id) => {
                   return { ...data, id };
                 })}
                 columns={columns}

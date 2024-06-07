@@ -47,7 +47,7 @@ export const columns = [
               textTransform: "uppercase",
             }}
           >
-            {props?.row?.companyName}
+            {props?.row?.serviceProviderCompany?.companyName}
           </Typography>
         </Box>
       </Box>
@@ -76,7 +76,7 @@ export const columns = [
             color: "#2FD573",
           }}
         >
-          {props?.row?.status}
+          {props?.row?.serviceProviderCompany?.status}
         </Typography>
       </Box>
     ),
@@ -103,7 +103,9 @@ export const columns = [
       </Typography>
     ),
     width: 200,
-    renderCell: (props) => <AssignCheckboxComponent props={props?.row} />,
+    renderCell: (props) => (
+      <AssignCheckboxComponent props={props?.row?.serviceProviderCompany} />
+    ),
   },
   {
     field: "action",
