@@ -22,7 +22,7 @@ const CustomerNamePhoneComponent = ({ props }) => {
           : "No Data Found"}
       </Typography>
       <Typography sx={{ color: "#6E6893", fontSize: "12px" }}>
-        {userData?.data?.phone || "No Data Found"}
+        {userData?.data?.user?.phone || "No Data Found"}
       </Typography>
     </Box>
   );

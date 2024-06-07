@@ -2,6 +2,7 @@ import { MoreVert } from "@mui/icons-material";
 import React from "react";
 import { Button } from "@mui/material";
 import StatusComponentForGroup from "../component/StatusComponentForGroup";
+import Assign from "./components/Assign";
 
 const GroupTableData = ({ resGroup, groupExpanded, setGroupExpanded }) => {
   console.log(resGroup);
@@ -26,7 +27,9 @@ const GroupTableData = ({ resGroup, groupExpanded, setGroupExpanded }) => {
         {resGroup?.groupName.charAt(0).toUpperCase() +
           resGroup?.groupName.slice(1)}
       </td>
-      <td style={{ padding: "14px", textAlign: "center" }}>-</td>
+      <td style={{ padding: "14px", textAlign: "center" }}>
+        {resGroup?.groupId}
+      </td>
       <td style={{ padding: "14px" }}>
         <StatusComponentForGroup reservation={resGroup} />
       </td>
@@ -36,16 +39,7 @@ const GroupTableData = ({ resGroup, groupExpanded, setGroupExpanded }) => {
       <td style={{ padding: "14px", textAlign: "center" }}>-</td>
       <td style={{ padding: "14px", textAlign: "center" }}>-</td>
       <td style={{ padding: "14px" }}>
-        <Button
-          sx={{
-            textTransform: "none",
-            padding: "2px 12px",
-            borderRadius: "20px",
-            background: "#D9E3FF",
-          }}
-        >
-          Send for bid
-        </Button>
+        <Assign resGroup={resGroup} />
       </td>
       <td style={{ padding: "14px", textAlign: "center" }}>
         <MoreVert />

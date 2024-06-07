@@ -10,27 +10,30 @@ const StatusComponentForGroup = ({ reservation }) => {
           fontSize: "12px",
           fontWeight: "600",
           textAlign: "center",
-          background: reservation?.status === "completed" && "#2FD573",
+          background: reservation?.taskStatus === "completed" && "#2FD573",
           color:
-            (reservation?.status === "completed" && "White") ||
-            (reservation?.status === "pending" && "#FFA503") ||
-            (reservation?.status === "ongoing" && "#FFA503") ||
-            (reservation?.status === "bid-closed" && "#FFA503") ||
-            (reservation?.status === "canceled" && "#FF4858"),
+            (reservation?.taskStatus === "completed" && "White") ||
+            (reservation?.taskStatus === "pending" && "#FFA503") ||
+            (reservation?.taskStatus === "ongoing" && "#FFA503") ||
+            (reservation?.taskStatus === "bid-closed" && "#FFA503") ||
+            (reservation?.taskStatus === "assigned-to-company" && "#FFA503") ||
+            (reservation?.taskStatus === "canceled" && "#FF4858"),
           border:
-            (reservation?.status === "completed" && "1px solid White") ||
-            (reservation?.status === "pending" && "1px solid #FFA503") ||
-            (reservation?.status === "ongoing" && "1px solid #FFA503") ||
-            (reservation?.status === "bid-closed" && "1px solid #FFA503") ||
-            (reservation?.status === "canceled" && "1px solid #FF4858"),
+            (reservation?.taskStatus === "completed" && "1px solid White") ||
+            (reservation?.taskStatus === "pending" && "1px solid #FFA503") ||
+            (reservation?.taskStatus === "ongoing" && "1px solid #FFA503") ||
+            (reservation?.taskStatus === "bid-closed" && "1px solid #FFA503") ||
+            (reservation?.taskStatus === "assigned-to-company" &&
+              "1px solid #FFA503") ||
+            (reservation?.taskStatus === "canceled" && "1px solid #FF4858"),
           padding: "2px 6px",
           width: "96px",
           borderRadius: "20px",
           cursor: "pointer",
         }}
       >
-        {reservation?.status?.charAt(0).toUpperCase() +
-          reservation?.status?.slice(1) || "No Data"}
+        {reservation?.taskStatus?.charAt(0).toUpperCase() +
+          reservation?.taskStatus?.slice(1) || "No Data"}
       </Typography>
     </Box>
   );

@@ -1,10 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-const ScheduleComponent = () => {
+const ScheduleComponent = ({ reservation }) => {
+  const date = new Date(reservation?.schedule?.schedules[0]);
   return (
     <Box>
-      <Typography>No Data</Typography>
+      <Typography>
+        {`${date?.getDate()}-${date?.getMonth()}-${date?.getFullYear()}` ||
+          "no-scheduled"}
+      </Typography>
     </Box>
   );
 };

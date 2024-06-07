@@ -15,7 +15,7 @@ const CustomerComponent = ({ customer }) => {
           customer?.showaUser?.name?.lastName}
       </Typography>
       <Typography sx={{ fontSize: "12px" }}>
-        {customer?.showaUser?.phone || "No Phone Found"}
+        {customer?.phone || "No Phone Found"}
       </Typography>
     </Box>
   );
