@@ -6,8 +6,15 @@ import BidOnGoing from "./assignComponents/BidOnGoing";
 import CompanyName from "./assignComponents/CompanyName";
 import SendForBiding from "./assignComponents/SendForBiding";
 
-const Assign = ({ resGroup }) => {
-  const [assignComponent, setAssignComponent] = useState(<SendForBiding />);
+const Assign = ({ resGroup, refetchForGetALlResGroup }) => {
+  console.log(resGroup);
+  const [assignComponent, setAssignComponent] = useState(
+    <SendForBiding
+      biddingDate={resGroup?.biddingDate}
+      _id={resGroup?._id}
+      refetchForGetALlResGroup={refetchForGetALlResGroup}
+    />
+  );
   const bidStartingDate = new Date(resGroup?.biddingDate?.startDate) || null;
   const bidEndingDate = new Date(resGroup?.biddingDate?.endDate) || null;
   const currentDate = new Date();

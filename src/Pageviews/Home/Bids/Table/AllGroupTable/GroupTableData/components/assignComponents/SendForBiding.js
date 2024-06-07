@@ -2,7 +2,7 @@ import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import SendForBidingModal from "../../../modal/AssignServiceProviderModal/component/SendForBidingModal";
 
-const SendForBiding = () => {
+const SendForBiding = ({ biddingDate, _id, refetchForGetALlResGroup }) => {
   const [sendForBidding, setSendForBidding] = useState(false);
   return (
     <Box>
@@ -10,18 +10,21 @@ const SendForBiding = () => {
         <SendForBidingModal
           sendForBidding={sendForBidding}
           setSendForBidding={setSendForBidding}
+          biddingDate={biddingDate}
+          _id={_id}
+          refetchForGetALlResGroup={refetchForGetALlResGroup}
         />
       )}
       <Button
         onClick={() => setSendForBidding(!sendForBidding)}
         sx={{
           textTransform: "none",
-          background: "#D9E3FF",
+          background: "#F3FAE9",
           "&:hover": {
-            background: "#D9E3FF",
+            background: "#F3FAE9",
           },
           borderRadius: "20px",
-          color: "#24459C",
+          color: "#7FC008",
           fontWeight: "600",
           fontSize: "12px",
           width: "150px",

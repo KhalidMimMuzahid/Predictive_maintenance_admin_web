@@ -5,7 +5,11 @@ import AllGroupTable from "../../Table/AllGroupTable/AllGroupTable";
 import { useGetAllResGroupsQuery } from "../../../../../features/resGroup/resGroupSlice";
 
 const BidsConnectedAllGroup = () => {
-  const { data: resGroupData, isLoading } = useGetAllResGroupsQuery({
+  const {
+    data: resGroupData,
+    isLoading,
+    refetch: refetchForGetALlResGroup,
+  } = useGetAllResGroupsQuery({
     groupForMachineType: "connected",
     reservationGroupType: "bid-closed-group",
   });
@@ -64,7 +68,11 @@ const BidsConnectedAllGroup = () => {
         </Box>
       </Box>
       <Box sx={{ paddingY: "28px" }}>
-        <AllGroupTable resGroupData={resGroupData} isLoading={isLoading} />
+        <AllGroupTable
+          resGroupData={resGroupData}
+          isLoading={isLoading}
+          refetchForGetALlResGroup={refetchForGetALlResGroup}
+        />
       </Box>
     </Box>
   );

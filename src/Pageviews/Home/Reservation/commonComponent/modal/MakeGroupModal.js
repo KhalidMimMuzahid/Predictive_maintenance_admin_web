@@ -1,8 +1,8 @@
 import { Close } from "@mui/icons-material";
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { usePostReservationGroupMutation } from "../../../../../features/reservation/reservationSlice";
 import { toast } from "react-toastify";
+import { usePostReservationGroupMutation } from "../../../../../features/resGroup/resGroupSlice";
 
 const MakeGroupModal = ({
   viewOpen,
