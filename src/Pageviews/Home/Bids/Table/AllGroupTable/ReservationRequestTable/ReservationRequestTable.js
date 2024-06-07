@@ -34,7 +34,7 @@ const ReservationRequestTable = ({ reservationData }) => {
         <StatusComponentForReservation reservation={reservation} />
       </td>
       <td style={{ padding: "14px", textAlign: "center" }}>
-        <ScheduleComponent />
+        <ScheduleComponent reservation={reservation} />
       </td>
       <td style={{ padding: "14px", textAlign: "center", color: "#24459C" }}>
         {reservation?.machineType}
