@@ -27,9 +27,10 @@ const AssignVendor = () => {
           },
           borderRadius: "20px",
           color: "#24459C",
-          padding: "2px 16px",
           fontWeight: "600",
           fontSize: "12px",
+          width: "150px",
+          padding: "2px",
         }}
       >
         Assign Vendor

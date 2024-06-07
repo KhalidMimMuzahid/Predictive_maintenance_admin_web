@@ -8,10 +8,11 @@ const BidOnGoing = () => {
         background: "#FAE4D4",
         color: "#DE7427",
         textAlign: "center",
-        padding: "2px 6px",
         borderRadius: "20px",
         fontWeight: "600",
-        fontSize: "14px",
+        fontSize: "12px",
+        width: "150px",
+        padding: "2px",
       }}
     >
       Bid Ongoing

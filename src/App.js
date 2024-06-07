@@ -67,7 +67,6 @@ import { setUser, toggleLoading } from "./features/authentication/authSlice";
 
 // connected
 import AllReservation from "./Pageviews/Home/Reservation/Connected/AllReservation/AllReservation";
-import AllGroup from "./Pageviews/Home/ResGroup/AllGroup/AllGroup";
 import OnDemand from "./Pageviews/Home/Reservation/Connected/OnDemand/OnDemand";
 import WithinOneWeek from "./Pageviews/Home/Reservation/Connected/WithinOneWeek/WithinOneWeek";
 import WithinTwoWeek from "./Pageviews/Home/Reservation/Connected/WithinTwoWeek/WithinTwoWeek";
@@ -93,14 +92,6 @@ import { ToastContainer } from "react-toastify";
 import DeleteAccountScreen from "./Pageviews/DeleteAccount/DeleteAccountScreen";
 import ChatScreen from "./Pageviews/Home/Chat/ChatScreen";
 import BidsScreen from "./Pageviews/Home/Bids/BidsScreen";
-import ResGroupScreen from "./Pageviews/Home/ResGroup/ResGroupScreen";
-import BidsClosedGroup from "./Pageviews/Home/ResGroup/BidsClosedGroup/BidsClosedGroup";
-import AssignedToCompany from "./Pageviews/Home/ResGroup/AssignedToCompany/AssignedToCompany";
-import OngoingGroup from "./Pageviews/Home/ResGroup/Ongoing/OngoingGroup";
-import AssignedToTeam from "./Pageviews/Home/ResGroup/AssignedToTeam/AssignedToTeam";
-import AssignedToBranch from "./Pageviews/Home/ResGroup/AssignedToBranch/AssignedToBranch";
-import ResCompleted from "./Pageviews/Home/ResGroup/Completed/Completed";
-import Pending from "./Pageviews/Home/ResGroup/Pending/Pending";
 import BidsConnectedAllGroup from "./Pageviews/Home/Bids/Connected/AllGroup/BidsConnectedAllGroup";
 import BidsConnectedPending from "./Pageviews/Home/Bids/Connected/Pending/BidsConnectedPending";
 import BidsConnectedClosedGroup from "./Pageviews/Home/Bids/Connected/BidClosedGroup/BidsConnectedClosedGroup";
@@ -429,33 +420,6 @@ function App() {
 
  */}
 
-                  {/* Res Group Start */}
-                  <Route path="/res-group" element={<ResGroupScreen />} />
-                  <Route path="/res-group/all-group" element={<AllGroup />} />
-                  <Route
-                    path="/res-group/bids-closed-group"
-                    element={<BidsClosedGroup />}
-                  />
-                  <Route
-                    path="/res-group/assigned-to-company"
-                    element={<AssignedToCompany />}
-                  />
-                  <Route
-                    path="/res-group/assigned-to-branch"
-                    element={<AssignedToBranch />}
-                  />
-                  <Route path="/res-group/ongoing" element={<OngoingGroup />} />
-                  <Route
-                    path="/res-group/assigned-to-team"
-                    element={<AssignedToTeam />}
-                  />
-                  <Route path="/res-group/pending" element={<Pending />} />
-                  <Route
-                    path="/res-group/completed"
-                    element={<ResCompleted />}
-                  />
-                  {/* Res Group End */}
-
                   <Route path="/iot" element={<IotScreen />} />
                   <Route path="/wallet" element={<WalletScreen />} />
 
@@ -507,7 +471,6 @@ function App() {
                     path="/bids/connected/completed"
                     element={<BidsConnectedComplete />}
                   />
-
 
                   <Route
                     path="/bids/non-connected/all-group"

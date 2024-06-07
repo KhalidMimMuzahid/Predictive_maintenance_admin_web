@@ -12,10 +12,15 @@ import React, { useState } from "react";
 import Overview from "./LandingPage/Overview/Overview";
 import RequestVsTimeGraph from "./LandingPage/RequestVsTimeGraph/RequestVsTimeGraph";
 import AllGroupTable from "./Table/AllGroupTable/AllGroupTable";
+import { useGetAllResGroupsQuery } from "../../../features/resGroup/resGroupSlice";
 
 const BidsScreen = () => {
   const [isBidsRootScreen, setIsBidsRootScreen] = useState(true);
   const [provider, setProvider] = useState("");
+  const { data: resGroupData, isLoading } = useGetAllResGroupsQuery({
+    groupForMachineType: "connected",
+    reservationGroupType: "all",
+  });
   return (
     <Box sx={{ padding: "40px" }}>
       <Box
@@ -138,6 +143,7 @@ const BidsScreen = () => {
         <AllGroupTable
           isBidsRootScreen={isBidsRootScreen}
           setIsBidsRootScreen={setIsBidsRootScreen}
+          resGroupData={resGroupData}
         />
       </Box>
     </Box>

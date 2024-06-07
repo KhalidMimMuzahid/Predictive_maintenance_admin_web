@@ -1,26 +1,8 @@
 import { Close } from "@mui/icons-material";
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import React from "react";
-import { useGetReservationGroupByIDQuery } from "../../../../../features/resGroup/resGroupSlice";
 
-const ViewDetailsModal = ({
-  viewDetailsModalOpen,
-  setViewDetailsModalOpen,
-  props,
-}) => {
-  const {
-    data: reservationGroupData,
-    isLoading,
-    isError,
-    error,
-  } = useGetReservationGroupByIDQuery(props?._id);
-
-  // Group Name
-  // Group ID
-  // Problems as a Modal
-  // Schedule [First Object Property]
-
-  console.log(reservationGroupData?.data);
+const SendForBidingModal = ({ sendForBidding, setSendForBidding }) => {
   return (
     <Modal
       sx={{
@@ -29,11 +11,11 @@ const ViewDetailsModal = ({
         alignItems: "center",
         justifyContent: "center",
       }}
-      open={viewDetailsModalOpen}
+      open={sendForBidding}
     >
       <Container
         sx={{
-          width: "50%",
+          width: "60%",
           background: "white",
           borderRadius: "20px",
           padding: "24px",
@@ -48,7 +30,7 @@ const ViewDetailsModal = ({
               textAlign: "center",
             }}
           >
-            Group Details
+            Send For Biding
           </Typography>
           <Button
             sx={{
@@ -59,18 +41,16 @@ const ViewDetailsModal = ({
               right: "0",
             }}
             onClick={() => {
-              setViewDetailsModalOpen(!viewDetailsModalOpen);
+              setSendForBidding(!sendForBidding);
             }}
           >
             <Close />
           </Button>
         </Box>
-        <Box>
-          <Box></Box>
-        </Box>
+        {/* Service Provider Table */}
       </Container>
     </Modal>
   );
 };
 
-export default ViewDetailsModal;
+export default SendForBidingModal;
