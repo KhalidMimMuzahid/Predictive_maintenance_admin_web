@@ -148,6 +148,7 @@ const AllGroupTable = ({ isBidsRootScreen, setIsBidsRootScreen }) => {
           </Box>
         </Box>
       )}
+
       <Box>
         {resGroupData?.data?.length > 0 ? (
           <table style={{ width: "100%" }}>

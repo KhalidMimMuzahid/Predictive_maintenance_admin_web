@@ -26,7 +26,9 @@ const GroupTableData = ({ resGroup, groupExpanded, setGroupExpanded }) => {
         {resGroup?.groupName.charAt(0).toUpperCase() +
           resGroup?.groupName.slice(1)}
       </td>
-      <td style={{ padding: "14px", textAlign: "center" }}>-</td>
+      <td style={{ padding: "14px", textAlign: "center" }}>
+        {resGroup?.groupId}
+      </td>
       <td style={{ padding: "14px" }}>
         <StatusComponentForGroup reservation={resGroup} />
       </td>

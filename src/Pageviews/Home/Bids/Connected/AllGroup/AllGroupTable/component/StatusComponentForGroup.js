@@ -15,13 +15,13 @@ const StatusComponentForGroup = ({ reservation }) => {
             (reservation?.status === "completed" && "White") ||
             (reservation?.status === "pending" && "#FFA503") ||
             (reservation?.status === "ongoing" && "#FFA503") ||
-            (reservation?.status === "bid-closed" && "#FFA503") ||
+            // (reservation?.status === "bid-closed" && "#FFA503") ||
             (reservation?.status === "canceled" && "#FF4858"),
           border:
             (reservation?.status === "completed" && "1px solid White") ||
             (reservation?.status === "pending" && "1px solid #FFA503") ||
             (reservation?.status === "ongoing" && "1px solid #FFA503") ||
-            (reservation?.status === "bid-closed" && "1px solid #FFA503") ||
+            // (reservation?.status === "bid-closed" && "1px solid #FFA503") ||
             (reservation?.status === "canceled" && "1px solid #FF4858"),
           padding: "2px 6px",
           width: "96px",
