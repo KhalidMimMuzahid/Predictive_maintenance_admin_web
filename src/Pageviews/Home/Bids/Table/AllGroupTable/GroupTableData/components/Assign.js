@@ -1,7 +1,6 @@
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import AssignVendor from "./assignComponents/AssignVendor";
-import SendForBidding from "./assignComponents/SendForBidding";
 import BidOnGoing from "./assignComponents/BidOnGoing";
 import CompanyName from "./assignComponents/CompanyName";
 import SendForBiding from "./assignComponents/SendForBiding";
@@ -10,10 +9,12 @@ const Assign = ({ resGroup }) => {
   const [assignComponent, setAssignComponent] = useState(
     <div style={{ display: "flex", justifyContent: "center" }}>-</div>
   );
-  const bidStartingDate = new Date(resGroup?.biddingDate?.startDate) || null;
+  const bidStartingDate = resGroup?.biddingDate?.startDate
+    ? new Date(resGroup?.biddingDate?.startDate)
+    : null;
   const bidEndingDate = new Date(resGroup?.biddingDate?.endDate) || null;
   const currentDate = new Date();
-
+  console.log({ bidStartingDate });
   // Send for bidding:
   // If for this  res-req-group, bid starting date has not been set yet
   //  Bid-ongoing:
@@ -26,11 +27,11 @@ const Assign = ({ resGroup }) => {
       //Company Name
       // after clicking company wee gonna riderected to company details
       setAssignComponent(<CompanyName />);
-    } else if (!bidStartingDate) {
+    } else if (!bidStartingDate?.toString()) {
       //Send for bidding
       // we need to set bidding start date : current time and optional to set end date
 
-      setAssignComponent(<SendForBidding />);
+      setAssignComponent(<SendForBiding />);
     } else if (currentDate < bidStartingDate) {
       //Send for bidding
       // we need to set bidding start date : current time and optional to set end date

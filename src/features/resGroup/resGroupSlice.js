@@ -15,6 +15,14 @@ export const resGroupApi = createApi({
   }),
   tagTypes: [],
   endpoints: (builder) => ({
+    postReservationGroup: builder.mutation({
+      query: (formData) => ({
+        url: "/reservations-group/create",
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: ["make-reservation-request-group"],
+    }),
     getAllResGroups: builder.query({
       query: ({ groupForMachineType, reservationGroupType }) =>
         `/reservations-group/all-reservations-group?groupForMachineType=${groupForMachineType}&reservationGroupType=${reservationGroupType}`,
@@ -31,11 +39,21 @@ export const resGroupApi = createApi({
       query: (_id) =>
         `/reservations-group/get-reservation-group-by-id?reservationRequestGroup=${_id}`,
     }),
+    patchSetBidingDate: builder.mutation({
+      query: ({ reservationRequestGroup, biddingDate }) => ({
+        url: `/reservations-group/set-bidding-date?reservationRequestGroup=${reservationRequestGroup}`,
+        method: "PATCH",
+        body: biddingDate,
+        providesTags: [],
+      }),
+    }),
   }),
 });
 
 export const {
+  usePostReservationGroupMutation,
   useGetAllResGroupsQuery,
   usePostBidsAssignMutation,
   useGetReservationGroupByIDQuery,
+  usePatchSetBidingDateMutation,
 } = resGroupApi;

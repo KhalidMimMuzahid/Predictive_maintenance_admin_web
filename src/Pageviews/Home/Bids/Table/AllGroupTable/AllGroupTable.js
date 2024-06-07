@@ -17,6 +17,7 @@ const AllGroupTable = ({
   setIsBidsRootScreen,
   resGroupData,
   isLoading,
+  refetchForGetALlResGroup,
 }) => {
   const [groupExpanded, setGroupExpanded] = useState(null);
 
@@ -272,6 +273,7 @@ const AllGroupTable = ({
                     resGroup={resGroup}
                     groupExpanded={groupExpanded}
                     setGroupExpanded={setGroupExpanded}
+                    refetchForGetALlResGroup={refetchForGetALlResGroup}
                   />
                   {resGroup?.groupId === groupExpanded && (
                     <ReservationRequestTable

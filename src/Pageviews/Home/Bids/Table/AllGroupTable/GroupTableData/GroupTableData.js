@@ -3,7 +3,12 @@ import React from "react";
 import StatusComponentForGroup from "../component/StatusComponentForGroup";
 import Assign from "./components/Assign";
 
-const GroupTableData = ({ resGroup, groupExpanded, setGroupExpanded }) => {
+const GroupTableData = ({
+  resGroup,
+  groupExpanded,
+  setGroupExpanded,
+  refetchForGetALlResGroup,
+}) => {
   return (
     <tr
       onClick={() => setGroupExpanded(resGroup?.groupId)}
@@ -37,7 +42,10 @@ const GroupTableData = ({ resGroup, groupExpanded, setGroupExpanded }) => {
       <td style={{ padding: "14px", textAlign: "center" }}>-</td>
       <td style={{ padding: "14px", textAlign: "center" }}>-</td>
       <td style={{ padding: "14px" }}>
-        <Assign resGroup={resGroup} />
+        <Assign
+          resGroup={resGroup}
+          refetchForGetALlResGroup={refetchForGetALlResGroup}
+        />
       </td>
       <td style={{ padding: "14px", textAlign: "center" }}>
         <MoreVert />
