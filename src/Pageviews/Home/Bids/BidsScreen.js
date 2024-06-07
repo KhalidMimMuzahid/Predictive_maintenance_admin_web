@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import Overview from "./LandingPage/Overview/Overview";
-import AllGroupTable from "./Connected/AllGroup/AllGroupTable/AllGroupTable";
 import RequestVsTimeGraph from "./LandingPage/RequestVsTimeGraph/RequestVsTimeGraph";
+import AllGroupTable from "./Table/AllGroupTable/AllGroupTable";
 
 const BidsScreen = () => {
   const [isBidsRootScreen, setIsBidsRootScreen] = useState(true);

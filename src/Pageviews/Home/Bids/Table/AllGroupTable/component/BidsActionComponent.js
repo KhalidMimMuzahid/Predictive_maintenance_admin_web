@@ -7,7 +7,7 @@ import {
 } from "@mui/icons-material";
 import { Box, IconButton, MenuItem, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { StyledMenu } from "../../../../../Customer/styleComponents";
+import { StyledMenu } from "../../../../Customer/styleComponents";
 
 const BidsActionComponent = () => {
   const [anchorEl, setAnchorEl] = useState(null);

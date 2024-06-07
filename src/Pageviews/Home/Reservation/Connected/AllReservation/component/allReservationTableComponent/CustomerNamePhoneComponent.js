@@ -10,6 +10,8 @@ const CustomerNamePhoneComponent = ({ props }) => {
     error,
   } = useGetShowaUserInfoQuery(props?.row?.user?.showaUser);
 
+  console.log(userData);
+
   return (
     <Box>
       <Typography

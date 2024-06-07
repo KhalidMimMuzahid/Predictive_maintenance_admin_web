@@ -1,9 +1,13 @@
-import { Upload } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-import AllGroupTable from "./AllGroupTable/AllGroupTable";
+import { useGetAllResGroupsQuery } from "../../../../../features/resGroup/resGroupSlice";
+import AllGroupTable from "../../Table/AllGroupTable/AllGroupTable";
 
 const BidsConnectedAssignedToCompany = () => {
+  const { data: resGroupData, isLoading } = useGetAllResGroupsQuery({
+    groupForMachineType: "connected",
+    reservationGroupType: "assigned-to-company",
+  });
   return (
     <Box sx={{ padding: "40px" }}>
       <Box
@@ -59,7 +63,7 @@ const BidsConnectedAssignedToCompany = () => {
         </Box>
       </Box>
       <Box sx={{ paddingY: "28px" }}>
-        <AllGroupTable />
+        <AllGroupTable resGroupData={resGroupData} isLoading={isLoading} />
       </Box>
     </Box>
   );
