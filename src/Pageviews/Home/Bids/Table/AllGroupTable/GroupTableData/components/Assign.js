@@ -6,6 +6,7 @@ import BidOnGoing from "./assignComponents/BidOnGoing";
 import CompanyName from "./assignComponents/CompanyName";
 
 const Assign = ({ resGroup }) => {
+
   const [assignComponent, setAssignComponent] = useState(
     <Button
       sx={{
@@ -48,7 +49,7 @@ const Assign = ({ resGroup }) => {
       setAssignComponent(<BidOnGoing />);
     } else if (currentDate > bidEndingDate && bidEndingDate) {
       //Assign Vendor
-      setAssignComponent(<AssignVendor />);
+      setAssignComponent(<AssignVendor allBids={resGroup?.allBids} />);
     }
   }, []);
 
