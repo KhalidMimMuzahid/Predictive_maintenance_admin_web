@@ -1,19 +1,13 @@
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import AssignVendor from "./assignComponents/AssignVendor";
-import SendForBidding from "./assignComponents/SendForBidding";
 import BidOnGoing from "./assignComponents/BidOnGoing";
 import CompanyName from "./assignComponents/CompanyName";
 import SendForBiding from "./assignComponents/SendForBiding";
 
 const Assign = ({ resGroup, refetchForGetALlResGroup }) => {
-  console.log(resGroup);
   const [assignComponent, setAssignComponent] = useState(
-    <SendForBiding
-      biddingDate={resGroup?.biddingDate}
-      _id={resGroup?._id}
-      refetchForGetALlResGroup={refetchForGetALlResGroup}
-    />
+    <div style={{ display: "flex", justifyContent: "center" }}>-</div>
   );
   const bidStartingDate = new Date(resGroup?.biddingDate?.startDate) || null;
   const bidEndingDate = new Date(resGroup?.biddingDate?.endDate) || null;
@@ -35,7 +29,18 @@ const Assign = ({ resGroup, refetchForGetALlResGroup }) => {
       //Send for bidding
       // we need to set bidding start date : current time and optional to set end date
 
-      setAssignComponent(<SendForBidding />);
+      setAssignComponent(
+        <SendForBiding refetchForGetALlResGroup={refetchForGetALlResGroup} />
+      );
+    } else if (currentDate < bidStartingDate) {
+      //Send for bidding
+      // we need to set bidding start date : current time and optional to set end date
+      console.log({ bidStartingDate: bidStartingDate?.toString() });
+      setAssignComponent(
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          bidding not started
+        </div>
+      );
     } else if (
       currentDate > bidStartingDate &&
       (currentDate < bidEndingDate || !bidEndingDate)
