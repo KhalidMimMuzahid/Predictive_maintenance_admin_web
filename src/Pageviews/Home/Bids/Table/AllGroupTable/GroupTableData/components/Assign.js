@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import AssignVendor from "./assignComponents/AssignVendor";
 import SendForBidding from "./assignComponents/SendForBidding";
@@ -18,28 +19,28 @@ const Assign = ({ resGroup }) => {
   // Assign Vendor: If the bidding ending date has finished but no bidding winner has been selected yet.
   // Company Name (Button):
   // If it has already been assigned to any company, after clicking it we are redirected to the user to the company details screen.
-  // useEffect(() => {
-  //   if (resGroup?.postBiddingProcess?.serviceProviderCompany) {
-  //     //Company Name
-  //     // after clicking company wee gonna riderected to company details
-  //     setAssignComponent(<CompanyName />);
-  //   } else if (!bidStartingDate) {
-  //     //Send for bidding
-  //     // we need to set bidding start date : current time and optional to set end date
+  useEffect(() => {
+    if (resGroup?.postBiddingProcess?.serviceProviderCompany) {
+      //Company Name
+      // after clicking company wee gonna riderected to company details
+      setAssignComponent(<CompanyName />);
+    } else if (!bidStartingDate) {
+      //Send for bidding
+      // we need to set bidding start date : current time and optional to set end date
 
-  //     setAssignComponent(<SendForBidding />);
-  //   } else if (
-  //     currentDate > bidStartingDate &&
-  //     (currentDate < bidEndingDate || !bidEndingDate)
-  //   ) {
-  //     // Bid-ongoing
+      setAssignComponent(<SendForBidding />);
+    } else if (
+      currentDate > bidStartingDate &&
+      (currentDate < bidEndingDate || !bidEndingDate)
+    ) {
+      // Bid-ongoing
 
-  //     setAssignComponent(<BidOnGoing />);
-  //   } else if (currentDate > bidEndingDate && bidEndingDate) {
-  //     //Assign Vendor
-  //     setAssignComponent(<AssignVendor />);
-  //   }
-  // }, []);
+      setAssignComponent(<BidOnGoing />);
+    } else if (currentDate > bidEndingDate && bidEndingDate) {
+      //Assign Vendor
+      setAssignComponent(<AssignVendor allBids={resGroup?.allBids} />);
+    }
+  }, []);
 
   return assignComponent;
 };

@@ -21,13 +21,14 @@ import { columns } from "./component/AssignServiceProviderModalConstant";
 const AssignServiceProviderModal = ({
   assignServiceProviderModalOpens,
   setAssignServiceProviderModalOpens,
+  allBids,
 }) => {
   const {
     data: serviceProvidersData,
     isLoading,
     isError,
   } = useGetServiceProvidersQuery();
-  console.log(serviceProvidersData);
+  console.log({ allBids });
   return (
     <Modal
       sx={{
