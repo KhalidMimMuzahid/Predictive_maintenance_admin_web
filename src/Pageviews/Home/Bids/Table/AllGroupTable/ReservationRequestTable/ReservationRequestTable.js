@@ -14,7 +14,6 @@ const ReservationRequestTable = ({ reservationData }) => {
   return reservationData?.map((reservation) => (
     <tr
       style={{
-        cursor: "pointer",
         borderTop: "1px solid #D9D9D9",
         padding: "14px",
       }}
