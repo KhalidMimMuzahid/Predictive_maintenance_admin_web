@@ -1,11 +1,9 @@
 import { MoreVert } from "@mui/icons-material";
 import React from "react";
-import { Button } from "@mui/material";
 import StatusComponentForGroup from "../component/StatusComponentForGroup";
 import Assign from "./components/Assign";
 
 const GroupTableData = ({ resGroup, groupExpanded, setGroupExpanded }) => {
-  console.log(resGroup);
   return (
     <tr
       onClick={() => setGroupExpanded(resGroup?.groupId)}

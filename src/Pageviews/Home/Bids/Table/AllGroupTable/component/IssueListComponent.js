@@ -1,7 +1,8 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-const IssueListComponent = () => {
+const IssueListComponent = ({ reservation }) => {
+  console.log(reservation);
   return (
     <div>
       <Button

@@ -1,12 +1,19 @@
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import React from "react";
 
-const InvoiceComponent = () => {
+const InvoiceComponent = ({ reservation }) => {
+  console.log("From Invoice", reservation);
   return (
     <div>
-      <Typography sx={{ color: "#2196F3", fontWeight: "600" }}>
-        Create
-      </Typography>
+      {reservation?.status === "pending" ? (
+        <Button
+          sx={{ color: "#2196F3", fontWeight: "600", textTransform: "none" }}
+        >
+          Create
+        </Button>
+      ) : (
+        "-"
+      )}
     </div>
   );
 };

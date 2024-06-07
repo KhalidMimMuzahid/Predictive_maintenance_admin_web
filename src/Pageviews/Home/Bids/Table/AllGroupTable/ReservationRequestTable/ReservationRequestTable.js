@@ -1,6 +1,4 @@
-import { MoreVert } from "@mui/icons-material";
 import React from "react";
-import { Button } from "@mui/material";
 import CustomerComponent from "../component/CustomerComponent";
 import StatusComponentForReservation from "../component/StatusComponentForReservation";
 import ScheduleComponent from "../component/ScheduleComponent";
@@ -8,9 +6,9 @@ import LocationComponent from "../component/LocationComponent";
 import InvoiceComponent from "../component/InvoiceComponent";
 import IssueListComponent from "../component/IssueListComponent";
 import BidsActionComponent from "../component/BidsActionComponent";
+import AssignComponent from "../component/AssignComponent";
 
 const ReservationRequestTable = ({ reservationData }) => {
-  console.log(reservationData[0]);
   return reservationData?.map((reservation) => (
     <tr
       style={{
@@ -42,12 +40,14 @@ const ReservationRequestTable = ({ reservationData }) => {
         <LocationComponent />
       </td>
       <td style={{ padding: "14px", textAlign: "center" }}>
-        <InvoiceComponent />
+        <InvoiceComponent reservation={reservation} />
       </td>
       <td style={{ padding: "14px", textAlign: "center" }}>
-        <IssueListComponent />
+        <IssueListComponent reservation={reservation} />
       </td>
-      <td style={{ padding: "14px", textAlign: "center" }}>No Data</td>
+      <td style={{ padding: "14px", textAlign: "center" }}>
+        <AssignComponent reservation={reservation} />
+      </td>
       <td style={{ padding: "14px", textAlign: "center" }}>
         <BidsActionComponent />
       </td>
