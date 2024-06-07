@@ -2,7 +2,7 @@ import { Close } from "@mui/icons-material";
 import { Container, IconButton, Modal, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
-const LocationComponent = ({ props }) => {
+const ViewServiceProviderLocation = ({ props }) => {
   const [showLocationModal, setShowLocationModal] = useState(false);
 
   const [mapAdds, setMapAdds] = useState(
@@ -80,4 +80,4 @@ const LocationComponent = ({ props }) => {
   );
 };
 
-export default LocationComponent;
+export default ViewServiceProviderLocation;

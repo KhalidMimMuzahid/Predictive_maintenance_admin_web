@@ -1,11 +1,20 @@
-import { Button } from "@mui/material";
-import React from "react";
+import { Box, Button } from "@mui/material";
+import React, { useState } from "react";
+import IssuesListModal from "../modal/IssueListModal";
 
 const IssueListComponent = ({ reservation }) => {
-  console.log(reservation);
+  const [issuesModalOpen, setIssuesModalOpen] = useState(false);
   return (
-    <div>
+    <Box>
+      {issuesModalOpen && (
+        <IssuesListModal
+          issuesModalOpen={issuesModalOpen}
+          setIssuesModalOpen={setIssuesModalOpen}
+          problem={reservation?.problem}
+        />
+      )}
       <Button
+        onClick={() => setIssuesModalOpen(!issuesModalOpen)}
         sx={{
           textTransform: "none",
           padding: "2px 12px",
@@ -17,7 +26,7 @@ const IssueListComponent = ({ reservation }) => {
       >
         View Issue List
       </Button>
-    </div>
+    </Box>
   );
 };
 

@@ -21,7 +21,6 @@ const Assign = ({ resGroup }) => {
   const bidStartingDate = new Date(resGroup?.biddingDate?.startDate) || null;
   const bidEndingDate = new Date(resGroup?.biddingDate?.endDate) || null;
   const currentDate = new Date();
-  console.log(":::::::::: ", resGroup);
 
   // Send for bidding:
   // If for this  res-req-group, bid starting date has not been set yet
