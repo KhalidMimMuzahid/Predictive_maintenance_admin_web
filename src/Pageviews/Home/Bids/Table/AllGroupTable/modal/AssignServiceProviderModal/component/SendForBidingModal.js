@@ -34,7 +34,6 @@ const SendForBidingModal = ({
     const endDate = e?.target?.end_date?.value
       ? e?.target?.end_date?.value + "T23:59:59.999+00:00"
       : undefined;
-    console.log({ startDate, endDate });
     setBidingDate({
       reservationRequestGroup: _id,
       biddingDate: { biddingDate: { startDate, endDate } },

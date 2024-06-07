@@ -32,7 +32,11 @@ const Assign = ({ resGroup, refetchForGetALlResGroup }) => {
       // we need to set bidding start date : current time and optional to set end date
 
       setAssignComponent(
-        <SendForBiding refetchForGetALlResGroup={refetchForGetALlResGroup} />
+        <SendForBiding
+          biddingDate={resGroup?.bidEndingDate}
+          _id={resGroup?._id}
+          refetchForGetALlResGroup={refetchForGetALlResGroup}
+        />
       );
     } else if (currentDate < bidStartingDate) {
       //Send for bidding
