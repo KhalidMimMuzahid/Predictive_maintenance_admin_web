@@ -25,12 +25,13 @@ const ActionComponent = ({ props }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  console.log(props);
 
   return (
     <>
       {viewCustomerOpen && (
         <CustomerDetails
-          props={props}
+          props={props?.row}
           viewCustomerOpen={viewCustomerOpen}
           setViewCustomerOpen={setViewCustomerOpen}
         />

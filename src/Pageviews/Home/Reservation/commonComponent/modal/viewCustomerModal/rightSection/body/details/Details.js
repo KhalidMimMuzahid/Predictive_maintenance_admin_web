@@ -10,7 +10,6 @@ const Details = ({ customerDetailsData }) => {
     dob: "",
     gender: "",
   });
-
   const handleEdit = () => {
     setEditedValues({
       email: user?.email,
@@ -81,7 +80,7 @@ const Details = ({ customerDetailsData }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.email}
+              {customerDetailsData?.email}
             </Typography>
           ) : (
             <TextField
@@ -117,7 +116,7 @@ const Details = ({ customerDetailsData }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.phone}
+              {customerDetailsData?.showaUser?.phone}
             </Typography>
           ) : (
             <TextField
@@ -153,7 +152,7 @@ const Details = ({ customerDetailsData }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.dateOfBirth}
+              {customerDetailsData?.showaUser?.addresses[0].address?.country}
             </Typography>
           ) : (
             <TextField
@@ -189,10 +188,7 @@ const Details = ({ customerDetailsData }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.gender
-                .charAt(0)
-                .toUpperCase() +
-                customerDetailsData?.data?.showaUser?.gender.slice(1)}
+              {customerDetailsData?.showaUser?.addresses[0].address?.city}
             </Typography>
           ) : (
             <TextField
@@ -228,10 +224,11 @@ const Details = ({ customerDetailsData }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.gender
-                .charAt(0)
-                .toUpperCase() +
-                customerDetailsData?.data?.showaUser?.gender.slice(1)}
+              {customerDetailsData?.showaUser?.addresses[0].address
+                ?.postalCode +
+                ", " +
+                customerDetailsData?.showaUser?.addresses[0].address
+                  ?.prefecture}
             </Typography>
           ) : (
             <TextField
@@ -267,10 +264,10 @@ const Details = ({ customerDetailsData }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.gender
-                .charAt(0)
-                .toUpperCase() +
-                customerDetailsData?.data?.showaUser?.gender.slice(1)}
+              {customerDetailsData?.showaUser?.addresses[0].address
+                ?.roomNumber +
+                ", " +
+                customerDetailsData?.showaUser?.addresses[0].address?.details}
             </Typography>
           ) : (
             <TextField

@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const LocationComponent = ({ props }) => {
-  console.log(props);
+  console.log(props?.location);
   return (
     <Box
       sx={{
@@ -22,12 +22,12 @@ const LocationComponent = ({ props }) => {
           fontSize: "12px",
         }}
       >
-        {props?.address?.street + ", " + props?.address?.buildingName}
+        {props?.location?.street + ", " + props?.location?.buildingName}
       </Typography>
       <Box sx={{ display: "flex" }}>
-        <Typography>{props?.address?.city} </Typography>
+        <Typography>{props?.location?.city} </Typography>
         <span style={{ marginLeft: "5px" }}></span>
-        <Typography>{props?.address?.country}</Typography>
+        <Typography>{props?.location?.country}</Typography>
       </Box>
     </Box>
   );

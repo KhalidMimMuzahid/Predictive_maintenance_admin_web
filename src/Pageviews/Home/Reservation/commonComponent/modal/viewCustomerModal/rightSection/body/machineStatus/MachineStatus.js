@@ -16,6 +16,7 @@ const MachineStatus = ({ customerDetailsData, props }) => {
   const handleEdit = () => {
     setEditMode(true);
   };
+  console.log(machineData?.data);
 
   const handleChange = (field, value) => {
     setEditedValues((prevState) => ({
@@ -77,7 +78,7 @@ const MachineStatus = ({ customerDetailsData, props }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.email}
+              {machineData?.data?.usedFor?.name}
             </Typography>
           ) : (
             <TextField
@@ -113,7 +114,11 @@ const MachineStatus = ({ customerDetailsData, props }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.phone}
+              {machineData?.data?.usedFor?.address?.postalCode +
+                ", " +
+                machineData?.data?.usedFor?.address?.city +
+                ", " +
+                machineData?.data?.usedFor?.address?.country || "No Data"}
             </Typography>
           ) : (
             <TextField
@@ -149,7 +154,7 @@ const MachineStatus = ({ customerDetailsData, props }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.dateOfBirth}
+              {machineData?.data?.usedFor?.type}
             </Typography>
           ) : (
             <TextField
@@ -185,10 +190,7 @@ const MachineStatus = ({ customerDetailsData, props }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.gender
-                .charAt(0)
-                .toUpperCase() +
-                customerDetailsData?.data?.showaUser?.gender.slice(1)}
+              {machineData?.data?.category}
             </Typography>
           ) : (
             <TextField
@@ -224,10 +226,7 @@ const MachineStatus = ({ customerDetailsData, props }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.gender
-                .charAt(0)
-                .toUpperCase() +
-                customerDetailsData?.data?.showaUser?.gender.slice(1)}
+              {machineData?.data?.brand}
             </Typography>
           ) : (
             <TextField
@@ -263,10 +262,7 @@ const MachineStatus = ({ customerDetailsData, props }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.gender
-                .charAt(0)
-                .toUpperCase() +
-                customerDetailsData?.data?.showaUser?.gender.slice(1)}
+              {machineData?.data?.model}
             </Typography>
           ) : (
             <TextField
@@ -302,10 +298,7 @@ const MachineStatus = ({ customerDetailsData, props }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.gender
-                .charAt(0)
-                .toUpperCase() +
-                customerDetailsData?.data?.showaUser?.gender.slice(1)}
+              None
             </Typography>
           ) : (
             <TextField
@@ -341,10 +334,7 @@ const MachineStatus = ({ customerDetailsData, props }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.gender
-                .charAt(0)
-                .toUpperCase() +
-                customerDetailsData?.data?.showaUser?.gender.slice(1)}
+              None
             </Typography>
           ) : (
             <TextField
@@ -380,10 +370,7 @@ const MachineStatus = ({ customerDetailsData, props }) => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.gender
-                .charAt(0)
-                .toUpperCase() +
-                customerDetailsData?.data?.showaUser?.gender.slice(1)}
+              None
             </Typography>
           ) : (
             <TextField

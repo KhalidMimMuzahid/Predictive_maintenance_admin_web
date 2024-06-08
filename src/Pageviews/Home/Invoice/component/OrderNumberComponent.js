@@ -4,7 +4,7 @@ import React from "react";
 const OrderNumberComponent = ({ props }) => {
   return (
     <Typography sx={{ color: "#25213B", fontWeight: "400" }}>
-      {props?.order_number}
+      {props?.reservationRequest?.requestId}
     </Typography>
   );
 };
