@@ -29,7 +29,13 @@ const Assign = ({ resGroup, refetchForGetALlResGroup }) => {
     if (resGroup?.postBiddingProcess?.serviceProviderCompany) {
       //Company Name
       // after clicking company wee gonna riderected to company details
-      setAssignComponent(<CompanyName />);
+      setAssignComponent(
+        <CompanyName
+          serviceProviderCompany={
+            resGroup?.postBiddingProcess?.serviceProviderCompany
+          }
+        />
+      );
     } else if (
       !(
         resGroup?.biddingDate?.startDate
@@ -100,6 +106,7 @@ const Assign = ({ resGroup, refetchForGetALlResGroup }) => {
         <AssignVendor
           allBids={resGroup?.allBids}
           reservationRequestGroup={resGroup?._id}
+          refetchForGetALlResGroup={refetchForGetALlResGroup}
         />
       );
     }

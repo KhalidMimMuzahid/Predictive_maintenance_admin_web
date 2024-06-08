@@ -14,15 +14,37 @@ import {
   Typography,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { columns } from "./component/AssignServiceProviderModalConstant";
+import { AppContext } from "../../../../../../../contextApi/appProvider";
+import { usePatchSelectBidingWinnerMutation } from "../../../../../../../features/resGroup/resGroupSlice";
+import { toast } from "react-toastify";
 
 const AssignServiceProviderModal = ({
   assignServiceProviderModalOpens,
   setAssignServiceProviderModalOpens,
   allBids,
   reservationRequestGroup,
+  refetchForGetALlResGroup,
 }) => {
+  const [setBidingWinner, { data, isError, error, isLoading, isSuccess }] =
+    usePatchSelectBidingWinnerMutation();
+  const { bid_id, setBid_id } = useContext(AppContext);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(data?.message);
+      setBid_id(null);
+      refetchForGetALlResGroup();
+      setAssignServiceProviderModalOpens(false);
+    } else if (isError) {
+      toast.error(error?.data?.message);
+    }
+  }, [isSuccess, isError]);
+
+  const handleAssign = () => {
+    setBidingWinner({ reservationRequestGroup, bid: bid_id });
+  };
   return (
     <Modal
       sx={{
@@ -215,6 +237,7 @@ const AssignServiceProviderModal = ({
         >
           <Button
             onClick={() => {
+              setBid_id(null);
               setAssignServiceProviderModalOpens(
                 !assignServiceProviderModalOpens
               );
@@ -233,7 +256,7 @@ const AssignServiceProviderModal = ({
             Cancel
           </Button>
           <Button
-            // onClick={handleDeleteClick}
+            onClick={handleAssign}
             sx={{
               textTransform: "none",
               width: "160px",

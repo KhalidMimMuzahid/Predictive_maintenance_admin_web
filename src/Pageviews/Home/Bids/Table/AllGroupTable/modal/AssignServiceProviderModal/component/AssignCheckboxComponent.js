@@ -1,9 +1,10 @@
-import { Checkbox } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../../../../../../../contextApi/appProvider";
 
-const AssignCheckboxComponent = ({ props }) => {
+const AssignCheckboxComponent = ({ bid_id }) => {
+  const { setBid_id } = useContext(AppContext);
   const handleOnSelect = (e) => {
-    console.log("From Select", e.target.value, props);
+    setBid_id(e?.target?.value);
   };
   return (
     <div>
@@ -11,7 +12,7 @@ const AssignCheckboxComponent = ({ props }) => {
         onChange={handleOnSelect}
         type="radio"
         name="assignVendor"
-        value={props?._id}
+        value={bid_id}
         className="option-input checkbox"
       />
     </div>

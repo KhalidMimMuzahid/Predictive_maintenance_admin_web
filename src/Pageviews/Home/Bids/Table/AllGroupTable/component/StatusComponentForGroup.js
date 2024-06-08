@@ -27,7 +27,7 @@ const StatusComponentForGroup = ({ reservation }) => {
               "1px solid #24459C") ||
             (reservation?.taskStatus === "canceled" && "1px solid #FF4858"),
           padding: "2px 6px",
-          width: "96px",
+          width: "135px",
           borderRadius: "20px",
           cursor: "pointer",
         }}

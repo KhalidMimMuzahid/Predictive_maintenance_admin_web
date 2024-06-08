@@ -2,7 +2,11 @@ import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import AssignServiceProviderModal from "../../../modal/AssignServiceProviderModal/AssignServiceProviderModal";
 
-const AssignVendor = ({ allBids, reservationRequestGroup }) => {
+const AssignVendor = ({
+  allBids,
+  reservationRequestGroup,
+  refetchForGetALlResGroup,
+}) => {
   const [assignServiceProviderModalOpens, setAssignServiceProviderModalOpens] =
     useState(false);
   return (
@@ -15,6 +19,7 @@ const AssignVendor = ({ allBids, reservationRequestGroup }) => {
           setAssignServiceProviderModalOpens={
             setAssignServiceProviderModalOpens
           }
+          refetchForGetALlResGroup={refetchForGetALlResGroup}
         />
       )}
       <Button

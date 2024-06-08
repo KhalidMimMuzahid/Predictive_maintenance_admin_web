@@ -103,9 +103,7 @@ export const columns = [
       </Typography>
     ),
     width: 200,
-    renderCell: (props) => (
-      <AssignCheckboxComponent props={props?.row?.serviceProviderCompany} />
-    ),
+    renderCell: (props) => <AssignCheckboxComponent bid_id={props?.row?._id} />,
   },
   {
     field: "action",

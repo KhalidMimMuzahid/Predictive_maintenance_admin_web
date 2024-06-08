@@ -47,6 +47,13 @@ export const resGroupApi = createApi({
         providesTags: [],
       }),
     }),
+    patchSelectBidingWinner: builder.mutation({
+      query: ({ reservationRequestGroup, bid }) => ({
+        url: `/reservations-group/select-bidding-winner?reservationRequestGroup=${reservationRequestGroup}&bid=${bid}`,
+        method: "PATCH",
+        providesTags: [],
+      }),
+    }),
   }),
 });
 
@@ -56,4 +63,5 @@ export const {
   usePostBidsAssignMutation,
   useGetReservationGroupByIDQuery,
   usePatchSetBidingDateMutation,
+  usePatchSelectBidingWinnerMutation,
 } = resGroupApi;
