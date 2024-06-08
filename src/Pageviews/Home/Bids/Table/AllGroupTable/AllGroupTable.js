@@ -181,7 +181,7 @@ const AllGroupTable = ({
                   background: "#F4F2FF",
                   color: "#6E6893",
 
-                  textAlign: "start",
+                  textAlign: "center",
                   padding: "14px",
                 }}
               >
@@ -246,8 +246,7 @@ const AllGroupTable = ({
                 style={{
                   background: "#F4F2FF",
                   color: "#6E6893",
-
-                  textAlign: "start",
+                  textAlign: "center",
                   padding: "14px",
                 }}
               >

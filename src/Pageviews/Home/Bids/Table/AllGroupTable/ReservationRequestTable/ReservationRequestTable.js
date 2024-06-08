@@ -27,7 +27,13 @@ const ReservationRequestTable = ({ reservationData }) => {
         <CustomerComponent customer={reservation?.user} />
       </td>
       <td style={{ padding: "14px", textAlign: "center" }}>001</td>
-      <td style={{ padding: "14px" }}>
+      <td
+        style={{
+          padding: "14px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <StatusComponentForReservation reservation={reservation} />
       </td>
       <td style={{ padding: "14px", textAlign: "center" }}>

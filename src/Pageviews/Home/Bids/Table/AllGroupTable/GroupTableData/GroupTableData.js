@@ -33,7 +33,9 @@ const GroupTableData = ({
       <td style={{ padding: "14px", textAlign: "center" }}>
         {resGroup?.groupId}
       </td>
-      <td style={{ padding: "14px" }}>
+      <td
+        style={{ padding: "14px", display: "flex", justifyContent: "center" }}
+      >
         <StatusComponentForGroup reservation={resGroup} />
       </td>
       <td style={{ padding: "14px", textAlign: "center" }}>-</td>
@@ -41,7 +43,9 @@ const GroupTableData = ({
       <td style={{ padding: "14px", textAlign: "center" }}>-</td>
       <td style={{ padding: "14px", textAlign: "center" }}>-</td>
       <td style={{ padding: "14px", textAlign: "center" }}>-</td>
-      <td style={{ padding: "14px" }}>
+      <td
+        style={{ padding: "14px", display: "flex", justifyContent: "center" }}
+      >
         <Assign
           resGroup={resGroup}
           refetchForGetALlResGroup={refetchForGetALlResGroup}
