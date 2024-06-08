@@ -49,8 +49,7 @@ const ManagerComponent = ({ props }) => {
             fontWeight: "400",
           }}
         >
-          {props.serviceProviderAdmin?.serviceProviderAdmin?.phone ||
-            "Phone Not Found"}
+          {props.serviceProviderAdmin?.phone || "Phone Not Found"}
         </Typography>
       </Box>
     </Box>
