@@ -25,7 +25,15 @@ const ServiceProviderNameComponent = ({ props }) => {
           alignItems: "center",
         }}
       >
-        <Anchor sx={{ color: "#F15F5F" }} />
+        <img
+          src={props?.photoUrl}
+          style={{
+            width: "36px",
+            height: "36px",
+            borderRadius: "100%",
+          }}
+          alt="Company"
+        />
       </Box>
       <Box style={{ display: "flex", flexDirection: "column" }}>
         <Typography
