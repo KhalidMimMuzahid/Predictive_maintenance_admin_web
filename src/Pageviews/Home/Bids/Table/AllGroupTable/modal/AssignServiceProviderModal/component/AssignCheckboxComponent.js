@@ -3,7 +3,7 @@ import React from "react";
 
 const AssignCheckboxComponent = ({ props }) => {
   const handleOnSelect = (e) => {
-    console.log(e.target.value);
+    console.log("From Select", e.target.value, props);
   };
   return (
     <div>

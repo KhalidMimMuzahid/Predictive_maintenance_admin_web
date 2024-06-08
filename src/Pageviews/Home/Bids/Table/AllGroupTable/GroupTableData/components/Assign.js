@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import AssignVendor from "./assignComponents/AssignVendor";
 import BidOnGoing from "./assignComponents/BidOnGoing";
@@ -57,9 +57,22 @@ const Assign = ({ resGroup, refetchForGetALlResGroup }) => {
       // we need to set bidding start date : current time and optional to set end date
 
       setAssignComponent(
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          bidding not started
-        </div>
+        <Typography
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            textTransform: "none",
+            background: "#00FFFD",
+            borderRadius: "20px",
+            color: "#222C2B",
+            fontWeight: "600",
+            fontSize: "12px",
+            width: "150px",
+            padding: "2px",
+          }}
+        >
+          Bid Upcoming
+        </Typography>
       );
     } else if (
       currentDate >
