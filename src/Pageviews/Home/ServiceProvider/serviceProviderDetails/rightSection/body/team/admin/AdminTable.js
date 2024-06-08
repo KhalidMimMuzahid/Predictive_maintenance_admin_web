@@ -38,7 +38,7 @@ const AdminTable = ({ admin }) => {
               background: "#E6E8F0",
             }}
           >
-            <img src={admin?.image} alt="Admin Img" />
+            <img src={admin?.photoUrl} alt="Admin Img" />
           </Box>
         </Box>
         <Box

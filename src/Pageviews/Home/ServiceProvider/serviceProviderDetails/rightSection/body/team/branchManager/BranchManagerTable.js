@@ -6,7 +6,7 @@ import { columns } from "../allMembers/componant/constant";
 
 const BranchManagerTable = ({ branchManager }) => {
   const { setDownloadData } = useContext(AppContext);
-  console.log(branchManager?.length);
+  console.log(branchManager);
 
   return (
     <Box>

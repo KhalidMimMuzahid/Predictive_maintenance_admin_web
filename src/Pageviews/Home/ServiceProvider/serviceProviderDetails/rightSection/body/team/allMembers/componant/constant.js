@@ -31,8 +31,15 @@ export const columns = [
             gap: "4px",
           }}
         >
-          <PermIdentityIcon
-            sx={{ padding: "6px", background: "#D9E3FF", borderRadius: "100%" }}
+          <img
+            src={props?.row?.photoUrl}
+            style={{
+              background: "#D9E3FF",
+              borderRadius: "100%",
+              width: "30px",
+              height: "30px",
+            }}
+            alt=""
           />
           <Typography
             sx={{ color: "#25213B", fontWeight: "600", fontSize: "14px" }}
