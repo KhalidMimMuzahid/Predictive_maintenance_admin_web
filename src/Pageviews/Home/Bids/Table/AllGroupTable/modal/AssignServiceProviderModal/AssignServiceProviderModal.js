@@ -21,6 +21,7 @@ const AssignServiceProviderModal = ({
   assignServiceProviderModalOpens,
   setAssignServiceProviderModalOpens,
   allBids,
+  reservationRequestGroup,
 }) => {
   return (
     <Modal

@@ -96,7 +96,12 @@ const Assign = ({ resGroup, refetchForGetALlResGroup }) => {
       resGroup?.biddingDate?.endDate
     ) {
       //Assign Vendor
-      setAssignComponent(<AssignVendor allBids={resGroup?.allBids} />);
+      setAssignComponent(
+        <AssignVendor
+          allBids={resGroup?.allBids}
+          reservationRequestGroup={resGroup?._id}
+        />
+      );
     }
   }, [resGroup]);
 
