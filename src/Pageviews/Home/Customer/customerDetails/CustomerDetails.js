@@ -21,30 +21,6 @@ const CustomerDetails = () => {
   const { data: walletData } = useGetCustomerWalletQuery(_id);
   const { data: subscriptionData } = useGetCustomerSubscriptionDataQuery(_id);
 
-  // const [
-  //   isRootCustomerPage,
-  //   setIsRootCustomerPage,
-  //   viewCustomer,
-  //   setViewCustomer,
-  // ] = useOutletContext();
-  // console.log(
-  //   isRootCustomerPage,
-  //   setIsRootCustomerPage,
-  //   viewCustomer,
-  //   setViewCustomer
-  // );
-  // useEffect(() => {
-  //   setViewCustomer(
-  //     customerDetailsData?.data?.showaUser?.name?.firstName +
-  //       " " +
-  //       customerDetailsData?.data?.showaUser?.name?.lastName
-  //   );
-  // }, [
-  //   customerDetailsData?.data?.showaUser?.name?.firstName,
-  //   customerDetailsData?.data?.showaUser?.name?.lastName,
-  //   setViewCustomer,
-  // ]);
-
   return (
     <Box
       sx={{

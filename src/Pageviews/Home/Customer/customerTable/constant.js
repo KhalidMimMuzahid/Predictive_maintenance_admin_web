@@ -16,15 +16,20 @@ export const columns = [
         CUSTOMER NAME
       </Typography>
     ),
-    width: 250,
+    width: 230,
 
     renderCell: (props) => <CustomerNameEmailComponent props={props} />,
   },
   {
     field: "email",
+    headerAlign: "start",
     headerName: (
       <Typography
-        sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
+        sx={{
+          color: "#6E6893",
+          fontWeight: "600",
+          fontSize: "14px",
+        }}
       >
         EMAIL
       </Typography>
@@ -33,6 +38,7 @@ export const columns = [
   },
   {
     field: "location",
+    headerAlign: "center",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -45,6 +51,7 @@ export const columns = [
   },
   {
     field: "machine",
+    headerAlign: "center",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
@@ -52,7 +59,7 @@ export const columns = [
         MACHINE
       </Typography>
     ),
-    width: 130,
+    width: 160,
     renderCell: (props) => <MachineComponent props={props} />,
   },
   {
@@ -88,7 +95,7 @@ export const columns = [
         ACTION
       </Typography>
     ),
-    width: 180,
+    width: 150,
     renderCell: (props) => <ActionComponent props={props} />,
   },
 ];

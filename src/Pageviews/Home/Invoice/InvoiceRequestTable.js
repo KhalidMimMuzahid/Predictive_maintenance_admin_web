@@ -179,7 +179,7 @@ const InvoiceRequestTable = ({
 
       {isLoading && <Loader />}
       {/* Table */}
-      {allInvoiceData?.data?.length > 0 && (
+      {allInvoiceData?.data?.length > 0 ? (
         <DataGrid
           sx={{
             borderRadius: "0px",
@@ -209,6 +209,22 @@ const InvoiceRequestTable = ({
             setDownloadData({ selectedRowData, fileName: "Invoice Request" });
           }}
         />
+      ) : (
+        <Box
+          sx={{
+            width: "100%",
+            height: "40vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            sx={{ fontWeight: "600", fontSize: "24px", color: "#F15F5F" }}
+          >
+            No Invoice
+          </Typography>
+        </Box>
       )}
     </Box>
   );

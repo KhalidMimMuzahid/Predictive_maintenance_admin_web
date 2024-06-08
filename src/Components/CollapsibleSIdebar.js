@@ -175,53 +175,6 @@ const generalRoutes = [
     ],
   },
   {
-    name: "Res Group",
-    path: "/res-group",
-    icon: <img src={iot_icon} />,
-    children: [
-      {
-        name: "All Group",
-        path: "/res-group/all-group",
-        icon: <img src={bids_sub_icon} />,
-      },
-      {
-        name: "Bids Closed Group",
-        path: "/res-group/bids-closed-group",
-        icon: <img src={bids_sub_icon} />,
-      },
-      {
-        name: "Assigned To Company",
-        path: "/res-group/assigned-to-company",
-        icon: <img src={bids_sub_icon} />,
-      },
-      {
-        name: "Assigned To Branch",
-        path: "/res-group/assigned-to-branch",
-        icon: <img src={bids_sub_icon} />,
-      },
-      {
-        name: "Assigned To Team",
-        path: "/res-group/assigned-to-team",
-        icon: <img src={bids_sub_icon} />,
-      },
-      {
-        name: "Ongoing",
-        path: "/res-group/ongoing",
-        icon: <img src={bids_sub_icon} />,
-      },
-      {
-        name: "Pending",
-        path: "/res-group/pending",
-        icon: <img src={bids_sub_icon} />,
-      },
-      {
-        name: "Completed",
-        path: "/res-group/completed",
-        icon: <img src={bids_sub_icon} />,
-      },
-    ],
-  },
-  {
     name: "IOT",
     path: "/iot",
     icon: <img src={iot_icon} />,

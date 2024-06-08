@@ -131,18 +131,20 @@ const CustomerTable = ({ isRootCustomerPage, setIsRootCustomerPage }) => {
             >
               <FormControl
                 sx={{
-                  width: "12%",
-                  background: "#FFFFFF",
-                  boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
+                  m: 1,
+                  minWidth: 180,
+                  backgroundColor: "white",
+                  borderRadius: "10px",
                 }}
+                size="small"
               >
-                <InputLabel id="demo-simple-select-label">Area</InputLabel>
+                <InputLabel id="demo-select-small-label">Area</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  // value={age}
-                  label="Age"
-                  // onChange={handleChange}
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  //   value={provider}
+                  label="All Providers"
+                  //   onChange={handleChange}
                 >
                   <MenuItem value={"0-250 meters"}>0-250 meters</MenuItem>
                   <MenuItem value={"250-500 meters"}>250-500 meters</MenuItem>
@@ -152,18 +154,20 @@ const CustomerTable = ({ isRootCustomerPage, setIsRootCustomerPage }) => {
               </FormControl>
               <FormControl
                 sx={{
-                  width: "15%",
-                  background: "#FFFFFF",
-                  boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
+                  m: 1,
+                  minWidth: 180,
+                  backgroundColor: "white",
+                  borderRadius: "10px",
                 }}
+                size="small"
               >
-                <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                <InputLabel id="demo-select-small-label">Status</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  // value={age}
-                  label="Age"
-                  // onChange={handleChange}
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  //   value={provider}
+                  label="All Providers"
+                  //   onChange={handleChange}
                 >
                   <MenuItem value={"Ongoing Jobs"}>Ongoing Jobs</MenuItem>
                   <MenuItem value={"Online"}>Online</MenuItem>
@@ -173,18 +177,20 @@ const CustomerTable = ({ isRootCustomerPage, setIsRootCustomerPage }) => {
               </FormControl>
               <FormControl
                 sx={{
-                  width: "15%",
-                  background: "#FFFFFF",
-                  boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
+                  m: 1,
+                  minWidth: 180,
+                  backgroundColor: "white",
+                  borderRadius: "10px",
                 }}
+                size="small"
               >
-                <InputLabel id="demo-simple-select-label">Newest</InputLabel>
+                <InputLabel id="demo-select-small-label">Newest</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  // value={age}
-                  label="Age"
-                  // onChange={handleChange}
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  //   value={provider}
+                  label="All Providers"
+                  //   onChange={handleChange}
                 >
                   <MenuItem value={"Newest"}>Newest</MenuItem>
                   <MenuItem value={"Newest to Oldest"}>

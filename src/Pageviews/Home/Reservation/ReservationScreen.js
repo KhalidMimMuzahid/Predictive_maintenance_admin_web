@@ -11,9 +11,20 @@ import React, { useState } from "react";
 import OverViewCards from "./commonComponent/OverViewCards";
 import ComparisonChart from "./commonComponent/ComparisonChart";
 import AllReservationTable from "./Connected/AllReservation/allReservationTable/AllReservationTable";
+import { useGetAllReservationQuery } from "../../../features/reservation/reservationSlice";
 
 const ReservationScreen = () => {
   const [selectedReservations, setSelectedReservations] = useState([]);
+  const {
+    data: allReservationRows,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useGetAllReservationQuery({
+    machineType: "connected",
+    reservationType: "all",
+  });
   return (
     <Box sx={{ padding: "40px" }}>
       <Box
@@ -97,13 +108,14 @@ const ReservationScreen = () => {
             size="small"
           >
             <InputLabel id="demo-simple-select-label" sx={{ color: "white" }}>
-              All Providers
+              Add Item
             </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               // value={age}
               label="Age"
+              sx={{ color: "white" }}
               // onChange={handleChange}
             >
               <MenuItem value={"0-250 meters"}>Ongoing</MenuItem>
@@ -121,7 +133,10 @@ const ReservationScreen = () => {
       {/* Comparison Chart */}
 
       {/* All Reservation Request Table */}
-      <AllReservationTable setSelectedReservations={setSelectedReservations} />
+      <AllReservationTable
+        allReservationRows={allReservationRows}
+        setSelectedReservations={setSelectedReservations}
+      />
       {/* All Reservation Request Table */}
     </Box>
   );

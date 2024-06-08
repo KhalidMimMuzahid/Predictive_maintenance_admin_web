@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useContext, useEffect } from "react";
 import { AppContext } from "../../../../../../../contextApi/appProvider";
@@ -15,7 +15,6 @@ const ServiceProviderRequest = () => {
     isError,
     error,
   } = useGetReservationRequestByCompanyIdQuery(_id);
-  //   {
   //     customerDetails: {
   //       name: "John Doe",
   //       phone: "123-456-7890",
@@ -249,7 +248,7 @@ const ServiceProviderRequest = () => {
         padding: "0 20px",
       }}
     >
-      {requestData?.data?.length > 0 && (
+      {requestData?.data?.length > 0 ? (
         <DataGrid
           sx={{
             borderRadius: "0px",
@@ -287,6 +286,22 @@ const ServiceProviderRequest = () => {
             });
           }}
         />
+      ) : (
+        <Box
+          sx={{
+            width: "100%",
+            height: "40vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            sx={{ fontWeight: "600", fontSize: "24px", color: "#F15F5F" }}
+          >
+            No Request
+          </Typography>
+        </Box>
       )}
     </Box>
   );

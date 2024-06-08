@@ -4,6 +4,7 @@ const StatusComponent = ({ props }) => {
   return (
     <Typography
       sx={{
+        marginLeft: "8px",
         textTransform: "none",
         fontSize: "12px",
         fontWeight: "600",

@@ -70,14 +70,16 @@ const TeamViewModal = ({ teamViewOpen, setTeamViewOpen, props }) => {
                 >
                   Profile Picture
                 </Typography>
-                <PermIdentityIcon
-                  sx={{
+                <img
+                  src={props?.photoUrl}
+                  style={{
                     width: "80px",
                     height: "80px",
                     borderRadius: "100%",
                     background: "#D9E3FF",
-                    padding: "8px",
+                    border: "1px solid #D9E3FF",
                   }}
+                  alt=""
                 />
               </Box>
               <hr style={{ bgColor: "#E6E8F0", opacity: "25%" }} />

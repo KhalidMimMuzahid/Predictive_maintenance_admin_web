@@ -22,7 +22,7 @@ const xLabels = [
   "Sep",
   "Oct",
   "Nov",
-  "Dc",
+  "Dec",
 ];
 
 const LeftSide = ({ graphObjectData }) => {

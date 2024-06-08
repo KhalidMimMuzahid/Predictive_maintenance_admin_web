@@ -12,7 +12,7 @@ export const columns = [
         TEAM MEMBER NAME
       </Typography>
     ),
-    width: 250,
+    width: 240,
     renderCell: (props) => (
       <Box
         sx={{

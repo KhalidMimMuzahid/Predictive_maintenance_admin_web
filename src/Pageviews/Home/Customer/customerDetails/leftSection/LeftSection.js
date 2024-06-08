@@ -5,6 +5,7 @@ import Profile from "./profile/Profile";
 import { Box } from "@mui/material";
 
 const LeftSection = ({ customerDetailsData, subscriptionPackage }) => {
+  console.log(customerDetailsData);
   return (
     <Box
       sx={{

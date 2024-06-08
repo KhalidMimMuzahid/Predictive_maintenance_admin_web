@@ -33,6 +33,7 @@ export const columns = [
   },
   {
     field: "status",
+    headerAlign: "center",
     headerName: (
       <Typography sx={{ fontWeight: "600", fontSize: "14px" }}>
         STATUS

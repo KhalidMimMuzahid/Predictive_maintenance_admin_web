@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useContext } from "react";
 import { AppContext } from "../../../../../../../contextApi/appProvider";
@@ -25,7 +25,7 @@ const Schedule = () => {
       }}
     >
       {isLoading && <Loader />}
-      {scheduleData?.data?.length > 0 && (
+      {scheduleData?.data?.length > 0 ? (
         <DataGrid
           sx={{
             borderRadius: "0px",
@@ -63,6 +63,22 @@ const Schedule = () => {
             });
           }}
         />
+      ) : (
+        <Box
+          sx={{
+            width: "100%",
+            height: "40vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            sx={{ fontWeight: "600", fontSize: "24px", color: "#F15F5F" }}
+          >
+            No Schedule
+          </Typography>
+        </Box>
       )}
     </Box>
   );

@@ -16,6 +16,7 @@ const PersonalInfo = () => {
 
   const { _id } = useParams();
   const { data: customerDetailsData } = useGetCustomerDetailsQuery(_id);
+  console.log(customerDetailsData?.data?.phone);
 
   const handleEdit = () => {
     setEditedValues({
@@ -161,11 +162,11 @@ const PersonalInfo = () => {
               variant="p"
               sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
             >
-              {customerDetailsData?.data?.showaUser?.phone}
+              {customerDetailsData?.data?.phone}
             </Typography>
           ) : (
             <TextField
-              defaultValue={user?.phone}
+              defaultValue={customerDetailsData?.data?.phone}
               onChange={(e) => handleChange("phone", e.target.value)}
               variant="outlined"
               fullWidth
