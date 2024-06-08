@@ -88,7 +88,7 @@ const BidsScreen = () => {
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={provider}
-                  label="All Providers"
+                  label="All Departments"
                   //   onChange={handleChange}
                 >
                   <MenuItem value={10}>Ongoing</MenuItem>
@@ -112,7 +112,7 @@ const BidsScreen = () => {
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={provider}
-                  label="All Providers"
+                  label="Jan - Dec"
                   //   onChange={handleChange}
                 >
                   <MenuItem value={10}>Jan - March</MenuItem>

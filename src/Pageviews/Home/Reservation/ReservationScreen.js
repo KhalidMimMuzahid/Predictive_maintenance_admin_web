@@ -107,14 +107,14 @@ const ReservationScreen = () => {
             }}
             size="small"
           >
-            <InputLabel id="demo-simple-select-label" sx={{ color: "white" }}>
+            <InputLabel id="demo-select-small-label" sx={{ color: "white" }}>
               Add Item
             </InputLabel>
             <Select
-              labelId="demo-simple-select-label"
+              labelId="demo-select-small-label"
               id="demo-simple-select"
               // value={age}
-              label="Age"
+              label="Add Item"
               sx={{ color: "white" }}
               // onChange={handleChange}
             >

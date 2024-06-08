@@ -86,7 +86,7 @@ const RequestVsTimeGraph = () => {
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   //   value={provider}
-                  label="All Providers"
+                  label="Total"
                   //   onChange={handleChange}
                 >
                   <MenuItem value={10}>Ongoing</MenuItem>
@@ -110,7 +110,7 @@ const RequestVsTimeGraph = () => {
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   //   value={provider}
-                  label="All Providers"
+                  label="Completed"
                   //   onChange={handleChange}
                 >
                   <MenuItem value={10}>Ongoing</MenuItem>
@@ -185,14 +185,12 @@ const RequestVsTimeGraph = () => {
                 }}
                 size="small"
               >
-                <InputLabel id="demo-select-small-label">
-                  Style: Bar{" "}
-                </InputLabel>
+                <InputLabel id="demo-select-small-label">Style: Bar</InputLabel>
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={style}
-                  label="All Providers"
+                  label="Style: Bar"
                   onChange={handleStyleChange}
                 >
                   <MenuItem value={10}>Line</MenuItem>

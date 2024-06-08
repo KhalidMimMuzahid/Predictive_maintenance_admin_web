@@ -66,12 +66,12 @@ const EditModal = ({ editOpen, setEditOpen, props }) => {
               fullWidth
               sx={{ background: "#F6F6F6", border: "0px solid" }}
             >
-              <InputLabel id="demo-simple-select-label">Module Type</InputLabel>
+              <InputLabel id="demo-select-small-label">Module Type</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
+                labelId="demo-select-small-label"
                 id="demo-simple-select"
                 // value={""}
-                label="Age"
+                label="Module Type"
                 onChange={handleChange}
               >
                 <MenuItem value={10}>Type A</MenuItem>
@@ -97,14 +97,12 @@ const EditModal = ({ editOpen, setEditOpen, props }) => {
               fullWidth
               sx={{ background: "#F6F6F6", border: "0px solid" }}
             >
-              <InputLabel id="demo-simple-select-label">
-                Machine Type
-              </InputLabel>
+              <InputLabel id="demo-select-small-label">Machine Type</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
+                labelId="demo-select-small-label"
                 id="demo-simple-select"
                 // value={""}
-                label="Age"
+                label="Machine Type"
                 onChange={handleChange}
               >
                 <MenuItem value={10}>General Machine</MenuItem>

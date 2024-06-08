@@ -79,6 +79,7 @@ const Status = () => {
                 id="demo-simple-select-filled"
                 value={selectedSensorID}
                 onChange={handleChange}
+                label="Sensor"
               >
                 {sensorList?.map((sensorData, i) => (
                   <MenuItem key={i} value={sensorData?.macAddress}>

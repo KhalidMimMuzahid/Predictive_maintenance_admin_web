@@ -95,12 +95,12 @@ const AllReservation = () => {
             }}
             size="small"
           >
-            <InputLabel id="demo-simple-select-label">All Providers</InputLabel>
+            <InputLabel id="demo-select-small-label">All Providers</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="demo-select-small-label"
+              id="demo-select-small"
               // value={age}
-              label="Age"
+              label="All Providers"
               // onChange={handleChange}
             >
               <MenuItem value={"0-250 meters"}>Ongoing</MenuItem>
@@ -115,12 +115,12 @@ const AllReservation = () => {
             }}
             size="small"
           >
-            <InputLabel id="demo-simple-select-label">All Services</InputLabel>
+            <InputLabel id="demo-select-small-label">All Services</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="demo-select-small-label"
+              id="demo-select-small"
               // value={age}
-              label="Age"
+              label="All Services"
               // onChange={handleChange}
             >
               <MenuItem value={"Ongoing Jobs"}>Dish Washing Machine</MenuItem>
@@ -137,14 +137,14 @@ const AllReservation = () => {
             }}
             size="small"
           >
-            <InputLabel id="demo-simple-select-label">
+            <InputLabel id="demo-select-small-label">
               Jan 01 - Jan 31
             </InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="demo-select-small-label"
+              id="demo-select-small"
               // value={age}
-              label="Age"
+              label="Jan 01 - Jan 31"
               // onChange={handleChange}
             >
               <MenuItem value={"Newest"}>Last One Week</MenuItem>

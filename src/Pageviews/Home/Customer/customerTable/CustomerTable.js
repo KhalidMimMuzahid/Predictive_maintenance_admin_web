@@ -143,7 +143,7 @@ const CustomerTable = ({ isRootCustomerPage, setIsRootCustomerPage }) => {
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   //   value={provider}
-                  label="All Providers"
+                  label="Area"
                   //   onChange={handleChange}
                 >
                   <MenuItem value={"0-250 meters"}>0-250 meters</MenuItem>
@@ -166,7 +166,7 @@ const CustomerTable = ({ isRootCustomerPage, setIsRootCustomerPage }) => {
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   //   value={provider}
-                  label="All Providers"
+                  label="Status"
                   //   onChange={handleChange}
                 >
                   <MenuItem value={"Ongoing Jobs"}>Ongoing Jobs</MenuItem>
@@ -189,7 +189,7 @@ const CustomerTable = ({ isRootCustomerPage, setIsRootCustomerPage }) => {
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   //   value={provider}
-                  label="All Providers"
+                  label="Newest"
                   //   onChange={handleChange}
                 >
                   <MenuItem value={"Newest"}>Newest</MenuItem>

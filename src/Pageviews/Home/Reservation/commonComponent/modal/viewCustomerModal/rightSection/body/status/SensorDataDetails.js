@@ -118,6 +118,7 @@ const SensorDataDetails = ({ selectedSensorID }) => {
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"
                 onChange={handleTempChange}
+                label="Temp Period"
               >
                 {[...Array(data?.data?.sensorData[0]?.temperature?.length)].map(
                   (_, i) => (
@@ -139,6 +140,7 @@ const SensorDataDetails = ({ selectedSensorID }) => {
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"
                 onChange={handleVibChange}
+                label="Vib Period"
               >
                 {[...Array(data?.data?.sensorData[0]?.vibration?.length)].map(
                   (_, i) => (

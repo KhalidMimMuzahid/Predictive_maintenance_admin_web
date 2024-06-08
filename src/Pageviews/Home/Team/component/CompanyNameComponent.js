@@ -1,4 +1,3 @@
-import { Anchor } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
@@ -25,7 +24,11 @@ const CompanyNameComponent = ({ props }) => {
           alignItems: "center",
         }}
       >
-        <Anchor sx={{ color: "#F15F5F" }} />
+        <img
+          src={props?.company?.photoUrl}
+          style={{ width: "32px", height: "32px", borderRadius: "100%" }}
+          alt=""
+        />
       </Box>
       <Box style={{ display: "flex", flexDirection: "column" }}>
         <Typography
@@ -33,10 +36,9 @@ const CompanyNameComponent = ({ props }) => {
             color: "#25213B",
             fontWeight: "600",
             fontSize: "14px",
-            textTransform: "uppercase",
           }}
         >
-          {props?.row?.companyName}
+          {props?.company?.companyName}
         </Typography>
       </Box>
     </Box>

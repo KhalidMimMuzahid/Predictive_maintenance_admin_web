@@ -138,12 +138,12 @@ const AssignServiceProviderModal = ({
                 }}
                 size="small"
               >
-                <InputLabel id="demo-simple-select-label">Area</InputLabel>
+                <InputLabel id="demo-select-small-label">Area</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
+                  labelId="demo-select-small-label"
                   id="demo-simple-select"
                   // value={age}
-                  label="Age"
+                  label="Area"
                   // onChange={handleChange}
                 >
                   <MenuItem value={""}>0-250 meters</MenuItem>
@@ -160,12 +160,12 @@ const AssignServiceProviderModal = ({
                   boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
                 }}
               >
-                <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                <InputLabel id="demo-select-small-label">Status</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
+                  labelId="demo-select-small-label"
                   id="demo-simple-select"
                   // value={age}
-                  label="Age"
+                  label="Status"
                   // onChange={handleChange}
                 >
                   <MenuItem value={""}>Ongoing Jobs</MenuItem>
@@ -182,12 +182,12 @@ const AssignServiceProviderModal = ({
                   boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
                 }}
               >
-                <InputLabel id="demo-simple-select-label">Newest</InputLabel>
+                <InputLabel id="demo-select-small-label">Newest</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
+                  labelId="demo-select-small-label"
                   id="demo-simple-select"
                   // value={age}
-                  label="Age"
+                  label="Newest"
                   // onChange={handleChange}
                 >
                   <MenuItem value={""}>Newest</MenuItem>

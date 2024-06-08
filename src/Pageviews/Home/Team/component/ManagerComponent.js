@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const ManagerComponent = ({ props }) => {
-  console.log(props?.serviceProviderBranchManager?.phone);
+  console.log(props);
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: "0 8px" }}>
       <img

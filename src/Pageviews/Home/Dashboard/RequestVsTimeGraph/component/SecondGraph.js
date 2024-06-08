@@ -105,14 +105,12 @@ const SecondGraph = () => {
                 }}
                 size="small"
               >
-                <InputLabel id="demo-select-small-label">
-                  Style: Bar{" "}
-                </InputLabel>
+                <InputLabel id="demo-select-small-label">Style: Bar</InputLabel>
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={style}
-                  label="All Providers"
+                  label="Style: Bar"
                   onChange={handleStyleChange}
                 >
                   <MenuItem value={10}>Line</MenuItem>

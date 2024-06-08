@@ -37,12 +37,12 @@ const Comparison = () => {
               }}
               size="small"
             >
-              <InputLabel id="demo-select-small-label">KPI 1 </InputLabel>
+              <InputLabel id="demo-select-small-label">KPI 1</InputLabel>
               <Select
                 labelId="demo-select-small-label"
                 id="demo-select-small"
                 //   value={provider}
-                label="All Providers"
+                label="KPI 1"
                 //   onChange={handleChange}
               >
                 <MenuItem value={10}>Ongoing</MenuItem>
@@ -67,7 +67,7 @@ const Comparison = () => {
                 labelId="demo-select-small-label"
                 id="demo-select-small"
                 //   value={provider}
-                label="All Providers"
+                label="KPI 2"
                 //   onChange={handleChange}
               >
                 <MenuItem value={10}>Ongoing</MenuItem>
@@ -91,7 +91,7 @@ const Comparison = () => {
                 labelId="demo-select-small-label"
                 id="demo-select-small"
                 //   value={provider}
-                label="All Providers"
+                label="KPI 3"
                 //   onChange={handleChange}
               >
                 <MenuItem value={10}>Ongoing</MenuItem>

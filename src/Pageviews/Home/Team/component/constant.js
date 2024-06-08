@@ -18,7 +18,7 @@ export const columns = [
       </Typography>
     ),
     width: 300,
-    renderCell: (props) => <CompanyNameComponent props={props} />,
+    renderCell: (props) => <CompanyNameComponent props={props?.row} />,
   },
   {
     field: "location",

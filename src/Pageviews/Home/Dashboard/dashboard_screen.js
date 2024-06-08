@@ -158,12 +158,12 @@ const DashboardScreen = () => {
                 }}
                 size="small"
               >
-                <InputLabel id="demo-select-small-label">All </InputLabel>
+                <InputLabel id="demo-select-small-label">All</InputLabel>
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={provider}
-                  label="All Providers"
+                  label="All"
                   onChange={handleChange}
                 >
                   <MenuItem value={10}>Ongoing</MenuItem>
@@ -193,7 +193,7 @@ const DashboardScreen = () => {
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={items}
-                  label="All Providers"
+                  label="All Item"
                   onChange={handleSelectAllItem}
                 >
                   <MenuItem value={10}>All Departments</MenuItem>
@@ -240,12 +240,12 @@ const DashboardScreen = () => {
                 }}
                 size="small"
               >
-                <InputLabel id="demo-select-small-label">KPI 1 </InputLabel>
+                <InputLabel id="demo-select-small-label">KPI 1</InputLabel>
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={provider}
-                  label="All Providers"
+                  label="KPI 1"
                   onChange={handleChange}
                 >
                   <MenuItem value={10}>Ongoing</MenuItem>
@@ -265,12 +265,12 @@ const DashboardScreen = () => {
                 }}
                 size="small"
               >
-                <InputLabel id="demo-select-small-label">KPI 2 </InputLabel>
+                <InputLabel id="demo-select-small-label">KPI 2</InputLabel>
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={provider}
-                  label="All Providers"
+                  label="KPI 2"
                   onChange={handleChange}
                 >
                   <MenuItem value={10}>Ongoing</MenuItem>
@@ -289,12 +289,12 @@ const DashboardScreen = () => {
                 }}
                 size="small"
               >
-                <InputLabel id="demo-select-small-label">KPI 3 </InputLabel>
+                <InputLabel id="demo-select-small-label">KPI 3</InputLabel>
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={provider}
-                  label="All Providers"
+                  label="KPI 3"
                   onChange={handleChange}
                 >
                   <MenuItem value={10}>Ongoing</MenuItem>

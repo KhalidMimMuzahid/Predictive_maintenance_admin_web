@@ -96,14 +96,12 @@ const EditModal = ({ editOpen, setEditOpen, props }) => {
               fullWidth
               sx={{ background: "white", border: "0px solid" }}
             >
-              <InputLabel id="demo-simple-select-label">
-                Type of Shop
-              </InputLabel>
+              <InputLabel id="demo-select-small-label">Type of Shop</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
+                labelId="demo-select-small-label"
                 id="demo-simple-select"
                 // value={""}
-                label="Age"
+                label="Type of Shop"
                 // onChange={handleChange}
               >
                 <MenuItem value={10}>Laundry Shop</MenuItem>
@@ -114,15 +112,15 @@ const EditModal = ({ editOpen, setEditOpen, props }) => {
               fullWidth
               sx={{ background: "white", border: "0px solid" }}
             >
-              <InputLabel id="demo-simple-select-label">
+              <InputLabel id="demo-select-small-label">
                 Select type of washing machine
               </InputLabel>
               <Select
                 sx={{ border: "none" }}
-                labelId="demo-simple-select-label"
+                labelId="demo-select-small-label"
                 id="demo-simple-select"
                 // value={""}
-                label="Age"
+                label="Select type of washing machine"
                 // onChange={handleChange}
               >
                 <MenuItem value={10}>Container Washing Machine</MenuItem>
@@ -135,14 +133,12 @@ const EditModal = ({ editOpen, setEditOpen, props }) => {
               fullWidth
               sx={{ background: "white", border: "0px solid" }}
             >
-              <InputLabel id="demo-simple-select-label">
-                Select Brand
-              </InputLabel>
+              <InputLabel id="demo-select-small-label">Select Brand</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
+                labelId="demo-select-small-label"
                 id="demo-simple-select"
                 // value={""}
-                label="Age"
+                label="Select Brand"
                 // onChange={handleChange}
               >
                 <MenuItem value={10}>Showa</MenuItem>
@@ -153,15 +149,13 @@ const EditModal = ({ editOpen, setEditOpen, props }) => {
               fullWidth
               sx={{ background: "white", border: "0px solid" }}
             >
-              <InputLabel id="demo-simple-select-label">
-                Select Model
-              </InputLabel>
+              <InputLabel id="demo-select-small-label">Select Model</InputLabel>
               <Select
                 sx={{ border: "none" }}
-                labelId="demo-simple-select-label"
+                labelId="demo-select-small-label"
                 id="demo-simple-select"
                 // value={""}
-                label="Age"
+                label="Select Model"
                 // onChange={handleChange}
               >
                 <MenuItem value={10}>SHEM63W55N</MenuItem>
@@ -174,14 +168,14 @@ const EditModal = ({ editOpen, setEditOpen, props }) => {
               fullWidth
               sx={{ background: "white", border: "0px solid" }}
             >
-              <InputLabel id="demo-simple-select-label">
+              <InputLabel id="demo-select-small-label">
                 Sensor Section Name
               </InputLabel>
               <Select
-                labelId="demo-simple-select-label"
+                labelId="demo-select-small-label"
                 id="demo-simple-select"
                 // value={""}
-                label="Age"
+                label="Sensor Section Name"
                 // onChange={handleChange}
               >
                 <MenuItem value={10}>Level1, Machine 2</MenuItem>
@@ -192,15 +186,15 @@ const EditModal = ({ editOpen, setEditOpen, props }) => {
               fullWidth
               sx={{ background: "white", border: "0px solid" }}
             >
-              <InputLabel id="demo-simple-select-label">
+              <InputLabel id="demo-select-small-label">
                 Sensor Purpose
               </InputLabel>
               <Select
                 sx={{ border: "none" }}
-                labelId="demo-simple-select-label"
+                labelId="demo-select-small-label"
                 id="demo-simple-select"
                 // value={""}
-                label="Age"
+                label="Sensor Purpose"
                 // onChange={handleChange}
               >
                 <MenuItem value={10}>Left Purpose</MenuItem>
@@ -213,14 +207,14 @@ const EditModal = ({ editOpen, setEditOpen, props }) => {
               fullWidth
               sx={{ background: "white", border: "0px solid" }}
             >
-              <InputLabel id="demo-simple-select-label">
+              <InputLabel id="demo-select-small-label">
                 Sensor Section Name
               </InputLabel>
               <Select
-                labelId="demo-simple-select-label"
+                labelId="demo-select-small-label"
                 id="demo-simple-select"
                 // value={""}
-                label="Age"
+                label="Sensor Section Name"
                 // onChange={handleChange}
               >
                 <MenuItem value={10}>Level1, Machine 2</MenuItem>
