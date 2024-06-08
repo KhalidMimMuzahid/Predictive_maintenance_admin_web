@@ -1,28 +1,40 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 import editIcon from "../../../../../../../../../Assets/Home/customer/customer_edit.png";
+import { useGetSensorModuleByMachineQuery } from "../../../../../../../../../features/sensorModuleAttached/sensorModuleAttachedSlice";
+import { toast } from "react-toastify";
+import SensorDataDetails from "./SensorDataDetails";
 
 const Status = () => {
-  const [editMode, setEditMode] = useState(false);
-  const [editedValues, setEditedValues] = useState({
-    email: "",
-    phone: "",
-    dob: "",
-    gender: "",
-  });
-  const handleEdit = () => {
-    setEditMode(true);
-  };
+  const { data, isError, isLoading, isSuccess, error } =
+    useGetSensorModuleByMachineQuery("6644c77711556e95209e225e"); // Static _id
+  const [sensorList, setSensorList] = useState([]);
+  const [selectedSensorID, setSelectedSensorID] = useState(
+    sensorList[0]?._id || null
+  );
 
-  const handleChange = (field, value) => {
-    setEditedValues((prevState) => ({
-      ...prevState,
-      [field]: value,
-    }));
-  };
+  useEffect(() => {
+    if (isSuccess) {
+      setSensorList(data?.data);
 
-  const handleSubmit = () => {
-    setEditMode(false); // exit edit mode
+      setSelectedSensorID(data?.data[0]?.macAddress || null);
+    } else if (isError) {
+      toast.error(error?.data?.message);
+    }
+  }, [isSuccess, isError]);
+
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setSelectedSensorID(event.target.value);
   };
 
   return (
@@ -41,179 +53,44 @@ const Status = () => {
           >
             Machine Status
           </Typography>
-
-          {!editMode && (
-            <Button onClick={handleEdit}>
-              <img src={editIcon} alt="" />
-            </Button>
-          )}
         </Box>
-        <Box>
-          <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "16px",
-              padding: "16px 24px",
-            }}
-          >
+        <Box sx={{ padding: "16px 24px" }}>
+          <Box>
             <Typography
-              variant="p"
               sx={{
-                fontWeight: "700",
                 color: "#111827",
                 fontSize: "14px",
-                width: "15%",
+                fontWeight: "600",
+                width: "40%",
               }}
             >
-              Machine Status
+              Select Sensor
             </Typography>
-            {!editMode ? (
-              <Typography
-                variant="p"
-                sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
+            <FormControl
+              variant="filled"
+              fullWidth
+              sx={{ m: 1, minWidth: 120 }}
+            >
+              <InputLabel id="demo-simple-select-filled-label">
+                Sensor
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-filled-label"
+                id="demo-simple-select-filled"
+                value={selectedSensorID}
+                onChange={handleChange}
               >
-                {/* {customerDetailsData?.data?.email} */}
-              </Typography>
-            ) : (
-              <TextField
-                // defaultValue={user?.email}
-                onChange={(e) => handleChange("email", e.target.value)}
-                variant="outlined"
-                fullWidth
-              />
-            )}
+                {sensorList?.map((sensorData, i) => (
+                  <MenuItem key={i} value={sensorData?.macAddress}>
+                    Sensor {i + 1}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Box>
-          <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "16px",
-              padding: "16px 24px",
-            }}
-          >
-            <Typography
-              variant="p"
-              sx={{
-                fontWeight: "700",
-                color: "#111827",
-                fontSize: "14px",
-                width: "15%",
-              }}
-            >
-              Temperature 1
-            </Typography>
-            {!editMode ? (
-              <Typography
-                variant="p"
-                sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
-              >
-                {/* {customerDetailsData?.data?.showaUser?.phone} */}
-              </Typography>
-            ) : (
-              <TextField
-                // defaultValue={user?.phone}
-                onChange={(e) => handleChange("phone", e.target.value)}
-                variant="outlined"
-                fullWidth
-              />
-            )}
-          </Box>
-          <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "16px",
-              padding: "16px 24px",
-            }}
-          >
-            <Typography
-              variant="p"
-              sx={{
-                fontWeight: "700",
-                color: "#111827",
-                fontSize: "14px",
-                width: "15%",
-              }}
-            >
-              Vibration 1
-            </Typography>
-            {!editMode ? (
-              <Typography
-                variant="p"
-                sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
-              >
-                {/* {customerDetailsData?.data?.showaUser?.phone} */}
-              </Typography>
-            ) : (
-              <TextField
-                // defaultValue={user?.phone}
-                onChange={(e) => handleChange("phone", e.target.value)}
-                variant="outlined"
-                fullWidth
-              />
-            )}
-          </Box>
-          <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "16px",
-              padding: "16px 24px",
-            }}
-          >
-            <Typography
-              variant="p"
-              sx={{
-                fontWeight: "700",
-                color: "#111827",
-                fontSize: "14px",
-              }}
-            >
-              Temperature Chart
-            </Typography>
-            <Box>Chart Is Coming...</Box>
-          </Box>
-          <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "16px",
-              padding: "16px 24px",
-            }}
-          >
-            <Typography
-              variant="p"
-              sx={{
-                fontWeight: "700",
-                color: "#111827",
-                fontSize: "14px",
-              }}
-            >
-              Vibration Chart
-            </Typography>
-            <Box>Chart Is Coming...</Box>
-          </Box>
-          <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
         </Box>
-
-        {editMode && (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "16px",
-            }}
-          >
-            <Button onClick={handleSubmit} variant="contained" color="primary">
-              Submit
-            </Button>
-          </Box>
+        {selectedSensorID && (
+          <SensorDataDetails selectedSensorID={selectedSensorID} />
         )}
       </Box>
     </>

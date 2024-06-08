@@ -176,7 +176,7 @@ const generalRoutes = [
   },
   {
     name: "Res Group",
-    path: "/res-group/all-group",
+    path: "/res-group",
     icon: <img src={iot_icon} />,
     children: [
       {
@@ -195,18 +195,28 @@ const generalRoutes = [
         icon: <img src={bids_sub_icon} />,
       },
       {
+        name: "Assigned To Branch",
+        path: "/res-group/assigned-to-branch",
+        icon: <img src={bids_sub_icon} />,
+      },
+      {
+        name: "Assigned To Team",
+        path: "/res-group/assigned-to-team",
+        icon: <img src={bids_sub_icon} />,
+      },
+      {
         name: "Ongoing",
         path: "/res-group/ongoing",
         icon: <img src={bids_sub_icon} />,
       },
       {
-        name: "Completed",
-        path: "/res-group/completed",
+        name: "Pending",
+        path: "/res-group/pending",
         icon: <img src={bids_sub_icon} />,
       },
       {
-        name: "Pending",
-        path: "/res-group/pending",
+        name: "Completed",
+        path: "/res-group/completed",
         icon: <img src={bids_sub_icon} />,
       },
     ],
@@ -268,69 +278,89 @@ const productRoutes = [
   },
   {
     name: "Bids",
-    path: "/bids/connected/all",
+    path: "/bids",
     icon: <img src={bids_icon} />,
     children: [
       {
         name: "Sensor Connected",
-        path: "/bids/connected/all",
+        path: "/bids/connected/all-group",
         icon: <img src={sensor_connected_icon} />,
         children: [
           {
-            name: "All Reservation Request",
-            path: "/bids/connected/all",
+            name: "All Group",
+            path: "/bids/connected/all-group",
             icon: <img src={bids_sub_icon} />,
           },
           {
-            name: "On Demand Request",
-            path: "/bids/connected/on-demand",
+            name: "Pending",
+            path: "/bids/connected/pending",
             icon: <img src={bids_sub_icon} />,
           },
           {
-            name: "Within 1 Week Request",
-            path: "/bids/connected/within-one-week",
+            name: "Bid closed group",
+            path: "/bids/connected/bid-closed-group",
             icon: <img src={bids_sub_icon} />,
           },
           {
-            name: "Within 2 Week Request",
-            path: "/bids/connected/within-two-week",
+            name: "Assigned to Company",
+            path: "/bids/connected/assigned-to-company",
             icon: <img src={bids_sub_icon} />,
           },
           {
-            name: "Schedule Time Request",
-            path: "/bids/connected/schedule-time",
+            name: "Ongoing",
+            path: "/bids/connected/ongoing",
+            icon: <img src={bids_sub_icon} />,
+          },
+          {
+            name: "Completed",
+            path: "/bids/connected/completed",
+            icon: <img src={bids_sub_icon} />,
+          },
+          {
+            name: "Canceled",
+            path: "/bids/connected/canceled",
             icon: <img src={bids_sub_icon} />,
           },
         ],
       },
       {
         name: "Sensor Non-Connected",
-        path: "/bids/non-connected/all",
+        path: "/bids/non-connected/all-group",
         icon: <img src={sensor_not_connected_icon} />,
         children: [
           {
-            name: "All Reservation Request",
-            path: "/bids/non-connected/all",
+            name: "All Group",
+            path: "/bids/non-connected/all-group",
             icon: <img src={bids_sub_icon} />,
           },
           {
-            name: "On Demand Request",
-            path: "/bids/non-connected/on-demand",
+            name: "Pending",
+            path: "/bids/non-connected/pending",
             icon: <img src={bids_sub_icon} />,
           },
           {
-            name: "Within 1 Week Request",
-            path: "/bids/non-connected/within-one-week",
+            name: "Bid Closed Group",
+            path: "/bids/non-connected/bid-closed-group",
             icon: <img src={bids_sub_icon} />,
           },
           {
-            name: "Within 2 Week Request",
-            path: "/bids/non-connected/within-two-week",
+            name: "Assigned to Company",
+            path: "/bids/non-connected/assigned-to-company",
             icon: <img src={bids_sub_icon} />,
           },
           {
-            name: "Schedule Time Request",
-            path: "/bids/non-connected/schedule-time",
+            name: "Ongoing",
+            path: "/bids/non-connected/ongoing",
+            icon: <img src={bids_sub_icon} />,
+          },
+          {
+            name: "Completed",
+            path: "/bids/non-connected/completed",
+            icon: <img src={bids_sub_icon} />,
+          },
+          {
+            name: "Canceled",
+            path: "/bids/non-connected/canceled",
             icon: <img src={bids_sub_icon} />,
           },
         ],

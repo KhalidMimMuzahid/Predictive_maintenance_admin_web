@@ -4,17 +4,10 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useGetAllReservationQuery } from "../../../../../../features/reservation/reservationSlice";
 import { columns } from "../component/allReservationTableComponent/allReservationTableConstant";
 
-const AllReservationTable = ({ setSelectedReservations }) => {
-  const {
-    data: allReservationRows,
-    isLoading,
-    isError,
-    error,
-  } = useGetAllReservationQuery({
-    machineType: "non-connected",
-    reservationType: "scheduled",
-  });
-
+const AllReservationTable = ({
+  setSelectedReservations,
+  allReservationRows,
+}) => {
   // console.log({ allReservationRows });
   return (
     <Box>

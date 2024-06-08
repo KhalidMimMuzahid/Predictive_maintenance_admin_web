@@ -15,8 +15,17 @@ export const resGroupApi = createApi({
   }),
   tagTypes: [],
   endpoints: (builder) => ({
+    postReservationGroup: builder.mutation({
+      query: (formData) => ({
+        url: "/reservations-group/create",
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: ["make-reservation-request-group"],
+    }),
     getAllResGroups: builder.query({
-      query: () => "/reservations-group/all-reservations-group",
+      query: ({ groupForMachineType, reservationGroupType }) =>
+        `/reservations-group/all-reservations-group?groupForMachineType=${groupForMachineType}&reservationGroupType=${reservationGroupType}`,
       providesTags: [],
     }),
     postBidsAssign: builder.mutation({
@@ -30,11 +39,29 @@ export const resGroupApi = createApi({
       query: (_id) =>
         `/reservations-group/get-reservation-group-by-id?reservationRequestGroup=${_id}`,
     }),
+    patchSetBidingDate: builder.mutation({
+      query: ({ reservationRequestGroup, biddingDate }) => ({
+        url: `/reservations-group/set-bidding-date?reservationRequestGroup=${reservationRequestGroup}`,
+        method: "PATCH",
+        body: biddingDate,
+        providesTags: [],
+      }),
+    }),
+    patchSelectBidingWinner: builder.mutation({
+      query: ({ reservationRequestGroup, bid }) => ({
+        url: `/reservations-group/select-bidding-winner?reservationRequestGroup=${reservationRequestGroup}&bid=${bid}`,
+        method: "PATCH",
+        providesTags: [],
+      }),
+    }),
   }),
 });
 
 export const {
+  usePostReservationGroupMutation,
   useGetAllResGroupsQuery,
   usePostBidsAssignMutation,
   useGetReservationGroupByIDQuery,
+  usePatchSetBidingDateMutation,
+  usePatchSelectBidingWinnerMutation,
 } = resGroupApi;

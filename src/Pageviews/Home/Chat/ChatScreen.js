@@ -105,9 +105,10 @@ const ChatScreen = () => {
         </Box>
         <Box
           sx={{
+            height: "700px",
             display: "flex",
             background: "white",
-            padding: "30px 16px",
+            padding: "30px 16px 0px 16px",
             borderRadius: "4px",
             marginTop: "24px",
           }}

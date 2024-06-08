@@ -17,12 +17,22 @@ import {
 import { useState } from "react";
 import AllReservationTable from "./allReservationTable/AllReservationTable";
 import MakeGroupModal from "../../commonComponent/modal/MakeGroupModal";
+import { useGetAllReservationQuery } from "../../../../../features/reservation/reservationSlice";
 
 const AllReservation = () => {
   const [tabValue, setTabValue] = useState(0);
   const [selectedReservations, setSelectedReservations] = useState([]);
   const [viewOpen, setViewOpen] = useState(false);
-
+  const {
+    data: allReservationRows,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useGetAllReservationQuery({
+    machineType: "connected",
+    reservationType: "all",
+  });
   const handleGroupReservation = () => {
     setViewOpen(true);
   };
@@ -38,6 +48,7 @@ const AllReservation = () => {
         viewOpen={viewOpen}
         setViewOpen={setViewOpen}
         selectedReservations={selectedReservations}
+        refetch={refetch}
       />
       <Box
         sx={{
@@ -188,6 +199,7 @@ const AllReservation = () => {
           </Box>
         )}
         <AllReservationTable
+          allReservationRows={allReservationRows}
           setSelectedReservations={setSelectedReservations}
         />
       </Box>

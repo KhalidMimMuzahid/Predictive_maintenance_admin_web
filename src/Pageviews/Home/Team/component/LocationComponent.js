@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const LocationComponent = ({ props }) => {
-  console.log(props?.location);
   return (
     <Box
       sx={{

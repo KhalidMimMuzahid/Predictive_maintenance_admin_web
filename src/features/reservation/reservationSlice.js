@@ -26,14 +26,6 @@ export const reservationApi = createApi({
         `/user/showa-user/get-showa-user?showaUser=${showaUser}`,
     }),
 
-    postReservationGroup: builder.mutation({
-      query: (formData) => ({
-        url: "/reservations-group/create",
-        method: "POST",
-        body: formData,
-      }),
-      invalidatesTags: ["make-reservation-request-group"],
-    }),
     getReservationRequestByID: builder.query({
       query: (_id) => `/reservation/all-reservation-by-user?user=${_id}`,
     }),
@@ -60,7 +52,6 @@ export const reservationApi = createApi({
 export const {
   useGetAllReservationQuery,
   useGetShowaUserInfoQuery,
-  usePostReservationGroupMutation,
   useGetReservationRequestByIDQuery,
   useGetReservationOverviewQuery,
   useGetReservationCountByServiceProviderCompanyQuery,

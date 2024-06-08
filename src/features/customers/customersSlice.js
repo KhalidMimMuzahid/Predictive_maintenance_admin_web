@@ -24,6 +24,11 @@ export const customersApi = createApi({
       // query: (user) => `/user/showa-user/get-showa-user-by-user?user=${user}`,
       providesTags: [],
     }),
+    getCustomerDetailsBySelectQuery: builder.query({
+      query: ({ _id, rootUserField, extendedUserFields }) =>
+        `/user/get-user?_id=${_id}&rootUserFields=${rootUserField}&extendedUserFields=${extendedUserFields}`,
+      providesTags: [],
+    }),
     getCustomerDetailsMini: builder.query({
       // query: (_id) => `/user/get-user?_id=${_id}`,
       query: (user) => `/user/showa-user/get-showa-user-by-user?user=${user}`,
@@ -43,6 +48,7 @@ export const customersApi = createApi({
 export const {
   useGetAllCustomersQuery,
   useGetCustomerDetailsQuery,
+  useGetCustomerDetailsBySelectQueryQuery,
   useGetCustomerDetailsMiniQuery,
   useGetCustomerWalletQuery,
   useGetCustomerSubscriptionDataQuery,

@@ -1,32 +1,50 @@
 import { Close } from "@mui/icons-material";
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
-import React, { useEffect } from "react";
-import { usePostReservationGroupMutation } from "../../../../../features/reservation/reservationSlice";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { usePostReservationGroupMutation } from "../../../../../features/resGroup/resGroupSlice";
 
-const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
+const MakeGroupModal = ({
+  viewOpen,
+  setViewOpen,
+  selectedReservations,
+  refetch,
+}) => {
+  const [startDateSection, setStartDateSection] = useState(false);
+  const [endDateSection, setEndDateSection] = useState(false);
   const [makeReservationGroup, { data, isError, error, isLoading, isSuccess }] =
     usePostReservationGroupMutation();
 
   useEffect(() => {
-    if (isSuccess & !isLoading) {
-      alert(data?.message);
+    if (isSuccess) {
+      toast.success(data?.message);
+      refetch();
       setViewOpen(false);
-      // here we need to re fetch the data for all reservation group table
+    } else if (isError) {
+      toast.error(error?.data?.message);
     }
-    if (isError & !isLoading) {
-      alert(error?.data?.message);
-    }
-  }, [isLoading]);
+  }, [isSuccess, isError]);
+
   const handleMakeResGroup = (e) => {
     e.preventDefault();
-    const groupName = e.target.groupName.value;
+    const groupName = e?.target?.groupName?.value;
+    const startDate = e?.target?.start_date?.value
+      ? e?.target?.start_date?.value + "T23:59:59.999+00:00"
+      : undefined;
 
-    console.log({ groupName });
+    const endDate = e?.target?.end_date?.value
+      ? e?.target?.end_date?.value + "T23:59:59.999+00:00"
+      : undefined;
 
     makeReservationGroup({
       reservationRequests: selectedReservations,
       groupName,
+      biddingDate: {
+        startDate,
+        endDate,
+      },
     });
+    e.target.reset();
   };
 
   return (
@@ -78,10 +96,132 @@ const MakeGroupModal = ({ viewOpen, setViewOpen, selectedReservations }) => {
         <Box sx={{ padding: "8px 16px" }}>
           {/* make it  */}
 
-          <form action="" onSubmit={handleMakeResGroup}>
-            <label htmlFor="group-name">Group name</label>
-            <input id="group-name" type="text" required name="groupName" />
-            <button type="submit">Make Group</button>
+          <form
+            action=""
+            onSubmit={handleMakeResGroup}
+            style={{ display: "flex", flexDirection: "column", gap: "24px" }}
+          >
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+              <label htmlFor="group-name" style={{ fontWeight: "600" }}>
+                Group name
+              </label>
+              <input
+                style={{
+                  background: "#F6F6F6",
+                  padding: "16px",
+                  border: "none",
+                  borderRadius: "4px",
+                  color: "#65748B",
+                  fontSize: "16px",
+                  fontWeight: "700",
+                }}
+                id="group-name"
+                type="text"
+                required
+                name="groupName"
+              />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: "16px",
+                width: "100%",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                  width: "50%",
+                }}
+              >
+                <Button
+                  onClick={() => setStartDateSection(!startDateSection)}
+                  sx={{
+                    textTransform: "none",
+                    background: "#24459C",
+                    "&:hover": {
+                      background: "#24459C",
+                    },
+                    color: "white",
+                    width: "100%",
+                  }}
+                >
+                  Start Date
+                </Button>
+                {startDateSection && (
+                  <input
+                    type="date"
+                    name="start_date"
+                    id=""
+                    style={{
+                      background: "#F6F6F6",
+                      padding: "16px",
+                      border: "none",
+                      borderRadius: "4px",
+                      color: "#65748B",
+                      fontSize: "16px",
+                      fontWeight: "700",
+                    }}
+                  />
+                )}
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                  width: "50%",
+                }}
+              >
+                <Button
+                  onClick={() => setEndDateSection(!endDateSection)}
+                  sx={{
+                    textTransform: "none",
+                    background: "#24459C",
+                    "&:hover": {
+                      background: "#24459C",
+                    },
+                    color: "white",
+                    width: "100%",
+                  }}
+                >
+                  End Date
+                </Button>
+                {endDateSection && (
+                  <input
+                    type="date"
+                    name="end_date"
+                    id=""
+                    style={{
+                      background: "#F6F6F6",
+                      padding: "16px",
+                      border: "none",
+                      borderRadius: "4px",
+                      color: "#65748B",
+                      fontSize: "16px",
+                      fontWeight: "700",
+                    }}
+                  />
+                )}
+              </Box>
+            </Box>
+            <Button
+              type="submit"
+              sx={{
+                textTransform: "none",
+                background: "#24459C",
+                "&:hover": {
+                  background: "#24459C",
+                },
+                color: "white",
+                width: "100%",
+              }}
+            >
+              Make Group
+            </Button>
           </form>
         </Box>
       </Container>

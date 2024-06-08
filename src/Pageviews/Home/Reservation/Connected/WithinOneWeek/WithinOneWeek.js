@@ -16,7 +16,10 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import AllReservationTable from "./allReservationTable/AllReservationTable";
-import { usePostReservationGroupMutation } from "../../../../../features/reservation/reservationSlice";
+import {
+  useGetAllReservationQuery,
+  usePostReservationGroupMutation,
+} from "../../../../../features/reservation/reservationSlice";
 import MakeGroupModal from "../../commonComponent/modal/MakeGroupModal";
 
 const WithinOneWeek = () => {
@@ -24,7 +27,16 @@ const WithinOneWeek = () => {
   const [selectedReservations, setSelectedReservations] = useState([]);
 
   const [viewOpen, setViewOpen] = useState(false);
-
+  const {
+    data: allReservationRows,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useGetAllReservationQuery({
+    machineType: "connected",
+    reservationType: "within-one-week",
+  });
   const handleGroupReservation = () => {
     setViewOpen(true);
   };
@@ -40,6 +52,7 @@ const WithinOneWeek = () => {
         viewOpen={viewOpen}
         setViewOpen={setViewOpen}
         selectedReservations={selectedReservations}
+        refetch={refetch}
       />
       <Box
         sx={{
@@ -192,6 +205,7 @@ const WithinOneWeek = () => {
         <Box sx={{ width: "100%" }}>
           <AllReservationTable
             setSelectedReservations={setSelectedReservations}
+            allReservationRows={allReservationRows}
           />
         </Box>
       </Box>

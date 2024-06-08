@@ -32,7 +32,8 @@ const LocationComponent = ({ props }) => {
         sx={{
           display: "flex",
           alignItems: "center",
-          gap: "8px",
+          justifyContent: "center",
+          gap: "2px",
           color: "#6B7280",
           fontSize: "8px",
           fontWeight: "400",
