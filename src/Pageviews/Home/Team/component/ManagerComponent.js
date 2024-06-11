@@ -6,14 +6,11 @@ const ManagerComponent = ({ props }) => {
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: "0 8px" }}>
       <img
-        src={
-          props?.row?.companyBasicInfo?.shopInfo?.companyRegDocumentPhotoAddress
-        }
+        src={props?.serviceProviderBranchManager?.photoUrl}
         style={{
           width: "36px",
           height: "36px",
           borderRadius: "100%",
-          border: "1px solid yellow",
         }}
         alt="Manager"
       />

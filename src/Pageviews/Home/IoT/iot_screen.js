@@ -138,7 +138,7 @@ const IotScreen = () => {
                   Recent Products
                 </Typography>
                 <Button
-                  sx={{ color: "#24459C" }}
+                  sx={{ color: "#24459C", textTransform: "none" }}
                   onClick={() => setIsIOTRootPage(false)}
                 >
                   See All

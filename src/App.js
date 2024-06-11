@@ -571,7 +571,6 @@ function App() {
                   <Route path="/settings" element={<SettingsScreen />} />
                 </Routes>
               </CollapsibleSidebar>
-              {/* <Footer /> */}
 
               {/* <div className={classes.leftbar}>
                     <Sidebar />
@@ -601,7 +600,6 @@ function App() {
                   </Routes>
 
                 </div> */}
-              <Footer />
             </>
           ) : (
             <Routes>

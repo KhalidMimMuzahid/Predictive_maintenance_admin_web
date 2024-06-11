@@ -36,6 +36,7 @@ import logo_small from "../Assets/Component/logo_small.svg";
 import logo_full from "../Assets/Component/logo_full.svg";
 import SidebarItem from "./SIdebarItem";
 import { Typography } from "@mui/material";
+import Footer from "../Utils/Footer";
 
 const generalRoutes = [
   {
@@ -566,7 +567,9 @@ const CollapsibleSidebar = ({ children }) => {
           <div style={{ height: "24px" }} />
         </motion.div>
 
-        <main>{children}</main>
+        <main>
+          {children} <Footer />
+        </main>
       </div>
     </>
   );

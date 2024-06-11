@@ -104,9 +104,7 @@ const FirstGraph = () => {
                 }}
                 size="small"
               >
-                <InputLabel id="demo-select-small-label">
-                  Style: Bar
-                </InputLabel>
+                <InputLabel id="demo-select-small-label">Style: Bar</InputLabel>
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
@@ -114,9 +112,9 @@ const FirstGraph = () => {
                   label="Style: Bar"
                   onChange={handleStyleChange}
                 >
-                  <MenuItem value={10}>Line</MenuItem>
-                  <MenuItem value={20}>Pie</MenuItem>
-                  <MenuItem value={30}>Bar</MenuItem>
+                  <MenuItem value={"Line"}>Line</MenuItem>
+                  <MenuItem value={"Pie"}>Pie</MenuItem>
+                  <MenuItem value={"Bar"}>Bar</MenuItem>
                 </Select>
               </FormControl>
             </div>

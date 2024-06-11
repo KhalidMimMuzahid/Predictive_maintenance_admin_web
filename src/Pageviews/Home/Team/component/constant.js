@@ -1,6 +1,4 @@
 import { Box, Button, Typography } from "@mui/material";
-import AnchorIcon from "@mui/icons-material/Anchor";
-import { MoreVert } from "@mui/icons-material";
 import CompanyNameComponent from "./CompanyNameComponent";
 import LocationComponent from "./LocationComponent";
 import TotalTeamMember from "./TotalTeamMember";

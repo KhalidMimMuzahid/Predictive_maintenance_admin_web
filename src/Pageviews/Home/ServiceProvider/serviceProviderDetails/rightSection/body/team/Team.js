@@ -63,7 +63,7 @@ const Team = () => {
           >
             <TextField
               sx={{ width: "100%" }}
-              size="medium"
+              size="small"
               placeholder="Search..."
               // value={searchText}
               // onChange={(e) => setSearchText(e.target.value)}
@@ -86,16 +86,15 @@ const Team = () => {
                 ),
               }}
             />
-            <FormControl sx={{ m: 1, minWidth: 300 }}>
+            <FormControl sx={{ m: 1, minWidth: 300 }} size="small">
               <InputLabel id="demo-simple-select-helper-label">
                 Sort By
               </InputLabel>
               <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
-                value="last_update"
                 label="Sort By"
-                onChange={handleChange}
+                // onChange={handleChange}
               >
                 <MenuItem value="newest">Newest</MenuItem>
                 <MenuItem value="last_update">Last Update</MenuItem>

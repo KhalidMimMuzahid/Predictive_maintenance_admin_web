@@ -15,6 +15,7 @@ import { useGetAllReservationQuery } from "../../../features/reservation/reserva
 
 const ReservationScreen = () => {
   const [selectedReservations, setSelectedReservations] = useState([]);
+  const [isRootReservationPage, setIsRootReservationPage] = useState(true);
   const {
     data: allReservationRows,
     isLoading,
@@ -75,67 +76,77 @@ const ReservationScreen = () => {
           </Button>
         </Box>
       </Box>
-      {/* Overview */}
-      <Box
-        sx={{
-          background: "white",
-          padding: "20px",
-          borderRadius: "4px",
-          margin: "40px 0 20px 0",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Typography sx={{ fontSize: "24px" }}>Overview</Typography>
-          <FormControl
+      {isRootReservationPage && (
+        <>
+          {/* Overview */}
+          <Box
             sx={{
-              width: "12%",
-              boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
-              backgroundColor: "#24459c",
-              color: "white",
-              textTransform: "none",
-              borderRadius: "8px",
-              fontWeight: "500",
-              "&:hover": {
-                background: "#24459C",
-              },
+              background: "white",
+              padding: "20px",
+              borderRadius: "4px",
+              margin: "40px 0 20px 0",
             }}
-            size="small"
           >
-            <InputLabel id="demo-select-small-label" sx={{ color: "white" }}>
-              Add Item
-            </InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-simple-select"
-              // value={age}
-              label="Add Item"
-              sx={{ color: "white" }}
-              // onChange={handleChange}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
             >
-              <MenuItem value={"0-250 meters"}>Ongoing</MenuItem>
-              <MenuItem value={"250-500 meters"}>Online</MenuItem>
-              <MenuItem value={"1 kilometer"}>Offline</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-        <OverViewCards />
-      </Box>
-      {/* Overview */}
+              <Typography sx={{ fontSize: "24px" }}>Overview</Typography>
+              <FormControl
+                sx={{
+                  width: "12%",
+                  boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
+                  backgroundColor: "#24459c",
+                  color: "white",
+                  textTransform: "none",
+                  borderRadius: "8px",
+                  fontWeight: "500",
+                  "&:hover": {
+                    background: "#24459C",
+                  },
+                }}
+                size="small"
+              >
+                <InputLabel
+                  id="demo-select-small-label"
+                  sx={{ color: "white" }}
+                >
+                  Add Item
+                </InputLabel>
+                <Select
+                  labelId="demo-select-small-label"
+                  id="demo-simple-select"
+                  // value={age}
+                  label="Add Item"
+                  sx={{ color: "white" }}
+                  // onChange={handleChange}
+                >
+                  <MenuItem value={"All Departments"}>All Departments</MenuItem>
+                  <MenuItem value={"Maintenance"}>Maintenance</MenuItem>
+                  <MenuItem value={"Revenue"}>Revenue</MenuItem>
+                  <MenuItem value={"Total Numbers"}>Total Numbers</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <OverViewCards />
+          </Box>
+          {/* Overview */}
 
-      {/* Comparison Chart */}
-      <ComparisonChart />
-      {/* Comparison Chart */}
+          {/* Comparison Chart */}
+          <ComparisonChart />
+          {/* Comparison Chart */}
+        </>
+      )}
 
       {/* All Reservation Request Table */}
       <AllReservationTable
         allReservationRows={allReservationRows}
         setSelectedReservations={setSelectedReservations}
+        isRootReservationPage={isRootReservationPage}
+        setIsRootReservationPage={setIsRootReservationPage}
       />
       {/* All Reservation Request Table */}
     </Box>

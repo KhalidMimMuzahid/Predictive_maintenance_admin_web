@@ -75,7 +75,7 @@ const RequestVsTimeGraph = () => {
               <FormControl
                 sx={{
                   m: 1,
-                  minWidth: 180,
+                  minWidth: 150,
                   backgroundColor: "white",
                   borderRadius: "10px",
                 }}
@@ -89,9 +89,10 @@ const RequestVsTimeGraph = () => {
                   label="Total"
                   //   onChange={handleChange}
                 >
-                  <MenuItem value={10}>Ongoing</MenuItem>
-                  <MenuItem value={20}>Online</MenuItem>
-                  <MenuItem value={30}>Offline</MenuItem>
+                  <MenuItem value={"Total"}>Total</MenuItem>
+                  <MenuItem value={"Completed"}>Completed</MenuItem>
+                  <MenuItem value={"On-going"}>On-going</MenuItem>
+                  <MenuItem value={"Canceled"}>Canceled</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -99,7 +100,7 @@ const RequestVsTimeGraph = () => {
               <FormControl
                 sx={{
                   m: 1,
-                  minWidth: 180,
+                  minWidth: 150,
                   backgroundColor: "white",
                   borderRadius: "10px",
                 }}
@@ -179,7 +180,7 @@ const RequestVsTimeGraph = () => {
               <FormControl
                 sx={{
                   m: 1,
-                  minWidth: 220,
+                  minWidth: 150,
                   backgroundColor: "white",
                   borderRadius: "10px",
                 }}
@@ -205,7 +206,7 @@ const RequestVsTimeGraph = () => {
                 sx={{
                   color: "white",
                   backgroundColor: "#24459C",
-                  minWidth: 180,
+                  minWidth: 150,
                 }}
                 variant="contained"
               >

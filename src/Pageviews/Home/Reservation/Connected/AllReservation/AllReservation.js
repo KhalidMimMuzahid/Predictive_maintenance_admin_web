@@ -75,89 +75,9 @@ const AllReservation = () => {
         sx={{
           background: "white",
           borderRadius: "4px",
-          padding: "0 20px",
           marginTop: "8px",
         }}
       >
-        <Box
-          sx={{
-            padding: "12px 48px",
-            display: "flex",
-            justifyContent: "end",
-            alignItems: "center",
-            gap: "0px 12px",
-          }}
-        >
-          <FormControl
-            sx={{
-              width: "12%",
-              boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
-            }}
-            size="small"
-          >
-            <InputLabel id="demo-select-small-label">All Providers</InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              // value={age}
-              label="All Providers"
-              // onChange={handleChange}
-            >
-              <MenuItem value={"0-250 meters"}>Ongoing</MenuItem>
-              <MenuItem value={"250-500 meters"}>Online</MenuItem>
-              <MenuItem value={"1 kilometer"}>Offline</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl
-            sx={{
-              width: "15%",
-              boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
-            }}
-            size="small"
-          >
-            <InputLabel id="demo-select-small-label">All Services</InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              // value={age}
-              label="All Services"
-              // onChange={handleChange}
-            >
-              <MenuItem value={"Ongoing Jobs"}>Dish Washing Machine</MenuItem>
-              <MenuItem value={"Online"}>Pallet Washing Machine</MenuItem>
-              <MenuItem value={"Offline"}>Container Washing Machine</MenuItem>
-              <MenuItem value={"Suspended"}>General Device</MenuItem>
-              <MenuItem value={"Suspended"}>All Service</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl
-            sx={{
-              width: "15%",
-              boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
-            }}
-            size="small"
-          >
-            <InputLabel id="demo-select-small-label">
-              Jan 01 - Jan 31
-            </InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              // value={age}
-              label="Jan 01 - Jan 31"
-              // onChange={handleChange}
-            >
-              <MenuItem value={"Newest"}>Last One Week</MenuItem>
-              <MenuItem value={"Newest to Oldest"}>Last Two Week</MenuItem>
-              <MenuItem value={"Oldest to Newest"}>Last One Month</MenuItem>
-              <MenuItem value={"Oldest"}>Last One Year</MenuItem>
-              <MenuItem value={"Select Date"}>Select Date</MenuItem>
-            </Select>
-          </FormControl>
-          <Button>
-            <MoreHoriz />
-          </Button>
-        </Box>
         {selectedReservations?.length > 0 && (
           <Box
             sx={{

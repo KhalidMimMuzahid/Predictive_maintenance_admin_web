@@ -12,7 +12,7 @@ const Contact = ({ serviceProviderDetails }) => {
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
       <Box
         sx={{
-          padding: "12px 32px",
+          padding: "12px 20px",
           display: "flex",
 
           flexDirection: "column",
@@ -72,12 +72,20 @@ const Contact = ({ serviceProviderDetails }) => {
           />
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <Typography
-              sx={{ fontSize: "12px", fontWeight: "400", color: "#728096" }}
+              sx={{
+                fontSize: "12px",
+                fontWeight: "400",
+                color: "#728096",
+              }}
             >
               Email
             </Typography>
             <Typography
-              sx={{ fontSize: "13px", fontWeight: "700", color: "#424E79" }}
+              sx={{
+                fontSize: "13px",
+                fontWeight: "700",
+                color: "#424E79",
+              }}
             >
               {serviceProviderDetails?.serviceProviderAdmin?.email}
             </Typography>
