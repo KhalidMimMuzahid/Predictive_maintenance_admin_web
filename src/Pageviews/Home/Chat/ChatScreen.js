@@ -13,38 +13,55 @@ import {
   useGetMyAllChatListQuery,
   useGetUsersInformationByUsersMutation,
 } from "../../../features/chat/chatSlice";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const ChatScreen = () => {
   const [messageModalOpen, setMessageModalOpen] = useState(false);
   const [callModalOpen, setCallModalOpen] = useState(false);
   const [chatOrContact, setChatOrContact] = useState("chat");
+  const [shouldRefreshChatId, setShouldRefreshChatId] = useState({
+    chatId: "",
+    toggle: false,
+  });
+
   const {
     data: allChatListData,
     isLoading,
     isSuccess,
+    refetch: refetchForGetMyAllChat,
   } = useGetMyAllChatListQuery();
-  const [selectedChat, setSelectedChat] = useState();
+  // const [selectedChat, setSelectedChat] = useState();
 
   const [
     fetchUserData,
     { data: usersData, isSuccess: isSuccessForGetUserInformation },
   ] = useGetUsersInformationByUsersMutation();
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (isSuccess) {
+      navigate(`/chat/${allChatListData?.data[0]?._id}`);
       fetchUserData({ usersArray: allChatListData?.data[0]?.users });
     }
   }, [isSuccess]);
 
-  useEffect(() => {
-    if (isSuccessForGetUserInformation) {
-      setSelectedChat({
-        chat: allChatListData?.data[0],
-        users: usersData,
-        shouldRefetch: true,
-      });
-    }
-  }, [isSuccessForGetUserInformation]);
+  // useEffect(() => {
+  //   if (isSuccessForGetUserInformation) {
+  //     // console.log({
+  //     //   chat: allChatListData?.data[0],
+  //     //   users: usersData?.data,
+  //     //   shouldRefetch: true,
+  //     // });
+  //     setSelectedChat((prev) => {
+  //       return {
+  //         ...prev,
+
+  //         chat: allChatListData?.data[0],
+  //         users: usersData?.data,
+  //         shouldRefetch: !prev?.shouldRefetch,
+  //       };
+  //     });
+  //   }
+  // }, [isSuccessForGetUserInformation]);
   return (
     <>
       {messageModalOpen && (
@@ -147,10 +164,11 @@ const ChatScreen = () => {
           <Sidebar
             chatOrContact={chatOrContact}
             setChatOrContact={setChatOrContact}
-            setSelectedChat={setSelectedChat}
+            // setSelectedChat={setSelectedChat}
             allChatListData={allChatListData}
+            shouldRefreshChatId={shouldRefreshChatId}
           />
-          <MainScreen selectedChat={selectedChat} />
+          <Outlet context={[refetchForGetMyAllChat, setShouldRefreshChatId]} />
         </Box>
       </Box>
     </>

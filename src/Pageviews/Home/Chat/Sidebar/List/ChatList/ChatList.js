@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import UserOrGroup from "./UserOrGroup/UserOrGroup";
 
-const ChatList = ({ chats, setSelectedChat }) => {
+const ChatList = ({ chats, shouldRefreshChatId }) => {
   return (
     <Box
       sx={{
@@ -14,13 +14,18 @@ const ChatList = ({ chats, setSelectedChat }) => {
     >
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
       {chats?.map((chat, i) => (
-        <Box>
+        <Box key={chat?._id}>
           <Box
             sx={{
               display: "flex",
             }}
           >
-            <UserOrGroup chat={chat} setSelectedChat={setSelectedChat} />
+            <UserOrGroup
+              chat={chat}
+              shouldRefreshChatId={shouldRefreshChatId}
+
+              // setSelectedChat={setSelectedChat}
+            />
           </Box>
           <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
         </Box>

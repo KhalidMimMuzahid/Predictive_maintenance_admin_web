@@ -3,11 +3,7 @@ import React from "react";
 import { DeleteOutline, InfoOutlined, MoreHoriz } from "@mui/icons-material";
 import UserOrGroup from "./UserOrGroup/UserOrGroup";
 
-const Topbar = ({ 
-  // chatBox, 
-  selectedChat,
-  //  isSuccessForChatByChat_id 
-  }) => {
+const Topbar = ({ chat, users, isSuccessForGetUserInformation }) => {
   return (
     <Box
       sx={{
@@ -25,8 +21,9 @@ const Topbar = ({
         }}
       >
         <UserOrGroup
-          // chat={chatBox}
-          selectedChat={selectedChat}
+          chat={chat}
+          users={users}
+          isSuccessForGetUserInformation={isSuccessForGetUserInformation}
           // isSuccessForChatByChat_id={isSuccessForChatByChat_id}
         />
       </Box>

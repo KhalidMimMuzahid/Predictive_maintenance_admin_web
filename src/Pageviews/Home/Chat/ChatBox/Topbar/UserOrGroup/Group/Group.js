@@ -1,17 +1,13 @@
 import { Box, Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Profile from "./Profile/Profile";
-import NameAndMessage from "./NameAndMessage/NameAndMessage";
-import LastMessageTime from "./LastMessageTime/LastMessageTime";
-
-const Group = ({
-  chat,
-  users,
-  isSuccess,
-  lastMessageIsSuccess,
-  lastMessage,
-}) => {
+import Name from "../Group/NameAndMessage/Name";
+const Group = ({ chat, users, isSuccess }) => {
   // console.log(chat);
+
+  if (!isSuccess) {
+    return <h1>loading</h1>;
+  }
   return (
     <Button
       sx={{
@@ -25,15 +21,13 @@ const Group = ({
       }}
     >
       <Profile groupPhotoUrl={chat?.group?.groupPhotoUrl} users={users} />
-      <NameAndMessage
-        chat={chat?._id}
+
+      <Name
+        chat={chat}
         group={chat?.group}
         users={users}
         isSuccess={isSuccess}
-        lastMessage={lastMessage}
-        lastMessageIsSuccess={lastMessageIsSuccess}
       />
-      <LastMessageTime lastMessage={lastMessage} />
     </Button>
   );
 };

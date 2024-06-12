@@ -104,6 +104,7 @@ import BidsNonConnectedClosedGroup from "./Pageviews/Home/Bids/NonConnected/BidC
 import BidsNonConnectedAssignedToCompany from "./Pageviews/Home/Bids/NonConnected/AssignedToCompany/BidsNonConnectedAssignedToCompany";
 import BidsNonConnectedOngoing from "./Pageviews/Home/Bids/NonConnected/Ongoing/BidsNonConnectedOngoing";
 import BidsNonConnectedComplete from "./Pageviews/Home/Bids/NonConnected/Completed/BidsNonConnectedComplete";
+import MainScreen from "./Pageviews/Home/Chat/ChatBox/MainScreen";
 
 const theme = createTheme();
 
@@ -303,7 +304,9 @@ function App() {
 
                   {/* customer screen end  */}
                   {/* Chat Screen Start */}
-                  <Route path="/chat" element={<ChatScreen />} />
+                  <Route path="/chat" element={<ChatScreen />}>
+                    <Route path="/chat/:_id" element={<MainScreen />} />
+                  </Route>
                   {/* Chat Screen End */}
                   <Route path="/feed" element={<FeedScreen />} />
 
