@@ -1,9 +1,13 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-import chatGirl from "../../../../Assets/Home/customer/chat_girl.png";
 import { DeleteOutline, InfoOutlined, MoreHoriz } from "@mui/icons-material";
+import UserOrGroup from "./UserOrGroup/UserOrGroup";
 
-const Topbar = () => {
+const Topbar = ({ 
+  // chatBox, 
+  selectedChat,
+  //  isSuccessForChatByChat_id 
+  }) => {
   return (
     <Box
       sx={{
@@ -20,19 +24,11 @@ const Topbar = () => {
           gap: "11px",
         }}
       >
-        <img src={chatGirl} alt="" />
-        <Box>
-          <Typography
-            sx={{ color: "#24459C", fontSize: "20px", fontWeight: "600" }}
-          >
-            Abigali Kelly
-          </Typography>
-          <Typography
-            sx={{ color: "#24459C", fontSize: "16px", fontWeight: "500" }}
-          >
-            🟢 Active
-          </Typography>
-        </Box>
+        <UserOrGroup
+          // chat={chatBox}
+          selectedChat={selectedChat}
+          // isSuccessForChatByChat_id={isSuccessForChatByChat_id}
+        />
       </Box>
       <Box sx={{ display: "flex", gap: "8px" }}>
         <Button

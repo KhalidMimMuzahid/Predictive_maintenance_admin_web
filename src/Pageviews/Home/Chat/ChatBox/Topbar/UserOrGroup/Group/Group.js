@@ -1,28 +1,19 @@
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Profile from "./Profile/Profile";
 import NameAndMessage from "./NameAndMessage/NameAndMessage";
 import LastMessageTime from "./LastMessageTime/LastMessageTime";
 
-const User = ({
+const Group = ({
   chat,
   users,
   isSuccess,
-  lastMessage,
   lastMessageIsSuccess,
-  setSelectedChat,
+  lastMessage,
 }) => {
+  // console.log(chat);
   return (
     <Button
-      onClick={() =>
-        setSelectedChat((prev) => {
-          return {
-            chat,
-            users,
-            shouldRefresh: !prev?.shouldRefresh,
-          };
-        })
-      }
       sx={{
         padding: "16px",
         display: "flex",
@@ -33,7 +24,7 @@ const User = ({
         textTransform: "none",
       }}
     >
-      <Profile users={users} isSuccess={isSuccess} />
+      <Profile groupPhotoUrl={chat?.group?.groupPhotoUrl} users={users} />
       <NameAndMessage
         chat={chat?._id}
         group={chat?.group}
@@ -47,4 +38,4 @@ const User = ({
   );
 };
 
-export default User;
+export default Group;

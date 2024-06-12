@@ -6,11 +6,14 @@ import { Box, InputAdornment, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React from "react";
 import ContactList from "./List/ContactList/ContactList";
-import { useGetMyAllChatListQuery } from "../../../../features/chat/chatSlice";
 import ChatList from "./List/ChatList/ChatList";
 
-const Sidebar = ({ chatOrContact, setChatOrContact }) => {
-  const { data: allChatListData, isLoading } = useGetMyAllChatListQuery();
+const Sidebar = ({
+  chatOrContact,
+  setChatOrContact,
+  setSelectedChat,
+  allChatListData,
+}) => {
   return (
     <Box sx={{ width: "25%" }}>
       <Box
@@ -76,8 +79,15 @@ const Sidebar = ({ chatOrContact, setChatOrContact }) => {
           </button>
         </Box>
       </Box>
-      {chatOrContact === "chat" && <ChatList chats={allChatListData?.data} />}
-      {chatOrContact === "contact" && <ContactList />}
+      {chatOrContact === "chat" && (
+        <ChatList
+          chats={allChatListData?.data}
+          setSelectedChat={setSelectedChat}
+        />
+      )}
+      {chatOrContact === "contact" && (
+        <ContactList setChatOrContact={setChatOrContact} />
+      )}
     </Box>
   );
 };

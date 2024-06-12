@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MessageModal from "../ServiceProvider/serviceProviderDetails/modal/MessageModal";
 import CallModal from "../ServiceProvider/serviceProviderDetails/modal/CallModal";
 import { Box, Button, Typography } from "@mui/material";
@@ -9,11 +9,42 @@ import {
 } from "@mui/icons-material";
 import Sidebar from "./Sidebar/Sidebar";
 import MainScreen from "./ChatBox/MainScreen";
+import {
+  useGetMyAllChatListQuery,
+  useGetUsersInformationByUsersMutation,
+} from "../../../features/chat/chatSlice";
 
 const ChatScreen = () => {
   const [messageModalOpen, setMessageModalOpen] = useState(false);
   const [callModalOpen, setCallModalOpen] = useState(false);
   const [chatOrContact, setChatOrContact] = useState("chat");
+  const {
+    data: allChatListData,
+    isLoading,
+    isSuccess,
+  } = useGetMyAllChatListQuery();
+  const [selectedChat, setSelectedChat] = useState();
+
+  const [
+    fetchUserData,
+    { data: usersData, isSuccess: isSuccessForGetUserInformation },
+  ] = useGetUsersInformationByUsersMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      fetchUserData({ usersArray: allChatListData?.data[0]?.users });
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isSuccessForGetUserInformation) {
+      setSelectedChat({
+        chat: allChatListData?.data[0],
+        users: usersData,
+        shouldRefetch: true,
+      });
+    }
+  }, [isSuccessForGetUserInformation]);
   return (
     <>
       {messageModalOpen && (
@@ -116,8 +147,10 @@ const ChatScreen = () => {
           <Sidebar
             chatOrContact={chatOrContact}
             setChatOrContact={setChatOrContact}
+            setSelectedChat={setSelectedChat}
+            allChatListData={allChatListData}
           />
-          <MainScreen />
+          <MainScreen selectedChat={selectedChat} />
         </Box>
       </Box>
     </>

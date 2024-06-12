@@ -78,49 +78,11 @@ const AllReservation = () => {
           marginTop: "8px",
         }}
       >
-        {selectedReservations?.length > 0 && (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              background: "#DEE5F7",
-              padding: "4px 8px",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: "4px",
-              }}
-            >
-              <CheckBoxOutlineBlank />
-              <Typography
-                sx={{ fontSize: "12px", fontWeight: "600", color: "#6E6893" }}
-              >
-                {selectedReservations?.length + " "} Selected
-              </Typography>
-            </Box>
-            <Button
-              disabled={!selectedReservations?.length}
-              onClick={handleGroupReservation}
-              sx={{
-                border: "1px solid #24459C",
-                borderRadius: "20px",
-                color: "#24459C",
-                fontWeight: "600",
-                padding: "2px 16px",
-                textTransform: "none",
-              }}
-            >
-              Create Group
-            </Button>
-          </Box>
-        )}
         <AllReservationTable
           allReservationRows={allReservationRows}
           setSelectedReservations={setSelectedReservations}
+          selectedReservations={selectedReservations}
+          handleGroupReservation={handleGroupReservation}
         />
       </Box>
     </Box>

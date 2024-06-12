@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import UserOrGroup from "./UserOrGroup/UserOrGroup";
 
-const ChatList = ({ chats }) => {
+const ChatList = ({ chats, setSelectedChat }) => {
   return (
     <Box
       sx={{
@@ -20,7 +20,7 @@ const ChatList = ({ chats }) => {
               display: "flex",
             }}
           >
-            <UserOrGroup chat={chat} />
+            <UserOrGroup chat={chat} setSelectedChat={setSelectedChat} />
           </Box>
           <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
         </Box>

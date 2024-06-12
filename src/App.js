@@ -186,7 +186,13 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
+      <div
+        className="App"
+        style={{
+          justifyContent: "center",
+          margin: "0px auto",
+        }}
+      >
         <BrowserRouter>
           {authUser ? (
             <>
@@ -296,9 +302,12 @@ function App() {
                   </Route>
 
                   {/* customer screen end  */}
+                  {/* Chat Screen Start */}
                   <Route path="/chat" element={<ChatScreen />} />
+                  {/* Chat Screen End */}
                   <Route path="/feed" element={<FeedScreen />} />
 
+                  {/* Reservation Screen */}
                   <Route path="/reservation" element={<ReservationScreen />} />
                   <Route
                     path="/reservation/connected/all"

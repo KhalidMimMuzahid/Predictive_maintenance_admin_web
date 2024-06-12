@@ -61,7 +61,7 @@ const LeftSide = () => {
               color: "#66737E",
             }}
           >
-            <option value="">Select As</option>
+            <option value="">Export As</option>
           </select>
         </Box>
       </Box>

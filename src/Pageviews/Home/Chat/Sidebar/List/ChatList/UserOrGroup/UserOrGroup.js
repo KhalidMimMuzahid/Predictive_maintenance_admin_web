@@ -7,13 +7,11 @@ import {
   useGetUsersInformationByUsersMutation,
 } from "../../../../../../../features/chat/chatSlice";
 
-const UserOrGroup = ({ chat }) => {
+const UserOrGroup = ({ chat, setSelectedChat }) => {
   const [fetchUserData, { data: usersData, isLoading, isSuccess }] =
     useGetUsersInformationByUsersMutation();
   const { data: lastMessageData, isSuccess: lastMessageIsSuccess } =
     useGetLastMessageByChatQuery(chat?._id);
-  console.log(usersData);
-
   useEffect(() => {
     fetchUserData({ usersArray: chat?.users });
   }, []);
@@ -35,6 +33,7 @@ const UserOrGroup = ({ chat }) => {
           isSuccess={isSuccess}
           lastMessage={lastMessageData?.data}
           lastMessageIsSuccess={lastMessageIsSuccess}
+          setSelectedChat={setSelectedChat}
         />
       )}
     </Box>

@@ -1,115 +1,89 @@
-/* App.js */
-import React, { Component } from "react";
-// import CanvasJSReact from "@canvasjs/react-charts";
+import React from "react";
 import { Box, Typography } from "@mui/material";
 import rectangle from "../../../../../Assets/Home/customer/Rectangle.png";
-import { PieChart } from '@mui/x-charts/PieChart';
-import { useDrawingArea } from '@mui/x-charts/hooks';
-import { styled } from '@mui/material/styles';
+import CanvasJSReact from "@canvasjs/react-charts";
+import { color } from "framer-motion";
 
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-// var CanvasJS = CanvasJSReact.CanvasJS;
-// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-
-
-const data = [
-  { value: 5, label: 'Schedule' },
-  { value: 15, label: 'Active' },
-  { value: 20, label: 'Inactive' },
-];
-
-const size = {
-  width: 400,
-  height: 200,
-};
-
-const StyledText = styled('text')(({ theme }) => ({
-  fill: theme.palette.text.primary,
-  textAnchor: 'middle',
-  dominantBaseline: 'central',
-  fontSize: 20,
-}));
-
-function PieCenterLabel({ children }) {
-  const { width, height, left, top } = useDrawingArea();
+const RightSide = () => {
+  const options = {
+    animationEnabled: true,
+    data: [
+      {
+        type: "doughnut",
+        showInLegend: true,
+        indexLabel: "{name}: {y}",
+        yValueFormatString: "#,###",
+        dataPoints: [
+          { name: "Schedule", y: 644, color: "#FFA723" },
+          { name: "Inactive", y: 311, color: "#EB4141" },
+          { name: "Active", y: 809, color: "#17B82A" },
+        ],
+      },
+    ],
+    width: 350,
+  };
   return (
-    <StyledText x={left + width / 2} y={top + height / 20}>
-      {children}
-    </StyledText>
-  );
-}
-
-class RightSide extends Component {
-  render() {
-    const options = {
-      animationEnabled: true,
-      data: [
-        {
-          type: "doughnut",
-          showInLegend: true,
-          indexLabel: "{name}: {y}",
-          yValueFormatString: "#,###",
-          dataPoints: [
-            { name: "Schedule", y: 644 },
-            { name: "Inactive", y: 311 },
-            { name: "Active", y: 809 },
-          ],
-        },
-      ],
-    };
-    return (
+    <Box
+      sx={{
+        width: "30%",
+        padding: "24px 0",
+        borderRadius: "4px",
+        background: "white",
+      }}
+    >
       <Box
         sx={{
-          width: "30%",
-          padding: "24px 0",
-          borderRadius: "4px",
-          background: "white",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "0 20px 25px 20px",
+          borderRadius: "6px",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "0 20px 25px 20px",
-            borderRadius: "6px",
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center", gap: "0 12px" }}>
-            <img
-              src={rectangle}
-              style={{ width: "18px", height: "18px" }}
-              alt=""
-            />
-            <Typography
-              sx={{ fontSize: "14px", fontWeight: "600", color: "#5A6872" }}
-            >
-              Customer Status
-            </Typography>
-          </Box>
-          <Box>
-            <select
-              name=""
-              id=""
-              style={{
-                border: "none",
-                fontSize: "12px",
-                fontWeight: "400",
+        <Box sx={{ display: "flex", alignItems: "center", gap: "0 12px" }}>
+          <img
+            src={rectangle}
+            style={{ width: "18px", height: "18px" }}
+            alt=""
+          />
+          <Typography
+            sx={{ fontSize: "14px", fontWeight: "600", color: "#5A6872" }}
+          >
+            Customer Status
+          </Typography>
+        </Box>
+        <Box>
+          <select
+            name=""
+            id=""
+            style={{
+              border: "none",
+              fontSize: "14px",
+              fontWeight: "600",
+              color: "#66737E",
+            }}
+          >
+            <option
+              value="export-as"
+              sx={{
                 color: "#66737E",
               }}
             >
-              <option value="">Select As</option>
-            </select>
-          </Box>
-        </Box>
-        <Box>
-          {/* <CanvasJSChart options={options} /> */}
-          <PieChart series={[{ data, innerRadius: 80}]} {...size}>
-            <PieCenterLabel></PieCenterLabel>
-          </PieChart>
+              Export As
+            </option>
+          </select>
         </Box>
       </Box>
-    );
-  }
-}
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        <CanvasJSChart options={options} />
+      </Box>
+    </Box>
+  );
+};
+
 export default RightSide;

@@ -24,6 +24,11 @@ export const chartSliceApi = createApi({
         `messenger/message/get-last-message-by-chat?chat=${chat}`,
       providesTags: [],
     }),
+    getChatByChatId: builder.query({
+      query: (chat_id) =>
+        `messenger/chat/get-chat-by-chat_id?chat_id=${chat_id}`,
+      providesTags: [],
+    }),
     getUsersInformationByUsers: builder.mutation({
       query: (usersArrayObject) => ({
         url: `/user/get-users-info-by-users-array?rootUserFields=_id phone role&extendedUserFields=name photoUrl`,
@@ -39,12 +44,21 @@ export const chartSliceApi = createApi({
         body: messageData,
       }),
     }),
+    postCreatePersonalChatByEmailOrPhone: builder.mutation({
+      query: (phoneOrEmail) => ({
+        url: `/messenger/chat/create-personal-chat-by-phone-or-email?phoneOrEmail=${phoneOrEmail}`,
+        method: "POST",
+        body: "",
+      }),
+    }),
   }),
 });
 
 export const {
   useGetMyAllChatListQuery,
   useGetLastMessageByChatQuery,
+  useGetChatByChatIdQuery,
   useGetUsersInformationByUsersMutation,
   usePostSendMessageToChatMutation,
+  usePostCreatePersonalChatByEmailOrPhoneMutation,
 } = chartSliceApi;
