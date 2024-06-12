@@ -35,8 +35,6 @@ import SettingsScreen from "./Pageviews/Home/Settings/settings_screen";
 import CollapsibleSidebar from "./Components/CollapsibleSIdebar";
 import FAQ from "./Pageviews/Home/HelpAI/pageviews/faq";
 import LearningResources from "./Pageviews/Home/HelpAI/pageviews/learning_resources";
-import AllTransaction from "./Pageviews/Home/Wallet/pageviews/all_transaction";
-import WithdrawRequest from "./Pageviews/Home/Wallet/pageviews/withdraw_request";
 import WalletCustomerDetails from "./Pageviews/Home/Wallet/wallet_customer_details";
 import ControlPanelCustomer from "./Pageviews/Home/ControlPanel/pageviews/control_panel_customer_screen";
 import ControlPanelMachine from "./Pageviews/Home/ControlPanel/pageviews/control_panel_machine_screen";
@@ -104,6 +102,8 @@ import BidsNonConnectedClosedGroup from "./Pageviews/Home/Bids/NonConnected/BidC
 import BidsNonConnectedAssignedToCompany from "./Pageviews/Home/Bids/NonConnected/AssignedToCompany/BidsNonConnectedAssignedToCompany";
 import BidsNonConnectedOngoing from "./Pageviews/Home/Bids/NonConnected/Ongoing/BidsNonConnectedOngoing";
 import BidsNonConnectedComplete from "./Pageviews/Home/Bids/NonConnected/Completed/BidsNonConnectedComplete";
+import AllTransaction from "./Pageviews/Home/Wallet/pageviews/AllTransaction/AllTransaction";
+import WithdrawRequest from "./Pageviews/Home/Wallet/pageviews/WithDrawRequest/WithDrawRequest";
 
 const theme = createTheme();
 
@@ -430,10 +430,12 @@ function App() {
  */}
 
                   <Route path="/iot" element={<IotScreen />} />
+
+                  {/* Wallet */}
                   <Route path="/wallet" element={<WalletScreen />} />
 
                   <Route
-                    path="/wallet/customer"
+                    path="/wallet/customer-details"
                     element={<WalletCustomerDetails />}
                   />
                   <Route

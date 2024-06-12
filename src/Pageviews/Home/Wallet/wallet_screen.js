@@ -296,8 +296,10 @@ import Cards from "./RequestVsTimeGraph/component/Cards";
 // };
 
 import React from "react";
+import AllTransaction from "./pageviews/AllTransaction/AllTransaction";
 
 const WalletScreen = () => {
+  const [isWalletRootScreen, setIsWalletRootScreen] = useState(true);
   return (
     <Box sx={{ padding: "40px" }}>
       <Box>
@@ -311,16 +313,19 @@ const WalletScreen = () => {
           </Typography>
         </Box>
       </Box>
+      {isWalletRootScreen && (
+        <>
+          <Cards />
 
-      <Cards />
-
-      <Box sx={{ marginBlock: "15px" }}>
-        <RequestVsTimeGraph />
-      </Box>
-      {/* 
-      <div className={classes.tableHolder}>
-        <CustomerTable />
-      </div> */}
+          <Box sx={{ marginBlock: "15px" }}>
+            <RequestVsTimeGraph />
+          </Box>
+        </>
+      )}
+      <AllTransaction
+        isWalletRootScreen={isWalletRootScreen}
+        setIsWalletRootScreen={setIsWalletRootScreen}
+      />
     </Box>
   );
 };
