@@ -8,6 +8,7 @@ const SendMessage = ({
   chat,
   refetchForGetMyAllChat,
   setShouldRefreshChatId,
+  refetchForGetMessagesByChat,
 }) => {
   const [postSendMessage, { data, isError, error, isLoading, isSuccess }] =
     usePostSendMessageToChatMutation();
@@ -24,7 +25,8 @@ const SendMessage = ({
   };
   useEffect(() => {
     if (isSuccess) {
-      toast.success(data?.message);
+      // toast.success(data?.message);
+      refetchForGetMessagesByChat();
       refetchForGetMyAllChat();
       setShouldRefreshChatId((prev) => {
         return {
@@ -32,6 +34,9 @@ const SendMessage = ({
           toggle: !prev?.toggle,
         };
       });
+
+      const messageElement = document.getElementById("message");
+      messageElement.value = "";
     } else if (isError) {
       toast.error(error?.data?.message);
     }
@@ -46,6 +51,7 @@ const SendMessage = ({
         style={{ display: "flex", position: "relative" }}
       >
         <input
+          id="message"
           placeholder="What's on your mind?"
           style={{
             border: "none",

@@ -7,7 +7,7 @@ const UserOrGroup = ({ chat, users, isSuccessForGetUserInformation }) => {
   if (!isSuccessForGetUserInformation) {
     return <h1>loading</h1>;
   }
-  console.log(chat);
+  // console.log(chat);
   return (
     <Box sx={{ width: "100%" }}>
       {chat?.group?.groupAdmin ? (

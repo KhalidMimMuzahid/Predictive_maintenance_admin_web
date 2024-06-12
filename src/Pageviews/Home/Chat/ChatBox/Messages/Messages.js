@@ -1,8 +1,14 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import Message from "./Message/Message";
 
-const Messages = () => {
-  const messages = {
+const Messages = ({
+  chat,
+  users,
+  isSuccessForGetUserInformation,
+  messages,
+}) => {
+  const messages2 = {
     users: {
       admin: {
         name: "Showa Admin",
@@ -68,45 +74,8 @@ const Messages = () => {
         paddingTop: "10px",
       }}
     >
-      {messages?.messages?.map((msg) => (
-        <Box
-          sx={{
-            display: "flex",
-            gap: "16px",
-            flexDirection: msg?.sender === "admin" ? "row-reverse" : "row",
-            color: msg?.sender === "admin" ? "white" : "row",
-            alignItems: "center",
-          }}
-        >
-          <img
-            style={{ width: "40px", height: "40px", borderRadius: "100%" }}
-            src={
-              msg?.sender === "admin"
-                ? messages?.users?.admin?.photoUrl
-                : messages?.users?.user?.photoUrl
-            }
-            alt=""
-          />
-          <Box
-            sx={{
-              width: "60%",
-            }}
-          >
-            <h3
-              className={`${
-                msg?.sender === "admin" ? "talkbubbleAdmin" : "talkbubbleUser"
-              }`}
-              style={{
-                background: msg?.sender === "admin" ? "#24459C" : "#EAEEFA",
-                borderRadius: "4px",
-                padding: "10px",
-                fontSize: "14px",
-              }}
-            >
-              {msg?.message}
-            </h3>
-          </Box>
-        </Box>
+      {messages?.data?.map((message) => (
+        <Message message={message} />
       ))}
     </Box>
   );

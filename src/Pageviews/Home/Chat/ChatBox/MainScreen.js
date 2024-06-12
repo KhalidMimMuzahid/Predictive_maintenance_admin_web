@@ -5,6 +5,7 @@ import SendMessage from "./SendMessage";
 import Messages from "./Messages/Messages";
 import {
   useGetChatByChatIdQuery,
+  useGetMessagesByChatQuery,
   useGetUsersInformationByUsersMutation,
 } from "../../../../features/chat/chatSlice";
 import { useOutletContext, useParams } from "react-router-dom";
@@ -13,7 +14,22 @@ const MainScreen = () => {
   const [refetchForGetMyAllChat, setShouldRefreshChatId] = useOutletContext();
 
   const { _id } = useParams();
+  const {
+    data: messages,
+    isSuccess,
+    error,
+    isError,
 
+    refetch: refetchForGetMessagesByChat,
+  } = useGetMessagesByChatQuery(_id);
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log({ messages });
+    } else if (isError) {
+      console.log({ error });
+    }
+  }, [isSuccess, isError]);
   const [isSuccessForChatByChat_id, setIsSuccessForChatByChat_id] =
     useState(false);
 
@@ -79,11 +95,18 @@ const MainScreen = () => {
         // isSuccessForChatByChat_id={isSuccessForChatByChat_id}
       />
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
-      <Messages />
+
+      <Messages
+        messages={messages}
+        chat={_id}
+        users={usersData?.data}
+        isSuccessForGetUserInformation={isSuccessForGetUserInformation}
+      />
       <SendMessage
         chat={_id}
         refetchForGetMyAllChat={refetchForGetMyAllChat}
         setShouldRefreshChatId={setShouldRefreshChatId}
+        refetchForGetMessagesByChat={refetchForGetMessagesByChat}
       />
     </Box>
   );
