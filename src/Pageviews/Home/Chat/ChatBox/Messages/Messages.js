@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import Message from "./Message/Message";
+import EachMessage from "./EachMessage/EachMessage";
 
 const Messages = ({
   chat,
@@ -75,7 +75,11 @@ const Messages = ({
       }}
     >
       {messages?.data?.map((message) => (
-        <Message message={message} />
+        <EachMessage
+          message={message}
+          users={users}
+          isSuccessForGetUserInformation={isSuccessForGetUserInformation}
+        />
       ))}
     </Box>
   );
