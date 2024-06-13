@@ -150,7 +150,8 @@ const AllTransaction = ({ isWalletRootScreen, setIsWalletRootScreen }) => {
   console.log(allTransaction);
 
   return (
-    <Box sx={{ padding: "20px", background: "white", marginTop: "12px" }}>
+<Box sx={{padding: "40px"}}>
+<Box sx={{ padding: "20px", background: "white", marginTop: "12px" }}>
       {isWalletRootScreen && (
         <Box
           sx={{
@@ -284,6 +285,7 @@ const AllTransaction = ({ isWalletRootScreen, setIsWalletRootScreen }) => {
       )}
       <AllTransactionTable allTransaction={allTransaction} />
     </Box>
+</Box>
   );
 };
 

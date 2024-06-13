@@ -331,17 +331,17 @@ const settingsRoutes = [
   },
   {
     name: "Help AI",
-    path: "/helpai",
+    path: "/helpai/faq",
     icon: <img src={help_ai_icon} />,
     children: [
       {
         name: "FAQ",
-        path: "/help/faq",
+        path: "/helpai/faq",
         icon: <img src={bids_sub_icon} />,
       },
       {
         name: "Learning Resources",
-        path: "/help/learningresources",
+        path: "/helpai/learningresources",
         icon: <img src={bids_sub_icon} />,
       },
     ],

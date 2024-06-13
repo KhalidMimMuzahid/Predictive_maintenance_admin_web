@@ -34,7 +34,6 @@ import PackagesScreen from "./Pageviews/Home/Packages/packages_screen";
 import SettingsScreen from "./Pageviews/Home/Settings/settings_screen";
 import CollapsibleSidebar from "./Components/CollapsibleSIdebar";
 import FAQ from "./Pageviews/Home/HelpAI/pageviews/faq";
-import LearningResources from "./Pageviews/Home/HelpAI/pageviews/learning_resources";
 import WalletCustomerDetails from "./Pageviews/Home/Wallet/wallet_customer_details";
 import ControlPanelCustomer from "./Pageviews/Home/ControlPanel/pageviews/control_panel_customer_screen";
 import ControlPanelMachine from "./Pageviews/Home/ControlPanel/pageviews/control_panel_machine_screen";
@@ -104,6 +103,7 @@ import BidsNonConnectedOngoing from "./Pageviews/Home/Bids/NonConnected/Ongoing/
 import BidsNonConnectedComplete from "./Pageviews/Home/Bids/NonConnected/Completed/BidsNonConnectedComplete";
 import AllTransaction from "./Pageviews/Home/Wallet/pageviews/AllTransaction/AllTransaction";
 import WithdrawRequest from "./Pageviews/Home/Wallet/pageviews/WithDrawRequest/WithDrawRequest";
+import LearningResources from "./Pageviews/Home/HelpAI/pageviews/LearningResources/LearningResources";
 
 const theme = createTheme();
 
@@ -539,9 +539,9 @@ function App() {
                     path="/notifications"
                     element={<NotificationScreen />}
                   />
-                  <Route path="/help/faq" element={<FAQ />} />
+                  <Route path="/helpai/faq" element={<FAQ />} />
                   <Route
-                    path="/help/learningresources"
+                    path="/helpai/learningresources"
                     element={<LearningResources />}
                   />
                   <Route path="/offers" element={<OffersScreen />} />
