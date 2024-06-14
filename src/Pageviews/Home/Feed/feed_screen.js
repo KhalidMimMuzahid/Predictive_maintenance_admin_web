@@ -1,5 +1,7 @@
+import { Box } from "@mui/material";
+
 const FeedScreen = () => {
-    return <h1>Feed Screen</h1>;
-}
+  return <Box sx={{ padding: "40px" }}>Feed Screen</Box>;
+};
 
 export default FeedScreen;
