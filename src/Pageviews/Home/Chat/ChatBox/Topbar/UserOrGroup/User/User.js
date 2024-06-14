@@ -2,10 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import Profile from "./Profile/Profile";
 
-const User = ({
-  selectedChat,
-  // isSuccessForChatByChat_id, isSuccessForUsers
-}) => {
+const User = ({ chat, users, isSuccessForGetUserInformation }) => {
   return (
     <Button
       sx={{
@@ -19,7 +16,9 @@ const User = ({
       }}
     >
       <Profile
-        selectedChat={selectedChat}
+        chat={chat}
+        users={users}
+        isSuccessForGetUserInformation={isSuccessForGetUserInformation}
         // isSuccessForChatByChat_id={isSuccessForChatByChat_id}
         // isSuccessForUsers={isSuccessForUsers}
       />

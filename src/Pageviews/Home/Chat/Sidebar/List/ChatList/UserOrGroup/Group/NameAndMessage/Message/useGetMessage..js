@@ -85,7 +85,7 @@ export const useGetMessage = ({ lastMessage, lastMessageIsSuccess }) => {
 
       setIsLoading(false);
     }
-  }, [lastMessageIsSuccess]);
+  }, [lastMessageIsSuccess, lastMessage?._id]);
 
   return { isLoading, message };
 };

@@ -4,9 +4,15 @@ import sendMessageIcon from "../../../../Assets/Home/chat/send.png";
 import { usePostSendMessageToChatMutation } from "../../../../features/chat/chatSlice";
 import { toast } from "react-toastify";
 
-const SendMessage = () => {
+const SendMessage = ({
+  chat,
+  refetchForGetMyAllChat,
+  setShouldRefreshChatId,
+  refetchForGetMessagesByChat,
+}) => {
   const [postSendMessage, { data, isError, error, isLoading, isSuccess }] =
     usePostSendMessageToChatMutation();
+
   const onSubmit = (e) => {
     e.preventDefault();
     const message = e.target.message.value;
@@ -14,11 +20,23 @@ const SendMessage = () => {
       type: "message",
       message,
     };
-    postSendMessage({ messageData, chat: "6656c7eaa9d29926d83b72a5" });
+
+    postSendMessage({ messageData, chat: chat });
   };
   useEffect(() => {
     if (isSuccess) {
-      toast.success(data?.message);
+      // toast.success(data?.message);
+      refetchForGetMessagesByChat();
+      refetchForGetMyAllChat();
+      setShouldRefreshChatId((prev) => {
+        return {
+          chatId: chat,
+          toggle: !prev?.toggle,
+        };
+      });
+
+      const messageElement = document.getElementById("message");
+      messageElement.value = "";
     } else if (isError) {
       toast.error(error?.data?.message);
     }
@@ -33,6 +51,7 @@ const SendMessage = () => {
         style={{ display: "flex", position: "relative" }}
       >
         <input
+          id="message"
           placeholder="What's on your mind?"
           style={{
             border: "none",

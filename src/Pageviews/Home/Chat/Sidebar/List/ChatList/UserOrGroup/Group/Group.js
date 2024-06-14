@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Profile from "./Profile/Profile";
 import NameAndMessage from "./NameAndMessage/NameAndMessage";
 import LastMessageTime from "./LastMessageTime/LastMessageTime";
+import { useNavigate } from "react-router-dom";
 
 const Group = ({
   chat,
@@ -12,8 +13,13 @@ const Group = ({
   lastMessage,
 }) => {
   // console.log(chat);
+
+  const navigate = useNavigate();
   return (
     <Button
+      onClick={() => {
+        navigate(`/chat/${chat?._id}`);
+      }}
       sx={{
         padding: "16px",
         display: "flex",

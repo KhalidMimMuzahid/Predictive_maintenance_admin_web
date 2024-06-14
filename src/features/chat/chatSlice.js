@@ -24,6 +24,11 @@ export const chartSliceApi = createApi({
         `messenger/message/get-last-message-by-chat?chat=${chat}`,
       providesTags: [],
     }),
+    getMessagesByChat: builder.query({
+      query: (chat) => `messenger/message/get-messages-by-chat?chat=${chat}`,
+      providesTags: [],
+    }),
+
     getChatByChatId: builder.query({
       query: (chat_id) =>
         `messenger/chat/get-chat-by-chat_id?chat_id=${chat_id}`,
@@ -57,6 +62,7 @@ export const chartSliceApi = createApi({
 export const {
   useGetMyAllChatListQuery,
   useGetLastMessageByChatQuery,
+  useGetMessagesByChatQuery,
   useGetChatByChatIdQuery,
   useGetUsersInformationByUsersMutation,
   usePostSendMessageToChatMutation,

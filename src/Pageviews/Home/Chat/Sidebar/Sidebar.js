@@ -11,8 +11,9 @@ import ChatList from "./List/ChatList/ChatList";
 const Sidebar = ({
   chatOrContact,
   setChatOrContact,
-  setSelectedChat,
+  // setSelectedChat,
   allChatListData,
+  shouldRefreshChatId,
 }) => {
   return (
     <Box sx={{ width: "25%" }}>
@@ -82,7 +83,8 @@ const Sidebar = ({
       {chatOrContact === "chat" && (
         <ChatList
           chats={allChatListData?.data}
-          setSelectedChat={setSelectedChat}
+          shouldRefreshChatId={shouldRefreshChatId}
+          // setSelectedChat={setSelectedChat}
         />
       )}
       {chatOrContact === "contact" && (

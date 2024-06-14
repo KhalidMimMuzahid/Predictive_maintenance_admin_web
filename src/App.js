@@ -104,6 +104,7 @@ import BidsNonConnectedComplete from "./Pageviews/Home/Bids/NonConnected/Complet
 import AllTransaction from "./Pageviews/Home/Wallet/pageviews/AllTransaction/AllTransaction";
 import WithdrawRequest from "./Pageviews/Home/Wallet/pageviews/WithDrawRequest/WithDrawRequest";
 import LearningResources from "./Pageviews/Home/HelpAI/pageviews/LearningResources/LearningResources";
+import MainScreen from "./Pageviews/Home/Chat/ChatBox/MainScreen";
 
 const theme = createTheme();
 
@@ -303,7 +304,9 @@ function App() {
 
                   {/* customer screen end  */}
                   {/* Chat Screen Start */}
-                  <Route path="/chat" element={<ChatScreen />} />
+                  <Route path="/chat" element={<ChatScreen />}>
+                    <Route path="/chat/:_id" element={<MainScreen />} />
+                  </Route>
                   {/* Chat Screen End */}
                   <Route path="/feed" element={<FeedScreen />} />
 

@@ -4,10 +4,7 @@ import { PermIdentity } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import Name from "../NameAndMessage/Name";
 
-const Profile = ({
-  selectedChat,
-  // isSuccessForChatByChat_id, isSuccessForUsers
-}) => {
+const Profile = ({ chat, users, isSuccessForGetUserInformation }) => {
   const { user } = useSelector((state) => state.auth);
   const [profileElement, setProfileElement] = useState(
     <Box>
@@ -16,11 +13,9 @@ const Profile = ({
   );
 
   useEffect(() => {
-    if (selectedChat?.shouldRefresh) {
-      const secondPerson = selectedChat?.users?.find(
-        (each) => each?._id !== user?._id
-      );
-      console.log(secondPerson);
+    if (users?.length) {
+      const secondPerson = users?.find((each) => each?._id !== user?._id);
+      // console.log(":::::::::::", secondPerson);
 
       const role = secondPerson?.role;
       const photoUrl =
@@ -39,15 +34,12 @@ const Profile = ({
               style={{ width: "40px", height: "40px", borderRadius: "100%" }}
               alt=""
             />
-            <Name
-              users={selectedChat?.users}
-              isSuccess={selectedChat?.shouldRefresh}
-            />
+            <Name users={users} isSuccess={isSuccessForGetUserInformation} />
           </Box>
         );
       }
     }
-  }, [selectedChat?.shouldRefresh]);
+  }, [isSuccessForGetUserInformation]);
 
   return profileElement;
 };

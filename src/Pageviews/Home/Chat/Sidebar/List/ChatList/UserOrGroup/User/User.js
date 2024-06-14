@@ -3,6 +3,7 @@ import React from "react";
 import Profile from "./Profile/Profile";
 import NameAndMessage from "./NameAndMessage/NameAndMessage";
 import LastMessageTime from "./LastMessageTime/LastMessageTime";
+import { useNavigate } from "react-router-dom";
 
 const User = ({
   chat,
@@ -10,19 +11,15 @@ const User = ({
   isSuccess,
   lastMessage,
   lastMessageIsSuccess,
-  setSelectedChat,
+  // setSelectedChat,
 }) => {
+  const navigate = useNavigate();
+  // const
   return (
     <Button
-      onClick={() =>
-        setSelectedChat((prev) => {
-          return {
-            chat,
-            users,
-            shouldRefresh: !prev?.shouldRefresh,
-          };
-        })
-      }
+      onClick={() => {
+        navigate(`/chat/${chat?._id}`);
+      }}
       sx={{
         padding: "16px",
         display: "flex",
