@@ -120,10 +120,18 @@ const LearningResources = () => {
               alignItems: "center",
               justifyContent: "space-around",
               flexDirection: "column",
+              position: "relative",
             }}
           >
             <Box>
-              <Delete sx={{ color: "#F15F5F" }} />
+              <Delete
+                sx={{
+                  color: "#F15F5F",
+                  position: "absolute",
+                  top: "24px",
+                  right: "24px",
+                }}
+              />
               <Box
                 sx={{
                   display: "flex",

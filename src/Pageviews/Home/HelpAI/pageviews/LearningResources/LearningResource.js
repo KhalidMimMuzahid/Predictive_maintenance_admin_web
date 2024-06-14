@@ -1,12 +1,58 @@
 import { Delete } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 const LearningResource = ({ learningResource }) => {
-  <Box sx={{ background: "red" }}>
-    <Delete sx={{ color: "#F15F5F" }} />
+  <Box
+    sx={{
+      background: "#FFFFFF",
+      height: "480px",
+      borderRadius: "20px",
+      padding: "40px 20px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-around",
+      flexDirection: "column",
+    }}
+  >
     <Box>
-      <img src={learningResource?.img} />
-      <Typography>{learningResource?.title}</Typography>
+      <Delete sx={{ color: "#F15F5F" }} />
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexDirection: "column",
+          gap: "8px",
+        }}
+      >
+        <img src={learningResource?.img} />
+        <Typography
+          sx={{ color: "#090A0A", fontSize: "16px", fontWeight: "600" }}
+        >
+          {learningResource?.title}
+        </Typography>
+        <Typography>{learningResource?.resourceType}</Typography>
+      </Box>
+    </Box>
+    <Typography>{learningResource?.answer}</Typography>
+    <Box />
+    <Box>
+      {" "}
+      <Button
+        sx={{
+          color: "white",
+          background: "#24459C",
+          textTransform: "none",
+          "&:hover": {
+            background: "#24459C",
+          },
+          padding: "8px 10px",
+          borderRadius: "20px",
+          width: "160px",
+        }}
+      >
+        Edit
+      </Button>
     </Box>
   </Box>;
 };
