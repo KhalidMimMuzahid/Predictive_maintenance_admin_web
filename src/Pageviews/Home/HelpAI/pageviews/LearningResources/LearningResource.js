@@ -25,7 +25,7 @@ const LearningResource = ({ learningResource }) => {
           gap: "8px",
         }}
       >
-        <img src={learningResource?.img} />
+        <img src={learningResource?.img} alt=""/>
         <Typography
           sx={{ color: "#090A0A", fontSize: "16px", fontWeight: "600" }}
         >
