@@ -10,8 +10,11 @@ import {
 } from "@mui/material";
 import img from "../../../../../Assets/Home/helpai/unsplash_9wY2ofzQ9Us.png";
 import LearningResource from "./LearningResource";
+import { useState } from "react";
+import CreateNewResourcesModal from "./modal/CreateNewResourcesModal";
 
 const LearningResources = () => {
+  const [learningResourcesOpen, setLearningResourcesOpen] = useState(false)
   const learningResources = [
     {
       title: "How do I use Showa pay to pay?",
@@ -43,7 +46,11 @@ const LearningResources = () => {
     },
   ];
   return (
-    <Box sx={{ padding: "40px" }}>
+<>
+  {
+    learningResourcesOpen && <CreateNewResourcesModal learningResourcesOpen={learningResources} setLearningResourcesOpen={setLearningResourcesOpen}/>
+  }    
+  <Box sx={{ padding: "40px" }}>
       <Box
         sx={{
           display: "flex",
@@ -65,9 +72,9 @@ const LearningResources = () => {
 
         <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
           <Button
-            // onClick={() =>
-            // //   setAddServiceProviderModalOpen(!addServiceProviderModalOpen)
-            // }
+            onClick={() =>
+              setLearningResourcesOpen(!learningResourcesOpen)
+            }
             sx={{
               backgroundColor: "#24459c",
               color: "white",
@@ -141,7 +148,7 @@ const LearningResources = () => {
                   gap: "8px",
                 }}
               >
-                <img src={learningResource?.img} />
+                <img src={learningResource?.img} alt=""/>
                 <Typography
                   sx={{ color: "#090A0A", fontSize: "16px", fontWeight: "600" }}
                 >
@@ -174,6 +181,8 @@ const LearningResources = () => {
         ))}
       </Box>
     </Box>
+
+</>
   );
 };
 
