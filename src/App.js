@@ -17,7 +17,6 @@ import LoginScreen from "./Pageviews/Onboarding/LoginScreen";
 import DashboardScreen from "./Pageviews/Home/Dashboard/dashboard_screen";
 import ServiceProviderScreen from "./Pageviews/Home/ServiceProvider/service_provider_screen";
 import CustomerScreen from "./Pageviews/Home/Customer/customer_screen";
-import FeedScreen from "./Pageviews/Home/Feed/feed_screen";
 import IotScreen from "./Pageviews/Home/IoT/iot_screen";
 import WalletScreen from "./Pageviews/Home/Wallet/wallet_screen";
 import TeamScreen from "./Pageviews/Home/Team/team_screen";
@@ -105,6 +104,7 @@ import AllTransaction from "./Pageviews/Home/Wallet/pageviews/AllTransaction/All
 import WithdrawRequest from "./Pageviews/Home/Wallet/pageviews/WithDrawRequest/WithDrawRequest";
 import LearningResources from "./Pageviews/Home/HelpAI/pageviews/LearningResources/LearningResources";
 import MainScreen from "./Pageviews/Home/Chat/ChatBox/MainScreen";
+import FeedHomeScreen from "./Pageviews/Home/Feed/FeedHome/FeedHomeScreen";
 
 const theme = createTheme();
 
@@ -308,7 +308,7 @@ function App() {
                     <Route path="/chat/:_id" element={<MainScreen />} />
                   </Route>
                   {/* Chat Screen End */}
-                  <Route path="/feed" element={<FeedScreen />} />
+                  <Route path="/feed" element={<FeedHomeScreen />} />
 
                   {/* Reservation Screen */}
                   <Route path="/reservation" element={<ReservationScreen />} />
