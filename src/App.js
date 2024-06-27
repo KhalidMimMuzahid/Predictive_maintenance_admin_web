@@ -105,6 +105,7 @@ import WithdrawRequest from "./Pageviews/Home/Wallet/pageviews/WithDrawRequest/W
 import LearningResources from "./Pageviews/Home/HelpAI/pageviews/LearningResources/LearningResources";
 import MainScreen from "./Pageviews/Home/Chat/ChatBox/MainScreen";
 import FeedHomeScreen from "./Pageviews/Home/Feed/FeedHome/FeedHomeScreen";
+import FeedSearchScreen from "./Pageviews/Home/Feed/FeedSearch/FeedSearchScreen";
 
 const theme = createTheme();
 
@@ -309,6 +310,7 @@ function App() {
                   </Route>
                   {/* Chat Screen End */}
                   <Route path="/feed" element={<FeedHomeScreen />} />
+                  <Route path="/feed-search" element={<FeedSearchScreen />} />
 
                   {/* Reservation Screen */}
                   <Route path="/reservation" element={<ReservationScreen />} />

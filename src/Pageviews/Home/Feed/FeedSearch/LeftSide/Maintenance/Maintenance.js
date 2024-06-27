@@ -1,6 +1,6 @@
 import { PeopleAltOutlined } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
-import userPhoto from "../../../../../Assets/Home/customer/chat_girl.png";
+import userPhoto from "../../../../../../Assets/Home/customer/chat_girl.png";
 
 import React from "react";
 

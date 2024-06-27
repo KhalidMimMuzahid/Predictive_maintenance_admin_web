@@ -169,7 +169,7 @@ const ServiceProviderTable = ({
       )}
       <Box sx={{ marginTop: "10px" }}>
         {isLoading && <Loader />}
-        {serviceProvidersData?.data?.length > 0 && (
+        {serviceProvidersData?.data?.length > 0 ? (
           <DataGrid
             sx={{
               borderRadius: "0px",
@@ -196,6 +196,20 @@ const ServiceProviderTable = ({
             checkboxSelection
             disableRowSelectionOnClick
           />
+        ) : (
+          <Box
+            sx={{
+              height: "20vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontSize: "24px",
+              fontWeight: "600",
+              color: "#FF4858",
+            }}
+          >
+            No Service Provider To Show.
+          </Box>
         )}
       </Box>
     </Box>

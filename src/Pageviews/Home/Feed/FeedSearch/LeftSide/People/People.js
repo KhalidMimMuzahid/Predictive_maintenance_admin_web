@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-import userPhoto from "../../../../../Assets/Home/customer/chat_girl.png";
+import userPhoto from "../../../../../../Assets/Home/customer/chat_girl.png";
 import { PeopleAltOutlined } from "@mui/icons-material";
 
 const People = () => {

@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-import currentOffer from "../../../../../Assets/Home/feed/current_offer.png";
-import OfferIcon from "../../../../../Assets/Home/feed/offer_icon.png";
+import currentOffer from "../../../../../../Assets/Home/feed/current_offer.png";
+import OfferIcon from "../../../../../../Assets/Home/feed/offer_icon.png";
 
 const CurrentOffer = () => {
   return (

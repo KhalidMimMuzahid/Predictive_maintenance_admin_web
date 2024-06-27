@@ -6,7 +6,7 @@ const LeftSide = () => {
   return (
     <Box
       sx={{
-        width: "55%",
+        width: "60%",
         display: "flex",
         flexDirection: "column",
         gap: "24px",

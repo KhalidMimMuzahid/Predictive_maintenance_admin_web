@@ -11,6 +11,7 @@ import { extraDataApi } from "../features/extraData/extraDataSlice";
 import { teamOfEngineersApi } from "../features/teamOfEngineers/teamOfEngineersSlice";
 import { sensorModuleAttachedApi } from "../features/sensorModuleAttached/sensorModuleAttachedSlice";
 import { chartSliceApi } from "../features/chat/chatSlice";
+import { feedApi } from "../features/feed/feedSlice";
 // Store of Redux Using Redux-Toolkit
 
 export const store = configureStore({
@@ -26,6 +27,7 @@ export const store = configureStore({
     [sensorModuleAttachedApi.reducerPath]: sensorModuleAttachedApi.reducer,
     [chartSliceApi.reducerPath]: chartSliceApi.reducer,
     [extraDataApi.reducerPath]: extraDataApi.reducer,
+    [feedApi.reducerPath]: feedApi.reducer,
     auth: authSlice,
   },
   middleware: (getDefaultMiddleware) =>
@@ -41,5 +43,6 @@ export const store = configureStore({
       sensorModuleAttachedApi.middleware,
       chartSliceApi.middleware,
       extraDataApi.middleware,
+      feedApi.middleware,
     ]),
 });

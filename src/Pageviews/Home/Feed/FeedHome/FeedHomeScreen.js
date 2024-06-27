@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from "@mui/material";
-import { useState } from "react";
 import LeftSide from "./LeftSide/LeftSide";
 import RightSide from "./RightSide/RightSide";
 
@@ -29,6 +28,9 @@ const FeedHomeScreen = () => {
           <Button
             sx={{
               backgroundColor: "#24459C",
+              "&:hover": {
+                background: "#24459C",
+              },
               color: "white",
               textTransform: "none",
               borderRadius: "8px",
@@ -45,7 +47,7 @@ const FeedHomeScreen = () => {
           display: "flex",
           gap: "24px",
           justifyContent: "space-between",
-          marginTop: "60px",
+          marginTop: "32px",
         }}
       >
         <LeftSide />

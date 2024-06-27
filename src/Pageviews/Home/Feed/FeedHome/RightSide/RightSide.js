@@ -8,7 +8,6 @@ const RightSide = () => {
     <Box
       sx={{
         width: "40%",
-        padding: "20px",
         borderRadius: "4px",
       }}
     >
