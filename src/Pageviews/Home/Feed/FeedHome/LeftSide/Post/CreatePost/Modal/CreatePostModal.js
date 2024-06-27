@@ -1,7 +1,9 @@
 import {
   Close,
+  CloseOutlined,
   ImageOutlined,
   Language,
+  PersonAddOutlined,
   PlaceOutlined,
 } from "@mui/icons-material";
 import {
@@ -15,15 +17,37 @@ import {
 import React, { useState } from "react";
 import userPhoto from "../../../../../../../../Assets/Home/customer/chat_girl.png";
 import ChooseAudienceModal from "./ChooseAudienceModal";
+import WhoCanReplyModal from "./WhoCanReplyModal";
 
 const CreatePostModal = ({ createPostModalOpen, setCreatePostModalOpen }) => {
   const [chooseAudienceModalOpen, setChooseAudienceModalOpen] = useState(false);
+  const [whoCanReplyModalOpen, setWhoCanReplyModalOpen] = useState(false);
+  const [audience, setAudience] = useState("public");
+  const [reply, setReply] = useState("everyone");
+  const [image, setImage] = useState(null);
+
+  const onImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setImage(URL.createObjectURL(event.target.files[0]));
+    }
+  };
+
   return (
     <>
       {chooseAudienceModalOpen && (
         <ChooseAudienceModal
           chooseAudienceModalOpen={chooseAudienceModalOpen}
           setChooseAudienceModalOpen={setChooseAudienceModalOpen}
+          audience={audience}
+          setAudience={setAudience}
+        />
+      )}
+      {whoCanReplyModalOpen && (
+        <WhoCanReplyModal
+          whoCanReplyModalOpen={whoCanReplyModalOpen}
+          setWhoCanReplyModalOpen={setWhoCanReplyModalOpen}
+          reply={reply}
+          setReply={setReply}
         />
       )}
       <Modal
@@ -113,21 +137,43 @@ const CreatePostModal = ({ createPostModalOpen, setCreatePostModalOpen }) => {
                   padding: "2px 8px",
                 }}
               >
-                Public ⬇️
+                {audience === "public" ? "Public" : "Showa Circle"} ⬇️
               </Button>
             </Box>
             <TextField
-              variant="standard" // <== changed this
+              variant="standard"
               margin="normal"
               fullWidth
-              multiline={true}
-              rows={6}
               id="Konbanwa, What’s happening?"
               name="Konbanwa, What’s happening?"
               autoFocus
               placeholder="Konbanwa, What’s happening?"
               InputProps={{ disableUnderline: true }}
             />
+            {image !== null && (
+              <Box sx={{ position: "relative" }}>
+                <img alt="preview img" src={image} style={{ width: "256px" }} />
+                <button
+                  style={{
+                    position: "absolute",
+                    left: 5,
+                    top: 5,
+                    background: "#3A3A3A",
+                    color: "white",
+                    borderRadius: "100%",
+                    border: "none",
+                    width: "30px",
+                    height: "30px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    cursor: "pointer",
+                  }}
+                >
+                  <CloseOutlined />
+                </button>
+              </Box>
+            )}
             <Box
               sx={{
                 display: "flex",
@@ -136,6 +182,9 @@ const CreatePostModal = ({ createPostModalOpen, setCreatePostModalOpen }) => {
               }}
             >
               <Button
+                onClick={() => {
+                  setWhoCanReplyModalOpen(!whoCanReplyModalOpen);
+                }}
                 sx={{
                   textTransform: "none",
                   fontWeight: "600",
@@ -143,30 +192,69 @@ const CreatePostModal = ({ createPostModalOpen, setCreatePostModalOpen }) => {
                   gap: "4px",
                 }}
               >
-                <Language />
-                Everyone can reply
+                {reply === "everyone" && (
+                  <>
+                    <Language />
+                    Everyone can reply
+                  </>
+                )}
+                {reply === "people_you_follow" && (
+                  <>
+                    <PersonAddOutlined />
+                    People You Follow
+                  </>
+                )}
+                {reply === "people_you_mention" && (
+                  <>
+                    <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
+                      @
+                    </Typography>
+                    People You mention
+                  </>
+                )}
               </Button>
               <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <Button
-                  sx={{
+                <label
+                  style={{
                     textTransform: "none",
                     fontWeight: "600",
                     background: "#24459C",
                     color: "white",
+                    width: "36px",
+                    height: "36px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "100%",
+                    cursor: "pointer",
                   }}
                 >
+                  <input
+                    hidden
+                    type="file"
+                    accept="image/*"
+                    onChange={onImageChange}
+                  />
                   <ImageOutlined />
-                </Button>
-                <Button
-                  sx={{
-                    textTransform: "none",
+                </label>
+
+                <button
+                  style={{
                     fontWeight: "600",
                     background: "#24459C",
                     color: "white",
+                    width: "36px",
+                    height: "36px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "100%",
+                    border: "none",
+                    cursor: "pointer",
                   }}
                 >
                   <PlaceOutlined />
-                </Button>
+                </button>
               </Box>
             </Box>
           </Box>

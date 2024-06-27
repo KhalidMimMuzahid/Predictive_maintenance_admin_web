@@ -1,4 +1,9 @@
-import { Close, Group, Language, PeopleOutline } from "@mui/icons-material";
+import {
+  Close,
+  Language,
+  PeopleOutline,
+  PersonAddOutlined,
+} from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -13,14 +18,14 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 
-const ChooseAudienceModal = ({
-  chooseAudienceModalOpen,
-  setChooseAudienceModalOpen,
-  audience,
-  setAudience,
+const WhoCanReplyModal = ({
+  whoCanReplyModalOpen,
+  setWhoCanReplyModalOpen,
+  reply,
+  setReply,
 }) => {
   const getValue = (e) => {
-    setAudience(e.target.value);
+    setReply(e.target.value);
   };
   return (
     <Modal
@@ -30,11 +35,11 @@ const ChooseAudienceModal = ({
         alignItems: "center",
         justifyContent: "center",
       }}
-      open={chooseAudienceModalOpen}
+      open={whoCanReplyModalOpen}
     >
       <Container
         sx={{
-          width: "20%",
+          width: "25%",
           background: "white",
           borderRadius: "20px",
           padding: "24px",
@@ -49,7 +54,7 @@ const ChooseAudienceModal = ({
               textAlign: "center",
             }}
           >
-            Choose Audience
+            Who Can Reply?
           </Typography>
           <Button
             sx={{
@@ -60,7 +65,7 @@ const ChooseAudienceModal = ({
               right: "0",
             }}
             onClick={() => {
-              setChooseAudienceModalOpen(!chooseAudienceModalOpen);
+              setWhoCanReplyModalOpen(!whoCanReplyModalOpen);
             }}
           >
             <Close />
@@ -75,12 +80,16 @@ const ChooseAudienceModal = ({
             borderRadius: "8px",
           }}
         >
-          <FormControl sx={{ width: "100%" }}>
+          <Typography sx={{ color: "#474F56", fontWeight: "600" }}>
+            Select who can reply to this this post. Keep in mind that anyone
+            mentioned can always reply
+          </Typography>
+          <FormControl sx={{ width: "100%", marginTop: "16px" }}>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue={audience}
+              defaultValue={reply}
               name="radio-buttons-group"
-              sx={{ display: "flex", gap: "24px" }}
+              sx={{ display: "flex", gap: "16px" }}
               onChange={(e) => getValue(e)}
             >
               <FormLabel
@@ -88,9 +97,10 @@ const ChooseAudienceModal = ({
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  background: audience === "public" ? "#D9E3FF" : "",
+                  background: reply === "everyone" ? "#D9E3FF" : "",
                   padding: "14px",
                   borderRadius: "6px",
+                  cursor: "pointer",
                 }}
               >
                 <Box
@@ -105,7 +115,7 @@ const ChooseAudienceModal = ({
                       width: "36px",
                       height: "36px",
                       background: "#24459C",
-                      borderRadius: "10px",
+                      borderRadius: "100%",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -114,19 +124,20 @@ const ChooseAudienceModal = ({
                     <Language sx={{ color: "white" }} />
                   </Box>
                   <Typography sx={{ color: "black", fontWeight: "600" }}>
-                    Public
+                    Everyone
                   </Typography>
                 </Box>
-                <FormControlLabel value="public" control={<Radio />} />
+                <FormControlLabel value="everyone" control={<Radio />} />
               </FormLabel>
               <FormLabel
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  background: audience === "showa_circle" ? "#D9E3FF" : "",
+                  background: reply === "people_you_follow" ? "#D9E3FF" : "",
                   padding: "14px",
                   borderRadius: "6px",
+                  cursor: "pointer",
                 }}
               >
                 <Box
@@ -140,41 +151,63 @@ const ChooseAudienceModal = ({
                     sx={{
                       width: "36px",
                       height: "36px",
-                      background: "#00B77A",
-                      borderRadius: "10px",
+                      background: "#24459C",
+                      borderRadius: "100%",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                     }}
                   >
-                    <PeopleOutline sx={{ color: "white" }} />
+                    <PersonAddOutlined sx={{ color: "white" }} />
                   </Box>
-                  <Box
-                    sx={{ display: "flex", gap: "16px", alignItems: "center" }}
-                  >
-                    <Box>
-                      <Typography sx={{ color: "black", fontWeight: "600" }}>
-                        Showa Circle
-                      </Typography>
-                      <Typography sx={{ color: "black", fontSize: "12px" }}>
-                        10 People
-                      </Typography>
-                    </Box>
-                    <Button
-                      sx={{
-                        textTransform: "none",
-                        color: "#5B646B",
-                        border: "0.5px solid #D0D6D4",
-                        width: "56px",
-                        height: "28px",
-                        borderRadius: "50px",
-                      }}
-                    >
-                      Edit
-                    </Button>
-                  </Box>
+                  <Typography sx={{ color: "black", fontWeight: "600" }}>
+                    People you follow
+                  </Typography>
                 </Box>
-                <FormControlLabel value="showa_circle" control={<Radio />} />
+                <FormControlLabel
+                  value="people_you_follow"
+                  control={<Radio />}
+                />
+              </FormLabel>
+              <FormLabel
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "14px",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  background: reply === "people_you_mention" ? "#D9E3FF" : "",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: "36px",
+                      height: "36px",
+                      background: "#24459C",
+                      borderRadius: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Typography sx={{ color: "white" }}>@</Typography>
+                  </Box>
+                  <Typography sx={{ color: "black", fontWeight: "600" }}>
+                    Only people you mention
+                  </Typography>
+                </Box>
+                <FormControlLabel
+                  value="people_you_mention"
+                  control={<Radio />}
+                />
               </FormLabel>
             </RadioGroup>
           </FormControl>
@@ -189,7 +222,7 @@ const ChooseAudienceModal = ({
         >
           <Button
             onClick={() => {
-              setChooseAudienceModalOpen(!chooseAudienceModalOpen);
+              setWhoCanReplyModalOpen(!whoCanReplyModalOpen);
             }}
             sx={{
               width: "160px",
@@ -205,7 +238,9 @@ const ChooseAudienceModal = ({
             Cancel
           </Button>
           <Button
-            onClick={() => setChooseAudienceModalOpen(!chooseAudienceModalOpen)}
+            onClick={() => {
+              setWhoCanReplyModalOpen(!whoCanReplyModalOpen);
+            }}
             sx={{
               width: "160px",
               height: "36px",
@@ -229,4 +264,4 @@ const ChooseAudienceModal = ({
   );
 };
 
-export default ChooseAudienceModal;
+export default WhoCanReplyModal;
