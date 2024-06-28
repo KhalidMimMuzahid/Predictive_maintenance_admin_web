@@ -18,10 +18,12 @@ import React, { useState } from "react";
 import userPhoto from "../../../../../../../../Assets/Home/customer/chat_girl.png";
 import ChooseAudienceModal from "./ChooseAudienceModal";
 import WhoCanReplyModal from "./WhoCanReplyModal";
+import TagLocationModal from "./TagLocationModal";
 
 const CreatePostModal = ({ createPostModalOpen, setCreatePostModalOpen }) => {
   const [chooseAudienceModalOpen, setChooseAudienceModalOpen] = useState(false);
   const [whoCanReplyModalOpen, setWhoCanReplyModalOpen] = useState(false);
+  const [tagLocationModalOpen, setTagLocationModalOpen] = useState(false);
   const [audience, setAudience] = useState("public");
   const [reply, setReply] = useState("everyone");
   const [image, setImage] = useState(null);
@@ -48,6 +50,12 @@ const CreatePostModal = ({ createPostModalOpen, setCreatePostModalOpen }) => {
           setWhoCanReplyModalOpen={setWhoCanReplyModalOpen}
           reply={reply}
           setReply={setReply}
+        />
+      )}
+      {tagLocationModalOpen && (
+        <TagLocationModal
+          tagLocationModalOpen={tagLocationModalOpen}
+          setTagLocationModalOpen={setTagLocationModalOpen}
         />
       )}
       <Modal
@@ -143,6 +151,8 @@ const CreatePostModal = ({ createPostModalOpen, setCreatePostModalOpen }) => {
             <TextField
               variant="standard"
               margin="normal"
+              multiline={true}
+              rows={4}
               fullWidth
               id="Konbanwa, What’s happening?"
               name="Konbanwa, What’s happening?"
@@ -239,6 +249,7 @@ const CreatePostModal = ({ createPostModalOpen, setCreatePostModalOpen }) => {
                 </label>
 
                 <button
+                  onClick={() => setTagLocationModalOpen(!tagLocationModalOpen)}
                   style={{
                     fontWeight: "600",
                     background: "#24459C",

@@ -10,7 +10,7 @@ export const columns = [
         ID
       </Typography>
     ),
-    width: 200,
+    width: 180,
 
     renderCell: (props) => {
       <Typography>{props?.row?._id}</Typography>;
@@ -40,7 +40,7 @@ export const columns = [
         PRODUCTS
       </Typography>
     ),
-    width: 250,
+    width: 225,
 
     renderCell: (props) => {
       <Typography>{props?.row?.products}</Typography>;

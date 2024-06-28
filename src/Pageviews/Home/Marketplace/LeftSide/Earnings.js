@@ -10,6 +10,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const Earnings = () => {
   const options = {
     animationEnabled: true,
+    width: 300,
     subtitles: [
       {
         text: "$12,560",

@@ -76,6 +76,8 @@ const ShopScreen = () => {
           borderRadius: "10px",
           display: "flex",
           padding: "36px",
+          marginTop: "24px",
+          gap: "24px",
         }}
       >
         <LeftSideMain />

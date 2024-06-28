@@ -15,7 +15,6 @@ import { useGetFeedPostsQuery } from "../../../../../../features/feed/feedSlice"
 
 const Post = () => {
   const { data: feedPost } = useGetFeedPostsQuery();
-  console.log(feedPost);
   const { user } = useSelector((state) => state.auth);
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
