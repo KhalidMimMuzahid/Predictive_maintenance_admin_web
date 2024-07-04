@@ -24,7 +24,6 @@ import InvoiceScreen from "./Pageviews/Home/Invoice/invoice_screen";
 import ProjectScreen from "./Pageviews/Home/Project/project_screen";
 import DataExportScreen from "./Pageviews/Home/DataExport/data_export_screen";
 
-import MarketplaceScreen from "./Pageviews/Home/Marketplace/marketplace_screen";
 import InventoryScreen from "./Pageviews/Home/Inventory/inventory_screen";
 import NotificationScreen from "./Pageviews/Home/Notifications/notification_screen";
 import HelpAIScreen from "./Pageviews/Home/HelpAI/help_ai_screen";
@@ -106,6 +105,10 @@ import LearningResources from "./Pageviews/Home/HelpAI/pageviews/LearningResourc
 import MainScreen from "./Pageviews/Home/Chat/ChatBox/MainScreen";
 import FeedHomeScreen from "./Pageviews/Home/Feed/FeedHome/FeedHomeScreen";
 import FeedSearchScreen from "./Pageviews/Home/Feed/FeedSearch/FeedSearchScreen";
+import MarketPlaceScreen from "./Pageviews/Home/Marketplace/LandingPage/marketplace_screen";
+import AddProduct from "./Pageviews/Home/Marketplace/AddProduct/AddProduct";
+import ViewProducts from "./Pageviews/Home/Marketplace/ViewProducts/ViewProducts";
+import ProductDetails from "./Pageviews/Home/Marketplace/ViewProducts/ProductsListTable/ProductDetails/ProductDetails";
 
 const theme = createTheme();
 
@@ -457,7 +460,19 @@ function App() {
                   <Route path="/project" element={<ProjectScreen />} />
                   <Route path="/data-export" element={<DataExportScreen />} />
 
-                  <Route path="/marketplace" element={<MarketplaceScreen />} />
+                  <Route path="/marketplace" element={<MarketPlaceScreen />} />
+                  <Route
+                    path="/marketplace/add-product"
+                    element={<AddProduct />}
+                  />
+                  <Route
+                    path="/marketplace/view-products"
+                    element={<ViewProducts />}
+                  />
+                  <Route
+                    path="/marketplace/view-products/product-details"
+                    element={<ProductDetails />}
+                  />
                   <Route path="/inventory" element={<InventoryScreen />} />
 
                   {/* Bids Start */}

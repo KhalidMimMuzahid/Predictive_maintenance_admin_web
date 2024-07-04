@@ -2,8 +2,9 @@ import { Download } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 import LeftSideMain from "./LeftSide/LeftSideMain";
 import RightSideMain from "./RightSide/RightSideMain";
+import { Link } from "react-router-dom";
 
-const ShopScreen = () => {
+const MarketPlaceScreen = () => {
   return (
     <Box sx={{ padding: "40px" }}>
       <Box
@@ -54,20 +55,40 @@ const ShopScreen = () => {
           >
             Category
           </Button>
-          <Button
-            sx={{
+          <Link
+            to="/marketplace/view-products"
+            style={{
               backgroundColor: "#24459c",
               textTransform: "none",
               color: "white",
+              fontWeight: "600",
               borderRadius: "8px",
+              textDecoration: "none",
               padding: "6px 32px",
-              "&:hover": {
-                background: "#24459C",
-              },
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            View Products
+          </Link>
+          <Link
+            to="/marketplace/add-product"
+            style={{
+              backgroundColor: "#24459c",
+              textTransform: "none",
+              color: "white",
+              fontWeight: "600",
+              borderRadius: "8px",
+              textDecoration: "none",
+              padding: "6px 32px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             Add Product
-          </Button>
+          </Link>
         </Box>
       </Box>
       <Box
@@ -88,4 +109,4 @@ const ShopScreen = () => {
   );
 };
 
-export default ShopScreen;
+export default MarketPlaceScreen;
