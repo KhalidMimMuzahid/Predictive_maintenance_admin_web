@@ -12,7 +12,9 @@ export const columns = [
       </Typography>
     ),
     width: 100,
-    renderCell: (props) => <Typography>001</Typography>,
+    renderCell: (props) => (
+      <Typography sx={{ color: "#868DAA" }}>{props?.row?.productId}</Typography>
+    ),
   },
   {
     field: "product_title",
@@ -23,8 +25,12 @@ export const columns = [
         PRODUCT TITLE
       </Typography>
     ),
-    width: 200,
-    renderCell: (props) => <Typography>Watch</Typography>,
+    width: 220,
+    renderCell: (props) => (
+      <Typography sx={{ color: "#4D5983", fontWeight: "600" }}>
+        {props?.row?.name + " " + props?.row?.model}
+      </Typography>
+    ),
   },
   {
     field: "details",
@@ -36,12 +42,7 @@ export const columns = [
       </Typography>
     ),
     width: 400,
-    renderCell: (props) => (
-      <Typography>
-        Smart Watch I9 Ultra Max Original 2.19 <br /> Inch Full Touch Wireless
-        Charging ...
-      </Typography>
-    ),
+    renderCell: (props) => <Typography>{props?.row?.details}</Typography>,
   },
   {
     field: "status",
@@ -52,8 +53,26 @@ export const columns = [
         STATUS
       </Typography>
     ),
-    width: 150,
-    renderCell: (props) => <Typography>In Stock</Typography>,
+    width: 125,
+    renderCell: (props) => (
+      <Typography
+        sx={{
+          background:
+            props?.row?.stockManagement?.availableStock > 0
+              ? "#D7FCF9"
+              : "#FEE8EA",
+          color:
+            props?.row?.stockManagement?.availableStock > 0
+              ? "#20C18D"
+              : "#FF6F79",
+          padding: "2px 8px",
+        }}
+      >
+        {props?.row?.stockManagement?.availableStock > 0
+          ? "In Stock"
+          : "Stock Out"}
+      </Typography>
+    ),
   },
   {
     field: "product_category",
@@ -65,7 +84,18 @@ export const columns = [
       </Typography>
     ),
     width: 200,
-    renderCell: (props) => <Typography>Wearable Technology</Typography>,
+    renderCell: (props) => (
+      <Typography
+        sx={{
+          textAlign: "center",
+          width: "100%",
+          color: "#4D5983",
+          fontWeight: "600",
+        }}
+      >
+        {props?.row?.category}
+      </Typography>
+    ),
   },
   {
     field: "regular_price",
@@ -77,7 +107,11 @@ export const columns = [
       </Typography>
     ),
     width: 150,
-    renderCell: (props) => <Typography>74,500</Typography>,
+    renderCell: (props) => (
+      <Typography sx={{ color: "#4D5983", fontWeight: "600" }}>
+        {props?.row?.regularPrice}
+      </Typography>
+    ),
   },
   {
     field: "sale_price",
@@ -89,7 +123,11 @@ export const columns = [
       </Typography>
     ),
     width: 150,
-    renderCell: (props) => <Typography>72,500</Typography>,
+    renderCell: (props) => (
+      <Typography sx={{ color: "#4D5983", fontWeight: "600" }}>
+        {props?.row?.salePrice}
+      </Typography>
+    ),
   },
   {
     field: "action",
@@ -101,6 +139,6 @@ export const columns = [
       </Typography>
     ),
     width: 100,
-    renderCell: (props) => <ActionComponent />,
+    renderCell: (props) => <ActionComponent props={props?.row} />,
   },
 ];

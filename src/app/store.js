@@ -12,6 +12,7 @@ import { teamOfEngineersApi } from "../features/teamOfEngineers/teamOfEngineersS
 import { sensorModuleAttachedApi } from "../features/sensorModuleAttached/sensorModuleAttachedSlice";
 import { chartSliceApi } from "../features/chat/chatSlice";
 import { feedApi } from "../features/feed/feedSlice";
+import { marketplaceApi } from "../features/marketplace/marketplaceSlice";
 // Store of Redux Using Redux-Toolkit
 
 export const store = configureStore({
@@ -28,6 +29,7 @@ export const store = configureStore({
     [chartSliceApi.reducerPath]: chartSliceApi.reducer,
     [extraDataApi.reducerPath]: extraDataApi.reducer,
     [feedApi.reducerPath]: feedApi.reducer,
+    [marketplaceApi.reducerPath]: marketplaceApi.reducer,
     auth: authSlice,
   },
   middleware: (getDefaultMiddleware) =>
@@ -44,5 +46,6 @@ export const store = configureStore({
       chartSliceApi.middleware,
       extraDataApi.middleware,
       feedApi.middleware,
+      marketplaceApi.middleware,
     ]),
 });

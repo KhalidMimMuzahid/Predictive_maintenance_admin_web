@@ -109,6 +109,7 @@ import MarketPlaceScreen from "./Pageviews/Home/Marketplace/LandingPage/marketpl
 import AddProduct from "./Pageviews/Home/Marketplace/AddProduct/AddProduct";
 import ViewProducts from "./Pageviews/Home/Marketplace/ViewProducts/ViewProducts";
 import ProductDetails from "./Pageviews/Home/Marketplace/ViewProducts/ProductsListTable/ProductDetails/ProductDetails";
+import EditProduct from "./Pageviews/Home/Marketplace/EditProduct/EditProduct";
 
 const theme = createTheme();
 
@@ -470,8 +471,12 @@ function App() {
                     element={<ViewProducts />}
                   />
                   <Route
-                    path="/marketplace/view-products/product-details"
+                    path="/marketplace/view-products/product-details/:_id"
                     element={<ProductDetails />}
+                  />
+                  <Route
+                    path="/marketplace/view-products/product-update"
+                    element={<EditProduct />}
                   />
                   <Route path="/inventory" element={<InventoryScreen />} />
 

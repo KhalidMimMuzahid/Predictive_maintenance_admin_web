@@ -1,4 +1,4 @@
-import { MoreVert } from "@mui/icons-material";
+import { MoreHoriz, MoreVert } from "@mui/icons-material";
 import { Box, IconButton, MenuItem, Typography } from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
@@ -23,12 +23,15 @@ const ActionComponent = ({ props }) => {
     <>
       <Box>
         <IconButton onClick={handleClick}>
-          <MoreVert />
+          <MoreHoriz />
         </IconButton>
 
         <StyledMenu anchorEl={anchorEl} open={openEl} onClose={handleClose}>
           <Box sx={{ background: "#F4F2FF" }}>
-            <Link to="/marketplace/view-products/product-details" style={{textDecoration: "none"}}>
+            <Link
+              to={`/marketplace/view-products/product-details/${props?._id}`}
+              style={{ textDecoration: "none" }}
+            >
               <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
                 <VisibilityOutlinedIcon />
                 <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
