@@ -32,7 +32,7 @@ const ProductDetails = () => {
             <Typography>Marketplace / </Typography>
             <Typography>Product List / </Typography>
             <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
-              Product Details
+              Product Details / {productDetailsData?.data?.name}
             </Typography>
           </Box>
         </Box>
