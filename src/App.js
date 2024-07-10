@@ -110,6 +110,7 @@ import AddProduct from "./Pageviews/Home/Marketplace/AddProduct/AddProduct";
 import ViewProducts from "./Pageviews/Home/Marketplace/ViewProducts/ViewProducts";
 import ProductDetails from "./Pageviews/Home/Marketplace/ViewProducts/ProductsListTable/ProductDetails/ProductDetails";
 import EditProduct from "./Pageviews/Home/Marketplace/EditProduct/EditProduct";
+import UnderConstruction from "./Utils/UnderConstruction";
 
 const theme = createTheme();
 
@@ -461,7 +462,9 @@ function App() {
                   <Route path="/project" element={<ProjectScreen />} />
                   <Route path="/data-export" element={<DataExportScreen />} />
 
+                  {/* Under Construction */}
                   <Route path="/marketplace" element={<MarketPlaceScreen />} />
+                  {/* <Route path="/marketplace" element={<UnderConstruction />} /> */}
                   <Route
                     path="/marketplace/add-product"
                     element={<AddProduct />}
