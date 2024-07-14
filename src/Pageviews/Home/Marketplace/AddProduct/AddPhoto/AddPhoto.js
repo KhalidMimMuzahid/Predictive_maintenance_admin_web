@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import addPhoto from "../../../../../Assets/Home/marketplace/add_photo_box.png";
 
-const AddPhoto = ({ steps, setSteps }) => {
+const AddPhoto = ({ steps, setSteps, productDetails, setProductDetails }) => {
   return (
     <Box sx={{ marginTop: "32px" }}>
       <Typography

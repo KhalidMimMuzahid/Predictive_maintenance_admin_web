@@ -3,7 +3,7 @@ import React from "react";
 import watch from "../../../../../../Assets/Home/marketplace/watch.png";
 import { Link } from "react-router-dom";
 
-const Photos = () => {
+const Photos = ({ productDetails }) => {
   return (
     <Box
       sx={{
@@ -44,90 +44,22 @@ const Photos = () => {
       />
 
       <Box sx={{ display: "flex", gap: "35px", flexWrap: "wrap" }}>
-        <Box
-          sx={{
-            background: "#EBEEF3",
-            padding: "4px",
-            width: "200px",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "5px",
-          }}
-        >
-          <img src={watch} alt="" />
-        </Box>
-        <Box
-          sx={{
-            background: "#EBEEF3",
-            padding: "4px",
-            width: "200px",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "5px",
-          }}
-        >
-          <img src={watch} alt="" />
-        </Box>
-        <Box
-          sx={{
-            background: "#EBEEF3",
-            padding: "4px",
-            width: "200px",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "5px",
-          }}
-        >
-          <img src={watch} alt="" />
-        </Box>
-        <Box
-          sx={{
-            background: "#EBEEF3",
-            padding: "4px",
-            width: "200px",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "5px",
-          }}
-        >
-          <img src={watch} alt="" />
-        </Box>
-        <Box
-          sx={{
-            background: "#EBEEF3",
-            padding: "4px",
-            width: "200px",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "5px",
-          }}
-        >
-          <img src={watch} alt="" />
-        </Box>
-        <Box
-          sx={{
-            background: "#EBEEF3",
-            padding: "4px",
-            width: "200px",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "5px",
-          }}
-        >
-          <img src={watch} alt="" />
-        </Box>
+        {productDetails?.photos?.map((photo) => (
+          <Box
+            sx={{
+              background: "#EBEEF3",
+              padding: "4px",
+              width: "200px",
+              height: "200px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: "5px",
+            }}
+          >
+            <img src={photo?.photoUrl} alt="" />
+          </Box>
+        ))}
       </Box>
     </Box>
   );

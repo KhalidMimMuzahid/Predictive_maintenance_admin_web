@@ -41,6 +41,10 @@ const AddNewProductModal = ({
   // React Hook Form
   const { register, handleSubmit } = useForm();
   const onSubmit = (formData, e) => {
+    if (formData?.macAddress?.endsWith(" ")) {
+      toast.error("MAC ID can't have a space at the end.");
+      return;
+    }
     e.preventDefault();
     postIOT(formData);
   };

@@ -16,6 +16,7 @@ import Review from "./Review/Review";
 
 const AddProduct = () => {
   const [steps, setSteps] = useState("product_details");
+  const [productDetails, setProductDetails] = useState({});
   return (
     <Box sx={{ padding: "40px" }}>
       <Box
@@ -306,15 +307,37 @@ const AddProduct = () => {
         </Box>
 
         {steps === "product_details" && (
-          <ProductDetails steps={steps} setSteps={setSteps} />
+          <ProductDetails
+            steps={steps}
+            setSteps={setSteps}
+            productDetails={productDetails}
+            setProductDetails={setProductDetails}
+          />
         )}
         {steps === "inventory_details" && (
-          <InventoryDetails steps={steps} setSteps={setSteps} />
+          <InventoryDetails
+            steps={steps}
+            setSteps={setSteps}
+            productDetails={productDetails}
+            setProductDetails={setProductDetails}
+          />
         )}
         {steps === "add_photo" && (
-          <AddPhoto steps={steps} setSteps={setSteps} />
+          <AddPhoto
+            steps={steps}
+            setSteps={setSteps}
+            productDetails={productDetails}
+            setProductDetails={setProductDetails}
+          />
         )}
-        {steps === "review" && <Review steps={steps} setSteps={setSteps} />}
+        {steps === "review" && (
+          <Review
+            steps={steps}
+            setSteps={setSteps}
+            productDetails={productDetails}
+            setProductDetails={setProductDetails}
+          />
+        )}
       </Box>
     </Box>
   );

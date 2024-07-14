@@ -20,13 +20,8 @@ const ServiceProviderTable = ({
   isRootServiceProviderPage,
   setIsRootServiceProviderPage,
 }) => {
-  const {
-    data: serviceProvidersData,
-    isError,
-    error,
-    isLoading,
-    isSuccess,
-  } = useGetServiceProvidersQuery();
+  const { data: serviceProvidersData, isLoading } =
+    useGetServiceProvidersQuery();
   return (
     <Box
       sx={{
@@ -180,6 +175,9 @@ const ServiceProviderTable = ({
                 borderTop: "1px solid #D9D9D9",
                 background: "#F4F2FF",
               },
+              "& .MuiDataGrid-virtualScroller": {
+                overflow: "scroll",
+              },
             }}
             rows={serviceProvidersData?.data?.map((data, id) => {
               return { ...data, id };
@@ -195,6 +193,7 @@ const ServiceProviderTable = ({
             pageSizeOptions={[10]}
             checkboxSelection
             disableRowSelectionOnClick
+            scroll
           />
         ) : (
           <Box

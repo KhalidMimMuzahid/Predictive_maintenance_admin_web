@@ -465,7 +465,7 @@ const CollapsibleSidebar = ({ children }) => {
               damping: 10,
             },
           }}
-          className={`sidebar `}
+          className={`sidebar`}
         >
           <div className="top_section">
             <AnimatePresence>

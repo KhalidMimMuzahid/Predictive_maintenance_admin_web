@@ -463,8 +463,8 @@ function App() {
                   <Route path="/data-export" element={<DataExportScreen />} />
 
                   {/* Under Construction */}
-                  {/* <Route path="/marketplace" element={<MarketPlaceScreen />} /> */}
-                  <Route path="/marketplace" element={<UnderConstruction />} />
+                  <Route path="/marketplace" element={<MarketPlaceScreen />} />
+                  {/* <Route path="/marketplace" element={<UnderConstruction />} /> */}
                   <Route
                     path="/marketplace/add-product"
                     element={<AddProduct />}

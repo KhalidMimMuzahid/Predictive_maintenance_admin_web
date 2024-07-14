@@ -9,7 +9,12 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const ProductDetails = ({ steps, setSteps }) => {
+const ProductDetails = ({
+  steps,
+  setSteps,
+  productDetails,
+  setProductDetails,
+}) => {
   return (
     <Box
       sx={{
@@ -47,7 +52,7 @@ const ProductDetails = ({ steps, setSteps }) => {
             input={<OutlinedInput label="Select Product Category" />}
             // MenuProps={MenuProps}
           >
-            <MenuItem value={"test"}>Test</MenuItem>
+            <MenuItem value={"electronics"}>Electronics</MenuItem>
           </Select>
         </FormControl>
         <FormControl sx={{ width: "100%" }}>
@@ -63,7 +68,7 @@ const ProductDetails = ({ steps, setSteps }) => {
             input={<OutlinedInput label="Select Product Sub-Category" />}
             // MenuProps={MenuProps}
           >
-            <MenuItem value={"test"}>Test</MenuItem>
+            <MenuItem value={"sub-value_1"}>Sub Value 1</MenuItem>
           </Select>
         </FormControl>
       </Box>

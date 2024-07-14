@@ -7,7 +7,7 @@ import Loader from "../../../../../Utils/Loader";
 
 const ProductsListTable = () => {
   const { data: productList, isLoading } = useGetMarketplaceProductListQuery();
-  console.log(productList?.data[0]);
+  
 
   return (
     <Box sx={{ marginTop: "20px" }}>

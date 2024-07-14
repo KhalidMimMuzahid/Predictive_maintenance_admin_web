@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
-const Review = ({ steps, setSteps }) => {
+const Review = ({ steps, setSteps, productDetails, setProductDetails }) => {
   return (
     <Box sx={{ marginTop: "32px" }}>
       <Typography sx={{ textAlign: "center", marginY: "124px" }}>

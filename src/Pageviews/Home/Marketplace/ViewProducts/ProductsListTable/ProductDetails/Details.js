@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Details = () => {
+const Details = ({ productDetails }) => {
   return (
     <Box
       sx={{
@@ -60,7 +60,7 @@ const Details = () => {
               fontWeight: "700",
             }}
           >
-            Smart Watch I9 Ultra Max
+            {productDetails?.name + " " + productDetails?.model}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -75,9 +75,7 @@ const Details = () => {
               fontWeight: "700",
             }}
           >
-            Homel i9 Ultra max SmartWatch Wireless Charging Watch 1.92 inch HD
-            IPS Screen Bluetooth Call Heart Rate Watch Sports Fitness Smart
-            Watch
+            {productDetails?.details}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -85,7 +83,9 @@ const Details = () => {
             Status
           </Typography>
           <Typography sx={{ color: "#4D5983", fontSize: "18px", width: "70%" }}>
-            In Stock
+            {productDetails?.stockManagement?.availableStock > 0
+              ? "In Stock"
+              : "Stock Out"}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -100,7 +100,7 @@ const Details = () => {
               fontWeight: "700",
             }}
           >
-            Wearable Technology
+            {productDetails?.category}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -108,7 +108,7 @@ const Details = () => {
             Product Sub-Category
           </Typography>
           <Typography sx={{ color: "#4D5983", fontSize: "18px", width: "70%" }}>
-            Smart Watches
+            {productDetails?.subCategory}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -123,7 +123,7 @@ const Details = () => {
               fontWeight: "700",
             }}
           >
-            74,500
+            {productDetails?.regularPrice}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -138,7 +138,7 @@ const Details = () => {
               fontWeight: "700",
             }}
           >
-            74,500
+            {productDetails?.salePrice}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -153,7 +153,8 @@ const Details = () => {
               fontWeight: "700",
             }}
           >
-            Applicable
+            {productDetails?.taxStatus?.charAt(0).toUpperCase() +
+              productDetails?.taxStatus?.slice(1)}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>

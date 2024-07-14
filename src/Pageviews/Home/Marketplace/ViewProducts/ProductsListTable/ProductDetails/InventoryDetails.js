@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const InventoryDetails = () => {
+const InventoryDetails = ({ productDetails }) => {
   return (
     <Box
       sx={{
@@ -60,7 +60,7 @@ const InventoryDetails = () => {
               fontWeight: "700",
             }}
           >
-            2
+            {productDetails?.packageSize?.weight}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -75,7 +75,7 @@ const InventoryDetails = () => {
               fontWeight: "700",
             }}
           >
-            2
+            {productDetails?.packageSize?.length}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -90,7 +90,7 @@ const InventoryDetails = () => {
               fontWeight: "700",
             }}
           >
-            2
+            {productDetails?.packageSize?.width}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -105,7 +105,7 @@ const InventoryDetails = () => {
               fontWeight: "700",
             }}
           >
-            2
+            {productDetails?.packageSize?.height}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -120,7 +120,9 @@ const InventoryDetails = () => {
               fontWeight: "600",
             }}
           >
-            Available
+            {productDetails?.stockManagement?.availableStock > 0
+              ? "Available"
+              : "Unavailable"}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -135,7 +137,7 @@ const InventoryDetails = () => {
               fontWeight: "600",
             }}
           >
-            Yes
+            {/* Yes */}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -150,7 +152,7 @@ const InventoryDetails = () => {
               fontWeight: "600",
             }}
           >
-            Yes
+            {/* Yes */}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -165,7 +167,9 @@ const InventoryDetails = () => {
               fontWeight: "600",
             }}
           >
-            Track Stock Quantity
+            {productDetails?.stockManagement?.trackStockQuantity
+              ? "Track Stock Quantity"
+              : "No Track Stock Quantity"}
           </Typography>
         </Box>
       </Box>

@@ -9,7 +9,12 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const InventoryDetails = ({ steps, setSteps }) => {
+const InventoryDetails = ({
+  steps,
+  setSteps,
+  productDetails,
+  setProductDetails,
+}) => {
   return (
     <Box
       sx={{

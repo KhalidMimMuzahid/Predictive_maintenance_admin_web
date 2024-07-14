@@ -1,5 +1,4 @@
-import { Box, Typography } from "@mui/material";
-import AnchorIcon from "@mui/icons-material/Anchor";
+import { Typography } from "@mui/material";
 import ServiceProviderTableAction from "./ServiceProviderTableAction";
 import ServiceProviderNameComponent from "./ServiceProviderNameComponent";
 import LocationComponent from "./LocationComponent";

@@ -32,7 +32,7 @@ const ProductDetails = () => {
             <Typography>Marketplace / </Typography>
             <Typography>Product List / </Typography>
             <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
-              Product Details / {productDetailsData?.data?.name}
+              Product Details
             </Typography>
           </Box>
         </Box>
@@ -112,17 +112,35 @@ const ProductDetails = () => {
                 borderRadius: "100%",
               }}
             >
-              <img src={watch} alt="" />
+              <img src={productDetailsData?.data?.photos[0].photoUrl} alt="" />
             </Box>
             <Typography sx={{ fontSize: "20px", fontWeight: "600" }}>
-              9 Ultra Max Smart Watch 2.19
+              {productDetailsData?.data?.name +
+                " " +
+                productDetailsData?.data?.model}
             </Typography>
             <Box sx={{ display: "flex", alignItems: "center", gap: "4px" }}>
               <Typography sx={{ color: "#4D5983", fontWeight: "600" }}>
-                Smart Watches
+                {productDetailsData?.data?.category}
               </Typography>
-              <Typography sx={{ background: "#D7FCF9", padding: "2px 4px" }}>
-                In-Stock
+              <Typography
+                sx={{
+                  background:
+                    productDetailsData?.data?.stockManagement?.availableStock >
+                    0
+                      ? "#D7FCF9"
+                      : "#FEE8EA",
+                  color:
+                    productDetailsData?.data?.stockManagement?.availableStock >
+                    0
+                      ? "#20C18D"
+                      : "#FF6F79",
+                  padding: "2px 8px",
+                }}
+              >
+                {productDetailsData?.data?.stockManagement?.availableStock > 0
+                  ? "In Stock"
+                  : "Stock Out"}
               </Typography>
             </Box>
           </Box>
@@ -194,9 +212,15 @@ const ProductDetails = () => {
             </Button>
           </Box>
         </Box>
-        {rightSideRender === "product_details" && <Details />}
-        {rightSideRender === "inventory_details" && <InventoryDetails />}
-        {rightSideRender === "photos" && <Photos />}
+        {rightSideRender === "product_details" && (
+          <Details productDetails={productDetailsData?.data} />
+        )}
+        {rightSideRender === "inventory_details" && (
+          <InventoryDetails productDetails={productDetailsData?.data} />
+        )}
+        {rightSideRender === "photos" && (
+          <Photos productDetails={productDetailsData?.data} />
+        )}
       </Box>
     </Box>
   );
