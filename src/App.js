@@ -576,6 +576,10 @@ function App() {
                   <Route path="/packages" element={<PackagesScreen />} />
                   <Route path="/reports" element={<ReportScreen />} />
                   <Route
+                    path="/control_panel"
+                    element={<ControlPanelReservationRequest />}
+                  />
+                  <Route
                     path="/control_panel/reservation_request"
                     element={<ControlPanelReservationRequest />}
                   />
