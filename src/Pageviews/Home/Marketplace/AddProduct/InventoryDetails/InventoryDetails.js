@@ -2,12 +2,15 @@ import {
   Box,
   Button,
   FormControl,
+  FormControlLabel,
   InputLabel,
   MenuItem,
   OutlinedInput,
+  Radio,
+  RadioGroup,
   Select,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 const InventoryDetails = ({
   steps,
@@ -15,6 +18,7 @@ const InventoryDetails = ({
   productDetails,
   setProductDetails,
 }) => {
+  const [isTaxRateApplicable, setIsTaxRateApplicable] = useState(null);
   return (
     <Box
       sx={{
@@ -24,75 +28,196 @@ const InventoryDetails = ({
         gap: "12px",
       }}
     >
-      <FormControl fullWidth>
-        {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel> */}
-        <OutlinedInput
-          id="outlined-adornment-amount"
-          placeholder="Weight (Kgs)"
-        />
-      </FormControl>
       <Box sx={{ display: "flex", gap: "12px" }}>
         <FormControl fullWidth>
           {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel> */}
-          <OutlinedInput id="outlined-adornment-amount" placeholder="Length" />
+          <OutlinedInput
+            id="outlined-adornment-amount"
+            placeholder="Weight (Kgs)"
+            onChange={(e) => {
+              setProductDetails((prev) => {
+                return {
+                  ...prev,
+                  packageSize: {
+                    ...prev.packageSize,
+                    weight: e.target?.value,
+                  },
+                };
+              });
+            }}
+          />
         </FormControl>
         <FormControl fullWidth>
-          {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel> */}
-          <OutlinedInput id="outlined-adornment-amount" placeholder="Width" />
-        </FormControl>
-        <FormControl fullWidth>
-          {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel> */}
-          <OutlinedInput id="outlined-adornment-amount" placeholder="Height" />
+          <OutlinedInput
+            id="outlined-adornment-amount"
+            placeholder="Length"
+            onChange={(e) => {
+              setProductDetails((prev) => {
+                return {
+                  ...prev,
+                  packageSize: {
+                    ...prev.packageSize,
+                    length: e.target?.value,
+                  },
+                };
+              });
+            }}
+          />
         </FormControl>
       </Box>
       <Box sx={{ display: "flex", gap: "12px" }}>
-        <FormControl sx={{ width: "100%" }}>
-          <InputLabel id="demo-multiple-name-label">Stock Status</InputLabel>
-          <Select
-            labelId="demo-multiple-name-label"
-            id="demo-multiple-name"
-            value={""}
-            fullWidth
-            // onChange={handleChange}
-            input={<OutlinedInput label="Stock Status" />}
-            // MenuProps={MenuProps}
-          >
-            <MenuItem value={"test"}>Test</MenuItem>
-          </Select>
+        <FormControl fullWidth>
+          <OutlinedInput
+            id="outlined-adornment-amount"
+            placeholder="Width"
+            onChange={(e) => {
+              setProductDetails((prev) => {
+                return {
+                  ...prev,
+                  packageSize: {
+                    ...prev.packageSize,
+                    with: e.target?.value,
+                  },
+                };
+              });
+            }}
+          />
         </FormControl>
-        <FormControl sx={{ width: "100%" }}>
-          <InputLabel id="demo-multiple-name-label">
-            Sold Individually
+        <FormControl fullWidth>
+          <OutlinedInput
+            id="outlined-adornment-amount"
+            placeholder="Height"
+            onChange={(e) => {
+              setProductDetails((prev) => {
+                return {
+                  ...prev,
+                  packageSize: {
+                    ...prev.packageSize,
+                    height: e.target?.value,
+                  },
+                };
+              });
+            }}
+          />
+        </FormControl>
+      </Box>
+      <Box sx={{ display: "flex", gap: "12px" }}>
+        <FormControl sx={{ width: "49.5%" }}>
+          <OutlinedInput
+            id="outlined-adornment-amount"
+            placeholder="Available Stock"
+            onChange={(e) => {
+              setProductDetails((prev) => {
+                return {
+                  ...prev,
+                  stockManagement: {
+                    ...prev.stockManagement,
+                    availableStock: e.target?.value,
+                  },
+                };
+              });
+            }}
+          />
+        </FormControl>
+        <RadioGroup
+          onChange={(e) => {
+            setProductDetails((prev) => {
+              return {
+                ...prev,
+                stockManagement: {
+                  ...prev.stockManagement,
+                  trackStockQuantity: e.target?.value,
+                },
+              };
+            });
+          }}
+          aria-labelledby="demo-radio-buttons-group-label"
+          defaultValue=""
+          name="radio-buttons-group"
+          sx={{
+            width: "49%",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            border: "1px solid #D7E0E7",
+            borderRadius: "4px",
+            padding: "4px",
+            gap: "24px",
+          }}
+        >
+          <InputLabel
+            htmlFor="outlined-adornment-amount"
+            sx={{ paddingLeft: "48px" }}
+          >
+            Track Stock Quantity
           </InputLabel>
-          <Select
-            labelId="demo-multiple-name-label"
-            id="demo-multiple-name"
-            value={""}
-            fullWidth
-            // onChange={handleChange}
-            input={<OutlinedInput label="Sold Individually" />}
-            // MenuProps={MenuProps}
-          >
-            <MenuItem value={"test"}>Test</MenuItem>
-          </Select>
-        </FormControl>
+          <Box>
+            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+            <FormControlLabel value="false" control={<Radio />} label="No" />
+          </Box>
+        </RadioGroup>
       </Box>
       <Box sx={{ display: "flex", gap: "12px" }}>
-        <FormControl fullWidth>
-          {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel> */}
+        <RadioGroup
+          onChange={(e) => {
+            setProductDetails((prev) => {
+              return {
+                ...prev,
+                taxStatus: e.target?.value,
+              };
+            });
+            setIsTaxRateApplicable(e.target?.value);
+          }}
+          aria-labelledby="demo-radio-buttons-group-label"
+          defaultValue=""
+          name="radio-buttons-group"
+          sx={{
+            width: "49%",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            border: "1px solid #D7E0E7",
+            borderRadius: "4px",
+            padding: "4px",
+            gap: "24px",
+          }}
+        >
+          <InputLabel
+            htmlFor="outlined-adornment-amount"
+            sx={{ paddingLeft: "48px" }}
+          >
+            Tax Status
+          </InputLabel>
+          <Box>
+            <FormControlLabel
+              value="applicable"
+              control={<Radio />}
+              label="Applicable"
+            />
+            <FormControlLabel
+              value="not-applicable"
+              control={<Radio />}
+              label="Not-Applicable"
+            />
+          </Box>
+        </RadioGroup>
+        <FormControl sx={{ width: "49.5%" }}>
           <OutlinedInput
+            disabled={isTaxRateApplicable !== "applicable"}
             id="outlined-adornment-amount"
-            placeholder="Stock Keeping Unit"
-          />
-        </FormControl>
-        <FormControl fullWidth>
-          {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel> */}
-          <OutlinedInput
-            id="outlined-adornment-amount"
-            placeholder="Stock Management"
+            placeholder="Tax Rate"
+            onChange={(e) => {
+              setProductDetails((prev) => {
+                return {
+                  ...prev,
+                  taxRate: e.target?.value,
+                };
+              });
+            }}
           />
         </FormControl>
       </Box>
+
       <Box sx={{ display: "flex", justifyContent: "end", gap: "14px" }}>
         <Button
           onClick={() => setSteps("product_details")}

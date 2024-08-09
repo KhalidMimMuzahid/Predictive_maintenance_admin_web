@@ -1,8 +1,40 @@
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import addPhoto from "../../../../../Assets/Home/marketplace/add_photo_box.png";
+import { Cancel } from "@mui/icons-material";
 
 const AddPhoto = ({ steps, setSteps, productDetails, setProductDetails }) => {
+  const onImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setProductDetails((prev) => {
+        const photos = prev?.photos || [];
+        photos.push({
+          photoUrl: URL.createObjectURL(event.target.files[0]),
+          color: "Black",
+          title: event.target.files[0].name,
+        });
+        return {
+          ...prev,
+          photos,
+        };
+      });
+    }
+  };
+
+  const removeImage = (indexToRemove) => {
+    console.log(productDetails?.photos);
+    const newImages = productDetails?.photos?.filter(
+      (photo, i) => i !== indexToRemove
+    );
+    setProductDetails((prev) => {
+      return {
+        ...prev,
+        photos: newImages,
+      };
+    });
+  };
+  // You can now use `newImages` to update `productDetails.photos` or do further processing.
+
   return (
     <Box sx={{ marginTop: "32px" }}>
       <Typography
@@ -16,74 +48,71 @@ const AddPhoto = ({ steps, setSteps, productDetails, setProductDetails }) => {
         sx={{
           marginTop: "44px",
           display: "flex",
-          justifyContent: "space-between",
+          gap: "24px",
         }}
       >
-        <Box
-          sx={{
-            border: "1px solid #D7E0E7",
-            borderRadius: "5px",
-            width: "200px",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img src={addPhoto} alt="" />
-        </Box>
-        <Box
-          sx={{
-            border: "1px solid #D7E0E7",
-            borderRadius: "5px",
-            width: "200px",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img src={addPhoto} alt="" />
-        </Box>
-        <Box
-          sx={{
-            border: "1px solid #D7E0E7",
-            borderRadius: "5px",
-            width: "200px",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img src={addPhoto} alt="" />
-        </Box>
-        <Box
-          sx={{
-            border: "1px solid #D7E0E7",
-            borderRadius: "5px",
-            width: "200px",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img src={addPhoto} alt="" />
-        </Box>
-        <Box
-          sx={{
-            border: "1px solid #D7E0E7",
-            borderRadius: "5px",
-            width: "200px",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img src={addPhoto} alt="" />
-        </Box>
+        {productDetails?.photos?.length > 0 &&
+          productDetails?.photos?.map((photo, i) => (
+            <Box sx={{ position: "relative" }}>
+              <button
+                onClick={() => removeImage(i)}
+                style={{
+                  position: "absolute",
+                  background: "#D7E0E7",
+                  width: "32px",
+                  height: "32px",
+                  borderRadius: "100%",
+                  padding: "0px",
+                  right: 4,
+                  top: 4,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  border: "0px",
+                  cursor: "pointer",
+                }}
+              >
+                <Cancel sx={{ color: "red" }} />
+              </button>
+              <img
+                style={{
+                  border: "1px solid #D7E0E7",
+                  borderRadius: "5px",
+                  width: "200px",
+                  height: "200px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                src={photo?.photoUrl}
+                alt=""
+              />
+            </Box>
+          ))}
+
+        {(productDetails?.photos?.length <= 4 ||
+          !productDetails?.photos?.length) && (
+          <label
+            style={{
+              border: "1px solid #D7E0E7",
+              borderRadius: "5px",
+              width: "200px",
+              height: "200px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer",
+            }}
+          >
+            <input
+              hidden
+              type="file"
+              accept="image/*"
+              onChange={onImageChange}
+            />
+            <img src={addPhoto} alt="" />
+          </label>
+        )}
       </Box>
       <Box
         sx={{

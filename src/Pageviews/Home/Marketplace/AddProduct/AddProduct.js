@@ -17,6 +17,8 @@ import Review from "./Review/Review";
 const AddProduct = () => {
   const [steps, setSteps] = useState("product_details");
   const [productDetails, setProductDetails] = useState({});
+  console.log(productDetails);
+
   return (
     <Box sx={{ padding: "40px" }}>
       <Box

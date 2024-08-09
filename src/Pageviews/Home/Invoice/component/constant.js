@@ -6,7 +6,7 @@ import InvoicedAmount from "./InvoicedAmount";
 import StatusComponent from "./StatusComponent";
 import ActionComponent from "./ActionComponent";
 
-export const columns = [
+export const  columns = [
   {
     field: "name",
     headerName: (

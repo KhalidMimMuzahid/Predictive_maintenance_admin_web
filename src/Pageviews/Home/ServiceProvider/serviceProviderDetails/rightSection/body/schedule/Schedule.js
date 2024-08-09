@@ -15,7 +15,6 @@ const Schedule = () => {
     isLoading,
     isError,
   } = useGetAllScheduledReservationRequestByCompanyIdQuery(_id);
-  console.log("Schedule", scheduleData?.data);
 
   return (
     <Box

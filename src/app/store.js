@@ -13,6 +13,7 @@ import { sensorModuleAttachedApi } from "../features/sensorModuleAttached/sensor
 import { chartSliceApi } from "../features/chat/chatSlice";
 import { feedApi } from "../features/feed/feedSlice";
 import { marketplaceApi } from "../features/marketplace/marketplaceSlice";
+import { predefinedApi } from "../features/predefined/predefinedSlice";
 // Store of Redux Using Redux-Toolkit
 
 export const store = configureStore({
@@ -30,6 +31,7 @@ export const store = configureStore({
     [extraDataApi.reducerPath]: extraDataApi.reducer,
     [feedApi.reducerPath]: feedApi.reducer,
     [marketplaceApi.reducerPath]: marketplaceApi.reducer,
+    [predefinedApi.reducerPath]: predefinedApi.reducer,
     auth: authSlice,
   },
   middleware: (getDefaultMiddleware) =>
@@ -47,5 +49,6 @@ export const store = configureStore({
       extraDataApi.middleware,
       feedApi.middleware,
       marketplaceApi.middleware,
+      predefinedApi.middleware,
     ]),
 });

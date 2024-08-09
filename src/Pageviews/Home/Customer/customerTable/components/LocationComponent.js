@@ -14,16 +14,16 @@ const LocationComponent = ({ props }) => {
       <Typography
         sx={{ color: "#111827", fontSize: "14px", fontWeight: "600" }}
       >
-        {props?.row?.showaUser?.addresses[0].address?.street +
+        {props?.row?.showaUser?.addresses[0]?.address?.street +
           ", " +
-          props?.row?.showaUser?.addresses[0].address?.buildingName}
+          props?.row?.showaUser?.addresses[0]?.address?.buildingName}
       </Typography>
       <Typography>
-        {props?.row?.showaUser?.addresses[0].address?.city +
+        {props?.row?.showaUser?.addresses[0]?.address?.city +
           ", " +
-          props?.row?.showaUser?.addresses[0].address?.prefecture +
+          props?.row?.showaUser?.addresses[0]?.address?.prefecture +
           "-" +
-          props?.row?.showaUser?.addresses[0].address?.postalCode}
+          props?.row?.showaUser?.addresses[0]?.address?.postalCode}
       </Typography>
     </Box>
   );

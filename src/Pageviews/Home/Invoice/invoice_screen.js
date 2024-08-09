@@ -35,7 +35,7 @@ const InvoiceScreen = () => {
             Import
           </Button>
           <Button
-            // onClick={() => setIsCreateModalOpen(!isCreateModalOpen)}
+            onClick={() => setIsCreateModalOpen(!isCreateModalOpen)}
             sx={{
               background: "#24459C",
               "&:hover": {
