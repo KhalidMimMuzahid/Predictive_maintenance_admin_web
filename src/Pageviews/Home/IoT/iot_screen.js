@@ -83,19 +83,6 @@ const IotScreen = () => {
             <div className={classes.spacerSmall} />
             <Button
               sx={{
-                backgroundColor: "white",
-                color: "#24459C",
-                textTransform: "none",
-                borderRadius: "8px",
-                padding: "6px 32px",
-                fontWeight: "600",
-              }}
-            >
-              Category
-            </Button>
-            <div className={classes.spacerSmall} />
-            <Button
-              sx={{
                 backgroundColor: "#24459c",
                 textTransform: "none",
                 color: "white",

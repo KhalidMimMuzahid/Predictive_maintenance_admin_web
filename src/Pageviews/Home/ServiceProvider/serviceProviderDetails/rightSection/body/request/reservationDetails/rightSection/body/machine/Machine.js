@@ -22,9 +22,9 @@ const Machine = ({ machine }) => {
         >
           Machine Details
         </Typography>
-        <Button>
+        {/* <Button>
           <img src={editIcon} alt="" />
-        </Button>
+        </Button> */}
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
 

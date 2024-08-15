@@ -73,7 +73,7 @@ const ServiceProviderRequestAction = ({ props }) => {
               </Typography>
             </MenuItem>
 
-            <MenuItem
+            {/* <MenuItem
               onClick={() => {
                 setEditOpen(!editOpen);
               }}
@@ -89,7 +89,7 @@ const ServiceProviderRequestAction = ({ props }) => {
               <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
                 Close
               </Typography>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               onClick={() => {
                 setDeleteOpen(!deleteOpen);

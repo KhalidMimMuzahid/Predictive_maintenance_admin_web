@@ -9,13 +9,14 @@ import MovingIcon from "@mui/icons-material/Moving";
 
 const Cards = () => {
   return (
-    <div style={{ display: "flex", gap: "40px", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
       {/* card 1 */}
       <Card
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "350px",
+          width: "330px",
+          boxShadow: "none",
         }}
       >
         <CardContent sx={{ paddingInline: "25px", paddingBlock: "50px" }}>
@@ -84,7 +85,8 @@ const Cards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "350px",
+          width: "330px",
+          boxShadow: "none",
         }}
       >
         <CardContent sx={{ paddingInline: "25px", paddingBlock: "50px" }}>
@@ -154,7 +156,8 @@ const Cards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "350px",
+          width: "330px",
+          boxShadow: "none",
         }}
       >
         <CardContent sx={{ paddingInline: "25px", paddingBlock: "50px" }}>
@@ -223,7 +226,8 @@ const Cards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "350px",
+          width: "330px",
+          boxShadow: "none",
         }}
       >
         <CardContent sx={{ paddingInline: "25px", paddingBlock: "50px" }}>
@@ -256,7 +260,7 @@ const Cards = () => {
             </Box>
             <img
               style={{ width: "60px", height: "60px" }}
-              src={img1}
+              src={img4}
               alt="webscript"
             />
           </Box>
@@ -292,7 +296,8 @@ const Cards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "350px",
+          width: "330px",
+          boxShadow: "none",
         }}
       >
         <CardContent sx={{ paddingInline: "25px", paddingBlock: "50px" }}>

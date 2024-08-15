@@ -1,6 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-import editIcon from "../../../../../../../../Assets/Home/customer/customer_edit.png";
 
 const AccountSetting = () => {
   return (
@@ -18,12 +17,8 @@ const AccountSetting = () => {
           <Typography
             sx={{ fontSize: "18px", fontWeight: "700", color: "#111827" }}
           >
-            Bank Info
+            Account Setting
           </Typography>
-
-          <Button>
-            <img src={editIcon} alt="" />
-          </Button>
         </Box>
         <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
         <Box

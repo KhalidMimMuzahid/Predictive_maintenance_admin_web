@@ -8,10 +8,11 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Cards from "./RequestVsTimeGraph/component/Cards";
 import RequestVsTimeGraph from "./RequestVsTimeGraph/RequestVsTimeGraph";
-import { useSelector } from "react-redux";
 import { getAuth } from "firebase/auth";
 import useIsAdmin from "../../../Hooks/useIsAdmin";
 import Loader from "../../../Utils/Loader";
+import { MoreHoriz } from "@mui/icons-material";
+import SelectDateModal from "./components/modal/SelectDateModal";
 
 const useStyle = makeStyles((theme) => ({
   holder: {
@@ -76,6 +77,9 @@ const DashboardScreen = () => {
   const [departments, setDepartments] = useState("");
   const [months, setMonths] = useState("");
   const [items, setItems] = useState("");
+  const [adminName, setAdminName] = useState("");
+  const [selectDateModal, setSelectDateModal] = useState(false);
+  const [selectDate, setSelectDate] = useState("");
 
   const auth = getAuth();
   const currentUser = auth.currentUser;
@@ -98,41 +102,138 @@ const DashboardScreen = () => {
     setItems(event.target.value);
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // Simulating a delay of 2 seconds
-  }, []);
-  if (isLoading) {
-    return <Loader />;
-  }
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 2000); // Simulating a delay of 2 seconds
+  // }, []);
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
 
   return (
-    <div className={classes.holder}>
-      <div className={classes.topHolder}>
-        <div>
-          <div className={classes.title}>Dashboard</div>
-          <div className={classes.spacerSmall}></div>
-          <Box sx={{ display: "flex", gap: "8px", marginY: "4px" }}>
-            <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>
-              Good Afternoon,
-            </Typography>
-            <Typography
-              sx={{ fontSize: "14px", fontWeight: "600", color: "#24459C" }}
-            >
-              {adminData?.data?.user?.showaUser?.name?.firstName +
-                " " +
-                adminData?.data?.user?.showaUser?.name?.lastName}
+    <div style={{ padding: "40px" }}>
+      {selectDateModal && (
+        <SelectDateModal
+          selectDateModal={selectDateModal}
+          setSelectDateModal={setSelectDateModal}
+          selectDate={selectDate}
+          setSelectDate={setSelectDate}
+        />
+      )}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Box>
+          <Typography sx={{ fontSize: "24px", fontWeight: "700" }}>
+            Dashboard
+          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            <Typography>Good Afternoon / </Typography>
+            <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
+              Loading...
             </Typography>
           </Box>
-        </div>
-      </div>
+        </Box>
+        <Box sx={{ display: "flex", gap: "16px" }}>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <div>
+              <FormControl
+                sx={{
+                  m: 1,
+                  minWidth: 180,
+                  backgroundColor: "white",
+                  borderRadius: "10px",
+                }}
+                size="small"
+              >
+                <InputLabel id="demo-select-small-label">
+                  All Providers
+                </InputLabel>
+                <Select
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  // value={""}
+                  label="All Providers"
+                  //   onChange={handleChange}
+                >
+                  <MenuItem value={"ongoing"}>Ongoing</MenuItem>
+                  <MenuItem value={"online"}>Online</MenuItem>
+                  <MenuItem value={"offline"}>Offline</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+
+            <div>
+              <FormControl
+                sx={{
+                  m: 1,
+                  minWidth: 180,
+                  backgroundColor: "white",
+                  borderRadius: "10px",
+                }}
+                size="small"
+              >
+                <InputLabel id="demo-select-small-label">
+                  All Departments
+                </InputLabel>
+                <Select
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  // value={provider}
+                  label="All Departments"
+                  //   onChange={handleChange}
+                >
+                  <MenuItem value={"all_departments"}>All Departments</MenuItem>
+                  <MenuItem value={"maintenance"}>Maintenance</MenuItem>
+                  <MenuItem value={"revenue"}>Revenue</MenuItem>
+                  <MenuItem value={"total_numbers"}>Total Numbers</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            <div>
+              <FormControl
+                sx={{
+                  m: 1,
+                  minWidth: 180,
+                  backgroundColor: "white",
+                  borderRadius: "10px",
+                }}
+                size="small"
+              >
+                <InputLabel id="demo-select-small-label">Jan - Dec</InputLabel>
+                <Select
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  // value={provider}
+                  label="Jan - Dec"
+                  //   onChange={handleChange}
+                >
+                  <MenuItem value={"jan_march"}>Jan - March</MenuItem>
+                  <MenuItem value={"march_september"}>
+                    March - September
+                  </MenuItem>
+                  <MenuItem value={"october_november"}>
+                    October - November
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            <Button>
+              <MoreHoriz />
+            </Button>
+          </div>
+        </Box>
+      </Box>
       <Box
         sx={{
           backgroundColor: "white",
-          paddingInline: "25px",
-          paddingBottom: "50px",
-          paddingTop: "20px",
+          padding: "20px",
+          marginTop: "16px",
+          borderRadius: "4px",
         }}
       >
         <Box
@@ -162,13 +263,13 @@ const DashboardScreen = () => {
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
-                  value={provider}
+                  // value={provider}
                   label="All"
-                  onChange={handleChange}
+                  // onChange={handleChange}
                 >
-                  <MenuItem value={10}>Ongoing</MenuItem>
-                  <MenuItem value={20}>Online</MenuItem>
-                  <MenuItem value={30}>Offline</MenuItem>
+                  <MenuItem value={"ongoing"}>Ongoing</MenuItem>
+                  <MenuItem value={"online"}>Online</MenuItem>
+                  <MenuItem value={"offline"}>Offline</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -192,14 +293,14 @@ const DashboardScreen = () => {
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
-                  value={items}
+                  // value={items}
                   label="All Item"
-                  onChange={handleSelectAllItem}
+                  // onChange={handleSelectAllItem}
                 >
-                  <MenuItem value={10}>All Departments</MenuItem>
-                  <MenuItem value={20}>Maintenance</MenuItem>
-                  <MenuItem value={30}>Revenue</MenuItem>
-                  <MenuItem value={30}>Total Numbers</MenuItem>
+                  <MenuItem value={"all_departments"}>All Departments</MenuItem>
+                  <MenuItem value={"maintenance"}>Maintenance</MenuItem>
+                  <MenuItem value={"revenue"}>Revenue</MenuItem>
+                  <MenuItem value={"total_numbers"}>Total Numbers</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -215,6 +316,7 @@ const DashboardScreen = () => {
           paddingInline: "25px",
           paddingBottom: "50px",
           paddingTop: "20px",
+          borderRadius: "4px",
         }}
       >
         <Box
@@ -244,13 +346,13 @@ const DashboardScreen = () => {
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
-                  value={provider}
+                  // value={provider}
                   label="KPI 1"
-                  onChange={handleChange}
+                  // onChange={handleChange}
                 >
-                  <MenuItem value={10}>Ongoing</MenuItem>
-                  <MenuItem value={20}>Online</MenuItem>
-                  <MenuItem value={30}>Offline</MenuItem>
+                  <MenuItem value={"ongoing"}>Ongoing</MenuItem>
+                  <MenuItem value={"online"}>Online</MenuItem>
+                  <MenuItem value={"offline"}>Offline</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -269,13 +371,13 @@ const DashboardScreen = () => {
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
-                  value={provider}
+                  // value={provider}
                   label="KPI 2"
-                  onChange={handleChange}
+                  // onChange={handleChange}
                 >
-                  <MenuItem value={10}>Ongoing</MenuItem>
-                  <MenuItem value={20}>Online</MenuItem>
-                  <MenuItem value={30}>Offline</MenuItem>
+                  <MenuItem value={"ongoing"}>Ongoing</MenuItem>
+                  <MenuItem value={"online"}>Online</MenuItem>
+                  <MenuItem value={"offline"}>Offline</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -289,17 +391,26 @@ const DashboardScreen = () => {
                 }}
                 size="small"
               >
-                <InputLabel id="demo-select-small-label">KPI 3</InputLabel>
+                <InputLabel id="demo-select-small-label">Duration</InputLabel>
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
-                  value={provider}
+                  // value={provider}
                   label="KPI 3"
-                  onChange={handleChange}
+                  // onChange={handleChange}
                 >
-                  <MenuItem value={10}>Ongoing</MenuItem>
-                  <MenuItem value={20}>Online</MenuItem>
-                  <MenuItem value={30}>Offline</MenuItem>
+                  <MenuItem>
+                    <Button
+                      sx={{
+                        textTransform: "none",
+                        color: "#585858",
+                        padding: "0px",
+                      }}
+                      onClick={() => setSelectDateModal(!selectDateModal)}
+                    >
+                      Select Date
+                    </Button>
+                  </MenuItem>
                 </Select>
               </FormControl>
             </div>

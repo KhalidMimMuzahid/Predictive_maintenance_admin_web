@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import OverViewCards from "./commonComponent/OverViewCards";
-import ComparisonChart from "./commonComponent/ComparisonChart";
+import ComparisonChart from "./commonComponent/Comparison/ComparisonChart";
 import AllReservationTable from "./Connected/AllReservation/allReservationTable/AllReservationTable";
 import { useGetAllReservationQuery } from "../../../features/reservation/reservationSlice";
 

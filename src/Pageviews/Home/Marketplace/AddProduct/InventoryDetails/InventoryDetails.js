@@ -172,7 +172,7 @@ const InventoryDetails = ({
           defaultValue=""
           name="radio-buttons-group"
           sx={{
-            width: "49%",
+            width: "48.5%",
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
@@ -201,7 +201,7 @@ const InventoryDetails = ({
             />
           </Box>
         </RadioGroup>
-        <FormControl sx={{ width: "49.5%" }}>
+        <FormControl sx={{ width: "49%" }}>
           <OutlinedInput
             disabled={isTaxRateApplicable !== "applicable"}
             id="outlined-adornment-amount"

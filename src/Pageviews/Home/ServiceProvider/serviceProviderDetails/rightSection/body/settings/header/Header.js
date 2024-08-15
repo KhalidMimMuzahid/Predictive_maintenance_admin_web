@@ -16,10 +16,26 @@ const Header = ({ value, setValue }) => {
             textColor="primary"
             indicatorColor="primary"
           >
-            <Tab label="Personal Info" value="personal_info" />
-            <Tab label="Address" value="address" />
-            <Tab label="Bank Info" value="bank_info" />
-            <Tab label="Account Setting" value="account_setting" />
+            <Tab
+              label="Personal Info"
+              value="personal_info"
+              sx={{ textTransform: "none", fontWeight: "600" }}
+            />
+            <Tab
+              label="Address"
+              value="address"
+              sx={{ textTransform: "none", fontWeight: "600" }}
+            />
+            <Tab
+              label="Bank Info"
+              value="bank_info"
+              sx={{ textTransform: "none", fontWeight: "600" }}
+            />
+            <Tab
+              label="Account Setting"
+              value="account_setting"
+              sx={{ textTransform: "none", fontWeight: "600" }}
+            />
           </TabList>
         </Box>
       </TabContext>

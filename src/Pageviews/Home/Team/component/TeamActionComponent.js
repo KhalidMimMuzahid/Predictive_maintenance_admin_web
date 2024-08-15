@@ -37,15 +37,6 @@ const TeamActionComponent = ({ props }) => {
               </Typography>
             </MenuItem>
           </Link>
-
-          <Link to="" style={{ textDecoration: "none" }}>
-            <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
-              <img src={editIcon} alt="" />
-              <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
-                Edit
-              </Typography>
-            </MenuItem>
-          </Link>
         </Box>
       </StyledMenu>
     </Box>

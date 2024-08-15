@@ -17,7 +17,7 @@ import {
 import logo_full_black from "../../../../Assets/Component/logo_full_black.svg";
 import logo from "../../../../Assets/Component/logo_small.svg";
 import user from "../../../../Assets/Home/service_provider/request_user.png";
-import CustomerListModal from "./CustomerListModal";
+import CustomerListModal from "./CustomerListModal/CustomerListModal";
 
 const CreateInvoiceModal = ({
   isCreateModalOpen,
@@ -44,7 +44,7 @@ const CreateInvoiceModal = ({
       >
         <Container
           sx={{
-            width: "50%",
+            width: "60%",
             background: "white",
             borderRadius: "20px",
             padding: "24px",

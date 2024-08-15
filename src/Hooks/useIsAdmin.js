@@ -11,6 +11,7 @@ const useIsAdmin = (uid) => {
         .then((res) => res.json())
         .then((data) => {
           if (data?.data?.token) {
+            console.log(data);
             setIsAdmin(true);
             setAdminData(data);
           }

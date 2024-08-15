@@ -50,11 +50,11 @@ const Wallet = () => {
         >
           Wallet
         </Typography>
-        {!editMode && (
+        {/* {!editMode && (
           <Button onClick={handleEdit}>
             <img src={editIcon} alt="" />
           </Button>
-        )}
+        )} */}
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
       <Box
@@ -89,7 +89,7 @@ const Wallet = () => {
             variant="p"
             sx={{ fontWeight: "600", color: "#6B7280", fontSize: "14px" }}
           >
-            {wallet?.uid}
+            {wallet?.uid || "No Account No."}
           </Typography>
         )}
       </Box>

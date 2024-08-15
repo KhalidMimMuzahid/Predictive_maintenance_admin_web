@@ -180,22 +180,6 @@ const AddNewProductModal = ({
               label="MAC ID"
               {...register("macAddress")}
             />
-
-            <input
-              style={{
-                background: "#F6F6F6",
-                padding: "16px",
-                border: "none",
-                borderRadius: "4px",
-                color: "#65748B",
-                fontSize: "16px",
-                fontWeight: "700",
-              }}
-              type="number"
-              label="Price (Yen)"
-              placeholder="Price (Yen)"
-              {...register("price")}
-            />
           </Box>
 
           {/* CSV */}

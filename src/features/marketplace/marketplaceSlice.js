@@ -24,6 +24,7 @@ export const marketplaceApi = createApi({
         `/marketplace/product/get-product-by-product_id?productId=${_id}`,
       providesTags: [],
     }),
+    
   }),
 });
 

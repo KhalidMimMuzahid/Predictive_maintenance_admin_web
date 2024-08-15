@@ -106,6 +106,7 @@ const DeleteModal = ({ deleteOpen, setDeleteOpen, props }) => {
               background: "#F6F6F6",
               fontSize: "14px",
               color: "#959596",
+              textTransform: "none",
             }}
           >
             Cancel
@@ -123,6 +124,7 @@ const DeleteModal = ({ deleteOpen, setDeleteOpen, props }) => {
               "&:hover": {
                 background: "#F15F5F",
               },
+              textTransform: "none",
             }}
           >
             Delete

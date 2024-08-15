@@ -11,10 +11,36 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import ReportsTable from "./ReportsTable/ReportsTable";
+import { useState } from "react";
+import ImportReport from "./components/modal/ImportReport";
+import NewReport from "./components/modal/NewReport";
+import SelectDateModal from "./components/modal/SelectDateModal";
 
 const ReportScreen = () => {
+  const [importReportModal, setImportReportModal] = useState(false);
+  const [newReport, setNewReport] = useState(false);
+  const [selectDateModal, setSelectDateModal] = useState(false);
+  const [selectedDateRange, setSelectedDateRange] = useState({});
   return (
     <Box sx={{ padding: "40px" }}>
+      {importReportModal && (
+        <ImportReport
+          importReportModal={importReportModal}
+          setImportReportModal={setImportReportModal}
+        />
+      )}
+      {newReport && (
+        <NewReport newReport={newReport} setNewReport={setNewReport} />
+      )}
+      {selectDateModal && (
+        <SelectDateModal
+          selectDateModal={selectDateModal}
+          setSelectDateModal={setSelectDateModal}
+          selectedDateRange={selectedDateRange}
+          setSelectedDateRange={setSelectedDateRange}
+        />
+      )}
       <Box
         sx={{
           display: "flex",
@@ -35,7 +61,7 @@ const ReportScreen = () => {
         </Box>
         <Box sx={{ display: "flex", gap: "14px" }}>
           <Button
-            // onClick={() => downloadTableData(downloadData, setDownloadData)}
+            onClick={() => setImportReportModal(!importReportModal)}
             sx={{
               backgroundColor: "white",
               color: "#24459C",
@@ -50,7 +76,7 @@ const ReportScreen = () => {
             Import
           </Button>
           <Button
-            // onClick={() => downloadTableData(downloadData, setDownloadData)}
+            onClick={() => setNewReport(!newReport)}
             sx={{
               backgroundColor: "#24459C",
               color: "white",
@@ -132,7 +158,16 @@ const ReportScreen = () => {
                 <MenuItem value={"Last One Month"}>Last One Month</MenuItem>
                 <MenuItem value={"Last One Year"}>Last One Year</MenuItem>
                 <MenuItem value={"Select Date"}>
-                  <Button>Select Date</Button>
+                  <Button
+                    sx={{
+                      textTransform: "none",
+                      color: "#585858",
+                      padding: "0px",
+                    }}
+                    onClick={() => setSelectDateModal(!selectDateModal)}
+                  >
+                    Select Date
+                  </Button>
                 </MenuItem>
               </Select>
             </FormControl>
@@ -161,6 +196,7 @@ const ReportScreen = () => {
             </FormControl>
           </Box>
         </Box>
+        <ReportsTable />
       </Box>
     </Box>
   );

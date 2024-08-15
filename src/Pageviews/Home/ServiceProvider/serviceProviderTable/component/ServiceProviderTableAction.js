@@ -36,15 +36,6 @@ const ServiceProviderTableAction = ({ props }) => {
               </Typography>
             </MenuItem>
           </Link>
-
-          <Link style={{ textDecoration: "none" }}>
-            <MenuItem sx={{ display: "flex", gap: "0 6px" }}>
-              <EditOutlinedIcon sx={{ color: "#6E6893" }} />
-              <Typography sx={{ color: "#6E6893", fontSize: "14px" }}>
-                Edit
-              </Typography>
-            </MenuItem>
-          </Link>
         </Box>
       </StyledMenu>
     </Box>

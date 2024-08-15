@@ -2,6 +2,8 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
 const Review = ({ steps, setSteps, productDetails, setProductDetails }) => {
+  console.log(productDetails?.photos[0]?.photoUrl?.location);
+
   return (
     <Box sx={{ marginTop: "32px" }}>
       <Typography sx={{ textAlign: "center", marginY: "124px" }}>

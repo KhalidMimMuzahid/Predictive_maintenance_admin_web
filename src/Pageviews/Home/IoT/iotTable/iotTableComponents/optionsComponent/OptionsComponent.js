@@ -103,23 +103,6 @@ const OptionsComponent = ({ sensorModule }) => {
             <div className={classes.spacerSmall} />
             Delete
           </MenuItem>
-
-          <MenuItem
-            onClick={() => {
-              // handleClose();
-              // setEditIot({
-              //   iotProductId: props.value.iotProductId,
-              //   macId: props.value.macId,
-              //   price: props.value.price,
-              //   module: props.value.module,
-              // });
-              // setEditOpen(true);
-            }}
-          >
-            <DoNotDisturbIcon style={{ color: "#6E6893" }} />
-            <div className={classes.spacerSmall} />
-            Stop
-          </MenuItem>
         </StyledMenu>
       </div>
     </>

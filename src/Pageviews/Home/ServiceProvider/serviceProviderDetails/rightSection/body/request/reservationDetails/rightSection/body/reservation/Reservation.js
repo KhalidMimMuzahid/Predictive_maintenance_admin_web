@@ -18,9 +18,9 @@ const Reservation = () => {
         >
           Reservation Details
         </Typography>
-        <Button>
+        {/* <Button>
           <img src={editIcon} alt="" />
-        </Button>
+        </Button> */}
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
 
@@ -140,36 +140,6 @@ const Reservation = () => {
           }}
         >
           View Issues List
-        </Typography>
-      </Box>
-      <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
-
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "16px",
-          padding: "16px 24px",
-        }}
-      >
-        <Typography
-          sx={{
-            fontWeight: "700",
-            color: "#111827",
-            fontSize: "14px",
-            width: "25%",
-          }}
-        >
-          Assign
-        </Typography>
-        <Typography
-          sx={{
-            fontWeight: "600",
-            color: "#6B7280",
-            fontSize: "14px",
-          }}
-        >
-          Assign Vendor
         </Typography>
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />

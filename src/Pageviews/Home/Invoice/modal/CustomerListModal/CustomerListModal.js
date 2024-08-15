@@ -1,7 +1,7 @@
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import React from "react";
-import CustomerTable from "../../Customer/customerTable/CustomerTable";
 import { Close } from "@mui/icons-material";
+import CustomerTable from "./CustomerTable";
 
 const CustomerListModal = ({ isCustomerListOpen, setIsCustomerListOpen }) => {
   return (

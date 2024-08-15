@@ -30,7 +30,14 @@ const InvoiceScreen = () => {
           </Box>
         </Box>
         <Box sx={{}}>
-          <Button sx={{ background: "white", color: "black" }}>
+          <Button
+            sx={{
+              background: "white",
+              color: "black",
+              textTransform: "none",
+              padding: "4px 20px",
+            }}
+          >
             <Upload sx={{ marginRight: "6px" }} />
             Import
           </Button>
@@ -45,6 +52,8 @@ const InvoiceScreen = () => {
               fontSize: "14px",
               fontWeight: "600  ",
               marginLeft: "16px",
+              textTransform: "none",
+              padding: "4px 20px",
             }}
           >
             Create Invoice
