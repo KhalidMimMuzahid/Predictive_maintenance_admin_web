@@ -4,12 +4,26 @@ import addPhoto from "../../../../../Assets/Home/marketplace/add_photo_box.png";
 import { Cancel } from "@mui/icons-material";
 
 const AddPhoto = ({ steps, setSteps, productDetails, setProductDetails }) => {
-  const onImageChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
+  const onImageChange = async (event) => {
+    if (event.target.files && event.target.files[0]?.name) {
+      const formData = new FormData();
+      formData.append("file", event.target.files[0]);
+
+      const res = await fetch(
+        `http://localhost:5000/api/v2/extra-data/upload-photo?folder=files`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await res.json();
+
+      console.log("url: ", data);
+
       setProductDetails((prev) => {
         const photos = prev?.photos || [];
         photos.push({
-          photoUrl: URL.createObjectURL(event.target.files[0]),
+          photoUrl: data?.data?.url,
           color: "Black",
           title: event.target.files[0].name,
         });

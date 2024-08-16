@@ -28,7 +28,6 @@ import InventoryScreen from "./Pageviews/Home/Inventory/inventory_screen";
 import NotificationScreen from "./Pageviews/Home/Notifications/notification_screen";
 import HelpAIScreen from "./Pageviews/Home/HelpAI/help_ai_screen";
 import OffersScreen from "./Pageviews/Home/Offers/offers_screen";
-import PackagesScreen from "./Pageviews/Home/Packages/packages_screen";
 import SettingsScreen from "./Pageviews/Home/Settings/settings_screen";
 import CollapsibleSidebar from "./Components/CollapsibleSIdebar";
 import FAQ from "./Pageviews/Home/HelpAI/pageviews/faq";
@@ -111,6 +110,7 @@ import ViewProducts from "./Pageviews/Home/Marketplace/ViewProducts/ViewProducts
 import ProductDetails from "./Pageviews/Home/Marketplace/ViewProducts/ProductsListTable/ProductDetails/ProductDetails";
 import EditProduct from "./Pageviews/Home/Marketplace/EditProduct/EditProduct";
 import UnderConstruction from "./Utils/UnderConstruction";
+import PackagesScreen from "./Pageviews/Home/Packages/PackagesScreen";
 
 const theme = createTheme();
 
@@ -478,7 +478,7 @@ function App() {
                     element={<ProductDetails />}
                   />
                   <Route
-                    path="/marketplace/view-products/product-update"
+                    path="/marketplace/view-products/product-update/:_id"
                     element={<EditProduct />}
                   />
                   <Route path="/inventory" element={<InventoryScreen />} />

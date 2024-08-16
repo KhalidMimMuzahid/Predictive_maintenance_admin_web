@@ -20,7 +20,7 @@ const Photos = ({ productDetails }) => {
           Photos
         </Typography>
         <Link
-          to="/marketplace/view-products/product-update"
+          to={`/marketplace/view-products/product-update/${productDetails?._id}`}
           style={{
             background: "#CCEFF1",
             color: "#47C68F",

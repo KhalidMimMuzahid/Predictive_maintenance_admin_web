@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Details = ({ productDetails }) => {
+  console.log(productDetails);
   return (
     <Box
       sx={{
@@ -19,7 +20,7 @@ const Details = ({ productDetails }) => {
           Product Details
         </Typography>
         <Link
-          to="/marketplace/view-products/product-update"
+          to={`/marketplace/view-products/product-update/${productDetails?._id}`}
           style={{
             background: "#CCEFF1",
             color: "#47C68F",

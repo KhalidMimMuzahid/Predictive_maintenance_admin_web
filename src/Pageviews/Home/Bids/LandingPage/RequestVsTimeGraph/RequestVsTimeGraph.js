@@ -8,33 +8,14 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { BarChart } from "@mui/x-charts/BarChart";
 import { MoreHoriz } from "@mui/icons-material";
-
-// demo linechart data
-const uData = [
-  4000, 3000, 2000, 2780, 1890, 2390, 3490, 1500, 2600, 1500, 2600, 3700,
-];
-const pData = [
-  2400, 1398, 9800, 3908, 4800, 3800, 4300, 3200, 1800, 3200, 1800, 5000,
-];
-const xLabels = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "July",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+import FirstGraph from "./Graph/FirstGraph";
+import SecondGraph from "./Graph/SecondGraph";
+import ThirdGraph from "./Graph/ThirdGraph";
 
 const RequestVsTimeGraph = () => {
   const [style, setStyle] = useState("");
+  const [whichGraph, setWhichGraph] = useState("bar");
 
   const handleStyleChange = (event) => {
     setStyle(event.target.value);
@@ -126,6 +107,9 @@ const RequestVsTimeGraph = () => {
           </div>
         </Box>
       </Box>
+      <Box sx={{ padding: "24px" }}>
+        <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
+      </Box>
       <Box
         sx={{
           display: "flex",
@@ -174,6 +158,7 @@ const RequestVsTimeGraph = () => {
             </Typography>
           </Box>
         </Box>
+
         <Box>
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             <div>
@@ -190,13 +175,12 @@ const RequestVsTimeGraph = () => {
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
-                  value={style}
                   label="Style: Bar"
-                  onChange={handleStyleChange}
+                  onChange={(e) => setWhichGraph(e?.target?.value)}
                 >
-                  <MenuItem value={10}>Line</MenuItem>
-                  <MenuItem value={20}>Pie</MenuItem>
-                  <MenuItem value={30}>Bar</MenuItem>
+                  <MenuItem value={"bar"}>Bar</MenuItem>
+                  <MenuItem value={"line"}>Line</MenuItem>
+                  <MenuItem value={"pie"}>Pie</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -216,19 +200,9 @@ const RequestVsTimeGraph = () => {
           </div>
         </Box>
       </Box>
-      <Box sx={{ padding: "24px 34px" }}>
-        <BarChart
-          // width={500}
-          height={350}
-          margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
-          grid={{ vertical: true, horizontal: true }}
-          series={[
-            { data: pData, id: "pvId", color: "#81C926" },
-            { data: uData, id: "uvId", color: "#26C1C9" },
-          ]}
-          xAxis={[{ data: xLabels, scaleType: "band" }]}
-        />
-      </Box>
+      {whichGraph === "bar" && <FirstGraph />}
+      {whichGraph === "line" && <SecondGraph />}
+      {whichGraph === "pie" && <ThirdGraph />}
     </Box>
   );
 };

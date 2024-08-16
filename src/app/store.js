@@ -14,6 +14,7 @@ import { chartSliceApi } from "../features/chat/chatSlice";
 import { feedApi } from "../features/feed/feedSlice";
 import { marketplaceApi } from "../features/marketplace/marketplaceSlice";
 import { predefinedApi } from "../features/predefined/predefinedSlice";
+import { addFilesApi } from "../features/addFiles/addFilesSlice";
 // Store of Redux Using Redux-Toolkit
 
 export const store = configureStore({
@@ -32,6 +33,7 @@ export const store = configureStore({
     [feedApi.reducerPath]: feedApi.reducer,
     [marketplaceApi.reducerPath]: marketplaceApi.reducer,
     [predefinedApi.reducerPath]: predefinedApi.reducer,
+    [addFilesApi.reducerPath]: addFilesApi.reducer,
     auth: authSlice,
   },
   middleware: (getDefaultMiddleware) =>
@@ -50,5 +52,6 @@ export const store = configureStore({
       feedApi.middleware,
       marketplaceApi.middleware,
       predefinedApi.middleware,
+      addFilesApi.middleware,
     ]),
 });

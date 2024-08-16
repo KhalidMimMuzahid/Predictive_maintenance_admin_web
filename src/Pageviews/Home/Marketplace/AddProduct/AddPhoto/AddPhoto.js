@@ -2,38 +2,28 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import addPhoto from "../../../../../Assets/Home/marketplace/add_photo_box.png";
 import { Cancel } from "@mui/icons-material";
-import { json } from "react-router-dom";
 
 const AddPhoto = ({ steps, setSteps, productDetails, setProductDetails }) => {
   const onImageChange = async (event) => {
     if (event.target.files && event.target.files[0]?.name) {
-      const files = event.target.files;
-      const fileName = files[0].name;
-      const fileType = files[0].type;
+      const formData = new FormData();
+      formData.append("file", event.target.files[0]);
 
-      const imageUp = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/extra-data/upload-photo`,
+      const res = await fetch(
+        `http://localhost:5000/api/v2/extra-data/upload-photo?folder=files`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            fileName,
-            fileType,
-            file: JSON.stringify(event?.target?.files[0]),
-            folder: "marketplace",
-          }),
+          body: formData,
         }
       );
-      const imageUrl = await imageUp.json();
-      const parseUrl = new URL(imageUrl?.data?.url);
-      console.log("Image URL  ", parseUrl);
+      const data = await res.json();
+
+      console.log("url: ", data);
 
       setProductDetails((prev) => {
         const photos = prev?.photos || [];
         photos.push({
-          photoUrl: URL.createObjectURL(event.target.files[0]),
+          photoUrl: data?.data?.url,
           color: "Black",
           title: event.target.files[0].name,
         });
@@ -56,7 +46,6 @@ const AddPhoto = ({ steps, setSteps, productDetails, setProductDetails }) => {
       };
     });
   };
-  // You can now use `newImages` to update `productDetails.photos` or do further processing.
 
   return (
     <Box sx={{ marginTop: "32px" }}>

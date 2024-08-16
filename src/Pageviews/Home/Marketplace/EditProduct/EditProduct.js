@@ -13,10 +13,12 @@ import ProductDetails from "./ProductDetails/ProductDetails";
 import InventoryDetails from "./InventoryDetails/InventoryDetails";
 import AddPhoto from "./AddPhoto/AddPhoto";
 import Review from "./Review/Review";
+import { useParams } from "react-router-dom";
 
 const EditProduct = () => {
   const [steps, setSteps] = useState("product_details");
   const [productDetails, setProductDetails] = useState({});
+  const { _id } = useParams();
   return (
     <Box sx={{ padding: "40px" }}>
       <Box
