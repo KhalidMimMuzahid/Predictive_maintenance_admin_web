@@ -176,7 +176,13 @@ const ServiceProviderTable = ({
                 background: "#F4F2FF",
               },
               "& .MuiDataGrid-virtualScroller": {
-                overflow: "scroll",
+                overflow: "auto", // Ensure both horizontal and vertical scrolling
+              },
+              "& .MuiDataGrid-root": {
+                overflowX: "auto", // Ensure horizontal scrollbar
+              },
+              "& .MuiDataGrid-footerContainer": {
+                borderTop: "1px solid #D9D9D9",
               },
             }}
             rows={serviceProvidersData?.data?.map((data, id) => {
@@ -193,7 +199,6 @@ const ServiceProviderTable = ({
             pageSizeOptions={[10]}
             checkboxSelection
             disableRowSelectionOnClick
-            scroll
           />
         ) : (
           <Box

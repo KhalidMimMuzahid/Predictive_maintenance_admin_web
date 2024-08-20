@@ -118,7 +118,7 @@ const ProductDetails = ({
         </FormControl>
         <FormControl
           sx={{ width: "100%" }}
-          disabled={productDetails?.category === undefined}
+          // disabled={productDetails?.category === undefined}
         >
           <InputLabel id="demo-multiple-name-label">
             Select Product Sub-Category

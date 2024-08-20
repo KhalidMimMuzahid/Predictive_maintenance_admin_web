@@ -147,11 +147,15 @@ const AllTransaction = ({ isWalletRootScreen, setIsWalletRootScreen }) => {
     },
   ];
 
-  console.log(allTransaction);
-
   return (
-<Box sx={{padding: "40px"}}>
-<Box sx={{ padding: "20px", background: "white", marginTop: "12px" }}>
+    <Box
+      sx={{
+        padding: "20px",
+        background: "white",
+        marginTop: "24px",
+        borderRadius: "4px",
+      }}
+    >
       {isWalletRootScreen && (
         <Box
           sx={{
@@ -175,7 +179,7 @@ const AllTransaction = ({ isWalletRootScreen, setIsWalletRootScreen }) => {
           </Button>
         </Box>
       )}
-      {isWalletRootScreen === false && (
+      {/* {isWalletRootScreen === false && (
         <Box>
           <TextField
             sx={{ width: "100%" }}
@@ -282,10 +286,9 @@ const AllTransaction = ({ isWalletRootScreen, setIsWalletRootScreen }) => {
             </FormControl>
           </Box>
         </Box>
-      )}
+      )} */}
       <AllTransactionTable allTransaction={allTransaction} />
     </Box>
-</Box>
   );
 };
 

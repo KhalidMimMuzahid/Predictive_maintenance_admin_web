@@ -16,7 +16,7 @@ export const columns = [
         CUSTOMER NAME
       </Typography>
     ),
-    width: 280,
+    width: 300,
     renderCell: (props) => <CustomerNameComponent props={props?.row} />,
   },
   {
@@ -52,7 +52,7 @@ export const columns = [
         TRANS. ID
       </Typography>
     ),
-    width: 180,
+    width: 200,
     renderCell: (props) => <TransactionIdComponent props={props?.row} />,
   },
   {
@@ -64,7 +64,7 @@ export const columns = [
         Date & Time
       </Typography>
     ),
-    width: 250,
+    width: 280,
     renderCell: (props) => <DateComponent props={props?.row} />,
   },
   {
@@ -80,17 +80,3 @@ export const columns = [
     renderCell: (props) => <ActionComponent props={props?.row} />,
   },
 ];
-
-// {
-//     customer: {
-//       customerName: "Hank Red",
-//       phone: "012-345-6789",
-//     },
-//     transaction_type: "Transfer",
-//     amount_point_mb: 4400,
-//     transaction_id: "T010",
-//     date: {
-//       date: "2024-06-12",
-//       time: "19:30",
-//     },
-//   },
