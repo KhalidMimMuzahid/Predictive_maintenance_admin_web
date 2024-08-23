@@ -57,7 +57,15 @@ const Photos = ({ productDetails }) => {
               borderRadius: "5px",
             }}
           >
-            <img src={photo?.photoUrl} alt="" />
+            {photo?.photoUrl ? (
+              <img
+                src={photo?.photoUrl}
+                alt="Product Img"
+                style={{ width: "190px", height: "190px", borderRadius: "5px" }}
+              />
+            ) : (
+              <Typography>No Photo Found</Typography>
+            )}
           </Box>
         ))}
       </Box>

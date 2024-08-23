@@ -32,6 +32,7 @@ const InventoryDetails = ({
         <FormControl fullWidth>
           {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel> */}
           <OutlinedInput
+            type="number"
             id="outlined-adornment-amount"
             placeholder="Weight (Kgs)"
             onChange={(e) => {
@@ -40,7 +41,7 @@ const InventoryDetails = ({
                   ...prev,
                   packageSize: {
                     ...prev.packageSize,
-                    weight: e.target?.value,
+                    weight: Number(e.target?.value),
                   },
                 };
               });
@@ -49,6 +50,7 @@ const InventoryDetails = ({
         </FormControl>
         <FormControl fullWidth>
           <OutlinedInput
+            type="number"
             id="outlined-adornment-amount"
             placeholder="Length"
             onChange={(e) => {
@@ -57,7 +59,7 @@ const InventoryDetails = ({
                   ...prev,
                   packageSize: {
                     ...prev.packageSize,
-                    length: e.target?.value,
+                    length: Number(e.target?.value),
                   },
                 };
               });
@@ -68,6 +70,7 @@ const InventoryDetails = ({
       <Box sx={{ display: "flex", gap: "12px" }}>
         <FormControl fullWidth>
           <OutlinedInput
+            type="number"
             id="outlined-adornment-amount"
             placeholder="Width"
             onChange={(e) => {
@@ -76,7 +79,7 @@ const InventoryDetails = ({
                   ...prev,
                   packageSize: {
                     ...prev.packageSize,
-                    with: e.target?.value,
+                    width: Number(e.target?.value),
                   },
                 };
               });
@@ -85,6 +88,7 @@ const InventoryDetails = ({
         </FormControl>
         <FormControl fullWidth>
           <OutlinedInput
+            type="number"
             id="outlined-adornment-amount"
             placeholder="Height"
             onChange={(e) => {
@@ -93,7 +97,7 @@ const InventoryDetails = ({
                   ...prev,
                   packageSize: {
                     ...prev.packageSize,
-                    height: e.target?.value,
+                    height: Number(e.target?.value),
                   },
                 };
               });
@@ -104,6 +108,7 @@ const InventoryDetails = ({
       <Box sx={{ display: "flex", gap: "12px" }}>
         <FormControl sx={{ width: "49.5%" }}>
           <OutlinedInput
+            type="number"
             id="outlined-adornment-amount"
             placeholder="Available Stock"
             onChange={(e) => {
@@ -112,7 +117,7 @@ const InventoryDetails = ({
                   ...prev,
                   stockManagement: {
                     ...prev.stockManagement,
-                    availableStock: e.target?.value,
+                    availableStock: Number(e.target?.value),
                   },
                 };
               });
@@ -126,7 +131,7 @@ const InventoryDetails = ({
                 ...prev,
                 stockManagement: {
                   ...prev.stockManagement,
-                  trackStockQuantity: e.target?.value,
+                  trackStockQuantity: e.target?.value === "true" ? true : false,
                 },
               };
             });
@@ -152,8 +157,8 @@ const InventoryDetails = ({
             Track Stock Quantity
           </InputLabel>
           <Box>
-            <FormControlLabel value="true" control={<Radio />} label="Yes" />
-            <FormControlLabel value="false" control={<Radio />} label="No" />
+            <FormControlLabel value={true} control={<Radio />} label="Yes" />
+            <FormControlLabel value={false} control={<Radio />} label="No" />
           </Box>
         </RadioGroup>
       </Box>
@@ -203,6 +208,7 @@ const InventoryDetails = ({
         </RadioGroup>
         <FormControl sx={{ width: "49%" }}>
           <OutlinedInput
+            type="number"
             disabled={isTaxRateApplicable !== "applicable"}
             id="outlined-adornment-amount"
             placeholder="Tax Rate"
@@ -210,7 +216,7 @@ const InventoryDetails = ({
               setProductDetails((prev) => {
                 return {
                   ...prev,
-                  taxRate: e.target?.value,
+                  taxRate: Number(e.target?.value),
                 };
               });
             }}

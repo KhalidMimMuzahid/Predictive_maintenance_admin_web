@@ -106,13 +106,24 @@ const ProductDetails = () => {
             <Box
               sx={{
                 padding: "8px",
-                boxShadow: "5px 5px 10px 0 rgba(33, 43, 54, 0.08)",
+                background: "#F3F4F6",
                 width: "120px",
                 height: "120px",
                 borderRadius: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              <img src={productDetailsData?.data?.photos[0].photoUrl} alt="" />
+              <img
+                src={productDetailsData?.data?.photos[0].photoUrl}
+                alt=""
+                style={{
+                  height: "128px",
+                  width: "128px",
+                  borderRadius: "100%",
+                }}
+              />
             </Box>
             <Typography sx={{ fontSize: "20px", fontWeight: "600" }}>
               {productDetailsData?.data?.name +

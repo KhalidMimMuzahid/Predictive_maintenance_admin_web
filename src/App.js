@@ -111,6 +111,7 @@ import ProductDetails from "./Pageviews/Home/Marketplace/ViewProducts/ProductsLi
 import EditProduct from "./Pageviews/Home/Marketplace/EditProduct/EditProduct";
 import UnderConstruction from "./Utils/UnderConstruction";
 import PackagesScreen from "./Pageviews/Home/Packages/PackagesScreen";
+import AI from "./Pageviews/Home/AI/AI";
 
 const theme = createTheme();
 
@@ -209,6 +210,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<DashboardScreen />} />
                   <Route path="/dashboard" element={<DashboardScreen />} />
+                  <Route path="/ai" element={<AI />} />
 
                   {/* service provider start */}
 

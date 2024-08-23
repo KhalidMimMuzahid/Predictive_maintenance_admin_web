@@ -14,11 +14,15 @@ import InventoryDetails from "./InventoryDetails/InventoryDetails";
 import AddPhoto from "./AddPhoto/AddPhoto";
 import Review from "./Review/Review";
 import { useParams } from "react-router-dom";
+import { useGetMarketplaceProductDetailsByIdQuery } from "../../../../features/marketplace/marketplaceSlice";
 
 const EditProduct = () => {
   const [steps, setSteps] = useState("product_details");
   const [productDetails, setProductDetails] = useState({});
   const { _id } = useParams();
+  const { data: productDetailsData } =
+    useGetMarketplaceProductDetailsByIdQuery(_id);
+  console.log(productDetailsData);
   return (
     <Box sx={{ padding: "40px" }}>
       <Box
@@ -34,8 +38,9 @@ const EditProduct = () => {
           </Typography>
           <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <Typography>Dashboard / </Typography>
+            <Typography>Edit Product / </Typography>
             <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
-              Edit Product
+              {productDetailsData?.data?.name}
             </Typography>
           </Box>
         </Box>

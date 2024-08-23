@@ -1,11 +1,23 @@
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { usePostProductMutation } from "../../../../../features/marketplace/marketplaceSlice";
+import { toast } from "react-toastify";
 
 const Review = ({ steps, setSteps, productDetails, setProductDetails }) => {
-  console.log(productDetails);
-  const postProduct = () =>{
-    
-  }
+  const [postProduct, { data, isError, error, isLoading, isSuccess }] =
+    usePostProductMutation();
+  console.log("Product Details Before Posting...", productDetails);
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(data?.message);
+    } else if (isError) {
+      toast.error(error?.data?.message);
+    }
+  }, [isSuccess, isError]);
+
+  const postProductFunc = () => {
+    postProduct(productDetails);
+  };
   return (
     <Box sx={{ marginTop: "32px" }}>
       <Typography sx={{ textAlign: "center", marginY: "124px" }}>
@@ -37,6 +49,7 @@ const Review = ({ steps, setSteps, productDetails, setProductDetails }) => {
           Previous
         </Button>
         <Button
+          onClick={() => postProductFunc()}
           sx={{
             textTransform: "none",
             background: "#24459C",
@@ -50,7 +63,7 @@ const Review = ({ steps, setSteps, productDetails, setProductDetails }) => {
             fontWeight: "600",
           }}
         >
-          Publish
+          {isLoading ? <Box className="three_dot_spinner" /> : "Publish"}
         </Button>
       </Box>
     </Box>

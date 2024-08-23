@@ -13,7 +13,7 @@ export const marketplaceApi = createApi({
       return headers;
     },
   }),
-  tagTypes: [],
+  tagTypes: ["add_product"],
   endpoints: (builder) => ({
     getMarketplaceProductList: builder.query({
       query: () => `/marketplace/product/get-all-products`,
@@ -24,11 +24,19 @@ export const marketplaceApi = createApi({
         `/marketplace/product/get-product-by-product_id?productId=${_id}`,
       providesTags: [],
     }),
-    
+    postProduct: builder.mutation({
+      query: (product) => ({
+        url: "/marketplace/product/create",
+        method: "POST",
+        body: product,
+      }),
+      invalidatesTags: ["add_product"],
+    }),
   }),
 });
 
 export const {
   useGetMarketplaceProductListQuery,
   useGetMarketplaceProductDetailsByIdQuery,
+  usePostProductMutation,
 } = marketplaceApi;

@@ -186,11 +186,118 @@ table {
   }
 }
 
+/* Speedometer */
+@keyframes progress {
+  0% {
+    --percentage: 0;
+  }
+  100% {
+    --percentage: var(--value);
+  }
+}
 
+@property --percentage {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
 
+[role="progressbar"] {
+  --percentage: var(--value);
+  --primary: #369;
+  --secondary: #adf;
+  --size: 300px;
+  animation: progress 2s 0.5s forwards;
+  width: var(--size);
+  aspect-ratio: 2 / 1;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
 
+[role="progressbar"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(
+    from 1turn at 30% 100%,
+    #58d9f9 110deg,
+    yellow 40deg,
+    #ca583f 110deg
+  );
+  mask: radial-gradient(at 50% 100%, white 55%, transparent 0);
+  mask-mode: alpha;
+  -webkit-mask: radial-gradient(at 50% 100%, #0000 55%, #000 0);
+  -webkit-mask-mode: alpha;
+  overflow: hidden;
+  border-radius: 50% / 100% 100% 0 0;
+}
 
+[role="progressbar"]::after {
+  content: "";
+  width: 48%;
+  height: 10%;
+  position: absolute;
+  bottom: -5%;
+  left: 0;
+  background: radial-gradient(circle at 96% 50%, #fff 4%, #5470c6 0 5%, #0000 0),
+    conic-gradient(
+      at -20% 50%,
+      #0000 88deg,
+      #000 88.25deg 91.75deg,
+      #0000 92deg
+    );
+  transform-origin: 100% 50%;
+  transform: rotate(calc(var(--value) * 180deg / 100));
+  transition: ease-in-out;
+}
 
-
-
-
+/* Three dot spinner */
+.three_dot_spinner {
+  width: 88px;
+  height: 12px;
+  --_g: no-repeat radial-gradient(farthest-side, #000 94%, #0000);
+  background: var(--_g) 25% 0, var(--_g) 75% 0;
+  background-size: 12px 12px;
+  position: relative;
+  animation: l24-0 1s linear infinite;
+}
+.three_dot_spinner:before {
+  content: "";
+  position: absolute;
+  height: 12px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #20c18d;
+  inset: 0;
+  margin: auto;
+  animation: l24-1 1s cubic-bezier(0.5, 300, 0.5, -300) infinite;
+}
+@keyframes l24-0 {
+  0%,
+  24% {
+    background-position: 25% 0, 75% 0;
+  }
+  40% {
+    background-position: 25% 0, 85% 0;
+  }
+  50%,
+  72% {
+    background-position: 25% 0, 75% 0;
+  }
+  90% {
+    background-position: 15% 0, 75% 0;
+  }
+  100% {
+    background-position: 25% 0, 75% 0;
+  }
+}
+@keyframes l24-1 {
+  100% {
+    transform: translate(0.1px);
+  }
+}

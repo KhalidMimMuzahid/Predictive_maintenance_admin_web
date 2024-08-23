@@ -102,7 +102,6 @@ const MarketPlaceScreen = () => {
         }}
       >
         <LeftSideMain />
-
         <RightSideMain />
       </Box>
     </Box>

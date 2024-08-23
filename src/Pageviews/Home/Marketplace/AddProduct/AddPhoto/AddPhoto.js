@@ -4,8 +4,10 @@ import addPhoto from "../../../../../Assets/Home/marketplace/add_photo_box.png";
 import { Cancel } from "@mui/icons-material";
 
 const AddPhoto = ({ steps, setSteps, productDetails, setProductDetails }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const onImageChange = async (event) => {
     if (event.target.files && event.target.files[0]?.name) {
+      setIsLoading(true);
       const formData = new FormData();
       formData.append("file", event.target.files[0]);
 
@@ -17,8 +19,6 @@ const AddPhoto = ({ steps, setSteps, productDetails, setProductDetails }) => {
         }
       );
       const data = await res.json();
-
-      console.log("url: ", data);
 
       setProductDetails((prev) => {
         const photos = prev?.photos || [];
@@ -32,7 +32,9 @@ const AddPhoto = ({ steps, setSteps, productDetails, setProductDetails }) => {
           photos,
         };
       });
+      setIsLoading(false);
     }
+    setIsLoading(false);
   };
 
   const removeImage = (indexToRemove) => {
@@ -137,7 +139,11 @@ const AddPhoto = ({ steps, setSteps, productDetails, setProductDetails }) => {
               accept="image/*"
               onChange={onImageChange}
             />
-            <img src={addPhoto} alt="" />
+            {isLoading ? (
+              <Box className="three_dot_spinner" />
+            ) : (
+              <img src={addPhoto} alt="" />
+            )}
           </label>
         )}
       </Box>

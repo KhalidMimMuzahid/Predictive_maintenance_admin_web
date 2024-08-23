@@ -158,7 +158,7 @@ const Details = ({ productDetails }) => {
               productDetails?.taxStatus?.slice(1)}
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        {/* <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography sx={{ color: "#868DAA", fontSize: "14px", width: "30%" }}>
             Tax Status Class
           </Typography>
@@ -172,7 +172,7 @@ const Details = ({ productDetails }) => {
           >
             Supply 3402
           </Typography>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );

@@ -18,7 +18,6 @@ const ProductDetails = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const { data: productsCategoriesData } = useGetProductCategoriesQuery();
-
   return (
     <Box
       sx={{
@@ -97,7 +96,8 @@ const ProductDetails = ({
             labelId="demo-multiple-name-label"
             id="demo-multiple-name"
             fullWidth
-            onSelect={(e) => {
+            onChange={(e) => {
+              setSelectedCategory(e.target?.value);
               setProductDetails((prev) => {
                 return {
                   ...prev,
@@ -127,7 +127,7 @@ const ProductDetails = ({
             labelId="demo-multiple-name-label"
             id="demo-multiple-name"
             fullWidth
-            onSelect={(e) => {
+            onChange={(e) => {
               setProductDetails((prev) => {
                 return {
                   ...prev,
@@ -153,11 +153,12 @@ const ProductDetails = ({
       <Box sx={{ display: "flex", gap: "12px" }}>
         <FormControl fullWidth>
           <OutlinedInput
+            type="number"
             onChange={(e) => {
               setProductDetails((prev) => {
                 return {
                   ...prev,
-                  regularPrice: e.target?.value,
+                  regularPrice: Number(e.target?.value),
                 };
               });
             }}
@@ -167,11 +168,12 @@ const ProductDetails = ({
         </FormControl>
         <FormControl fullWidth>
           <OutlinedInput
+            type="number"
             onChange={(e) => {
               setProductDetails((prev) => {
                 return {
                   ...prev,
-                  salePrice: e.target?.value,
+                  salePrice: Number(e.target?.value),
                 };
               });
             }}

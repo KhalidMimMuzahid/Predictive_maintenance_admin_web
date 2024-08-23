@@ -10,76 +10,117 @@ export const columns = [
         ID
       </Typography>
     ),
-    width: 180,
-
+    width: 280,
     renderCell: (props) => {
-      <Typography>{props?.row?._id}</Typography>;
+      return (
+        <Typography sx={{ color: "#868DAA" }}>{props?.row?._id}</Typography>
+      );
     },
   },
   {
-    field: "date",
+    field: "createdAt",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
       >
-        DATE
+        Date
       </Typography>
     ),
-    width: 200,
-
+    width: 150,
     renderCell: (props) => {
-      <Typography>{props?.row?.date}</Typography>;
+      const timestamp = props?.row?.createdAt;
+      const date = new Date(timestamp);
+      const day = date.getUTCDate();
+      const month = date.getUTCMonth() + 1;
+      const year = date.getUTCFullYear();
+      const formattedDate = `${day}-${month}-${year}`;
+      return <Typography sx={{ color: "#4D5983" }}>{formattedDate}</Typography>;
     },
   },
   {
-    field: "products",
+    field: "name",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
       >
-        PRODUCTS
+        Products
       </Typography>
     ),
     width: 225,
-
     renderCell: (props) => {
-      <Typography>{props?.row?.products}</Typography>;
+      return (
+        <Typography sx={{ color: "#4D5983" }}>
+          {props?.row?.product?.name}
+        </Typography>
+      );
     },
   },
   {
-    field: "payment",
+    field: "isPaid",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
       >
-        PAYMENT
+        Payment
       </Typography>
     ),
-    width: 200,
+    width: 150,
     renderCell: (props) => {
-      <Typography
-        sx={{
-          background: props?.row?.payment === "paid" ? "#D7FCF9" : "#EBEEF3",
-          padding: "8px",
-        }}
-      >
-        {props?.row?.payment}
-      </Typography>;
+      return (
+        <Typography
+          sx={{
+            background:
+              props?.row?.paidStatus?.isPaid === true ? "#D7FCF9" : "#EBEEF3",
+            color:
+              props?.row?.paidStatus?.isPaid === true ? "#20C18D" : "#8091A3",
+            padding: "8px",
+          }}
+        >
+          {props?.row?.paidStatus?.isPaid === true ? "Paid" : "Unpaid"}
+        </Typography>
+      );
     },
   },
   {
-    field: "fulfillment",
+    field: "status",
     headerName: (
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
       >
-        FULFILLMENT
+        Fulfillment
       </Typography>
     ),
     width: 200,
 
     renderCell: (props) => {
-      <Typography>{props?.row?.fulfillment}</Typography>;
+      return (
+        <Typography
+          sx={{
+            color: "#4D5983",
+            fontWeight: "700",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "36px",
+              color:
+                props?.row?.status === "delivered"
+                  ? "#20C18D"
+                  : props?.row?.status === "pending"
+                  ? "#f7cb73"
+                  : props?.row?.status === "in-progress" && "#F68B1F",
+            }}
+          >
+            {" "}
+            &#x2022;
+          </span>
+          {props?.row?.status?.charAt(0).toUpperCase() +
+            props?.row?.status?.slice(1)}
+        </Typography>
+      );
     },
   },
   {
@@ -88,13 +129,17 @@ export const columns = [
       <Typography
         sx={{ color: "#6E6893", fontWeight: "600", fontSize: "14px" }}
       >
-        TOTAL
+        Total
       </Typography>
     ),
     width: 200,
 
     renderCell: (props) => {
-      <Typography>{props?.row?.total}</Typography>;
+      return (
+        <Typography sx={{ color: "#4D5983", fontWeight: "700" }}>
+          ¥{props?.row?.cost?.totalAmount}
+        </Typography>
+      );
     },
   },
 ];

@@ -1,6 +1,5 @@
-import { makeStyles } from "@mui/styles";
-
 import dashboard_icon from "../Assets/Component/dashboard_icon.svg";
+import ai_dashboard_icon from "../Assets/Component/ai_dashboard.svg";
 import vendor_icon from "../Assets/Component/vendor_icon.svg";
 import customer_icon from "../Assets/Component/customers_icon.svg";
 import chat_icon from "../Assets/Component/chat_icon.svg";
@@ -43,6 +42,11 @@ const generalRoutes = [
     name: "Dashboard",
     path: "/",
     icon: <img src={dashboard_icon} />,
+  },
+  {
+    name: "AI Dashboard",
+    path: "/ai",
+    icon: <img src={ai_dashboard_icon} />,
   },
   {
     name: "Service Provider",
