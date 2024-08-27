@@ -33,10 +33,8 @@ import CollapsibleSidebar from "./Components/CollapsibleSIdebar";
 import FAQ from "./Pageviews/Home/HelpAI/pageviews/faq";
 import WalletCustomerDetails from "./Pageviews/Home/Wallet/wallet_customer_details";
 import ControlPanelCustomer from "./Pageviews/Home/ControlPanel/pageviews/control_panel_customer_screen";
-import ControlPanelMachine from "./Pageviews/Home/ControlPanel/pageviews/control_panel_machine_screen";
 import ControlPanelInventory from "./Pageviews/Home/ControlPanel/pageviews/control_panel_inventory_screen";
 import ControlPanelIot from "./Pageviews/Home/ControlPanel/pageviews/control_panel_iot_screen";
-import ControlPanelReservationRequest from "./Pageviews/Home/ControlPanel/pageviews/control_panel_reservation_request_screen";
 import ControlPanelShop from "./Pageviews/Home/ControlPanel/pageviews/control_panel_shop_screen";
 import ControlPanelVendor from "./Pageviews/Home/ControlPanel/pageviews/control_panel_vendor_screen";
 import ControlPanelWallet from "./Pageviews/Home/ControlPanel/pageviews/control_panel_wallet_screen";
@@ -112,6 +110,8 @@ import EditProduct from "./Pageviews/Home/Marketplace/EditProduct/EditProduct";
 import UnderConstruction from "./Utils/UnderConstruction";
 import PackagesScreen from "./Pageviews/Home/Packages/PackagesScreen";
 import AI from "./Pageviews/Home/AI/AI";
+import ReservationRequest from "./Pageviews/Home/ControlPanel/ReservationRequest/ReservationRequest";
+import Machine from "./Pageviews/Home/ControlPanel/Machine/Machine";
 
 const theme = createTheme();
 
@@ -579,20 +579,17 @@ function App() {
                   <Route path="/reports" element={<ReportScreen />} />
                   <Route
                     path="/control_panel"
-                    element={<ControlPanelReservationRequest />}
+                    element={<ReservationRequest />}
                   />
                   <Route
                     path="/control_panel/reservation_request"
-                    element={<ControlPanelReservationRequest />}
+                    element={<ReservationRequest />}
                   />
                   <Route
                     path="/control_panel/customer"
                     element={<ControlPanelCustomer />}
                   />
-                  <Route
-                    path="/control_panel/machine"
-                    element={<ControlPanelMachine />}
-                  />
+                  <Route path="/control_panel/machine" element={<Machine />} />
                   <Route
                     path="/control_panel/vendor"
                     element={<ControlPanelVendor />}

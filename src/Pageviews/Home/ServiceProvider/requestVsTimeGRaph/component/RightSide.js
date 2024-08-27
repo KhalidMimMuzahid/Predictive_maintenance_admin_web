@@ -1,30 +1,9 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import rectangle from "../../../../../Assets/Home/customer/Rectangle.png";
-import CanvasJSReact from "@canvasjs/react-charts";
-import { color } from "framer-motion";
-
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+import DoughnutChart from "../../../../../Utils/Chart/DoughnutChart/DoughnutChart";
 
 const RightSide = () => {
-  const options = {
-    animationEnabled: true,
-    data: [
-      {
-        type: "doughnut",
-        showInLegend: true,
-        indexLabel: "{name}: {y}",
-        yValueFormatString: "#,###",
-        dataPoints: [
-          { name: "Schedule", y: 644, color: "#FFA723" },
-          { name: "Inactive", y: 311, color: "#EB4141" },
-          { name: "Active", y: 809, color: "#17B82A" },
-        ],
-      },
-    ],
-    width: 350,
-  };
   return (
     <Box
       sx={{
@@ -78,9 +57,15 @@ const RightSide = () => {
         </Box>
       </Box>
       <Box
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+        }}
       >
-        <CanvasJSChart options={options} />
+        {/* <CanvasJSChart options={options} /> */}
+        <DoughnutChart />
       </Box>
     </Box>
   );

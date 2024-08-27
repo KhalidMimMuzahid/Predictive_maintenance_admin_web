@@ -32,11 +32,11 @@ const RecentOrdersTable = () => {
               initialState={{
                 pagination: {
                   paginationModel: {
-                    pageSize: 10,
+                    pageSize: 5,
                   },
                 },
               }}
-              pageSizeOptions={[10]}
+              pageSizeOptions={[5]}
               rowHeight={61}
               pageSize={5}
               rowsPerPageOptions={5}

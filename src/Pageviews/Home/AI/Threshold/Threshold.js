@@ -1,8 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import ThresholdTable from "./ThresholdTable/ThresholdTable";
+import { useGetThresholdQuery } from "../../../../features/ai/aiSlice";
+import Loader from "../../../../Utils/Loader";
 
 const Threshold = () => {
+  const { data: thresholdData, isLoading, refetch } = useGetThresholdQuery();
+
   return (
     <Box
       sx={{
@@ -23,7 +27,29 @@ const Threshold = () => {
           alignItems: "center",
         }}
       >
-        <ThresholdTable />
+        {isLoading && <Loader />}
+        {thresholdData?.data?.length > 0 ? (
+          <ThresholdTable
+            thresholdData={thresholdData?.data}
+            refetch={refetch}
+          />
+        ) : (
+          <Box
+            sx={{
+              width: "100%",
+              height: "30vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              sx={{ fontWeight: "600", fontSize: "24px", color: "#F15F5F" }}
+            >
+              No Threshold
+            </Typography>
+          </Box>
+        )}
       </Box>
     </Box>
   );

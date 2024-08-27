@@ -43,6 +43,32 @@ const CustomerFeedback = () => {
       message:
         "This service exceeded all my expectations. From the moment I arrived, I was treated with the utmost care and attention. The staff went above and beyond to ensure that I was comfortable and satisfied with everything. I can't recommend this place enough—I'll definitely be returning in the future!",
     },
+    {
+      user: {
+        userPhotoUrl: customer_photo,
+        name: "Alice Johnson",
+      },
+      date: {
+        date: "2024-08-18",
+        daysAgo: 5,
+      },
+      ratings: 5.0,
+      message:
+        "This service exceeded all my expectations. From the moment I arrived, I was treated with the utmost care and attention. The staff went above and beyond to ensure that I was comfortable and satisfied with everything. I can't recommend this place enough—I'll definitely be returning in the future!",
+    },
+    {
+      user: {
+        userPhotoUrl: customer_photo,
+        name: "Alice Johnson",
+      },
+      date: {
+        date: "2024-08-18",
+        daysAgo: 5,
+      },
+      ratings: 5.0,
+      message:
+        "This service exceeded all my expectations. From the moment I arrived, I was treated with the utmost care and attention. The staff went above and beyond to ensure that I was comfortable and satisfied with everything. I can't recommend this place enough—I'll definitely be returning in the future!",
+    },
   ];
 
   return (
@@ -58,7 +84,15 @@ const CustomerFeedback = () => {
         Customer Feedback
       </Typography>
       <Box sx={{ marginTop: "24px" }}>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "24px",
+            height: "220px",
+            overflow: "scroll",
+          }}
+        >
           {feedbacks?.map((feedback, i) => (
             <Box sx={{ display: "flex", alignItems: "center", gap: "32px" }}>
               <img src={feedback?.user?.userPhotoUrl} alt="" />

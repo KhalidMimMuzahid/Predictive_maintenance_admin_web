@@ -2,6 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { usePostProductMutation } from "../../../../../features/marketplace/marketplaceSlice";
 import { toast } from "react-toastify";
+import ProgressingLoader from "../../../../../Utils/ProgressingLoader";
 
 const Review = ({ steps, setSteps, productDetails, setProductDetails }) => {
   const [postProduct, { data, isError, error, isLoading, isSuccess }] =
@@ -63,7 +64,7 @@ const Review = ({ steps, setSteps, productDetails, setProductDetails }) => {
             fontWeight: "600",
           }}
         >
-          {isLoading ? <Box className="three_dot_spinner" /> : "Publish"}
+          {isLoading ? <ProgressingLoader /> : "Publish"}
         </Button>
       </Box>
     </Box>

@@ -19,7 +19,30 @@ export const predefinedApi = createApi({
       query: () => `/predefined-value/get-product-all-categories`,
       providesTags: [],
     }),
+    getControlPanelMachineBrands: builder.query({
+      query: () => `/predefined-value/get-all-machine-brands`,
+      providesTags: [],
+    }),
+    postControlPanelMachineBrand: builder.mutation({
+      query: (brandName) => ({
+        url: `/predefined-value/add-machine-brand-name?brandName=${brandName}`,
+        method: "POST",
+      }),
+      invalidatesTags: [],
+    }),
+    postControlPanelMachineBrandModel: builder.mutation({
+      query: (details) => ({
+        url: `/predefined-value/add-machine-model-name?predefinedValue=${details?.predefinedValue}&brand=${details?.brand}&modelName=${details?.modelName}`,
+        method: "POST",
+      }),
+      invalidatesTags: [],
+    }),
   }),
 });
 
-export const { useGetProductCategoriesQuery } = predefinedApi;
+export const {
+  useGetProductCategoriesQuery,
+  useGetControlPanelMachineBrandsQuery,
+  usePostControlPanelMachineBrandMutation,
+  usePostControlPanelMachineBrandModelMutation,
+} = predefinedApi;

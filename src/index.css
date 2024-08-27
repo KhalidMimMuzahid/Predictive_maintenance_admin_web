@@ -258,7 +258,7 @@ table {
 
 /* Three dot spinner */
 .three_dot_spinner {
-  width: 88px;
+  background: #20c18d;
   height: 12px;
   --_g: no-repeat radial-gradient(farthest-side, #000 94%, #0000);
   background: var(--_g) 25% 0, var(--_g) 75% 0;

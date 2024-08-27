@@ -59,7 +59,7 @@ const AI = () => {
         </Box>
       </Box>
       <Box
-        sx={{ marginTop: "40px", display: "flex", gap: "24px", width: "100%" }}
+        sx={{ marginTop: "24px", display: "flex", gap: "24px", width: "100%" }}
       >
         <AIModel />
         <Threshold />

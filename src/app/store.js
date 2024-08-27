@@ -16,6 +16,7 @@ import { marketplaceApi } from "../features/marketplace/marketplaceSlice";
 import { predefinedApi } from "../features/predefined/predefinedSlice";
 import { addFilesApi } from "../features/addFiles/addFilesSlice";
 import { ordersApi } from "../features/orders/ordersSlice";
+import { aiApi } from "../features/ai/aiSlice";
 // Store of Redux Using Redux-Toolkit
 
 export const store = configureStore({
@@ -36,6 +37,7 @@ export const store = configureStore({
     [predefinedApi.reducerPath]: predefinedApi.reducer,
     [addFilesApi.reducerPath]: addFilesApi.reducer,
     [ordersApi.reducerPath]: ordersApi.reducer,
+    [aiApi.reducerPath]: aiApi.reducer,
     auth: authSlice,
   },
   middleware: (getDefaultMiddleware) =>
@@ -56,5 +58,6 @@ export const store = configureStore({
       predefinedApi.middleware,
       addFilesApi.middleware,
       ordersApi.middleware,
+      aiApi.middleware,
     ]),
 });

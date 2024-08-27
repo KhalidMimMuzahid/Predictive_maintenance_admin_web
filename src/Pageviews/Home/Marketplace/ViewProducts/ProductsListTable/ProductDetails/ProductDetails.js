@@ -13,7 +13,6 @@ const ProductDetails = () => {
   const { _id } = useParams();
   const { data: productDetailsData } =
     useGetMarketplaceProductDetailsByIdQuery(_id);
-  console.log(productDetailsData);
   return (
     <Box sx={{ padding: "40px" }}>
       <Box

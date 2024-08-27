@@ -13,17 +13,7 @@ import {
 } from "@mui/material";
 import TableRowComponent from "./TableRowComponent";
 
-const ThresholdTable = () => {
-  const rows = [
-    { name: "Base", temperature: 95, vibration: 95 },
-    { name: "Door", temperature: 95, vibration: 95 },
-    { name: "Rincepump", temperature: 95, vibration: 95 },
-    { name: "Tank", temperature: 95, vibration: 95 },
-    { name: "Topnozzle", temperature: 95, vibration: 95 },
-    { name: "Undernozzle", temperature: 95, vibration: 95 },
-    { name: "Washpump", temperature: 95, vibration: 95 },
-  ];
-
+const ThresholdTable = ({ thresholdData, refetch }) => {
   return (
     <TableContainer
       component={Paper}
@@ -71,8 +61,12 @@ const ThresholdTable = () => {
           </TableRow>
         </TableHead>
         <TableBody sx={{ boxShadow: "none" }}>
-          {rows.map((row) => (
-            <TableRowComponent row={row} />
+          {thresholdData.map((threshold) => (
+            <TableRowComponent
+              key={threshold?.name}
+              threshold={threshold}
+              refetch={refetch}
+            />
           ))}
         </TableBody>
       </Table>
