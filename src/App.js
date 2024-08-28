@@ -32,7 +32,6 @@ import SettingsScreen from "./Pageviews/Home/Settings/settings_screen";
 import CollapsibleSidebar from "./Components/CollapsibleSIdebar";
 import FAQ from "./Pageviews/Home/HelpAI/pageviews/faq";
 import WalletCustomerDetails from "./Pageviews/Home/Wallet/wallet_customer_details";
-import ControlPanelCustomer from "./Pageviews/Home/ControlPanel/pageviews/control_panel_customer_screen";
 import ControlPanelInventory from "./Pageviews/Home/ControlPanel/pageviews/control_panel_inventory_screen";
 import ControlPanelIot from "./Pageviews/Home/ControlPanel/pageviews/control_panel_iot_screen";
 import ControlPanelShop from "./Pageviews/Home/ControlPanel/pageviews/control_panel_shop_screen";
@@ -112,6 +111,7 @@ import PackagesScreen from "./Pageviews/Home/Packages/PackagesScreen";
 import AI from "./Pageviews/Home/AI/AI";
 import ReservationRequest from "./Pageviews/Home/ControlPanel/ReservationRequest/ReservationRequest";
 import Machine from "./Pageviews/Home/ControlPanel/Machine/Machine";
+import Customer from "./Pageviews/Home/ControlPanel/Customer/Customer";
 
 const theme = createTheme();
 
@@ -587,7 +587,7 @@ function App() {
                   />
                   <Route
                     path="/control_panel/customer"
-                    element={<ControlPanelCustomer />}
+                    element={<Customer />}
                   />
                   <Route path="/control_panel/machine" element={<Machine />} />
                   <Route

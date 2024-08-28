@@ -37,6 +37,17 @@ export const predefinedApi = createApi({
       }),
       invalidatesTags: [],
     }),
+    getControlPanelIOTSectionNames: builder.query({
+      query: () => `/predefined-value/get-iot-section-names`,
+      providesTags: [],
+    }),
+    postControlPanelIOTSectionName: builder.mutation({
+      query: (sectionName) => ({
+        url: `/predefined-value/add-iot-section-name?sectionName=${sectionName}`,
+        method: "POST",
+      }),
+      invalidatesTags: [],
+    }),
   }),
 });
 
@@ -45,4 +56,6 @@ export const {
   useGetControlPanelMachineBrandsQuery,
   usePostControlPanelMachineBrandMutation,
   usePostControlPanelMachineBrandModelMutation,
+  useGetControlPanelIOTSectionNamesQuery,
+  usePostControlPanelIOTSectionNameMutation,
 } = predefinedApi;
