@@ -112,6 +112,7 @@ import AI from "./Pageviews/Home/AI/AI";
 import ReservationRequest from "./Pageviews/Home/ControlPanel/ReservationRequest/ReservationRequest";
 import Machine from "./Pageviews/Home/ControlPanel/Machine/Machine";
 import Customer from "./Pageviews/Home/ControlPanel/Customer/Customer";
+import IOT from "./Pageviews/Home/ControlPanel/IOT/IOT";
 
 const theme = createTheme();
 
@@ -594,10 +595,7 @@ function App() {
                     path="/control_panel/vendor"
                     element={<ControlPanelVendor />}
                   />
-                  <Route
-                    path="/control_panel/IoT"
-                    element={<ControlPanelIot />}
-                  />
+                  <Route path="/control_panel/IoT" element={<IOT />} />
                   <Route
                     path="/control_panel/wallet"
                     element={<ControlPanelWallet />}

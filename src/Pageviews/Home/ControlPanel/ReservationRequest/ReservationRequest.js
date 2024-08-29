@@ -5,6 +5,9 @@ import {
   FormControl,
   Grid,
   IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -96,10 +99,10 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const ReservationRequest = () => {
+  const classes = useStyle();
   const [addStatusModal, setAddStatusModal] = useState(false);
   const [addRadiusModal, setAddRadiusModal] = useState(false);
   const [addAreaModal, setAddAreaModal] = useState(false);
-  const classes = useStyle();
 
   return (
     <>
@@ -166,21 +169,21 @@ const ReservationRequest = () => {
               </Grid>
 
               <Grid item xs={8} sm={8} md={8} lg={8}>
-                <FormControl fullWidth>
-                  <TextField
-                    select
+                <FormControl fullWidth size="small">
+                  <InputLabel id="demo-simple-select-label">
+                    Select Status
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    label="Status Type"
-                    size="small"
+                    // value={age}
+                    label="Select Status"
+                    //   onChange={(e) => setSelectedBrand(e?.target?.value)}
                   >
-                    {/* {statusType.length != 0 ? (
-                    statusType.map((status) => (
-                      <MenuItem value={status}>{status}</MenuItem>
-                    ))
-                  ) : (
-                    <MenuItem value="no status">Status Type</MenuItem>
-                  )} */}
-                  </TextField>
+                    <MenuItem>Online</MenuItem>
+                    <MenuItem>Offline</MenuItem>
+                    <MenuItem>Pending</MenuItem>
+                  </Select>
                 </FormControl>
               </Grid>
 
@@ -204,21 +207,22 @@ const ReservationRequest = () => {
               </Grid>
 
               <Grid item xs={8} sm={8} md={8} lg={8}>
-                <FormControl fullWidth>
-                  <TextField
-                    select
+                <FormControl fullWidth size="small">
+                  <InputLabel id="demo-simple-select-label">
+                    Select Nearest Location
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    label="Select Radius"
-                    size="small"
+                    // value={age}
+                    label="Select Nearest Location"
+                    //   onChange={(e) => setSelectedBrand(e?.target?.value)}
                   >
-                    {/* {radius.length != 0 ? (
-                    radius.map((radi) => (
-                      <MenuItem value={radi}>{radi}</MenuItem>
-                    ))
-                  ) : (
-                    <MenuItem value="no radius">Select Radius</MenuItem>
-                  )} */}
-                  </TextField>
+                    <MenuItem>0-5 km</MenuItem>
+                    <MenuItem>6-15 km</MenuItem>
+                    <MenuItem>16-30 km</MenuItem>
+                    <MenuItem>30+ km</MenuItem>
+                  </Select>
                 </FormControl>
               </Grid>
 
@@ -242,21 +246,21 @@ const ReservationRequest = () => {
               </Grid>
 
               <Grid item xs={8} sm={8} md={8} lg={8}>
-                <FormControl fullWidth>
-                  <TextField
-                    select
+                <FormControl fullWidth size="small">
+                  <InputLabel id="demo-simple-select-label">
+                    Select Status
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    label="Area Type"
-                    size="small"
+                    // value={age}
+                    label="Select Status"
+                    //   onChange={(e) => setSelectedBrand(e?.target?.value)}
                   >
-                    {/* {areaType.length != 0 ? (
-                    areaType.map((area) => (
-                      <MenuItem value={area}>{area}</MenuItem>
-                    ))
-                  ) : (
-                    <MenuItem value="no area">Area Type</MenuItem>
-                  )} */}
-                  </TextField>
+                    <MenuItem>Mirpur 10</MenuItem>
+                    <MenuItem>Gulshan</MenuItem>
+                    <MenuItem>Motijheel</MenuItem>
+                  </Select>
                 </FormControl>
               </Grid>
 

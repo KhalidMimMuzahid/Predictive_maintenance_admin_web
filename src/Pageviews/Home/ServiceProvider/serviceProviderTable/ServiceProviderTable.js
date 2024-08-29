@@ -169,21 +169,6 @@ const ServiceProviderTable = ({
             sx={{
               borderRadius: "0px",
               border: "none",
-              "& .MuiDataGrid-columnHeaders": {
-                fontWeight: 1000,
-                borderRadius: "0",
-                borderTop: "1px solid #D9D9D9",
-                background: "#F4F2FF",
-              },
-              "& .MuiDataGrid-virtualScroller": {
-                overflow: "auto", // Ensure both horizontal and vertical scrolling
-              },
-              "& .MuiDataGrid-root": {
-                overflowX: "auto", // Ensure horizontal scrollbar
-              },
-              "& .MuiDataGrid-footerContainer": {
-                borderTop: "1px solid #D9D9D9",
-              },
             }}
             rows={serviceProvidersData?.data?.map((data, id) => {
               return { ...data, id };
@@ -199,6 +184,7 @@ const ServiceProviderTable = ({
             pageSizeOptions={[10]}
             checkboxSelection
             disableRowSelectionOnClick
+            disableExtendRowFullWidth={true}
           />
         ) : (
           <Box

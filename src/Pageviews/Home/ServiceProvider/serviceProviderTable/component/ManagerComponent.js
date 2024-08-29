@@ -2,9 +2,14 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const ManagerComponent = ({ props }) => {
-  console.log(props.serviceProviderAdmin?.serviceProviderAdmin);
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: "0 8px" }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: "0 8px",
+      }}
+    >
       <img
         src={props?.serviceProviderAdmin?.serviceProviderAdmin?.photoUrl}
         style={{

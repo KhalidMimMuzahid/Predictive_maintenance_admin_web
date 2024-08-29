@@ -25,6 +25,7 @@ const AddIOTSectionNameModal = ({
     if (isSuccess) {
       toast.success(data?.message);
       refetch();
+      setAddIOTSectionNameModal(!addIOTSectionNameModal);
     } else if (isError) {
       toast.error(error?.data?.message);
     }

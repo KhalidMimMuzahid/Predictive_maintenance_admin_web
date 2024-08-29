@@ -48,6 +48,13 @@ export const predefinedApi = createApi({
       }),
       invalidatesTags: [],
     }),
+    postControlPanelReservationRequestStatus: builder.mutation({
+      query: (status) => ({
+        url: `/predefined-value/add-reservation-request-status?status=${status}`,
+        method: "POST",
+      }),
+      invalidatesTags: [],
+    }),
   }),
 });
 
@@ -58,4 +65,5 @@ export const {
   usePostControlPanelMachineBrandModelMutation,
   useGetControlPanelIOTSectionNamesQuery,
   usePostControlPanelIOTSectionNameMutation,
+  usePostControlPanelReservationRequestStatusMutation,
 } = predefinedApi;
