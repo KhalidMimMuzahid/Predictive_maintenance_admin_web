@@ -7,9 +7,29 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { usePostControlPanelReservationRequestRadiusMutation } from "../../../../../features/predefined/predefinedSlice";
+
+import { toast } from "react-toastify";
+import ProgressingLoader from "../../../../../Utils/ProgressingLoader";
 
 const AddRadiusModal = ({ addRadiusModal, setAddRadiusModal }) => {
+  const [radius, setRadius] = useState("");
+  const [postRadius, { data, isError, error, isLoading, isSuccess }] =
+    usePostControlPanelReservationRequestRadiusMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(data?.message);
+      setAddRadiusModal(!addRadiusModal);
+    } else if (isError) {
+      toast.error(error?.data?.message);
+    }
+  }, [isSuccess, isError]);
+
+  const submitStatus = () => {
+    postRadius(radius);
+  };
   return (
     <Modal
       sx={{
@@ -63,7 +83,7 @@ const AddRadiusModal = ({ addRadiusModal, setAddRadiusModal }) => {
             label="Status Type"
             //   value={newStatus}
             onChange={(e) => {
-              // setNewStatus(e.target.value);
+              setRadius(e.target.value);
             }}
           />
         </Box>
@@ -95,7 +115,7 @@ const AddRadiusModal = ({ addRadiusModal, setAddRadiusModal }) => {
           </Button>
           <button
             type="submit"
-            // disabled={isLoading}
+            onClick={() => submitStatus()}
             style={{
               width: "160px",
               height: "36px",
@@ -112,8 +132,7 @@ const AddRadiusModal = ({ addRadiusModal, setAddRadiusModal }) => {
               },
             }}
           >
-            {/* {isLoading ? "Saving..." : "Save"} */}
-            Add
+            {isLoading ? <ProgressingLoader /> : "Add"}
           </button>
         </Box>
       </Container>

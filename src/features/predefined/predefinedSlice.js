@@ -55,6 +55,27 @@ export const predefinedApi = createApi({
       }),
       invalidatesTags: [],
     }),
+    postControlPanelReservationRequestRadius: builder.mutation({
+      query: (radius) => ({
+        url: `/predefined-value/add-reservation-request-nearest-location?nearestLocation=${radius}`,
+        method: "POST",
+      }),
+      invalidatesTags: [],
+    }),
+    postControlPanelReservationRequestArea: builder.mutation({
+      query: (area) => ({
+        url: `/predefined-value/add-reservation-request-area?area=${area}`,
+        method: "POST",
+      }),
+      invalidatesTags: [],
+    }),
+    postControlPanelReservationRequestIssue: builder.mutation({
+      query: (issue) => ({
+        url: `/predefined-value/add-reservation-request-issue?issue=${issue}`,
+        method: "POST",
+      }),
+      invalidatesTags: [],
+    }),
   }),
 });
 
@@ -66,4 +87,7 @@ export const {
   useGetControlPanelIOTSectionNamesQuery,
   usePostControlPanelIOTSectionNameMutation,
   usePostControlPanelReservationRequestStatusMutation,
+  usePostControlPanelReservationRequestRadiusMutation,
+  usePostControlPanelReservationRequestAreaMutation,
+  usePostControlPanelReservationRequestIssueMutation,
 } = predefinedApi;

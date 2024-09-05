@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { GetLocalStorageData } from "../../Utils/getLocalStorageData";
+import { duration } from "@mui/material";
 
 export const addFilesApi = createApi({
   reducerPath: "addFilesApi",
@@ -23,7 +24,16 @@ export const addFilesApi = createApi({
       }),
       invalidatesTags: ["addPhoto"],
     }),
+    postPdfData: builder.mutation({
+      query: (data) => ({
+        url: `/machine/machine-report?machine=${data?._id}&limit=${data?.limit}`,
+        method: "POST",
+        body: { duration: data?.duration },
+      }),
+      invalidatesTags: [],
+    }),
   }),
 });
 
-export const { usePostPhotoToAWSMutation } = addFilesApi;
+export const { usePostPhotoToAWSMutation, usePostPdfDataMutation } =
+  addFilesApi;

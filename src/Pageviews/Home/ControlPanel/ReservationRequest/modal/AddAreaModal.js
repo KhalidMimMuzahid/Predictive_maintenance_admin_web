@@ -7,9 +7,28 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import ProgressingLoader from "../../../../../Utils/ProgressingLoader";
+import { usePostControlPanelReservationRequestAreaMutation } from "../../../../../features/predefined/predefinedSlice";
 
 const AddAreaModal = ({ addAreaModal, setAddAreaModal }) => {
+  const [area, setArea] = useState("");
+  const [postArea, { data, isError, error, isLoading, isSuccess }] =
+    usePostControlPanelReservationRequestAreaMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(data?.message);
+      setAddAreaModal(!addAreaModal);
+    } else if (isError) {
+      toast.error(error?.data?.message);
+    }
+  }, [isSuccess, isError]);
+
+  const submitStatus = () => {
+    postArea(area);
+  };
   return (
     <Modal
       sx={{
@@ -63,7 +82,7 @@ const AddAreaModal = ({ addAreaModal, setAddAreaModal }) => {
             label="Status Type"
             //   value={newStatus}
             onChange={(e) => {
-              // setNewStatus(e.target.value);
+              setArea(e.target.value);
             }}
           />
         </Box>
@@ -94,8 +113,8 @@ const AddAreaModal = ({ addAreaModal, setAddAreaModal }) => {
             Cancel
           </Button>
           <button
+            onClick={() => submitStatus()}
             type="submit"
-            // disabled={isLoading}
             style={{
               width: "160px",
               height: "36px",
@@ -112,8 +131,7 @@ const AddAreaModal = ({ addAreaModal, setAddAreaModal }) => {
               },
             }}
           >
-            {/* {isLoading ? "Saving..." : "Save"} */}
-            Add
+            {isLoading ? <ProgressingLoader /> : "Add"}
           </button>
         </Box>
       </Container>

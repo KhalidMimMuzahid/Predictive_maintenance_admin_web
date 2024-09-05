@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  duration,
   FormControl,
   InputLabel,
   MenuItem,
@@ -11,9 +12,25 @@ import React, { useState } from "react";
 import FirstGraph from "./component/Graph/FirstGraph";
 import SecondGraph from "./component/Graph/SecondGraph";
 import ThirdGraph from "./component/Graph/ThirdGraph";
+import { usePostPdfDataMutation } from "../../../../features/addFiles/addFilesSlice";
+import TableGenerator from "../../../../Utils/PdfGenerator/TableGenerator";
 
 const RequestVsTimeGraph = () => {
   const [whichGraph, setWhichGraph] = useState("bar");
+
+  const postData = {
+    _id: "666185187ab7957fbf81dfc1",
+    duration: {
+      startDate: "2024-07-04T16:55:54.081+00:00",
+      endDate: "2024-09-04T16:55:55.081+00:00",
+    },
+    limit: 8,
+  };
+  const [
+    postPdfData,
+    { data: responseData, isError, error, isLoading, isSuccess },
+  ] = usePostPdfDataMutation();
+
   return (
     <Box>
       <Box
@@ -93,16 +110,12 @@ const RequestVsTimeGraph = () => {
             </div>
 
             <div>
-              <Button
-                sx={{
-                  color: "white",
-                  backgroundColor: "#24459C",
-                  minWidth: 180,
-                }}
-                variant="contained"
-              >
-                Download
-              </Button>
+              <TableGenerator
+                postPdfData={postPdfData}
+                data={responseData?.data}
+                postData={postData}
+                isLoading={isLoading}
+              />
             </div>
           </div>
         </Box>

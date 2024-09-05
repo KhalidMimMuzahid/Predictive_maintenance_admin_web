@@ -8,29 +8,27 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { usePostControlPanelMachineBrandMutation } from "../../../../../features/predefined/predefinedSlice";
+import { usePostControlPanelReservationRequestIssueMutation } from "../../../../../features/predefined/predefinedSlice";
 import { toast } from "react-toastify";
 import ProgressingLoader from "../../../../../Utils/ProgressingLoader";
 
-const AddBrandModal = ({ addBrandModal, setAddBrandModal, refetch }) => {
-  const [brandName, setBrandName] = useState("");
-  const [postBrandName, { data, isError, error, isLoading, isSuccess }] =
-    usePostControlPanelMachineBrandMutation();
+const AddIssueModal = ({ addIssueModal, setAddIssueModal }) => {
+  const [issue, setIssue] = useState("");
+  const [postIssue, { data, isError, error, isLoading, isSuccess }] =
+    usePostControlPanelReservationRequestIssueMutation();
 
   useEffect(() => {
     if (isSuccess) {
       toast.success(data?.message);
-      refetch();
-      setAddBrandModal(!addBrandModal);
+      setAddIssueModal(!addIssueModal);
     } else if (isError) {
       toast.error(error?.data?.message);
     }
   }, [isSuccess, isError]);
 
-  const submitBrandName = () => {
-    postBrandName(brandName);
+  const submitStatus = () => {
+    postIssue(issue);
   };
-
   return (
     <Modal
       sx={{
@@ -39,7 +37,7 @@ const AddBrandModal = ({ addBrandModal, setAddBrandModal, refetch }) => {
         alignItems: "center",
         justifyContent: "center",
       }}
-      open={addBrandModal}
+      open={addIssueModal}
     >
       <Container
         sx={{
@@ -58,7 +56,7 @@ const AddBrandModal = ({ addBrandModal, setAddBrandModal, refetch }) => {
               textAlign: "center",
             }}
           >
-            Add Brand
+            Add Issue
           </Typography>
           <Button
             sx={{
@@ -69,7 +67,7 @@ const AddBrandModal = ({ addBrandModal, setAddBrandModal, refetch }) => {
               right: "0",
             }}
             onClick={() => {
-              setAddBrandModal(!addBrandModal);
+              setAddIssueModal(!addIssueModal);
             }}
           >
             <Close />
@@ -80,11 +78,11 @@ const AddBrandModal = ({ addBrandModal, setAddBrandModal, refetch }) => {
           <TextField
             fullWidth
             size="small"
-            placeholder="Samsung"
-            label="Add Brand"
+            placeholder="Issue"
+            label="Issue"
             //   value={newStatus}
             onChange={(e) => {
-              setBrandName(e.target.value);
+              setIssue(e.target.value);
             }}
           />
         </Box>
@@ -99,7 +97,7 @@ const AddBrandModal = ({ addBrandModal, setAddBrandModal, refetch }) => {
         >
           <Button
             onClick={() => {
-              setAddBrandModal(!addBrandModal);
+              setAddIssueModal(!addIssueModal);
             }}
             sx={{
               width: "160px",
@@ -115,9 +113,8 @@ const AddBrandModal = ({ addBrandModal, setAddBrandModal, refetch }) => {
             Cancel
           </Button>
           <button
-            onClick={() => submitBrandName()}
+            onClick={() => submitStatus()}
             type="submit"
-            // disabled={isLoading}
             style={{
               width: "160px",
               height: "36px",
@@ -142,4 +139,4 @@ const AddBrandModal = ({ addBrandModal, setAddBrandModal, refetch }) => {
   );
 };
 
-export default AddBrandModal;
+export default AddIssueModal;

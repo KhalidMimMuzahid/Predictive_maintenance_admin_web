@@ -15,6 +15,7 @@ import { useState } from "react";
 import AddStatusModal from "./modal/AddStatusModal";
 import AddRadiusModal from "./modal/AddRadiusModal";
 import AddAreaModal from "./modal/AddAreaModal";
+import AddIssueModal from "./modal/AddIssueModal";
 
 const useStyle = makeStyles((theme) => ({
   holder: {
@@ -103,6 +104,7 @@ const ReservationRequest = () => {
   const [addStatusModal, setAddStatusModal] = useState(false);
   const [addRadiusModal, setAddRadiusModal] = useState(false);
   const [addAreaModal, setAddAreaModal] = useState(false);
+  const [addIssueModal, setAddIssueModal] = useState(false);
 
   return (
     <>
@@ -122,6 +124,12 @@ const ReservationRequest = () => {
         <AddAreaModal
           addAreaModal={addAreaModal}
           setAddAreaModal={setAddAreaModal}
+        />
+      )}
+      {addIssueModal && (
+        <AddIssueModal
+          addIssueModal={addIssueModal}
+          setAddIssueModal={setAddIssueModal}
         />
       )}
 
@@ -268,6 +276,42 @@ const ReservationRequest = () => {
                 <IconButton
                   onClick={() => {
                     setAddAreaModal(!addAreaModal);
+                  }}
+                >
+                  <AddCircleOutline sx={{ color: "#24459C" }} />
+                </IconButton>
+              </Grid>
+            </Grid>
+            <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
+            <Grid container spacing={2}>
+              <Grid item xs={3} sm={3} md={3} lg={3}>
+                <div className={classes.optionTitle}>Issues</div>
+                <div className={classes.optionSubtitle}>Issues of Request</div>
+              </Grid>
+
+              <Grid item xs={8} sm={8} md={8} lg={8}>
+                <FormControl fullWidth size="small">
+                  <InputLabel id="demo-simple-select-label">
+                    Select Issue
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    // value={age}
+                    label="Select Issue"
+                    //   onChange={(e) => setSelectedBrand(e?.target?.value)}
+                  >
+                    <MenuItem>Sensor Problem</MenuItem>
+                    <MenuItem>Module Error</MenuItem>
+                    <MenuItem>Data Generation</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={1} sm={1} md={1} lg={1}>
+                <IconButton
+                  onClick={() => {
+                    setAddIssueModal(!addIssueModal);
                   }}
                 >
                   <AddCircleOutline sx={{ color: "#24459C" }} />

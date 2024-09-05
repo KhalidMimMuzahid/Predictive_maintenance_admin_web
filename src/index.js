@@ -6,15 +6,19 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import AppProvider from "./contextApi/appProvider";
 import { store } from "./app/store";
+import SocketProvider from "./contextApi/SocketProvider";
+import Test from "./Pageviews/Home/ServiceProvider/Test";
 
 // store.subscribe(() => store.getState());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <AppProvider>
-      <App />
-    </AppProvider>
+    <SocketProvider>
+      <AppProvider>
+        <App />
+      </AppProvider>
+    </SocketProvider>
   </Provider>
   // <React.StrictMode>
 
