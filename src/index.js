@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import AppProvider from "./contextApi/appProvider";
 import { store } from "./app/store";
 import SocketProvider from "./contextApi/SocketProvider";
-import Test from "./Pageviews/Home/ServiceProvider/Test";
 
 // store.subscribe(() => store.getState());
 

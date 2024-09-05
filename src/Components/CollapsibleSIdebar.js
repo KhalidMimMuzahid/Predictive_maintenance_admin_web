@@ -461,8 +461,7 @@ const CollapsibleSidebar = ({ children }) => {
       <div className="main-container">
         <motion.div
           animate={{
-            width: isOpen ? "300px" : "45px",
-
+            width: isOpen ? "250px" : "45px",
             transition: {
               duration: 0.5,
               type: "spring",
@@ -571,7 +570,7 @@ const CollapsibleSidebar = ({ children }) => {
           <div style={{ height: "24px" }} />
         </motion.div>
 
-        <main>
+        <main style={{ width: isOpen ? "87%" : "100%" }}>
           {children} <Footer />
         </main>
       </div>

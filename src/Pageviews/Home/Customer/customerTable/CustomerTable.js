@@ -217,15 +217,21 @@ const CustomerTable = ({ isRootCustomerPage, setIsRootCustomerPage }) => {
                 background: "#F4F2FF",
               },
             }}
+            columns={columns}
             rows={customers?.data?.map((data, id) => {
               return { ...data, id };
             })}
-            columns={columns}
-            rowHeight={61}
-            // pageSize={5}
-            // rowsPerPageOptions={5}
-            // autoHeight
-            checkboxSelection // after clicking in everywhere in the row, this check box selecting by default
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 10,
+                },
+              },
+            }}
+            pageSizeOptions={[10]}
+            checkboxSelection
+            disableRowSelectionOnClick
+            disableExtendRowFullWidth={true}
             onRowSelectionModelChange={(data, index) => {
               const selectedRowData = data?.map((index, i) => {
                 return {

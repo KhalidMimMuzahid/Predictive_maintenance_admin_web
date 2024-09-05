@@ -34,7 +34,6 @@ export const columns = [
     renderCell: (props) => <LocationComponent props={props?.row} />,
   },
   {
-    headerClassName: "table-header",
     field: "email",
     headerName: (
       <Typography
@@ -62,7 +61,7 @@ export const columns = [
         TOTAL ORDERS
       </Typography>
     ),
-    width: 180,
+    width: 160,
     renderCell: (props) => <TotalOrdersComponent props={props?.row} />,
   },
   {
@@ -88,7 +87,7 @@ export const columns = [
         STATUS
       </Typography>
     ),
-    width: 155,
+    width: 150,
     renderCell: (props) => <StatusComponent props={props?.row} />,
   },
   {

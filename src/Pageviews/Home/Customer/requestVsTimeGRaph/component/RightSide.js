@@ -1,12 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import rectangle from "../../../../../Assets/Home/customer/Rectangle.png";
-import CanvasJSReact from "@canvasjs/react-charts";
-import { color } from "framer-motion";
 import DoughnutChart from "../../../../../Utils/Chart/DoughnutChart/DoughnutChart";
-
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const RightSide = () => {
   const options = {

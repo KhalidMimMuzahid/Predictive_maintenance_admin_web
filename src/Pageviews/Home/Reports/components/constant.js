@@ -71,6 +71,6 @@ export const columns = [
       </Typography>
     ),
     width: 150,
-    renderCell: (props) => <ActionComponent props={props?.row} />,
+    renderCell: (props) => <>..</>,
   },
 ];

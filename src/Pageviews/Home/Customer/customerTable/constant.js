@@ -83,7 +83,7 @@ export const columns = [
         SUBSCRIPTION
       </Typography>
     ),
-    width: 200,
+    width: 180,
     renderCell: (props) => <SubscriptionComponent props={props} />,
   },
   {
