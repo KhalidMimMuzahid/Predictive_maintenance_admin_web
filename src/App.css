@@ -14,6 +14,33 @@ body {
   font-family: "Global User Interface", sans-serif;
 }
 
+/* Sidebar */
+.sidebarOpen {
+  background: #242a38;
+  color: white;
+  width: 250px;
+}
+.sidebarClosed {
+  background: #242a38;
+  color: white;
+  width: 45px;
+}
+
+/* Media Query */
+@media (min-width: 1280px) and (max-width: 1440px) {
+  /* Sidebar */
+  .sidebarOpen {
+    background: #1140ad;
+    color: white;
+    width: 250px;
+  }
+  .sidebarClosed {
+    background: #bb2c44;
+    color: white;
+    width: 45px;
+  }
+}
+
 /* Collapsible sidebar */
 
 .main-container {
@@ -23,13 +50,6 @@ body {
 /* main {
   padding: 0px;
 } */
-
-/* Sidebar */
-.sidebar {
-  background: #242a38;
-  color: white;
-  height: full;
-}
 
 .top_section {
   display: flex;

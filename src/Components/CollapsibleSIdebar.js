@@ -468,7 +468,8 @@ const CollapsibleSidebar = ({ children }) => {
               damping: 10,
             },
           }}
-          className={`sidebar`}
+          // className={`sidebar`}
+          className={isOpen ? "sidebarOpen" : "sidebarClosed"}
         >
           <div className="top_section">
             <AnimatePresence>

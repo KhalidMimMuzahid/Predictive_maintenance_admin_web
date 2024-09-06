@@ -196,7 +196,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div
-        className="App"
         style={{
           justifyContent: "center",
           margin: "0px auto",

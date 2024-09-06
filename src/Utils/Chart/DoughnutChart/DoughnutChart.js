@@ -28,12 +28,7 @@ const DoughnutChart = ({ width, cutout }) => {
 
   return (
     <div>
-      <Doughnut
-        type="doughnut"
-        data={data}
-        options={options}
-        width={width ? width : 350}
-      />
+      <Doughnut type="doughnut" data={data} options={options} />
     </div>
   );
 };
