@@ -17,7 +17,7 @@ const DoughnutChart = ({ width, cutout }) => {
   };
 
   const options = {
-    cutout: 110,
+    cutout: 80,
     plugins: {
       legend: {
         display: true,

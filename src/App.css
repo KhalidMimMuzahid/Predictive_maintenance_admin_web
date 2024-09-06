@@ -14,31 +14,8 @@ body {
   font-family: "Global User Interface", sans-serif;
 }
 
-/* Sidebar */
-.sidebarOpen {
-  background: #242a38;
-  color: white;
-  width: 250px;
-}
-.sidebarClosed {
-  background: #242a38;
-  color: white;
-  width: 45px;
-}
-
-/* Media Query */
-@media (min-width: 1280px) and (max-width: 1440px) {
-  /* Sidebar */
-  .sidebarOpen {
-    background: #1140ad;
-    color: white;
-    width: 250px;
-  }
-  .sidebarClosed {
-    background: #bb2c44;
-    color: white;
-    width: 45px;
-  }
+main {
+  width: 100%;
 }
 
 /* Collapsible sidebar */
@@ -57,10 +34,10 @@ body {
   justify-content: space-between;
   padding: 15px 10px;
 }
-/* .logo {
+.logo {
   font-size: 18px;
   line-height: 0;
-} */
+}
 
 .logo {
   height: 30px;
@@ -72,6 +49,11 @@ body {
 }
 
 .logo img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.logo_small img {
   max-width: 100%;
   max-height: 100%;
 }
@@ -182,6 +164,76 @@ body {
   padding-left: 20px;
 }
 
-main {
-  width: 100%;
+/* Sidebar */
+.sidebarOpen {
+  background: #242a38;
+  color: white;
+  width: 250px;
+}
+.sidebarClosed {
+  background: #242a38;
+  color: white;
+  width: 45px;
+}
+
+.mainFull {
+  width: 98%;
+}
+.mainSmall {
+  width: 87%;
+}
+.navlink_icon {
+  width: 20px;
+}
+
+/* Media Query */
+@media (min-width: 1280px) and (max-width: 1440px) {
+  /* Sidebar */
+  .sidebarOpen {
+    color: white;
+    width: 180px;
+  }
+  .sidebarClosed {
+    color: white;
+    width: 35px;
+  }
+  .mainFull {
+    width: 97%;
+  }
+  .mainSmall {
+    width: 85.8%;
+  }
+  .logo {
+    height: 20px;
+  }
+  .link_text {
+    white-space: nowrap;
+    text-decoration: none;
+    font-size: 10px;
+  }
+  .navlink_icon {
+    width: 14px;
+  }
+  /* 
+  .sub_menu {
+    display: flex;
+    color: white;
+    width: 95%;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-right: 4px solid transparent;
+    transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    justify-content: space-between;
+  }
+  .menu_container {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+  }
+  .menu_container .link {
+    padding-left: 10px;
+    font-size: 8px;
+  } */
 }

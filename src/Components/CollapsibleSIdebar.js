@@ -27,7 +27,7 @@ import project_icon from "../Assets/Component/project_icon.svg";
 import data_export_icon from "../Assets/Component/data_export_icon.svg";
 
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu } from "@mui/icons-material";
 
@@ -41,139 +41,147 @@ const generalRoutes = [
   {
     name: "Dashboard",
     path: "/",
-    icon: <img src={dashboard_icon} />,
+    icon: <img className="navlink_icon" alt="" src={dashboard_icon} />,
   },
   {
     name: "AI Dashboard",
     path: "/ai",
-    icon: <img src={ai_dashboard_icon} />,
+    icon: <img className="navlink_icon" alt="" src={ai_dashboard_icon} />,
   },
   {
     name: "Service Provider",
     path: "/service-provider",
-    icon: <img src={vendor_icon} />,
+    icon: <img className="navlink_icon" alt="" src={vendor_icon} />,
   },
   {
     name: "Customer",
     path: "/customer",
-    icon: <img src={customer_icon} />,
+    icon: <img className="navlink_icon" alt="" src={customer_icon} />,
   },
   {
     name: "Chat",
     path: "/chat",
-    icon: <img src={chat_icon} />,
+    icon: <img className="navlink_icon" alt="" src={chat_icon} />,
   },
   {
     name: "Feed",
     path: "/feed",
-    icon: <img src={feed_icon} />,
+    icon: <img className="navlink_icon" alt="" src={feed_icon} />,
   },
   {
     name: "Reservation",
     path: "/reservation",
-    icon: <img src={reservation_icon} />,
+    icon: <img className="navlink_icon" alt="" src={reservation_icon} />,
     children: [
       {
         name: "Sensor Connected",
         path: "/reservation/connected/all",
-        icon: <img src={sensor_connected_icon} />,
+        icon: (
+          <img className="navlink_icon" alt="" src={sensor_connected_icon} />
+        ),
         children: [
           {
             name: "All Reservation Request",
             path: "/reservation/connected/all",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "On Demand Request",
             path: "/reservation/connected/on-demand",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Within 1 Week Request",
             path: "/reservation/connected/within-one-week",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Within 2 Week Request",
             path: "/reservation/connected/within-two-week",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Schedule Time Request",
             path: "/reservation/connected/schedule-time",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Accepted Request",
             path: "/reservation/connected/accepted",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Ongoing Maintenance",
             path: "/reservation/connected/ongoing",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Reschedule Request",
             path: "/reservation/connected/reschedule",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Completed Request",
             path: "/reservation/connected/completed",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
         ],
       },
       {
         name: "Sensor Non-Connected",
         path: "/reservation/non-connected/all",
-        icon: <img src={sensor_not_connected_icon} />,
+        icon: (
+          <img
+            className="navlink_icon"
+            alt=""
+            src={sensor_not_connected_icon}
+          />
+        ),
         children: [
           {
             name: "All Reservation Request",
             path: "/reservation/non-connected/all",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "On Demand Request",
             path: "/reservation/non-connected/on-demand",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Within 1 Week Request",
             path: "/reservation/non-connected/within-one-week",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Within 2 Week Request",
             path: "/reservation/non-connected/within-two-week",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Schedule Time Request",
             path: "/reservation/non-connected/schedule-time",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Accepted Request",
             path: "/reservation/non-connected/accepted",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Ongoing Maintenance",
             path: "/reservation/non-connected/ongoing",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Reschedule Request",
             path: "/reservation/non-connected/reschedule",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Completed Request",
             path: "/reservation/non-connected/completed",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
         ],
       },
@@ -182,44 +190,44 @@ const generalRoutes = [
   {
     name: "IOT",
     path: "/iot",
-    icon: <img src={iot_icon} />,
+    icon: <img className="navlink_icon" alt="" src={iot_icon} />,
   },
   {
     name: "Wallet",
     path: "/wallet",
-    icon: <img src={wallet_icon} />,
+    icon: <img className="navlink_icon" alt="" src={wallet_icon} />,
     children: [
       {
         name: "All Transaction",
         path: "/wallet/alltransaction",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
       {
         name: "Withdarw Request",
         path: "/wallet/withdrawrequest",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
     ],
   },
   {
     name: "Team",
     path: "/team",
-    icon: <img src={team_icon} />,
+    icon: <img className="navlink_icon" alt="" src={team_icon} />,
   },
   {
     name: "Invoice",
     path: "/invoice",
-    icon: <img src={invoice_icon} />,
+    icon: <img className="navlink_icon" alt="" src={invoice_icon} />,
   },
   {
     name: "Project",
     path: "/project",
-    icon: <img src={project_icon} />,
+    icon: <img className="navlink_icon" alt="" src={project_icon} />,
   },
   {
     name: "Data Export",
     path: "/data-export",
-    icon: <img src={data_export_icon} />,
+    icon: <img className="navlink_icon" alt="" src={data_export_icon} />,
   },
 ];
 
@@ -227,99 +235,107 @@ const productRoutes = [
   {
     name: "Marketplace",
     path: "/marketplace",
-    icon: <img src={shop_icon} />,
+    icon: <img className="navlink_icon" alt="" src={shop_icon} />,
   },
   {
     name: "Inventory",
     path: "/inventory",
-    icon: <img src={inventory_icon} />,
+    icon: <img className="navlink_icon" alt="" src={inventory_icon} />,
   },
   {
     name: "Bids",
     path: "/bids",
-    icon: <img src={bids_icon} />,
+    icon: <img className="navlink_icon" alt="" src={bids_icon} />,
     children: [
       {
         name: "Sensor Connected",
         path: "/bids/connected/all-group",
-        icon: <img src={sensor_connected_icon} />,
+        icon: (
+          <img className="navlink_icon" alt="" src={sensor_connected_icon} />
+        ),
         children: [
           {
             name: "All Group",
             path: "/bids/connected/all-group",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Pending",
             path: "/bids/connected/pending",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Bid closed group",
             path: "/bids/connected/bid-closed-group",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Assigned to Company",
             path: "/bids/connected/assigned-to-company",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Ongoing",
             path: "/bids/connected/ongoing",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Completed",
             path: "/bids/connected/completed",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Canceled",
             path: "/bids/connected/canceled",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
         ],
       },
       {
         name: "Sensor Non-Connected",
         path: "/bids/non-connected/all-group",
-        icon: <img src={sensor_not_connected_icon} />,
+        icon: (
+          <img
+            className="navlink_icon"
+            alt=""
+            src={sensor_not_connected_icon}
+          />
+        ),
         children: [
           {
             name: "All Group",
             path: "/bids/non-connected/all-group",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Pending",
             path: "/bids/non-connected/pending",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Bid Closed Group",
             path: "/bids/non-connected/bid-closed-group",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Assigned to Company",
             path: "/bids/non-connected/assigned-to-company",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Ongoing",
             path: "/bids/non-connected/ongoing",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Completed",
             path: "/bids/non-connected/completed",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
           {
             name: "Canceled",
             path: "/bids/non-connected/canceled",
-            icon: <img src={bids_sub_icon} />,
+            icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
           },
         ],
       },
@@ -331,97 +347,105 @@ const settingsRoutes = [
   {
     name: "Notifications",
     path: "/notifications",
-    icon: <img src={notification_icon} />,
+    icon: <img className="navlink_icon" alt="" src={notification_icon} />,
   },
   {
     name: "Help AI",
     path: "/helpai/faq",
-    icon: <img src={help_ai_icon} />,
+    icon: <img className="navlink_icon" alt="" src={help_ai_icon} />,
     children: [
       {
         name: "FAQ",
         path: "/helpai/faq",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
       {
         name: "Learning Resources",
         path: "/helpai/learningresources",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
     ],
   },
   {
     name: "Offers",
     path: "/offers",
-    icon: <img src={offers_icon} />,
+    icon: <img className="navlink_icon" alt="" src={offers_icon} />,
   },
   {
     name: "Packages",
     path: "/packages",
-    icon: <img src={packages_icon} />,
+    icon: <img className="navlink_icon" alt="" src={packages_icon} />,
   },
   {
     name: "Reports",
     path: "/reports",
-    icon: <img src={reports_icon} />,
+    icon: <img className="navlink_icon" alt="" src={reports_icon} />,
   },
   {
     name: "Control Panel",
     path: "/control_panel/reservation_request",
-    icon: <img src={control_panel_icon} />,
+    icon: <img className="navlink_icon" alt="" src={control_panel_icon} />,
     children: [
       {
         name: "Reservation Request",
         path: "/control_panel/reservation_request",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
       {
         name: "Customer",
         path: "/control_panel/customer",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
       {
         name: "Machine",
         path: "/control_panel/machine",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
       {
         name: "Vendor",
         path: "/control_panel/vendor",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
       {
         name: "IoT",
         path: "/control_panel/IoT",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
       {
         name: "Wallet",
         path: "/control_panel/wallet",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
       {
         name: "Shop",
         path: "/control_panel/shop",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
       {
         name: "Inventory",
         path: "/control_panel/inventory",
-        icon: <img src={bids_sub_icon} />,
+        icon: <img className="navlink_icon" alt="" src={bids_sub_icon} />,
       },
     ],
   },
   {
     name: "Settings",
     path: "/settings",
-    icon: <img src={settings_icon} />,
+    icon: <img className="navlink_icon" alt="" src={settings_icon} />,
   },
 ];
 
 const CollapsibleSidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  console.log("Window Size", windowWidth);
   const inputAnimation = {
     hidden: {
       width: 0,
@@ -461,14 +485,20 @@ const CollapsibleSidebar = ({ children }) => {
       <div className="main-container">
         <motion.div
           animate={{
-            width: isOpen ? "250px" : "45px",
+            width:
+              windowWidth >= 1280 && windowWidth <= 1440
+                ? isOpen
+                  ? "180px"
+                  : "35px"
+                : isOpen
+                ? "250px"
+                : "45px", // Conditional width based on window width range
             transition: {
               duration: 0.5,
               type: "spring",
               damping: 10,
             },
           }}
-          // className={`sidebar`}
           className={isOpen ? "sidebarOpen" : "sidebarClosed"}
         >
           <div className="top_section">
@@ -481,14 +511,14 @@ const CollapsibleSidebar = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  <img src={logo_full} />
+                  <img alt="" src={logo_full} />
                 </motion.h1>
               )}
             </AnimatePresence>
 
             <div className="bars">
               {!isOpen ? (
-                <div className="logo">
+                <div className="logo_small">
                   <img src={logo_small} onClick={toggle} />
                 </div>
               ) : (
@@ -571,7 +601,7 @@ const CollapsibleSidebar = ({ children }) => {
           <div style={{ height: "24px" }} />
         </motion.div>
 
-        <main style={{ width: isOpen ? "87%" : "100%" }}>
+        <main className={isOpen ? "mainSmall" : "mainFull"}>
           {children} <Footer />
         </main>
       </div>

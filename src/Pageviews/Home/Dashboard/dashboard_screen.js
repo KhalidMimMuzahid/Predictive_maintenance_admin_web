@@ -13,6 +13,7 @@ import useIsAdmin from "../../../Hooks/useIsAdmin";
 import Loader from "../../../Utils/Loader";
 import { MoreHoriz } from "@mui/icons-material";
 import SelectDateModal from "./components/modal/SelectDateModal";
+import { useSelector } from "react-redux";
 
 const useStyle = makeStyles((theme) => ({
   holder: {
@@ -86,7 +87,7 @@ const DashboardScreen = () => {
   const [isAdmin, setIsAdmin, adminData, setAdminData] = useIsAdmin(
     currentUser?.uid
   );
-  console.log(adminData);
+  const { user } = useSelector((state) => state.auth);
 
   const handleChange = (event) => {
     setProvider(event.target.value);
@@ -101,15 +102,7 @@ const DashboardScreen = () => {
   const handleSelectAllItem = (event) => {
     setItems(event.target.value);
   };
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 2000); // Simulating a delay of 2 seconds
-  // }, []);
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
+  console.log("bortoman user", user?.showaUser?.name?.firstName);
 
   return (
     <div style={{ padding: "40px" }}>
@@ -134,7 +127,9 @@ const DashboardScreen = () => {
           <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <Typography>Good Afternoon / </Typography>
             <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
-              Loading...
+              {user?.showaUser?.name?.firstName +
+                " " +
+                user?.showaUser?.name?.lastName}
             </Typography>
           </Box>
         </Box>
