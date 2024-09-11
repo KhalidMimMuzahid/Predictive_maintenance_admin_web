@@ -1,13 +1,15 @@
 import { Box } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
+  const { width, breakpoint } = useSelector((state) => state.browser);
   const navLinkStyle = ({ isActive }) => {
     return {
       color: isActive ? "black" : "",
       fontWeight: "600",
-      fontSize: "16px",
+      fontSize: breakpoint === "lg" ? "12px" : "16px",
       textDecoration: "none",
       background: isActive ? "#D9E3FF" : "",
       padding: "8px 48px",

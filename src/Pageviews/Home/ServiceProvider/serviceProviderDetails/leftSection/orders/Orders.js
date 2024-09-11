@@ -25,9 +25,9 @@ const Orders = () => {
       }}
     >
       <Box
+        className="orders_card"
         sx={{
           background: "#F1F4FB",
-          height: "56px",
           padding: "16px 12px",
           display: "flex",
           alignItems: "center",
@@ -36,7 +36,8 @@ const Orders = () => {
       >
         <Box>
           <Typography
-            sx={{ fontSize: "12px", fontWeight: "400", color: "#243972" }}
+            className="orders_title"
+            sx={{ fontWeight: "400", color: "#243972" }}
           >
             Orders Received
           </Typography>
@@ -53,9 +54,9 @@ const Orders = () => {
         />
       </Box>
       <Box
+        className="orders_card"
         sx={{
           background: "#F1F4FB",
-          height: "56px",
           padding: "16px 12px",
           display: "flex",
           alignItems: "center",
@@ -64,7 +65,8 @@ const Orders = () => {
       >
         <Box>
           <Typography
-            sx={{ fontSize: "12px", fontWeight: "400", color: "#243972" }}
+            className="orders_title"
+            sx={{ fontWeight: "400", color: "#243972" }}
           >
             Complete Orders
           </Typography>
@@ -81,9 +83,9 @@ const Orders = () => {
         />
       </Box>
       <Box
+        className="orders_card"
         sx={{
           background: "#F1F4FB",
-          height: "56px",
           padding: "16px 12px",
           display: "flex",
           alignItems: "center",
@@ -92,7 +94,9 @@ const Orders = () => {
       >
         <Box>
           <Typography
-            sx={{ fontSize: "12px", fontWeight: "400", color: "#243972" }}
+            className="orders_title"
+            y
+            sx={{ fontWeight: "400", color: "#243972" }}
           >
             Cancellation
           </Typography>
@@ -109,9 +113,9 @@ const Orders = () => {
         />
       </Box>
       <Box
+        className="orders_card"
         sx={{
           background: "#F1F4FB",
-          height: "56px",
           padding: "16px 12px",
           display: "flex",
           alignItems: "center",
@@ -120,7 +124,9 @@ const Orders = () => {
       >
         <Box>
           <Typography
-            sx={{ fontSize: "12px", fontWeight: "400", color: "#243972" }}
+            className="orders_title"
+            y
+            sx={{ fontWeight: "400", color: "#243972" }}
           >
             Revenue
           </Typography>

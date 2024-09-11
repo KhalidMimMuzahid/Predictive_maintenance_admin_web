@@ -40,7 +40,7 @@ const CurrentOffer = () => {
             alignItems: "center",
           }}
         >
-          <img src={currentOffer} alt="" />
+          <img src={currentOffer} className="current_offer_i" alt="" />
           <Box
             sx={{
               display: "flex",
@@ -64,21 +64,20 @@ const CurrentOffer = () => {
               </Typography>
             </Box>
             <Box
+              className="current_offer_off"
               sx={{
                 background: "#24459C",
                 borderRadius: "100%",
-                width: "60px",
-                height: "60px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              <Typography sx={{ fontSize: "12px", color: "white" }}>
+              <Typography className="off_text" sx={{ color: "white" }}>
                 OFF
               </Typography>
-              <Typography sx={{ fontSize: "12px", color: "white" }}>
+              <Typography className="off_text" sx={{ color: "white" }}>
                 15%
               </Typography>
             </Box>
@@ -92,7 +91,7 @@ const CurrentOffer = () => {
             alignItems: "center",
           }}
         >
-          <img src={currentOffer} alt="" />
+          <img src={currentOffer} className="current_offer_i" alt="" />
           <Box
             sx={{
               display: "flex",
@@ -116,21 +115,20 @@ const CurrentOffer = () => {
               </Typography>
             </Box>
             <Box
+              className="current_offer_off"
               sx={{
                 background: "#24459C",
                 borderRadius: "100%",
-                width: "60px",
-                height: "60px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              <Typography sx={{ fontSize: "12px", color: "white" }}>
+              <Typography className="off_text" sx={{ color: "white" }}>
                 OFF
               </Typography>
-              <Typography sx={{ fontSize: "12px", color: "white" }}>
+              <Typography className="off_text" sx={{ color: "white" }}>
                 15%
               </Typography>
             </Box>

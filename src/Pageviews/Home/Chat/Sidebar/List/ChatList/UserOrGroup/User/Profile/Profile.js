@@ -5,8 +5,9 @@ import { useSelector } from "react-redux";
 
 const Profile = ({ users, isSuccess }) => {
   const { user } = useSelector((state) => state.auth);
+  const { width, breakpoint } = useSelector((state) => state.browser);
   const [profileElement, setProfileElement] = useState(
-    <Box sx={{ width: "20%" }}>
+    <Box sx={{ width: "10%" }}>
       <PermIdentity />
     </Box>
   );
@@ -26,10 +27,14 @@ const Profile = ({ users, isSuccess }) => {
         ]?.photoUrl;
       if (photoUrl) {
         setProfileElement(
-          <Box sx={{ width: "20%" }}>
+          <Box sx={{ width: "10%" }}>
             <img
               src={photoUrl}
-              style={{ width: "40px", height: "40px", borderRadius: "100%" }}
+              style={{
+                width: breakpoint === "lg" ? "32px" : "40px",
+                height: breakpoint === "lg" ? "32px" : "40px",
+                borderRadius: "100%",
+              }}
               alt=""
             />
           </Box>

@@ -6,8 +6,11 @@ import img3 from "../../../../../../src/Assets/Component/DashboardCompleteOrder.
 import img4 from "../../../../../../src/Assets/Component/DashboardCancel.png";
 import img5 from "../../../../../../src/Assets/Component/DashboardRevinue.png";
 import MovingIcon from "@mui/icons-material/Moving";
+import { useSelector } from "react-redux";
 
 const Cards = () => {
+  const { width, breakpoint } = useSelector((state) => state.browser);
+
   return (
     <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
       {/* card 1 */}
@@ -15,7 +18,7 @@ const Cards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "330px",
+          width: breakpoint === "lg" ? "300px" : "330px",
           boxShadow: "none",
         }}
       >
@@ -85,7 +88,7 @@ const Cards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "330px",
+          width: breakpoint === "lg" ? "300px" : "330px",
           boxShadow: "none",
         }}
       >
@@ -156,7 +159,7 @@ const Cards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "330px",
+          width: breakpoint === "lg" ? "300px" : "330px",
           boxShadow: "none",
         }}
       >
@@ -226,7 +229,7 @@ const Cards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "330px",
+          width: breakpoint === "lg" ? "300px" : "330px",
           boxShadow: "none",
         }}
       >
@@ -296,7 +299,7 @@ const Cards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "330px",
+          width: breakpoint === "lg" ? "300px" : "330px",
           boxShadow: "none",
         }}
       >

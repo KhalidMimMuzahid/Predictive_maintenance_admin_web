@@ -1,12 +1,14 @@
 import { Typography } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const LastMessageTime = ({ lastMessage }) => {
+  const { width, breakpoint } = useSelector((state) => state.browser);
   return (
     <Typography
       sx={{
         color: "#D1D5DB",
-        fontSize: "14px",
+        fontSize: breakpoint === "lg" ? "10px" : "16px",
         fontWeight: "500",
         textAlign: "end",
         width: "30%",

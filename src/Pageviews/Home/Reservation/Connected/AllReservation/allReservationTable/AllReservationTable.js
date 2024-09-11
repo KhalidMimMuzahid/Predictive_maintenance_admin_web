@@ -204,9 +204,9 @@ const AllReservationTable = ({
           autoHeight
           checkboxSelection
           pageSize={5}
-          rowsPerPageOptions={[15]}
+          rowsPerPageOptions={[10]}
           initialState={{
-            pagination: { paginationModel: { pageSize: 15 } },
+            pagination: { paginationModel: { pageSize: 10 } },
           }}
           pageSizeOptions={[15, 25, 50]}
           disableRowSelectionOnClick

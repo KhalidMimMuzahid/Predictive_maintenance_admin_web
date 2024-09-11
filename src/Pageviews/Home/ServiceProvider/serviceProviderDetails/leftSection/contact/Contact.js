@@ -1,12 +1,18 @@
+import classes from "./Contact.module.css";
 import React from "react";
 import CallIcon from "@mui/icons-material/Call";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import DnsOutlinedIcon from "@mui/icons-material/DnsOutlined";
 import { Box, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 const Contact = ({ serviceProviderDetails }) => {
+  const { width, breakpoint } = useSelector((state) => state.browser);
   return (
     <Box sx={{ border: "solid 1px #F2F2F2", borderRadius: "4px" }}>
-      <Box sx={{ color: "#000000", fontWeight: "500", padding: "12px" }}>
+      <Box
+        className={classes.title}
+        sx={{ color: "#000000", fontWeight: "500", padding: "12px" }}
+      >
         Contact
       </Box>
       <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
@@ -14,7 +20,6 @@ const Contact = ({ serviceProviderDetails }) => {
         sx={{
           padding: "12px 20px",
           display: "flex",
-
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "start",
@@ -45,7 +50,11 @@ const Contact = ({ serviceProviderDetails }) => {
               Phone
             </Typography>
             <Typography
-              sx={{ fontSize: "13px", fontWeight: "700", color: "#424E79" }}
+              sx={{
+                fontSize: breakpoint === "lg" ? "10px" : "13px",
+                fontWeight: "700",
+                color: "#424E79",
+              }}
             >
               {serviceProviderDetails?.serviceProviderAdmin?.phone ||
                 "No Data Found"}
@@ -70,7 +79,9 @@ const Contact = ({ serviceProviderDetails }) => {
               mr: "6px",
             }}
           />
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Box
+            sx={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}
+          >
             <Typography
               sx={{
                 fontSize: "12px",
@@ -82,9 +93,10 @@ const Contact = ({ serviceProviderDetails }) => {
             </Typography>
             <Typography
               sx={{
-                fontSize: "13px",
+                fontSize: breakpoint === "lg" ? "10px" : "13px",
                 fontWeight: "700",
                 color: "#424E79",
+                wordBreak: "break-all",
               }}
             >
               {serviceProviderDetails?.serviceProviderAdmin?.email}
@@ -116,7 +128,11 @@ const Contact = ({ serviceProviderDetails }) => {
               Current Address
             </Typography>
             <Typography
-              sx={{ fontSize: "13px", fontWeight: "700", color: "#424E79" }}
+              sx={{
+                fontSize: breakpoint === "lg" ? "10px" : "13px",
+                fontWeight: "700",
+                color: "#424E79",
+              }}
             >
               {serviceProviderDetails?.address?.street +
                 ", " +

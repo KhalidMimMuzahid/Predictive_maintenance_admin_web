@@ -102,8 +102,8 @@ const DashboardScreen = () => {
   const handleSelectAllItem = (event) => {
     setItems(event.target.value);
   };
-  console.log("bortoman user", user?.showaUser?.name?.firstName);
-
+  const { width, breakpoint } = useSelector((state) => state.browser);
+  console.log(width, breakpoint);
   return (
     <div style={{ padding: "40px" }}>
       {selectDateModal && (
@@ -127,9 +127,11 @@ const DashboardScreen = () => {
           <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <Typography>Good Afternoon / </Typography>
             <Typography sx={{ color: "#24459C", fontWeight: "600" }}>
-              {user?.showaUser?.name?.firstName +
-                " " +
-                user?.showaUser?.name?.lastName}
+              {user?.showaUser?.name
+                ? user?.showaUser?.name?.firstName +
+                  " " +
+                  user?.showaUser?.name?.lastName
+                : "Admin"}
             </Typography>
           </Box>
         </Box>

@@ -17,6 +17,7 @@ import { predefinedApi } from "../features/predefined/predefinedSlice";
 import { addFilesApi } from "../features/addFiles/addFilesSlice";
 import { ordersApi } from "../features/orders/ordersSlice";
 import { aiApi } from "../features/ai/aiSlice";
+import breakpointsSlice from "../features/breakpoints/breakpointsSlice";
 // Store of Redux Using Redux-Toolkit
 
 export const store = configureStore({
@@ -39,6 +40,7 @@ export const store = configureStore({
     [ordersApi.reducerPath]: ordersApi.reducer,
     [aiApi.reducerPath]: aiApi.reducer,
     auth: authSlice,
+    browser: breakpointsSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([

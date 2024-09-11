@@ -44,7 +44,7 @@ const Post = () => {
             </Box>
           </Box>
           <hr style={{ background: "#E6E8F0", opacity: "20%" }} />
-          <img src={postImage} alt="" />
+          <img src={postImage} className="post_image" alt="" />
           <Box
             sx={{
               display: "flex",

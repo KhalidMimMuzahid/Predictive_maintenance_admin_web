@@ -113,6 +113,8 @@ import ReservationRequest from "./Pageviews/Home/ControlPanel/ReservationRequest
 import Machine from "./Pageviews/Home/ControlPanel/Machine/Machine";
 import Customer from "./Pageviews/Home/ControlPanel/Customer/Customer";
 import IOT from "./Pageviews/Home/ControlPanel/IOT/IOT";
+import useWindowSize from "./Hooks/useWindowSize";
+import ScrollToTop from "./Utils/ScrollToTop";
 
 const theme = createTheme();
 
@@ -152,6 +154,7 @@ function App() {
   // OnAuthStateChanged
   const dispatch = useDispatch();
 
+  useWindowSize();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -610,7 +613,7 @@ function App() {
                   <Route path="/settings" element={<SettingsScreen />} />
                 </Routes>
               </CollapsibleSidebar>
-
+              <ScrollToTop />
               {/* <div className={classes.leftbar}>
                     <Sidebar />
                 </div>

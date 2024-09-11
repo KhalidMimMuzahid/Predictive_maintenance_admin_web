@@ -33,6 +33,7 @@ const CustomerDetails = ({ props, viewCustomerOpen, setViewCustomerOpen }) => {
     >
       <Container
         sx={{
+          marginTop: "72px",
           width: "100%",
           background: "white",
           borderRadius: "20px",

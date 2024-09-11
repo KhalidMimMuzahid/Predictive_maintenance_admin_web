@@ -12,7 +12,7 @@ const NameAndMessage = ({
   lastMessageIsSuccess,
 }) => {
   return (
-    <Box sx={{ width: "90%" }}>
+    <Box sx={{ width: "60%" }}>
       <Name chat={chat} users={users} isSuccess={isSuccess} />
       <Message
         chat={chat?._id}

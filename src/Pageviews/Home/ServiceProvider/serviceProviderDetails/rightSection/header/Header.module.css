@@ -1,0 +1,10 @@
+.header {
+  padding: 24px;
+}
+
+/* Media Query */
+@media (min-width: 1280px) and (max-width: 1440px) {
+  .header {
+    padding: 8px;
+  }
+}

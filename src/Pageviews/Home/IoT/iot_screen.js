@@ -33,7 +33,7 @@ const IotScreen = () => {
         />
       )}
 
-      <div className={classes.holder}>
+      <div style={{ padding: "40px" }}>
         <div className={classes.topHolder}>
           <div>
             <div className={classes.title}>IOT</div>

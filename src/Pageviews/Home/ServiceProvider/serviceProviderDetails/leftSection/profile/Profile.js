@@ -7,34 +7,33 @@ const Profile = ({ serviceProviderDetails }) => {
       sx={{
         border: "1px solid #F2F2F2",
         borderRadius: "4px",
-        padding: "20px 12px 20px 12px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        gap: "10px",
       }}
+      className="profile_box"
     >
       <img
         style={{
-          width: "75px",
-          height: "75px",
           borderRadius: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          width: "75px",
+          height: "75px",
         }}
         src={serviceProviderDetails?.photoUrl}
         alt="Company Img"
       />
       <Typography
-        variant="h4"
-        sx={{ fontSize: "18px", color: "#838383", textTransform: "uppercase" }}
+        className="profile_name"
+        sx={{ color: "#838383", textTransform: "uppercase" }}
       >
         {serviceProviderDetails?.companyName}
       </Typography>
-      <Typography sx={{ fontSize: "12px", color: "#65748B" }}>
+      <Typography className="email" sx={{ color: "#65748B" }}>
         {serviceProviderDetails?.serviceProviderAdmin?.email}
       </Typography>
       <Typography sx={{ fontSize: "14px", color: "#65748B" }}>

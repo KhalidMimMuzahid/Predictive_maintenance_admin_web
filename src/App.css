@@ -186,6 +186,51 @@ main {
   width: 20px;
 }
 
+/* Service Provider */
+.profile_box {
+  padding: 20px 12px;
+  gap: 10px;
+}
+.profile_box .profile_name {
+  font-size: 18px;
+}
+.profile_box .email {
+  font-size: 12px;
+}
+
+.orders_card {
+  height: 56px;
+}
+.orders_card .orders_title {
+  font-size: 12px;
+}
+
+/* Service Provider */
+/* Feed */
+.post_image {
+  width: 100%;
+  height: auto;
+}
+.current_offer_i {
+  width: 200px;
+}
+.current_offer_off {
+  width: 60px;
+  height: 60px;
+}
+.off_text {
+  font-size: 12px;
+}
+/* Feed */
+/* Chat */
+.chat_name {
+  font-size: 16px;
+}
+.chat_list_box {
+  padding: 16px;
+}
+/* Chat */
+
 /* Media Query */
 @media (min-width: 1280px) and (max-width: 1440px) {
   /* Sidebar */
@@ -214,6 +259,52 @@ main {
   .navlink_icon {
     width: 14px;
   }
+
+  /* Service Provider */
+  .profile_box {
+    padding: 10px 6px;
+    gap: 6px;
+  }
+  .profile_box .profile_name {
+    font-size: 12px;
+  }
+  .profile_box .email {
+    font-size: 8px;
+  }
+
+  .orders_card {
+    height: 36px;
+    width: 72px;
+  }
+  .orders_card .orders_title {
+    font-size: 8px;
+  }
+
+  /* Service Provider */
+  /* Customer */
+
+  /* Customer */
+
+  /* Feed */
+  .current_offer_i {
+    width: 156px;
+  }
+  .current_offer_off {
+    width: 36px;
+    height: 36px;
+  }
+  .current_offer_off .off_text {
+    font-size: 8px;
+  }
+  /* Feed */
+  /* Chat */
+  .chat_name {
+    font-size: 12px;
+  }
+  .chat_list_box {
+    padding: 6px;
+  }
+  /* Chat */
   /* 
   .sub_menu {
     display: flex;

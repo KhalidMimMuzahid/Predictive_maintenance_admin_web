@@ -8,11 +8,12 @@ import ongoing from "../../../../Assets/Home/reservation/ongoing.png";
 import completed from "../../../../Assets/Home/reservation/completed.png";
 import canceled from "../../../../Assets/Home/reservation/canceled.png";
 import { useGetReservationOverviewQuery } from "../../../../features/reservation/reservationSlice";
+import { useSelector } from "react-redux";
 
 const OverViewCards = () => {
+  const { width, breakpoint } = useSelector((state) => state.browser);
   const { data: reservationOverviewData } =
     useGetReservationOverviewQuery("washing-machine");
-  console.log(reservationOverviewData);
   return (
     <div
       style={{
@@ -27,7 +28,8 @@ const OverViewCards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "350px",
+          width: breakpoint === "lg" ? "280px" : "350px",
+          height: breakpoint === "lg" ? "130px" : "150px",
           boxShadow: "none",
         }}
       >
@@ -105,7 +107,8 @@ const OverViewCards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "350px",
+          width: breakpoint === "lg" ? "280px" : "350px",
+          height: breakpoint === "lg" ? "130px" : "150px",
           boxShadow: "none",
         }}
       >
@@ -184,7 +187,8 @@ const OverViewCards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "350px",
+          width: breakpoint === "lg" ? "280px" : "350px",
+          height: breakpoint === "lg" ? "130px" : "150px",
           boxShadow: "none",
         }}
       >
@@ -262,7 +266,8 @@ const OverViewCards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "350px",
+          width: breakpoint === "lg" ? "280px" : "350px",
+          height: breakpoint === "lg" ? "130px" : "150px",
           boxShadow: "none",
         }}
       >
@@ -340,7 +345,8 @@ const OverViewCards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "350px",
+          width: breakpoint === "lg" ? "280px" : "350px",
+          height: breakpoint === "lg" ? "130px" : "150px",
           boxShadow: "none",
         }}
       >
@@ -417,7 +423,8 @@ const OverViewCards = () => {
         style={{
           borderRadius: "12px",
           backgroundColor: "#F1F4FB",
-          width: "350px",
+          width: breakpoint === "lg" ? "280px" : "350px",
+          height: breakpoint === "lg" ? "130px" : "150px",
           boxShadow: "none",
         }}
       >

@@ -445,7 +445,6 @@ const CollapsibleSidebar = ({ children }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  console.log("Window Size", windowWidth);
   const inputAnimation = {
     hidden: {
       width: 0,

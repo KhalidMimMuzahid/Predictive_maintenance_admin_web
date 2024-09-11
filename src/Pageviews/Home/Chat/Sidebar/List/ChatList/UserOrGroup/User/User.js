@@ -17,6 +17,7 @@ const User = ({
   // const
   return (
     <Button
+      className="chat_list_box"
       onClick={() => {
         navigate(`/chat/${chat?._id}`);
       }}

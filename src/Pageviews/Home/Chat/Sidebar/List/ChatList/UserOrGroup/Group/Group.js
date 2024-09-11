@@ -17,17 +17,18 @@ const Group = ({
   const navigate = useNavigate();
   return (
     <Button
+      className="chat_list_box"
       onClick={() => {
         navigate(`/chat/${chat?._id}`);
       }}
       sx={{
-        padding: "16px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
         gap: "24px",
         textTransform: "none",
+        color: "#56638D",
       }}
     >
       <Profile groupPhotoUrl={chat?.group?.groupPhotoUrl} users={users} />

@@ -11,7 +11,7 @@ const LeftSection = ({ serviceProviderDetails }) => {
         display: "flex",
         flexDirection: "column",
         gap: "12px 0",
-        padding: "10px 16px 16px 16px",
+        padding: "10px 16px",
       }}
     >
       <Profile serviceProviderDetails={serviceProviderDetails} />

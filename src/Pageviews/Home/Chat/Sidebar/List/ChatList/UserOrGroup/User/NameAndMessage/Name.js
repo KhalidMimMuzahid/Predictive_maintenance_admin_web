@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 const Name = ({ chat, group, users, isSuccess }) => {
   const [title, setTitle] = useState("User");
   const { user } = useSelector((state) => state.auth);
+  const { width, breakpoint } = useSelector((state) => state.browser);
 
   useEffect(() => {
     if (isSuccess && users?.length) {
@@ -40,8 +41,8 @@ const Name = ({ chat, group, users, isSuccess }) => {
   return (
     <Typography
       sx={{
+        fontSize: breakpoint === "lg" ? "10px" : "16px",
         color: "#56638D",
-        fontSize: "16px",
         fontWeight: "600",
         textAlign: "start",
       }}

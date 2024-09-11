@@ -1,0 +1,6 @@
+/* Media Query */
+@media (min-width: 1280px) and (max-width: 1440px) {
+  .title {
+    font-size: 14px;
+  }
+}
